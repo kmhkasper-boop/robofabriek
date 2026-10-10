@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2b6cb0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Robo-Fabriek: help robot Bliep zijn fabriek te repareren door patronen te ontdekken. Een Nederlands educatief spel over patronen voor kinderen van 6 tot 10 jaar.">
+<title>Robo-Fabriek – ontdek de patronen en help Bliep</title>
+<link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Robo-Fabriek">
+<link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fredoka (SIL Open Font License 1.1, zie fonts/OFL.txt), zelf gehost: geen verzoeken naar buiten */
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:300 700;font-display:swap;src:url(fonts/fredoka-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:300 700;font-display:swap;src:url(fonts/fredoka-latinext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+:root{
+  --ink:#1f2a44; --ink2:#3b4767; --steel:#dfe8f1; --steel2:#c4d3e3; --panel:#ffffff;
+  --blue:#2b6cb0; --green:#1f8a4c; --orange:#e07b00; --red:#c8423b; --yellow:#ffd23f; --purple:#6a3bd6;
+  --shadow:0 6px 0 rgba(31,42,68,.18); --radius:22px;
+  --font:'Fredoka','Nunito','Trebuchet MS',system-ui,sans-serif;
+  --safe-t:env(safe-area-inset-top,0px); --safe-b:env(safe-area-inset-bottom,0px); --safe-l:env(safe-area-inset-left,0px); --safe-r:env(safe-area-inset-right,0px);
+  --ts:64px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;background:#22304d}
+body{font-family:var(--font);color:var(--ink);font-size:clamp(15px,.55vw + .55vh + 8px,22px);line-height:1.3;
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation;position:fixed;inset:0}
+body.bigtext{font-size:clamp(18px,.7vw + .7vh + 9px,26px)}
+button{font-family:inherit;color:inherit;cursor:pointer;border:none;touch-action:manipulation;background:none;padding:0}
+button:focus-visible{outline:4px solid #ff9f1c;outline-offset:3px}
+input{font-family:inherit;font-size:1em}
+h1,h2,h3,p{margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4em;font-size:1.05em;font-weight:600;
+  padding:.45em 1.1em;min-height:54px;border-radius:999px;background:var(--blue);color:#fff;box-shadow:var(--shadow);transition:transform .1s, box-shadow .1s}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(31,42,68,.18)}
+.btn:disabled{filter:grayscale(.8);opacity:.5}
+.btn.green{background:var(--green)} .btn.orange{background:var(--orange)} .btn.red{background:var(--red)} .btn.white{background:#fff;color:var(--ink)} .btn.purple{background:var(--purple)}
+.btn.small{min-height:44px;font-size:.9em;padding:.3em .9em}
+.iconbtn{width:52px;height:52px;border-radius:50%;background:#fff;box-shadow:var(--shadow);font-size:1.5em;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.iconbtn:active{transform:translateY(3px)}
+.screen{position:absolute;inset:0;display:none;flex-direction:column;
+  padding:calc(10px + var(--safe-t)) calc(12px + var(--safe-r)) calc(10px + var(--safe-b)) calc(12px + var(--safe-l));
+  background:linear-gradient(#e9f1f8,#c9d8e8);overflow:hidden}
+.screen.show{display:flex}
+.topbar{display:flex;align-items:center;gap:10px;flex:none;min-height:56px}
+.topbar .title{flex:1;font-weight:700;font-size:1.15em;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{background:#fff;border-radius:999px;padding:.25em .8em;font-weight:700;box-shadow:var(--shadow);white-space:nowrap}
+.card{background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y;flex:1;min-height:0}
+/* ---------- titel ---------- */
+#scrTitle{align-items:center;justify-content:center;gap:2vh;background:radial-gradient(circle at 50% 40%,#fdf6e3 0,#cfe0f0 55%,#9fb8d4 100%)}
+.logo{font-size:clamp(40px,8vmin,92px);font-weight:700;color:#fff;letter-spacing:1px;
+  text-shadow:0 4px 0 var(--ink),3px 0 0 var(--ink),-3px 0 0 var(--ink),0 -3px 0 var(--ink),0 10px 0 rgba(0,0,0,.18);text-align:center;line-height:1}
+.logo small{display:block;font-size:.35em;color:var(--ink);text-shadow:none;margin-top:.4em;letter-spacing:0}
+#titleBliep{width:min(42vmin,260px);height:min(42vmin,260px)}
+.tbtns{display:flex;flex-direction:column;gap:12px;align-items:stretch;min-width:min(80vw,320px)}
+@media (orientation:landscape) and (max-height:520px){
+  #scrTitle{flex-direction:row;flex-wrap:wrap;gap:3vw}
+  #titleBliep{width:38vh;height:38vh}
+  .logo{width:100%;font-size:11vh}
+}
+.parent-gate{position:relative;overflow:hidden}
+.parent-gate .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,210,63,.6);pointer-events:none}
+.parent-gate.holding .fill{width:100%;transition:width 2s linear}
+.parent-gate span.lbl{position:relative}
+/* ---------- intro ---------- */
+#scrIntro{align-items:center;justify-content:center;gap:16px;background:linear-gradient(#3a4a6b,#22304d)}
+.scene{position:relative;width:min(94vw,760px);flex:1;max-height:62vh;border-radius:var(--radius);overflow:hidden;background:#2c3a57;box-shadow:0 8px 0 rgba(0,0,0,.25)}
+.scene svg{width:100%;height:100%;display:block}
+.bubble{background:#fff;border-radius:22px;padding:14px 18px;font-size:1.1em;font-weight:500;box-shadow:var(--shadow);position:relative;width:min(94vw,760px)}
+.introbtns{display:flex;gap:12px;justify-content:center}
+/* ---------- kaart ---------- */
+#scrMap .mapwrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+#mapSvg{width:100%;height:100%;max-width:1100px}
+.hall{cursor:pointer}
+.hall .hbg{transition:filter .2s}
+.hall:hover .hbg{filter:brightness(1.06)}
+.hall.locked{cursor:default}
+#mapBliep{width:58px;height:58px;flex:none}
+/* ---------- hal ---------- */
+.levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:12px;padding:6px 2px 12px}
+.lvl{display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:10px 12px;min-height:76px}
+.lvl:active{transform:translateY(3px)}
+.lvl .num{width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:1.3em;display:flex;align-items:center;justify-content:center;flex:none}
+.lvl.done .num{background:var(--green)}
+.lvl.locked{opacity:.55}
+.lvl.locked .num{background:#8a97ab}
+.lvl b{display:block}
+.lvl small{color:var(--ink2)}
+.stars{letter-spacing:2px;white-space:nowrap}
+.parts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:8px}
+.part{width:64px;text-align:center;font-size:.7em;color:var(--ink2)}
+.part svg{width:52px;height:52px;display:block;margin:0 auto;filter:grayscale(1) opacity(.45)}
+.part.ok svg{filter:none}
+.hallhead{display:flex;gap:12px;align-items:center}
+.hallhead .hb{width:64px;height:64px;flex:none}
+/* ---------- puzzel ---------- */
+#scrPuzzle{background:linear-gradient(#eef3f9,#cbd9e8)}
+#scrPuzzle.h2{background:linear-gradient(#efe9fb,#d4cbe9)}
+.dots{display:flex;gap:6px;justify-content:center}
+.dots i{width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--ink);display:block}
+.dots i.ok{background:var(--green)} .dots i.now{background:var(--yellow)}
+.pmain{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:1.2vh;padding-top:4px}
+.instr{display:flex;align-items:center;gap:10px;font-weight:600;font-size:1.1em;text-align:center;max-width:900px}
+.instr .iconbtn{width:46px;height:46px;font-size:1.2em}
+.machine{position:relative;width:100%;max-width:1000px;padding:14px 10px 22px;border-radius:24px;background:#5b6b86;box-shadow:inset 0 -10px 0 rgba(0,0,0,.18),var(--shadow)}
+.machine.cover::after{content:'🙈 Verstopt! Wat zei je teamgenoot?';position:absolute;inset:0;border-radius:24px;background:repeating-linear-gradient(45deg,#ffd23f 0 22px,#1f2a44 22px 44px);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1.2em;text-shadow:0 2px 0 #000,0 0 6px #000}
+.belt{position:absolute;left:10px;right:10px;bottom:8px;height:14px;border-radius:7px;background:repeating-linear-gradient(90deg,#2b3446 0 14px,#3d4860 14px 28px);animation:belt 1.2s linear infinite}
+@keyframes belt{to{background-position:28px 0}}
+.band{display:grid;gap:6px;justify-content:center;grid-template-columns:repeat(var(--cols),var(--ts))}
+.slot{width:var(--ts);height:var(--ts);border-radius:14px;background:#eef2f7;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:inset 0 -4px 0 rgba(0,0,0,.12)}
+.slot svg{width:86%;height:86%}
+.slot.blank{background:#fff8d6;border:4px dashed var(--orange)}
+.slot.blank::before{content:'?';font-weight:700;font-size:calc(var(--ts)*.5);color:var(--orange)}
+.slot.blank.filled::before{content:none}
+.slot.cur{animation:pulse 1s ease-in-out infinite}
+.slot.tap{cursor:pointer}
+.slot.sel{outline:5px solid var(--yellow);outline-offset:-2px}
+.slot.selrange{background:#fff1a8}
+.slot.bad{background:#ffd9d4;outline:4px solid var(--red);outline-offset:-2px}
+.slot.good{background:#d4f5df;outline:4px solid var(--green);outline-offset:-2px}
+.slot.k0{box-shadow:inset 0 -8px 0 #ff9f1c} .slot.k1{box-shadow:inset 0 -8px 0 #3fa9f5}
+.slot.play{transform:scale(1.15);background:#fff;transition:transform .08s}
+.slot .lab{position:absolute;bottom:2px;left:0;right:0;text-align:center;font-size:calc(var(--ts)*.18);font-weight:700;color:var(--ink)}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.choices{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:900px}
+.choice{width:clamp(64px,14vmin,104px);height:clamp(64px,14vmin,104px);border-radius:22px;background:#fff;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;position:relative}
+.choice svg{width:80%;height:80%}
+.choice:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(31,42,68,.18)}
+.choice.hint{animation:glow .8s ease-in-out infinite alternate;outline:5px solid var(--yellow)}
+@keyframes glow{from{box-shadow:0 0 0 0 rgba(255,210,63,.9),var(--shadow)}to{box-shadow:0 0 0 12px rgba(255,210,63,.35),var(--shadow)}}
+.choice .lab{position:absolute;bottom:2px;left:0;right:0;font-size:.85em;font-weight:700}
+.pact{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;min-height:54px}
+.fb{display:flex;align-items:center;gap:10px;max-width:900px;width:100%;min-height:64px}
+.fb .mini{width:60px;height:60px;flex:none}
+.fb .txt{flex:1;background:#fff;border-radius:18px;padding:10px 14px;box-shadow:var(--shadow);font-weight:500}
+.fb .txt:empty{visibility:hidden}
+.fb.good .txt{background:#dff7e7} .fb.bad .txt{background:#fff1e0}
+.fb .seqmini{display:inline-flex;gap:2px;vertical-align:middle;margin:0 2px}
+.fb .seqmini svg{width:1.4em;height:1.4em}
+.fb .seqmini i{width:.5em;display:inline-block}
+.turn{font-weight:700;padding:.3em .9em;border-radius:999px;color:#fff;background:var(--blue)}
+.turn.p2{background:var(--orange)}
+/* ---------- resultaat ---------- */
+#scrResult{align-items:center;justify-content:center;gap:2vh;text-align:center}
+.bigstars{font-size:clamp(44px,10vmin,90px);letter-spacing:6px}
+.bigstars span{display:inline-block;animation:pop .5s backwards}
+.bigstars span:nth-child(2){animation-delay:.3s}.bigstars span:nth-child(3){animation-delay:.6s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.reward{display:flex;align-items:center;gap:14px;justify-content:center}
+.reward svg{width:90px;height:90px}
+#resBliep{width:min(30vmin,180px);height:min(30vmin,180px)}
+/* ---------- overlays ---------- */
+.overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(20,28,48,.55);z-index:50;padding:calc(10px + var(--safe-t)) calc(10px + var(--safe-r)) calc(10px + var(--safe-b)) calc(10px + var(--safe-l))}
+.overlay.show{display:flex}
+.ocard{background:#fff;border-radius:var(--radius);box-shadow:0 10px 0 rgba(0,0,0,.2);width:min(720px,100%);max-height:100%;display:flex;flex-direction:column;padding:16px;gap:10px}
+.ocard h2{text-align:center}
+.orow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.orow label{display:flex;align-items:center;gap:8px;min-height:44px}
+.orow input[type=range]{width:160px}
+.orow input[type=checkbox]{width:26px;height:26px}
+table.prog{border-collapse:collapse;width:100%;font-size:.9em}
+table.prog td,table.prog th{padding:4px 6px;border-bottom:1px solid #dde;text-align:left}
+.small-note{font-size:.82em;color:var(--ink2)}
+.namein{border:3px solid var(--ink);border-radius:14px;padding:8px 12px;width:min(260px,70vw)}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.mode{background:#fff;border-radius:20px;box-shadow:var(--shadow);padding:14px;text-align:left;display:flex;flex-direction:column;gap:6px}
+.mode.sel{outline:5px solid var(--yellow)}
+.mode b{font-size:1.1em}
+.toast{position:absolute;left:50%;top:calc(14px + var(--safe-t));transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;z-index:80;pointer-events:none;opacity:0;transition:opacity .3s}
+.toast.show{opacity:1}
+.pside{display:flex;flex-direction:column;align-items:center;gap:1.2vh;width:100%}
+@media (orientation:landscape) and (max-height:500px){
+  .pmain{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,36%);grid-template-rows:auto auto auto auto;align-items:center;justify-items:center;gap:6px 12px;align-content:start}
+  #pzTurn,.instr{grid-column:1/-1}
+  .pmain .machine{grid-column:1}
+  #pzMachine{grid-row:3;align-self:start} #pzMachine2{grid-row:4;align-self:start}
+  .pside{grid-column:2;grid-row:3/span 2;align-self:start;gap:8px}
+  .instr{font-size:1em}
+  .choice{width:clamp(48px,11.5vh,72px);height:clamp(48px,11.5vh,72px)} .choices{gap:8px}
+  .pact .btn{min-height:42px;font-size:.85em;padding:.25em .8em} .fb .mini{display:none} .fb{min-height:0}
+  .fb .txt{font-size:.85em;padding:6px 10px}
+  .hallhead{padding:8px} .part{width:54px} .part svg{width:38px;height:38px}
+}
+@media (max-width:480px){ .dots{gap:3px} .dots i{width:9px;height:9px;border-width:2px} .topbar{gap:6px} .topbar .title{font-size:1em} }
+@media (max-height:460px){ .topbar{min-height:46px} .iconbtn{width:44px;height:44px;font-size:1.2em} .btn{min-height:46px} .fb .mini{width:44px;height:44px} .fb{min-height:48px} .machine{padding:8px 8px 18px} }
+</style>
+</head>
+<body>
+<!-- ===== TITEL ===== -->
+<section id="scrTitle" class="screen show">
+  <div class="logo">Robo-Fabriek<small>Ontdek de patronen en help Bliep!</small></div>
+  <div id="titleBliep"></div>
+  <div class="tbtns">
+    <button class="btn green" id="btnPlay">▶️ Spelen</button>
+    <button class="btn orange" id="btnSamen">👫 Samen spelen</button>
+    <button class="btn white small parent-gate" id="btnParent" aria-label="Voor ouders: houd 2 seconden ingedrukt"><span class="fill"></span><span class="lbl">👪 Voor ouders <small>(houd 2 sec. vast)</small></span></button>
+  </div>
+</section>
+<!-- ===== INTRO ===== -->
+<section id="scrIntro" class="screen">
+  <div class="scene" id="introScene"></div>
+  <div class="bubble" id="introText"></div>
+  <div class="introbtns"><button class="btn white small" id="introSkip">Overslaan ⏭️</button><button class="btn green" id="introNext">Verder ▶️</button></div>
+</section>
+<!-- ===== KAART ===== -->
+<section id="scrMap" class="screen">
+  <div class="topbar"><button class="iconbtn" id="mapHome" aria-label="Naar het begin">🏠</button><div id="mapBliep"></div><div class="title">De fabriek van Bliep</div><span class="pill" id="mapStars">⭐ 0</span><button class="iconbtn" id="mapSamen" aria-label="Samen spelen">👫</button></div>
+  <div class="mapwrap"><svg id="mapSvg" viewBox="0 -70 1000 690" preserveAspectRatio="xMidYMid meet"></svg></div>
+</section>
+<!-- ===== HAL ===== -->
+<section id="scrHall" class="screen">
+  <div class="topbar"><button class="iconbtn" id="hallBack" aria-label="Terug naar de fabriek">⬅️</button><div class="title" id="hallTitle"></div><span class="pill" id="hallStars"></span></div>
+  <div class="scroll">
+    <div class="card hallhead"><div class="hb" id="hallIcon"></div><div><p id="hallDesc"></p><div class="parts" id="hallParts"></div></div></div>
+    <div class="levels" id="hallLevels"></div>
+  </div>
+</section>
+<!-- ===== PUZZEL ===== -->
+<section id="scrPuzzle" class="screen">
+  <div class="topbar"><button class="iconbtn" id="pzBack" aria-label="Stoppen">⬅️</button><div class="title" id="pzTitle"></div><div class="dots" id="pzDots"></div><button class="iconbtn" id="pzHint" aria-label="Hint">💡</button></div>
+  <div class="pmain">
+    <div id="pzTurn"></div>
+    <div class="instr"><button class="iconbtn" id="pzSay" aria-label="Lees voor">🔊</button><span id="pzInstr"></span></div>
+    <div class="machine" id="pzMachine"><div class="band" id="pzBand"></div><div class="belt"></div></div>
+    <div class="machine" id="pzMachine2" style="display:none"><div class="band" id="pzBand2"></div><div class="belt"></div></div>
+    <div class="pside">
+    <div class="choices" id="pzChoices"></div>
+    <div class="pact" id="pzAct"></div>
+    <div class="fb" id="pzFb"><div class="mini" id="pzBliep"></div><div class="txt" id="pzFbTxt"></div></div>
+    </div>
+  </div>
+</section>
+<!-- ===== RESULTAAT ===== -->
+<section id="scrResult" class="screen">
+  <h1 id="resTitle"></h1>
+  <div class="bigstars" id="resStars"></div>
+  <div id="resBliep"></div>
+  <div class="reward card" id="resReward"></div>
+  <div class="introbtns" id="resBtns"></div>
+</section>
+<!-- ===== SAMEN ===== -->
+<section id="scrSamen" class="screen">
+  <div class="topbar"><button class="iconbtn" id="samenBack" aria-label="Terug">⬅️</button><div class="title">👫 Samen spelen op 1 apparaat</div></div>
+  <div class="scroll"><div style="display:flex;flex-direction:column;gap:12px;max-width:900px;margin:0 auto;padding-bottom:12px">
+    <div class="card orow" style="justify-content:center"><span class="turn">Speler 1</span><input class="namein" id="name1" maxlength="12" placeholder="naam"><span class="turn p2">Speler 2</span><input class="namein" id="name2" maxlength="12" placeholder="naam"></div>
+    <div class="modes">
+      <button class="mode" data-mode="lezer"><b>🗣️ Lezer en bouwer</b><span>De lezer kijkt naar de band en zegt het patroon hardop. Dan gaat de band dicht en de bouwer kiest het goede stukje. Elke beurt wisselen jullie.</span></button>
+      <button class="mode" data-mode="maker"><b>🛠️ Maak een patroon</b><span>Om de beurt maak je een geheim patroon voor de ander. De machine zet het op de band, de ander maakt het af.</span></button>
+    </div>
+    <div class="modes">
+      <button class="mode" data-hall="1"><b>🏭 Lopende band</b><span>Patronen met vormen</span></button>
+      <button class="mode" data-hall="2"><b>🔊 Geluidskamer</b><span>Patronen met piep, toet en boem</span></button>
+    </div>
+  </div></div>
+  <div style="text-align:center;padding-top:8px;flex:none"><button class="btn green" id="samenGo">▶️ Start (8 beurten)</button></div>
+</section>
+<!-- ===== VOOR OUDERS ===== -->
+<div id="ovOuders" class="overlay">
+  <div class="ocard">
+    <h2>👪 Voor ouders</h2>
+    <div class="scroll" style="display:flex;flex-direction:column;gap:12px">
+      <div><h3>🔊 Geluid en stem</h3>
+        <div class="orow"><label><input type="checkbox" id="setMusic"> Muziek</label><input type="range" id="setMusicVol" min="0" max="100" aria-label="Muziek volume"></div>
+        <div class="orow"><label><input type="checkbox" id="setSfx"> Geluidjes</label><input type="range" id="setSfxVol" min="0" max="100" aria-label="Geluidjes volume"></div>
+        <div class="orow"><label><input type="checkbox" id="setSpeech"> Voorlezen (Nederlandse stem)</label><label>Tempo <input type="range" id="setRate" min="60" max="120" aria-label="Voorleestempo"></label><button class="btn small white" id="setTest">▶️ Test</button></div>
+        <p class="small-note" id="voiceNote"></p>
+        <div class="orow"><label><input type="checkbox" id="setBig"> Grotere letters</label></div>
+      </div>
+      <div><h3>📊 Voortgang</h3><div id="oudProg"></div></div>
+      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een sessie (1 niveau) duurt ongeveer 5 minuten.</p></div>
+      <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles openen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
+      <p class="small-note">Robo-Fabriek werkt zonder account, zonder reclame en zonder internet (na de eerste keer). De voortgang staat alleen op dit apparaat. Installeren: iPad/iPhone → Safari → Deel → <b>Zet op beginscherm</b>; Android → Chrome → ⋮ → <b>App installeren</b>.</p>
+    </div>
+    <div style="text-align:right"><button class="btn green" id="oudClose">Sluiten</button></div>
+  </div>
+</div>
+<div id="ovConfirm" class="overlay"><div class="ocard" style="width:min(460px,100%);text-align:center"><p id="cfText"></p><div class="orow" style="justify-content:center"><button class="btn white" id="cfNo">Nee</button><button class="btn red" id="cfYes">Ja</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))addEventListener('load',function(){navigator.serviceWorker.register('sw.js',{scope:'./'}).catch(function(){});});</script>
+<script>
+'use strict';
+/* ===== core/util.js ===== */
+/* Hulpjes */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+let RNG = Math.random;                                     // tests kunnen een vaste rng zetten
+const rnd = n => Math.floor(RNG() * n);
+const pick = a => a[rnd(a.length)];
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = rnd(i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const dayKey = () => { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); };
+function show(id) { $$('.screen').forEach(s => s.classList.toggle('show', s.id === id)); CUR_SCREEN = id; }
+let CUR_SCREEN = 'scrTitle';
+function openOv(id) { $('#' + id).classList.add('show'); }
+function closeOv(id) { $('#' + id).classList.remove('show'); }
+let toastT = 0;
+function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => e.classList.remove('show'), 2200); }
+function confirmBox(text) {
+  return new Promise(res => { $('#cfText').textContent = text; openOv('ovConfirm');
+    $('#cfYes').onclick = () => { closeOv('ovConfirm'); res(true); }; $('#cfNo').onclick = () => { closeOv('ovConfirm'); res(false); }; });
+}
+// houd-knop (2 s) als ouderpoortje
+function holdButton(btn, ms, cb) {
+  let t = 0;
+  const start = e => { e.preventDefault(); btn.classList.add('holding'); t = setTimeout(() => { btn.classList.remove('holding'); cb(); }, ms); };
+  const stop = () => { clearTimeout(t); btn.classList.remove('holding'); };
+  btn.addEventListener('pointerdown', start); ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => btn.addEventListener(ev, stop));
+  btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') cb(); });
+}
+
+/* ===== core/save.js ===== */
+/* Opslag (localStorage) met versienummer + migratie. Verhoog SAVE_V en voeg een stap toe in migrate() bij elke vormverandering. */
+const LS_KEY = 'robofabriek_save';
+const SAVE_V = 1;
+function freshSave() {
+  return {
+    v: SAVE_V, created: dayKey(), introSeen: false,
+    placement: { done: false, score: 0 },
+    halls: {},                     // { [hal]: { lv: { [niveau]: { stars, done, best } }, open: hoogste open niveau } }
+    stats: {},                     // { [puzzeltype]: { ok, bad, hints } }
+    upgrades: [],                  // ids van Bliep-upgrades
+    names: ['', ''],
+    samen: { played: 0, best: 0 },
+    settings: { music: true, musicVol: 45, sfx: true, sfxVol: 80, speech: true, rate: 90, big: false },
+    playDays: {}, minutes: 0
+  };
+}
+function migrate(o) {
+  if (!o || typeof o !== 'object') return freshSave();
+  const f = freshSave();
+  // v0 (geen v-veld, testversie): alleen 'stars' per niveau als getal → omzetten
+  if (!o.v) { o.v = 1; for (const h in (o.halls || {})) for (const l in (o.halls[h].lv || {})) { const x = o.halls[h].lv[l]; if (typeof x === 'number') o.halls[h].lv[l] = { stars: x, done: x > 0, best: x }; } }
+  // ontbrekende velden aanvullen (nieuwe instellingen e.d.)
+  for (const k in f) if (!(k in o)) o[k] = f[k];
+  for (const k in f.settings) if (!(k in o.settings)) o.settings[k] = f.settings[k];
+  for (const k in f.placement) if (!(k in o.placement)) o.placement[k] = f.placement[k];
+  o.v = SAVE_V;
+  return o;
+}
+let S = freshSave();
+function load() { try { const raw = localStorage.getItem(LS_KEY); S = raw ? migrate(JSON.parse(raw)) : freshSave(); } catch (e) { S = freshSave(); } }
+function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) { } }
+function resetSave() { const keep = S.settings; S = freshSave(); S.settings = keep; save(); }
+function hallState(h) { if (!S.halls[h]) S.halls[h] = { lv: {}, open: h === 1 ? 1 : 0 }; return S.halls[h]; }
+function stat(type) { if (!S.stats[type]) S.stats[type] = { ok: 0, bad: 0, hints: 0 }; return S.stats[type]; }
+function totalStars() { let n = 0; for (const h in S.halls) for (const l in S.halls[h].lv) n += S.halls[h].lv[l].stars || 0; return n; }
+
+/* ===== core/audio.js ===== */
+/* Geluid: alles met WebAudio gemaakt (geen bestanden). Muziek = rustige loop; geluidjes; de klanken van de Geluidskamer. */
+const AUD = { ac: null, master: null, music: null, sfx: null, mTimer: 0, mNext: 0, mStep: 0, musicOn: false, duckT: 0 };
+function audioInit() {
+  if (AUD.ac) { if (AUD.ac.state === 'suspended') AUD.ac.resume(); return; }
+  const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+  AUD.ac = new AC(); AUD.master = AUD.ac.createGain(); AUD.master.connect(AUD.ac.destination);
+  AUD.music = AUD.ac.createGain(); AUD.music.connect(AUD.master); AUD.sfx = AUD.ac.createGain(); AUD.sfx.connect(AUD.master);
+  applyVolumes();
+}
+function applyVolumes() {
+  if (!AUD.ac) return;
+  AUD.sfx.gain.value = S.settings.sfx ? S.settings.sfxVol / 100 : 0;
+  AUD.music.gain.value = S.settings.music ? S.settings.musicVol / 100 * .35 : 0;
+}
+function tone(f, d, type = 'sine', vol = .2, delay = 0, f2 = 0, dest) {
+  if (!AUD.ac) return; const t = AUD.ac.currentTime + delay, o = AUD.ac.createOscillator(), g = AUD.ac.createGain();
+  o.type = type; o.frequency.setValueAtTime(f, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + d);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .012); g.gain.exponentialRampToValueAtTime(.0005, t + d);
+  o.connect(g); g.connect(dest || AUD.sfx); o.start(t); o.stop(t + d + .05);
+}
+function noise(d, vol = .2, delay = 0, lp = 1200) {
+  if (!AUD.ac) return; const t = AUD.ac.currentTime + delay, n = AUD.ac.sampleRate * d, b = AUD.ac.createBuffer(1, n, AUD.ac.sampleRate), x = b.getChannelData(0);
+  for (let i = 0; i < n; i++) x[i] = (Math.random() * 2 - 1) * (1 - i / n);
+  const s = AUD.ac.createBufferSource(), f = AUD.ac.createBiquadFilter(), g = AUD.ac.createGain(); s.buffer = b; f.type = 'lowpass'; f.frequency.value = lp; g.gain.value = vol;
+  s.connect(f); f.connect(g); g.connect(AUD.sfx); s.start(t);
+}
+const SFX = {
+  click() { tone(660, .06, 'triangle', .12); },
+  ok() { [523, 659, 784].forEach((f, i) => tone(f, .18, 'triangle', .14, i * .08)); },
+  nope() { tone(330, .2, 'sine', .14, 0, 262); },
+  place() { tone(520, .07, 'square', .06); tone(780, .06, 'triangle', .06, .04); },
+  star() { tone(988, .12, 'triangle', .12); tone(1319, .2, 'triangle', .1, .1); },
+  fanfare() { [523, 659, 784, 659, 784, 1047].forEach((f, i) => tone(f, .25, 'triangle', .14, i * .13)); },
+  whir() { tone(110, .5, 'sawtooth', .05, 0, 220); },
+  // de klanken van de Geluidskamer (hoog-kort / laag-lang / slagwerk / stilte)
+  piep() { tone(1320, .16, 'square', .1); tone(1980, .1, 'sine', .04); },
+  toet() { tone(196, .42, 'sawtooth', .12); tone(392, .42, 'triangle', .05); },
+  boem() { tone(150, .3, 'sine', .35, 0, 50); noise(.12, .18, 0, 600); },
+  stil() { }
+};
+// achtergrondmuziek: korte vrolijke loop (C – Am – F – G), zacht en rustig; uit tijdens de geluidspuzzels
+const MUS = { bass: [48, 48, 45, 45, 41, 41, 43, 43], mel: [72, 0, 76, 79, 76, 0, 74, 72, 69, 0, 72, 76, 77, 76, 74, 0, 72, 0, 77, 81, 79, 77, 76, 74, 74, 0, 71, 74, 79, 0, 0, 0] };
+const midi = n => 440 * Math.pow(2, (n - 69) / 12);
+function musicTick() {
+  if (!AUD.ac || !AUD.musicOn) return;
+  const spb = .3;
+  while (AUD.mNext < AUD.ac.currentTime + .25) {
+    const s = AUD.mStep, t = AUD.mNext - AUD.ac.currentTime;
+    if (s % 4 === 0) tone(midi(MUS.bass[(s >> 2) % 8]), spb * 3.5, 'triangle', .22, Math.max(0, t), 0, AUD.music);
+    const m = MUS.mel[s % 32]; if (m) tone(midi(m), spb * .9, 'square', .05, Math.max(0, t), 0, AUD.music);
+    if (s % 2 === 1) tone(2400, .03, 'square', .015, Math.max(0, t), 0, AUD.music);
+    AUD.mStep++; AUD.mNext += spb;
+  }
+}
+function musicStart() { if (!AUD.ac || AUD.musicOn) return; AUD.musicOn = true; AUD.mNext = AUD.ac.currentTime + .1; AUD.mTimer = setInterval(musicTick, 80); }
+function musicStop() { AUD.musicOn = false; clearInterval(AUD.mTimer); }
+function musicFor(screen, hall) { if (!AUD.ac) return; if (screen === 'scrPuzzle' && hall === 2) musicStop(); else musicStart(); }
+
+/* ===== core/speech.js ===== */
+/* Voorlezen met de Nederlandse stem van het apparaat (speechSynthesis, nl-NL). Geen stem? Dan staat alles ook als tekst in beeld. */
+const SPEECH = { voice: null, ok: 'speechSynthesis' in window, last: '' };
+function pickVoice() {
+  if (!SPEECH.ok) return null;
+  const vs = speechSynthesis.getVoices();
+  SPEECH.voice = vs.find(v => /^nl[-_]NL/i.test(v.lang)) || vs.find(v => /^nl/i.test(v.lang)) || null;
+  return SPEECH.voice;
+}
+if (SPEECH.ok) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+const plain = t => String(t).replace(/<[^>]+>/g, ' ').replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF\uFE0F\u2B50\u2B06\u2B07\u2190-\u21FF]/gu, '').replace(/\s+/g, ' ').trim();
+function say(text, opt = {}) {
+  SPEECH.last = text;
+  if (!SPEECH.ok || !S.settings.speech) return Promise.resolve();
+  if (!opt.queue) speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(plain(text)); u.lang = 'nl-NL'; if (SPEECH.voice) u.voice = SPEECH.voice; u.rate = S.settings.rate / 100; u.pitch = 1.05;
+  return new Promise(res => { u.onend = u.onerror = () => res(); speechSynthesis.speak(u); setTimeout(res, 12000); });
+}
+function hush() { if (SPEECH.ok) speechSynthesis.cancel(); }
+
+/* ===== data/tokens.js ===== */
+/* De stukjes. Elk stukje heeft een EIGEN VORM én kleur (kleurenblind-vriendelijk palet, Okabe-Ito): kleur is nooit de enige aanwijzing. */
+const TOKENS = {
+  rond: { name: 'rondje', mv: 'rondjes', col: '#E69F00', kind: 'vorm' },
+  vier: { name: 'vierkant', mv: 'vierkanten', col: '#56B4E9', kind: 'vorm' },
+  drie: { name: 'driehoek', mv: 'driehoeken', col: '#F0E442', kind: 'vorm' },
+  ster: { name: 'ster', mv: 'sterren', col: '#009E73', kind: 'vorm' },
+  wiel: { name: 'tandwiel', mv: 'tandwielen', col: '#CC79A7', kind: 'vorm' },
+  moer: { name: 'moer', mv: 'moeren', col: '#D55E00', kind: 'vorm' },
+  // Geluidskamer: elke klank heeft ook een eigen plaatje, vorm en woordje (nooit alleen geluid)
+  piep: { name: 'piep', mv: 'piepjes', col: '#F0E442', kind: 'klank' },
+  toet: { name: 'toet', mv: 'toeters', col: '#56B4E9', kind: 'klank' },
+  boem: { name: 'boem', mv: 'boems', col: '#E69F00', kind: 'klank' },
+  stil: { name: 'stil', mv: 'stiltes', col: '#d7dde6', kind: 'klank' }
+};
+const SHAPES = ['rond', 'vier', 'drie', 'ster', 'wiel', 'moer'];
+const SOUNDS = ['piep', 'toet', 'boem'];
+const SOUNDS_R = ['piep', 'toet', 'boem', 'stil'];
+const tName = id => TOKENS[id].name;
+
+/* ===== data/halls.js ===== */
+/* De zeven hallen. Fase 1: hal 1 (Lopende band) en hal 2 (Geluidskamer) zijn speelbaar, de rest komt later.
+   Elk niveau: type puzzel + structuren per moeilijkheid d (0 makkelijk, 1, 2). Per niveau 6 puzzels (± 5 minuten). */
+const PER_LEVEL = 6;
+const HALLS = [
+  { id: 1, name: 'Lopende band', icon: '🏭', desc: 'De lopende band maakt de stukjes in de verkeerde volgorde. Ontdek het patroon en maak de band weer af!', pool: 'vorm',
+    levels: [
+      { t: 'next', title: 'Om en om', sub: 'AB-patronen', st: [['AB'], ['AB'], ['AB']] },
+      { t: 'next', title: 'Twee keer hetzelfde', sub: 'AAB en ABB', st: [['AAB', 'ABB'], ['AAB', 'ABB'], ['AAB', 'ABB', 'AB']] },
+      { t: 'next', title: 'Drie verschillende', sub: 'ABC', st: [['ABC'], ['ABC', 'ABB'], ['ABC', 'AAB', 'ABB']] },
+      { t: 'next', title: 'Langere patronen', sub: 'AABB en ABCD', st: [['AABB'], ['AABB', 'ABCD'], ['AABB', 'ABCD', 'AABC']] },
+      { t: 'mid', title: 'Wat mist er?', sub: 'een gat in de band', st: [['AB', 'AAB'], ['ABB', 'ABC'], ['AABB', 'ABC', 'ABCD']] },
+      { t: 'kern', title: 'Vind de kern', sub: 'welk stukje herhaalt?', st: [['AB', 'ABC'], ['AAB', 'ABB', 'ABC'], ['AABB', 'ABCD', 'AABC']] },
+      { t: 'nextN', title: 'Maak de band af', sub: 'meerdere stukjes', st: [['AB', 'ABB'], ['ABC', 'AAB'], ['AABB', 'ABCD']] },
+      { t: 'translate', title: 'Ander materiaal', sub: 'zelfde patroon, andere stukjes', st: [['AB', 'AAB'], ['ABB', 'ABC'], ['AABB', 'ABC', 'AABC']] }
+    ],
+    parts: ['De band rolt weer', 'Lampjes', 'Tandwielen', 'Stempelmachine', 'Grijpkraan', 'Inpakrobot', 'Kwaliteitscontrole', 'Schoorsteen'] },
+  { id: 2, name: 'Geluidskamer', icon: '🔊', desc: 'De machines piepen en toeteren door elkaar. Luister én kijk goed: welk ritme hoor je?', pool: 'klank',
+    levels: [
+      { t: 'echo', title: 'Naspelen', sub: 'speel het ritme na', st: [[3], [4], [5]] },
+      { t: 'next', title: 'Ritme verder', sub: 'AB en AAB', st: [['AB'], ['AB', 'AAB'], ['AAB', 'ABB']] },
+      { t: 'next', title: 'Ritme met stiltes', sub: 'ook een stilte telt mee', st: [['ABB', 'AB'], ['ABC', 'AAB'], ['ABCD', 'AABB']], rest: true },
+      { t: 'odd', title: 'Welke klinkt fout?', sub: 'zoek de fout in het ritme', st: [['AB'], ['AAB', 'ABB'], ['ABC', 'ABB']] },
+      { t: 'kern', title: 'Ritme-kern', sub: 'welk stukje herhaalt?', st: [['AB', 'AAB'], ['ABB', 'ABC'], ['AABB', 'ABC']], rest: true },
+      { t: 'translate', title: 'Van vorm naar geluid', sub: 'speel het patroon als ritme', st: [['AB', 'ABB'], ['AAB', 'ABC'], ['AABB', 'ABC']], from: 'vorm' }
+    ],
+    parts: ['Luidspreker', 'Microfoon', 'Geluidsmeter', 'Trommelmachine', 'Toeterorgel', 'Disco-lampen'] },
+  { id: 3, name: 'Sorteermachine', icon: '🧺', soon: true },
+  { id: 4, name: 'Groeihal', icon: '🌱', soon: true },
+  { id: 5, name: 'Spiegelkamer', icon: '🪞', soon: true },
+  { id: 6, name: 'Programmeerkamer', icon: '➡️', soon: true },
+  { id: 7, name: 'Hoofdcomputer', icon: '🖥️', soon: true }
+];
+const hallDef = id => HALLS.find(h => h.id === id);
+// Bliep wordt steeds mooier: upgrades bij een aantal sterren (max in fase 1: 14 niveaus × 3 = 42)
+const UPGRADES = [
+  { id: 'lampje', at: 3, name: 'Antennelampje' }, { id: 'rups', at: 8, name: 'Rupsbanden' }, { id: 'arm', at: 14, name: 'Grijparm' },
+  { id: 'ogen', at: 20, name: 'Hartjesogen' }, { id: 'raket', at: 27, name: 'Raketrugzak' }, { id: 'pet', at: 34, name: 'Monteurspet' }, { id: 'glans', at: 40, name: 'Gouden glans' }
+];
+// hal 2 gaat open na niveau 4 van hal 1 (of meteen na een goede instaptoets)
+const HALL2_AFTER = 4;
+
+/* ===== core/art.js ===== */
+/* Tekenwerk (SVG in code): stukjes, Bliep met upgrades, fabrieksonderdelen, de fabriekskaart. */
+const INK = '#1f2a44';
+function starPts(cx, cy, r1, r2, n) { let p = []; for (let i = 0; i < n * 2; i++) { const r = i % 2 ? r2 : r1, a = -Math.PI / 2 + i * Math.PI / n; p.push((cx + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1)); } return p.join(' '); }
+function polyPts(cx, cy, r, n, rot = 0) { let p = []; for (let i = 0; i < n; i++) { const a = rot + i * 2 * Math.PI / n; p.push((cx + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1)); } return p.join(' '); }
+function gearPath(cx, cy, r1, r2, n) { let d = ''; for (let i = 0; i < n * 4; i++) { const a = i * Math.PI * 2 / (n * 4), r = (i % 4 < 2) ? r1 : r2; d += (i ? 'L' : 'M') + (cx + r * Math.cos(a)).toFixed(1) + ' ' + (cy + r * Math.sin(a)).toFixed(1); } return d + 'Z'; }
+function tokenSVG(id, opt = {}) {
+  const t = TOKENS[id], c = t.col, s = `stroke="${INK}" stroke-width="6" stroke-linejoin="round"`;
+  let g = '';
+  switch (id) {
+    case 'rond': g = `<circle cx="50" cy="50" r="34" fill="${c}" ${s}/><circle cx="38" cy="38" r="8" fill="#fff" opacity=".5"/>`; break;
+    case 'vier': g = `<rect x="16" y="16" width="68" height="68" rx="8" fill="${c}" ${s}/><rect x="24" y="24" width="16" height="10" rx="4" fill="#fff" opacity=".5"/>`; break;
+    case 'drie': g = `<polygon points="50,12 88,84 12,84" fill="${c}" ${s}/>`; break;
+    case 'ster': g = `<polygon points="${starPts(50, 53, 40, 17, 5)}" fill="${c}" ${s}/>`; break;
+    case 'wiel': g = `<path d="${gearPath(50, 50, 40, 30, 8)}" fill="${c}" ${s}/><circle cx="50" cy="50" r="11" fill="#fff" ${s}/>`; break;
+    case 'moer': g = `<polygon points="${polyPts(50, 50, 38, 6, Math.PI / 6)}" fill="${c}" ${s}/><circle cx="50" cy="50" r="14" fill="#fff" ${s}/>`; break;
+    case 'piep': g = `<circle cx="44" cy="46" r="20" fill="${c}" ${s}/><path d="M70 30 q10 16 0 32 M80 22 q16 24 0 48" fill="none" stroke="${INK}" stroke-width="5" stroke-linecap="round"/><text x="44" y="54" text-anchor="middle" font-size="22" font-weight="700" fill="${INK}" font-family="Fredoka,sans-serif">♪</text>`; break;
+    case 'toet': g = `<path d="M14 40 h26 l40 -24 v68 l-40 -24 h-26 z" fill="${c}" ${s}/><rect x="10" y="38" width="12" height="24" rx="4" fill="#fff" ${s}/>`; break;
+    case 'boem': g = `<ellipse cx="50" cy="34" rx="36" ry="12" fill="#fff" ${s}/><path d="M14 34 v34 a36 12 0 0 0 72 0 v-34" fill="${c}" ${s}/><path d="M22 44 l14 26 M50 46 v30 M78 44 l-14 26" stroke="${INK}" stroke-width="4"/><line x1="70" y1="6" x2="56" y2="28" stroke="${INK}" stroke-width="6" stroke-linecap="round"/>`; break;
+    case 'stil': g = `<rect x="18" y="18" width="64" height="64" rx="14" fill="#fff" stroke="#8a97ab" stroke-width="5" stroke-dasharray="10 8"/><rect x="36" y="34" width="9" height="32" rx="3" fill="#8a97ab"/><rect x="55" y="34" width="9" height="32" rx="3" fill="#8a97ab"/>`; break;
+  }
+  return `<svg viewBox="0 0 100 100" aria-label="${t.name}" role="img">${g}</svg>`;
+}
+/* Bliep: een vrolijke fabrieksrobot. mood: blij | denk | oei | juich. up: lijst met upgrade-ids. */
+function bliepSVG(up = S.upgrades, mood = 'blij') {
+  const has = id => up.includes(id), body = has('glans') ? '#ffcf4a' : '#9fb7d6', dark = has('glans') ? '#d79b12' : '#6f8bb0';
+  const eyes = has('ogen') ? `<path d="M76 70 c-6-8-18-2-10 8l10 9 10-9c8-10-4-16-10-8z" fill="#ff5a7a"/><path d="M124 70 c-6-8-18-2-10 8l10 9 10-9c8-10-4-16-10-8z" fill="#ff5a7a"/>`
+    : mood === 'oei' ? `<circle cx="76" cy="76" r="9" fill="#7ff0ff"/><circle cx="124" cy="76" r="9" fill="#7ff0ff"/><path d="M66 62 l18 6 M134 62 l-18 6" stroke="#7ff0ff" stroke-width="5" stroke-linecap="round"/>`
+    : mood === 'denk' ? `<circle cx="76" cy="76" r="10" fill="#7ff0ff"/><rect x="112" y="72" width="24" height="7" rx="3" fill="#7ff0ff"/>`
+    : `<circle cx="76" cy="76" r="11" fill="#7ff0ff"/><circle cx="124" cy="76" r="11" fill="#7ff0ff"/><circle cx="80" cy="72" r="4" fill="#fff"/><circle cx="128" cy="72" r="4" fill="#fff"/>`;
+  const mouth = mood === 'oei' ? `<path d="M86 102 q14 -8 28 0" stroke="#7ff0ff" stroke-width="5" fill="none" stroke-linecap="round"/>`
+    : mood === 'juich' ? `<path d="M82 96 q18 18 36 0 z" fill="#7ff0ff"/>` : `<path d="M84 98 q16 12 32 0" stroke="#7ff0ff" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  const armsUp = mood === 'juich';
+  return `<svg viewBox="0 0 200 220" role="img" aria-label="Bliep">
+  ${has('raket') ? `<rect x="40" y="120" width="22" height="46" rx="10" fill="#e85d4a" stroke="${INK}" stroke-width="5"/><rect x="138" y="120" width="22" height="46" rx="10" fill="#e85d4a" stroke="${INK}" stroke-width="5"/><path d="M44 168 l7 18 7-18z M142 168 l7 18 7-18z" fill="#ffb02e"/>` : ''}
+  <line x1="100" y1="30" x2="100" y2="10" stroke="${INK}" stroke-width="5"/><circle cx="100" cy="10" r="${has('lampje') ? 10 : 7}" fill="${has('lampje') ? '#ffe14d' : '#e85d4a'}" stroke="${INK}" stroke-width="4"/>
+  ${has('lampje') ? `<circle cx="100" cy="10" r="17" fill="#ffe14d" opacity=".35"/>` : ''}
+  ${has('pet') ? `<path d="M48 40 q52 -36 104 0 v8 h-104z" fill="#2b6cb0" stroke="${INK}" stroke-width="5"/><path d="M146 46 h30 q4 6 -4 8 h-30z" fill="#2b6cb0" stroke="${INK}" stroke-width="4"/>` : ''}
+  <rect x="44" y="30" width="112" height="96" rx="28" fill="${body}" stroke="${INK}" stroke-width="6"/>
+  <rect x="58" y="48" width="84" height="66" rx="16" fill="#203047"/>
+  ${eyes}${mouth}
+  <rect x="62" y="128" width="76" height="52" rx="14" fill="${body}" stroke="${INK}" stroke-width="6"/>
+  <circle cx="86" cy="150" r="6" fill="#e85d4a"/><circle cx="100" cy="150" r="6" fill="#ffd23f"/><circle cx="114" cy="150" r="6" fill="#3fbf6f"/>
+  <path d="${armsUp ? 'M62 140 L36 104' : 'M62 140 L38 166'}" stroke="${dark}" stroke-width="12" stroke-linecap="round"/>
+  ${has('arm') ? `<path d="${armsUp ? 'M138 140 L166 104' : 'M138 140 L164 160'}" stroke="${dark}" stroke-width="12" stroke-linecap="round"/><path d="${armsUp ? 'M160 96 l12 -10 M172 104 l14 -4' : 'M160 166 l12 10 M168 156 l16 2'}" stroke="${INK}" stroke-width="6" stroke-linecap="round"/>`
+      : `<path d="${armsUp ? 'M138 140 L164 104' : 'M138 140 L162 166'}" stroke="${dark}" stroke-width="12" stroke-linecap="round"/>`}
+  ${has('rups') ? `<rect x="54" y="180" width="92" height="30" rx="15" fill="#3d4860" stroke="${INK}" stroke-width="5"/><g fill="#9fb7d6"><circle cx="70" cy="195" r="7"/><circle cx="90" cy="195" r="7"/><circle cx="110" cy="195" r="7"/><circle cx="130" cy="195" r="7"/></g>`
+      : `<circle cx="78" cy="196" r="14" fill="#3d4860" stroke="${INK}" stroke-width="5"/><circle cx="122" cy="196" r="14" fill="#3d4860" stroke="${INK}" stroke-width="5"/>`}
+  </svg>`;
+}
+/* Fabrieksonderdelen (beloningen per niveau) */
+function partSVG(hall, i) {
+  const s = `stroke="${INK}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"`;
+  const P1 = [
+    `<rect x="8" y="50" width="84" height="20" rx="10" fill="#5b6b86" ${s}/><circle cx="22" cy="60" r="6" fill="#ccc"/><circle cx="78" cy="60" r="6" fill="#ccc"/><rect x="30" y="28" width="22" height="22" fill="#E69F00" ${s}/>`,
+    `<circle cx="50" cy="40" r="22" fill="#ffe14d" ${s}/><rect x="40" y="62" width="20" height="18" fill="#9fb7d6" ${s}/>`,
+    `<path d="${gearPath(38, 44, 24, 17, 8)}" fill="#CC79A7" ${s}/><path d="${gearPath(70, 66, 18, 12, 6)}" fill="#56B4E9" ${s}/>`,
+    `<rect x="30" y="10" width="40" height="40" rx="6" fill="#9fb7d6" ${s}/><rect x="44" y="50" width="12" height="16" fill="#5b6b86" ${s}/><rect x="22" y="66" width="56" height="16" rx="4" fill="#D55E00" ${s}/>`,
+    `<path d="M20 90 V14 H80 V30" fill="none" ${s}/><path d="M68 30 v14 M60 52 l8 -8 8 8" fill="none" ${s}/><rect x="10" y="82" width="22" height="10" fill="#5b6b86"/>`,
+    `<rect x="18" y="38" width="64" height="48" fill="#d9a066" ${s}/><path d="M18 38 l10 -16 h44 l10 16" fill="#e8b980" ${s}/><path d="M50 38 v48" ${s}/>`,
+    `<circle cx="50" cy="50" r="34" fill="#3fbf6f" ${s}/><path d="M34 52 l12 12 22 -26" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>`,
+    `<rect x="36" y="30" width="28" height="62" fill="#c8423b" ${s}/><circle cx="44" cy="22" r="10" fill="#fff" opacity=".9"/><circle cx="60" cy="12" r="8" fill="#fff" opacity=".8"/>`];
+  const P2 = [
+    `<rect x="24" y="10" width="52" height="80" rx="10" fill="#5b6b86" ${s}/><circle cx="50" cy="62" r="16" fill="#203047" ${s}/><circle cx="50" cy="30" r="8" fill="#203047"/>`,
+    `<rect x="38" y="10" width="24" height="44" rx="12" fill="#9fb7d6" ${s}/><path d="M28 44 q22 26 44 0 M50 66 v18 M36 86 h28" fill="none" ${s}/>`,
+    `<path d="M14 70 a36 36 0 0 1 72 0" fill="#fff" ${s}/><path d="M50 70 L70 40" ${s}/><path d="M22 60 h8 M70 60 h8" ${s}/>`,
+    tokenSVG('boem').replace(/<\/?svg[^>]*>/g, ''),
+    tokenSVG('toet').replace(/<\/?svg[^>]*>/g, ''),
+    `<circle cx="50" cy="48" r="30" fill="#c4d3e3" ${s}/><path d="M24 40 h52 M22 56 h56 M50 18 v60 M34 22 v52 M66 22 v52" stroke="#8a97ab" stroke-width="3"/><line x1="50" y1="2" x2="50" y2="18" ${s}/>`];
+  return `<svg viewBox="0 0 100 100">${(hall === 1 ? P1 : P2)[i] || ''}</svg>`;
+}
+/* De fabriekskaart: 7 hallen in een doorsnede van het gebouw */
+const MAP_POS = { 1: [60, 420], 2: [370, 420], 3: [680, 420], 4: [60, 245], 5: [370, 245], 6: [680, 245], 7: [370, 70] };
+function hallProgress(id) { const h = hallDef(id); if (!h || h.soon) return 0; const st = hallState(id); return Object.values(st.lv).filter(x => x.done).length / h.levels.length; }
+function hallOpen(id) { const h = hallDef(id); return h && !h.soon && hallState(id).open > 0; }
+function mapSVG() {
+  let g = `<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9c7d8"/><stop offset="1" stop-color="#93a6bd"/></linearGradient></defs>
+  <rect x="20" y="40" width="960" height="570" rx="20" fill="url(#wall)" stroke="${INK}" stroke-width="6"/>
+  <path d="M20 60 L170 0 L330 60 Z" fill="#8a97ab" stroke="${INK}" stroke-width="5"/><path d="M670 60 L830 0 L980 60 Z" fill="#8a97ab" stroke="${INK}" stroke-width="5"/>
+  <rect x="880" y="-60" width="46" height="110" fill="#c8423b" stroke="${INK}" stroke-width="5"/>`;
+  for (const h of HALLS) {
+    const [x, y] = MAP_POS[h.id], w = h.id === 7 ? 260 : 260, ht = 150, open = hallOpen(h.id), pr = hallProgress(h.id), done = pr >= 1;
+    const fill = h.soon ? '#6c7a90' : !open ? '#7d8aa0' : done ? '#bff0cf' : '#fff6d6';
+    g += `<g class="hall${open ? '' : ' locked'}" data-hall="${h.id}" role="button" aria-label="Hal ${h.id}: ${h.name}${h.soon ? ' (binnenkort)' : !open ? ' (op slot)' : ''}" tabindex="0">
+      <rect class="hbg" x="${x}" y="${y}" width="${w}" height="${ht}" rx="18" fill="${fill}" stroke="${INK}" stroke-width="6"/>
+      <text x="${x + 20}" y="${y + 40}" font-size="30" font-family="Fredoka,sans-serif" font-weight="700" fill="${INK}">${h.id}</text>
+      <text x="${x + w / 2}" y="${y + 84}" font-size="46" text-anchor="middle">${h.icon}</text>
+      <text x="${x + w / 2}" y="${y + 128}" font-size="24" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="600" fill="${INK}">${h.name}</text>`;
+    if (h.soon) g += `<rect x="${x + w - 128}" y="${y + 14}" width="116" height="30" rx="15" fill="#ffd23f" stroke="${INK}" stroke-width="3"/><text x="${x + w - 70}" y="${y + 36}" font-size="18" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" fill="${INK}">binnenkort</text>`;
+    else if (!open) g += `<text x="${x + w - 40}" y="${y + 44}" font-size="30" text-anchor="middle">🔒</text>`;
+    else { // voortgangsbalk + rook als hij nog kapot is
+      g += `<rect x="${x + 70}" y="${y + 24}" width="${w - 90}" height="16" rx="8" fill="#fff" stroke="${INK}" stroke-width="3"/><rect x="${x + 72}" y="${y + 26}" width="${(w - 94) * pr}" height="12" rx="6" fill="#1f8a4c"/>`;
+      if (!done) g += `<g opacity=".7"><circle cx="${x + w - 30}" cy="${y - 4}" r="14" fill="#5d6779"/><circle cx="${x + w - 12}" cy="${y - 20}" r="10" fill="#5d6779"/></g>`;
+      else g += `<text x="${x + w - 26}" y="${y - 4}" font-size="30" text-anchor="middle">✨</text>`;
+    }
+    g += `</g>`;
+  }
+  return g;
+}
+/* Intro-scènes */
+function introScene(i) {
+  const bl = (x, y, s, mood) => `<g transform="translate(${x} ${y}) scale(${s})">${bliepSVG(S.upgrades, mood).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`;
+  const bg = `<rect width="800" height="450" fill="#2c3a57"/><rect y="360" width="800" height="90" fill="#3d4860"/>`;
+  const belt = (y, chaos) => { let s = `<rect x="40" y="${y}" width="720" height="30" rx="15" fill="#1f2a44"/>`; const seq = chaos ? ['drie', 'rond', 'rond', 'ster', 'vier', 'drie', 'wiel'] : ['rond', 'drie', 'rond', 'drie', 'rond', 'drie', 'rond'];
+    seq.forEach((t, k) => s += `<g transform="translate(${70 + k * 96} ${y - 74 + (chaos ? (k % 2 ? -20 : 10) : 0)}) rotate(${chaos ? (k * 37 % 50 - 25) : 0} 40 40) scale(.8)">${tokenSVG(t).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`); return s; };
+  return `<svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">${bg}${[
+    `${bl(300, 120, 1.1, 'blij')}<text x="400" y="80" text-anchor="middle" font-size="40" font-family="Fredoka,sans-serif" font-weight="700" fill="#fff">Hallo!</text>`,
+    `${belt(300, true)}<g fill="#ffd23f" font-size="60" font-family="Fredoka" font-weight="700"><text x="120" y="120">⚡</text><text x="620" y="140">💥</text></g>${bl(560, 30, .7, 'oei')}`,
+    `${belt(300, false)}${bl(40, 40, .7, 'denk')}<text x="560" y="120" text-anchor="middle" font-size="70">🔍</text>`,
+    `${bl(260, 110, 1.1, 'juich')}<text x="140" y="140" font-size="60">🔧</text><text x="600" y="140" font-size="60">⭐</text>`][i]}</svg>`;
+}
+
+/* ===== game/gen.js ===== */
+/* Puzzelmaker. Elke puzzel: { t, seq, blanks, answer, choices, unit, ... }. Alles is puur (geen DOM), zodat het getest kan worden.
+   Kern-idee (onderzoek): de herhalende eenheid ('kern') vinden. Elke puzzel weet zijn kern, voor hints en uitleg. */
+const MAXBAND = 10;
+// structuur 'AABB' + pool → kern met verschillende stukjes per letter
+function makeUnit(struct, pool, opt = {}) {
+  const letters = [...new Set(struct)];
+  let toks;
+  if (opt.rest) { // stilte nooit als eerste letter, en hooguit één letter
+    const noRest = shuffle(pool.filter(x => x !== 'stil'));
+    toks = noRest.slice(0, letters.length);
+    if (letters.length >= 2 && RNG() < .6) toks[letters.length - 1] = 'stil';
+    if (letters.length > noRest.length) toks[letters.length - 1] = 'stil';
+  } else toks = shuffle(pool).slice(0, letters.length);
+  const map = {}; letters.forEach((l, i) => map[l] = toks[i]);
+  return [...struct].map(l => map[l]);
+}
+const repeatTo = (u, n) => Array.from({ length: n }, (_, i) => u[i % u.length]);
+// zelfde structuur? (a en b hebben dezelfde 'gelijk/ongelijk'-verbanden: rond-drie-rond ≙ piep-toet-piep)
+function sameStructure(a, b) {
+  if (a.length !== b.length) return false;
+  const m1 = new Map(), m2 = new Map();
+  for (let i = 0; i < a.length; i++) {
+    if (m1.has(a[i]) && m1.get(a[i]) !== b[i]) return false;
+    if (m2.has(b[i]) && m2.get(b[i]) !== a[i]) return false;
+    m1.set(a[i], b[i]); m2.set(b[i], a[i]);
+  }
+  return true;
+}
+// kleinste herhalende eenheid van een rij (voor uitleg en tests)
+function smallestUnit(seq) {
+  for (let L = 1; L <= seq.length; L++) if (seq.every((x, i) => x === seq[i % L])) return seq.slice(0, L);
+  return seq.slice();
+}
+function poolFor(kind, rest) { return kind === 'klank' ? (rest ? SOUNDS_R : SOUNDS) : SHAPES; }
+function choicesFor(unit, pool, d, extra = []) {
+  const inU = [...new Set(unit.concat(extra))];
+  const nd = [0, 1, 2][d] + (inU.length < 2 ? 1 : 0);
+  const rest = shuffle(pool.filter(x => !inU.includes(x))).slice(0, Math.max(0, Math.min(nd, 5 - inU.length)));
+  return shuffle(inU.concat(rest));
+}
+function genPuzzle(lv, d, kind) {
+  d = clamp(d, 0, 2);
+  const st = pick(lv.st[d]), pool = poolFor(kind, lv.rest);
+  switch (lv.t) {
+    case 'next': {
+      const unit = makeUnit(st, pool, { rest: lv.rest }), L = unit.length;
+      // minstens 2 hele keren de kern zichtbaar; bij d0 meer
+      const minShown = Math.max(2 * L, L <= 2 ? [6, 5, 4][d] : 2 * L);
+      const shown = clamp(minShown + rnd(Math.min(L, 2)), 2 * L, MAXBAND - 1);
+      const seq = repeatTo(unit, shown + 1);
+      return { t: 'next', seq, blanks: [shown], answer: [seq[shown]], unit, choices: choicesFor(unit, pool, d), kind };
+    }
+    case 'mid': {
+      const unit = makeUnit(st, pool), L = unit.length, n = clamp(2 * L + 1 + rnd(2), 2 * L + 1, MAXBAND);
+      const seq = repeatTo(unit, n), b = 1 + rnd(n - 2);
+      return { t: 'mid', seq, blanks: [b], answer: [seq[b]], unit, choices: choicesFor(unit, pool, d), kind };
+    }
+    case 'nextN': {
+      const unit = makeUnit(st, pool), L = unit.length, k = Math.min([2, 2, 3][d], MAXBAND - 2 * L);
+      const shown = clamp(2 * L + rnd(2), 2 * L, MAXBAND - k), seq = repeatTo(unit, shown + k);
+      const blanks = Array.from({ length: k }, (_, i) => shown + i);
+      return { t: 'nextN', seq, blanks, answer: blanks.map(i => seq[i]), unit, choices: choicesFor(unit, pool, d), kind };
+    }
+    case 'kern': {
+      const unit = makeUnit(st, pool, { rest: lv.rest }), L = unit.length, reps = L <= 2 ? 4 : L === 3 ? 3 : 2;
+      const n = Math.min(MAXBAND, L * reps + (L <= 3 ? rnd(2) : 0)), seq = repeatTo(unit, n);
+      return { t: 'kern', seq, blanks: [], answer: [L - 1], unit, choices: [], kind };
+    }
+    case 'odd': {
+      const unit = makeUnit(st, pool), L = unit.length, n = clamp(3 * L + rnd(2), 6, MAXBAND), seq = repeatTo(unit, n);
+      const i = L + rnd(n - L), alts = pool.filter(x => x !== seq[i] && x !== 'stil'), wrong = (unit.find(x => x !== seq[i] && alts.includes(x))) || pick(alts);
+      const shownSeq = seq.slice(); shownSeq[i] = wrong;
+      return { t: 'odd', seq: shownSeq, good: seq, blanks: [], answer: [i], unit, choices: [], kind };
+    }
+    case 'translate': {
+      const fromKind = lv.from || 'vorm', fromPool = poolFor(fromKind), unit = makeUnit(st, fromPool), L = unit.length;
+      const n = Math.min(MAXBAND - 1, 2 * L + (L <= 2 ? 2 : 0)), seq = repeatTo(unit, n);
+      const letters = new Set(st).size;
+      const toPool = poolFor(kind).filter(x => fromKind === kind ? !unit.includes(x) : true);
+      const toks = shuffle(toPool).slice(0, Math.min(toPool.length, letters + (d >= 1 && toPool.length > letters ? 1 : 0)));
+      return { t: 'translate', seq, blanks: [], answer: null, unit, choices: toks, n, kind, fromKind };
+    }
+    case 'echo': {
+      const n = st, seq = []; for (let i = 0; i < n; i++) seq.push(pick(SOUNDS));
+      if (new Set(seq).size === 1) seq[n - 1] = pick(SOUNDS.filter(x => x !== seq[0]));
+      return { t: 'echo', seq, blanks: seq.map((_, i) => i), answer: seq.slice(), unit: seq.slice(), choices: SOUNDS.slice(), kind: 'klank' };
+    }
+  }
+}
+// is een (deel)antwoord goed? Voor translate: dezelfde structuur als het voorbeeld.
+function checkAnswer(p, given) {
+  if (p.t === 'translate') return given.length === p.n && sameStructure(p.seq.slice(0, p.n), given);
+  if (p.t === 'kern' || p.t === 'odd') return given[0] === p.answer[0];
+  return given.length === p.answer.length && given.every((x, i) => x === p.answer[i]);
+}
+// instaptoets: 5 vaste soorten, oplopend
+const PLACEMENT = [
+  { lv: { t: 'next', st: [['AB'], ['AB'], ['AB']] }, kind: 'vorm', d: 1 },
+  { lv: { t: 'next', st: [['ABB'], ['ABB'], ['ABB']] }, kind: 'vorm', d: 1 },
+  { lv: { t: 'mid', st: [['ABC'], ['ABC'], ['ABC']] }, kind: 'vorm', d: 1 },
+  { lv: { t: 'kern', st: [['AABB'], ['AABB'], ['AABB']] }, kind: 'vorm', d: 1 },
+  { lv: { t: 'next', st: [['AAB'], ['AAB'], ['AAB']] }, kind: 'klank', d: 1 }
+];
+// startniveau na de instaptoets (aantal goed 0..5)
+function placementStart(score) { return { h1: [1, 1, 2, 4, 5, 6][score], h2: score >= 3 ? [0, 0, 0, 1, 2, 3][score] : 0 }; }
+
+/* ===== game/explain.js ===== */
+/* Uitleg en hints in woorden. Uitleg bij fouten in stapjes: eerst zelf laten kijken, dan pas het antwoord noemen. */
+const PRAISE = ['Goed zo!', 'Super!', 'Knap gedaan!', 'Ja, dat klopt!', 'Top!', 'Helemaal goed!'];
+const names = arr => arr.map(tName).join(', ');
+const mini = arr => `<span class="seqmini">${arr.map(t => tokenSVG(t)).join('')}</span>`;
+const miniKern = (u, reps = 2) => `<span class="seqmini">${Array.from({ length: reps }, () => u.map(t => tokenSVG(t)).join('')).join('<i></i>')}</span>`;
+const een = id => 'een ' + tName(id);
+function instruction(p, extra) {
+  const klank = p.kind === 'klank';
+  switch (p.t) {
+    case 'next': return klank ? 'Luister en kijk. Welk geluid komt hierna?' : 'Welk stukje komt hierna op de band?';
+    case 'mid': return 'Er mist een stukje. Welk stukje hoort in het gat?';
+    case 'nextN': return `Maak de band af. Welke ${p.blanks.length} stukjes komen hierna?`;
+    case 'kern': return 'Wat is de kern: het stukje dat steeds terugkomt? Tik op het laatste stukje van de kern.';
+    case 'odd': return 'Eén geluid klopt niet! Tik op het foute stukje.';
+    case 'translate': return klank ? 'Speel hetzelfde patroon als ritme, met piep, toet en boem.' : 'Maak hetzelfde patroon, maar met andere stukjes.';
+    case 'echo': return 'Luister en kijk goed. Speel het ritme na!';
+  }
+}
+// uitleg bij een fout (try = 1, 2, ...)
+function explainWrong(p, given, pos, tryN) {
+  const u = p.unit, L = u.length;
+  if (p.t === 'next' || p.t === 'mid' || p.t === 'nextN') {
+    const chosen = given[given.length - 1], r = pos % L, want = p.seq[pos];
+    if (tryN === 1) {
+      return r > 0 ? `Je koos ${een(chosen)}. Kijk naar de kern: ${miniKern(u)}. Wat komt er na ${names(u.slice(0, r))}?`
+        : `Je koos ${een(chosen)}. Kijk naar de kern: ${miniKern(u)}. Hoe begint de kern?`;
+    }
+    return r > 0 ? `Na ${names(u.slice(0, r))} komt steeds ${een(want)}. Kijk: ${miniKern(u)}`
+      : `Na ${names(u)} begint de kern weer opnieuw, met ${een(want)}. Kijk: ${miniKern(u)}`;
+  }
+  if (p.t === 'kern') {
+    const n = pos + 1;
+    if (n > L && n % L === 0) return `Dat stuk komt wel steeds terug, maar het kan korter! Zoek het kleinste stukje.`;
+    if (n < L) return tryN === 1 ? `Na dat stukje komt nog iets anders voordat het opnieuw begint. Kijk wat erna komt.` : `Kijk: ${miniKern(u)}. De kern is ${names(u)}.`;
+    return tryN === 1 ? `Te lang! Kijk waar het patroon weer opnieuw begint.` : `Kijk: ${miniKern(u)}. De kern is ${names(u)}.`;
+  }
+  if (p.t === 'odd') return tryN === 1 ? `Dat geluid past wel in het ritme. Welke past er niet?` : `Het ritme is ${miniKern(u)}. Zoek het stukje dat daar niet bij past.`;
+  if (p.t === 'echo') return `Oeps, op die plek hoorde ${een(p.seq[pos])}. Luister nog een keer!`;
+  if (p.t === 'translate') {
+    const src = p.seq.slice(0, p.n);
+    for (let i = 0; i < src.length; i++) for (let j = i + 1; j < src.length; j++) {
+      const s1 = src[i] === src[j], s2 = given[i] === given[j];
+      if (s1 !== s2) return s1 ? `In het voorbeeld zijn stukje ${i + 1} en ${j + 1} hetzelfde (${tName(src[i])}), maar bij jou niet. Probeer het nog eens!`
+        : `In het voorbeeld zijn stukje ${i + 1} en ${j + 1} verschillend, maar bij jou hetzelfde. Probeer het nog eens!`;
+    }
+    return 'Probeer het nog eens!';
+  }
+  return 'Probeer het nog eens!';
+}
+function hintText(p, step) {
+  const u = p.unit;
+  if (step === 1) return p.t === 'echo' ? 'Ik speel het ritme nog een keer. Kijk welke plaatjes oplichten.'
+    : p.t === 'odd' ? 'Tip: het begin van het ritme klopt. Welk stukje komt steeds terug?'
+    : p.t === 'translate' ? 'Tip: kijk welke stukjes in het voorbeeld hetzelfde zijn. Die moeten bij jou ook hetzelfde zijn.'
+    : 'Tip: zoek de kern. Welk stukje komt steeds terug?';
+  if (step === 2) return p.t === 'echo' ? `Het ritme is: ${names(p.seq)}.` : `Kijk naar de kleuren onder de band: de kern is ${names(u)}. Die komt steeds terug.`;
+  if (step === 3) return p.t === 'translate' ? `Zing mee: ${names(p.seq.slice(0, p.n))}.` : `Zing mee: ${names(p.t === 'odd' ? p.good : p.seq.filter((_, i) => !p.blanks.includes(i)))}…`;
+  return 'Kijk, die lichten op!';
+}
+
+/* ===== game/play.js ===== */
+/* Het puzzelscherm: speelt een reeks puzzels (niveau, instaptoets of samen-spel). Geen tijdsdruk, geen levens. */
+let RUN = null;   // de lopende reeks
+let P = null;     // de huidige puzzel + toestand
+let GEN = 0;      // verhoogd bij elke nieuwe puzzel, zodat oude timers niets meer doen
+function startRun(run) {
+  RUN = Object.assign({ i: 0, mistakes: 0, hints: 0, streak: 0, results: [], d: 1, total: PER_LEVEL, team: 0 }, run);
+  show('scrPuzzle'); $('#scrPuzzle').classList.toggle('h2', RUN.kind === 'klank');
+  musicFor('scrPuzzle', RUN.kind === 'klank' ? 2 : 1);
+  nextPuzzle();
+}
+function runTitle() {
+  if (RUN.mode === 'placement') return 'Even kijken wat je al kunt';
+  if (RUN.mode === 'lezer') return '🗣️ Lezer en bouwer';
+  if (RUN.mode === 'maker') return '🛠️ Maak een patroon';
+  const h = hallDef(RUN.hall); return `${h.icon} ${RUN.lvIdx + 1}. ${h.levels[RUN.lvIdx].title}`;
+}
+function playerName(k) { return (S.names[k] || '').trim() || ('Speler ' + (k + 1)); }
+function nextPuzzle() {
+  GEN++; hush();
+  if (RUN.i >= RUN.total) return finishRun();
+  let p;
+  if (RUN.mode === 'placement') { const c = PLACEMENT[RUN.i]; p = genPuzzle(c.lv, c.d, c.kind); }
+  else if (RUN.mode === 'lezer') p = genPuzzle({ t: RUN.i % 3 === 2 ? 'mid' : 'next', st: [['AB', 'ABB'], ['ABB', 'AAB', 'ABC'], ['ABC', 'AABB']] }, RUN.d, RUN.kind);
+  else if (RUN.mode === 'maker') p = null;
+  else p = genPuzzle(hallDef(RUN.hall).levels[RUN.lvIdx], RUN.d, RUN.kind);
+  P = { p, given: [], tries: 0, hint: 0, done: false, sel: -1, phase: 'play', kern: [], usedHint: false };
+  if (RUN.mode === 'lezer') P.phase = 'lees';
+  if (RUN.mode === 'maker') { P.phase = 'maak'; P.kern = []; }
+  feedback('', 'blij'); render(); intro();
+}
+const ME = () => RUN.i % 2, OTHER = () => 1 - RUN.i % 2;
+async function intro() {
+  const g = GEN;
+  if (P.phase === 'lees') { await say(`${playerName(ME())}, lees het patroon hardop voor. ${playerName(OTHER())}, niet kijken!`); if (g === GEN && P.p.kind === 'klank') playSeq(); return; }
+  if (P.phase === 'maak') { await say(`${playerName(ME())}, maak een geheim patroon van twee, drie of vier stukjes. ${playerName(OTHER())}, niet kijken!`); return; }
+  await say(instruction(P.p));
+  if (g !== GEN) return;
+  if (P.p.t === 'echo') await playEchoAgain(); else if (P.p.kind === 'klank' && P.p.t !== 'translate') await playSeq();
+}
+// speel de rij als ritme, met oplichtende plaatjes (altijd ook zichtbaar)
+async function playSeq(seq, bandSel = '#pzBand') {
+  if (!P || !P.p) return;
+  const g = GEN, p = P.p; seq = seq || p.seq; P.playing = true;
+  const slots = $$(bandSel + ' .slot');
+  for (let i = 0; i < seq.length; i++) {
+    if (g !== GEN) return;
+    const blankHere = p.blanks.includes(i) && !(p.t === 'echo' && P.phase === 'listen');
+    if (blankHere && p.t !== 'echo') break;            // bij het gat stoppen (dat is de vraag)
+    const id = p.t === 'echo' ? p.seq[i] : seq[i];
+    SFX[id] && SFX[id](); slots[i] && slots[i].classList.add('play');
+    await wait(520); slots[i] && slots[i].classList.remove('play');
+  }
+  if (g === GEN) P.playing = false;
+}
+/* ---------- tekenen ---------- */
+function bandLayout(n, el) {
+  const W = Math.min(el.parentElement.clientWidth - 24, 1000), H = window.innerHeight;
+  let cols = n, ts = Math.floor((W - (n - 1) * 6) / n);
+  if (ts < (H < 500 ? 30 : 46) && n > 6) { cols = Math.ceil(n / 2); ts = Math.floor((W - (cols - 1) * 6) / cols); }
+  const rows = Math.ceil(n / cols), maxH = H < 500 ? H * .19 : H * .13;
+  ts = clamp(Math.min(ts, maxH / Math.max(1, rows * .9)), 30, 96);
+  el.style.setProperty('--cols', cols); el.style.setProperty('--ts', ts + 'px');
+}
+function slotHTML(id, cls = '', i) { return `<div class="slot ${cls}" data-i="${i}">${id ? tokenSVG(id) + (TOKENS[id].kind === 'klank' ? `<span class="lab">${tName(id)}</span>` : '') : ''}</div>`; }
+function render() {
+  $('#pzTitle').textContent = runTitle();
+  $('#pzDots').innerHTML = Array.from({ length: RUN.total }, (_, i) => `<i class="${i < RUN.i ? 'ok' : i === RUN.i ? 'now' : ''}"></i>`).join('');
+  $('#pzHint').style.visibility = RUN.mode === 'placement' || P.phase === 'lees' || P.phase === 'maak' ? 'hidden' : 'visible';
+  $('#pzBliep').innerHTML = bliepSVG(S.upgrades, P.mood || 'blij');
+  const turn = $('#pzTurn');
+  if (RUN.mode === 'lezer' || RUN.mode === 'maker') {
+    const who = P.phase === 'lees' || P.phase === 'maak' ? ME() : OTHER();
+    const verb = P.phase === 'lees' ? '🗣️ leest voor' : P.phase === 'maak' ? '🛠️ maakt een patroon' : (RUN.mode === 'lezer' ? '🛠️ kiest' : '🧩 maakt de band af');
+    turn.innerHTML = `<span class="turn${who ? ' p2' : ''}">${playerName(who)} ${verb}</span> <span class="pill">⭐ samen: ${RUN.team}</span>`;
+  } else turn.innerHTML = '';
+  if (P.phase === 'maak') return renderMaker();
+  const p = P.p;
+  $('#pzInstr').innerHTML = P.phase === 'lees' ? `${playerName(ME())}: zeg het patroon hardop! ${playerName(OTHER())}: niet kijken!` : instruction(p);
+  const m2 = $('#pzMachine2');
+  // band 1
+  const band = $('#pzBand'); let html = '';
+  const firstOpen = p.blanks.find((b, k) => P.given[k] === undefined);
+  p.seq.forEach((id, i) => {
+    const bi = p.blanks.indexOf(i);
+    if (p.t === 'translate') { html += slotHTML(id, '', i); return; }
+    if (bi >= 0 && !(p.t === 'echo' && P.phase === 'listen')) {
+      const g = P.given[bi]; html += slotHTML(g, 'blank' + (g ? ' filled' : '') + (i === firstOpen ? ' cur' : ''), i);
+    } else {
+      let cls = (p.t === 'kern' || p.t === 'odd') && !P.done ? 'tap' : '';
+      if (p.t === 'kern' && P.sel >= 0 && i <= P.sel) cls += ' selrange';
+      html += slotHTML(id, cls, i);
+    }
+  });
+  band.innerHTML = html; bandLayout(p.seq.length, band);
+  $('#pzMachine').classList.toggle('cover', P.phase === 'raad' && !P.peek);
+  if (p.t === 'translate') {
+    m2.style.display = ''; const b2 = $('#pzBand2');
+    b2.innerHTML = Array.from({ length: p.n }, (_, i) => slotHTML(P.given[i], 'blank' + (P.given[i] ? ' filled' : '') + (i === P.given.length ? ' cur' : ''), i)).join('');
+    bandLayout(p.n, b2);
+  } else m2.style.display = 'none';
+  // keuzes
+  const ch = $('#pzChoices');
+  const showChoices = !['kern', 'odd'].includes(p.t) && P.phase !== 'lees' && P.phase !== 'listen';
+  ch.innerHTML = showChoices ? p.choices.map(id => `<button class="choice" data-id="${id}" aria-label="${tName(id)}">${tokenSVG(id)}${TOKENS[id].kind === 'klank' ? `<span class="lab">${tName(id)}</span>` : ''}</button>`).join('') : '';
+  // acties
+  const act = [];
+  if (P.phase === 'lees') act.push(`<button class="btn orange" id="aCover">🙈 Klaar, band dicht!</button>`);
+  if (P.phase === 'raad') act.push(`<button class="btn white small" id="aPeek">👀 Nog even kijken</button>`);
+  if (['nextN', 'translate', 'echo'].includes(p.t) && P.given.length && !P.done) act.push(`<button class="btn white small" id="aUndo">⌫ Terug</button>`);
+  if (p.kind === 'klank' || p.fromKind === 'klank') act.push(`<button class="btn white small" id="aReplay">🔁 Nog eens horen</button>`);
+  if (p.t === 'kern' && P.sel >= 0 && !P.done) act.push(`<button class="btn green" id="aKern">✔ Dit is de kern</button>`);
+  if (P.done) act.push(`<button class="btn green" id="aNext">Verder ▶️</button>`);
+  $('#pzAct').innerHTML = act.join('');
+}
+function renderMaker() {
+  const pool = poolFor(RUN.kind);
+  $('#pzInstr').innerHTML = `${playerName(ME())}: kies 2, 3 of 4 stukjes. Dat wordt de kern. ${playerName(OTHER())}: niet kijken!`;
+  const band = $('#pzBand'); band.innerHTML = Array.from({ length: 4 }, (_, i) => slotHTML(P.kern[i], P.kern[i] ? '' : 'blank' + (i === P.kern.length ? ' cur' : ''), i)).join('');
+  bandLayout(4, band); $('#pzMachine').classList.remove('cover'); $('#pzMachine2').style.display = 'none';
+  $('#pzChoices').innerHTML = pool.map(id => `<button class="choice" data-id="${id}" aria-label="${tName(id)}">${tokenSVG(id)}${TOKENS[id].kind === 'klank' ? `<span class="lab">${tName(id)}</span>` : ''}</button>`).join('');
+  const okK = P.kern.length >= 2 && new Set(P.kern).size >= 2;
+  $('#pzAct').innerHTML = (P.kern.length ? `<button class="btn white small" id="aUndo">⌫ Terug</button>` : '') + `<button class="btn green" id="aMake" ${okK ? '' : 'disabled'}>✔ Zet op de band</button>`;
+}
+function feedback(html, mood = 'blij', cls = '') {
+  P.mood = mood; $('#pzBliep').innerHTML = bliepSVG(S.upgrades, mood);
+  const fb = $('#pzFb'); fb.className = 'fb ' + cls; $('#pzFbTxt').innerHTML = html;
+}
+function clearFeedback() { feedback('', 'blij'); }
+function markKern(seq) {  // kleurstreepjes onder de band per kern-herhaling (hint)
+  const L = P.p.unit.length; $$('#pzBand .slot').forEach((s, i) => { s.classList.remove('k0', 'k1'); s.classList.add('k' + (Math.floor(i / L) % 2)); });
+}
+/* ---------- invoer ---------- */
+function onChoice(id) {
+  if (!P || P.done || P.lock || P.playing && P.p && P.p.t === 'echo') return;
+  if (P.phase === 'maak') { if (P.kern.length < 4) { P.kern.push(id); (SFX[id] || SFX.place)(); } render(); return; }
+  const p = P.p;
+  if (p.kind === 'klank' && SFX[id]) SFX[id](); else SFX.place();
+  if (p.t === 'translate') {
+    if (P.given.length >= p.n) return;
+    P.given.push(id); render();
+    if (P.given.length === p.n) setTimeout(() => judge(), 250);
+    return;
+  }
+  const k = P.given.length; if (k >= p.blanks.length) return;
+  P.given.push(id); render();
+  if (id !== p.answer[k]) return wrong(p.blanks[k]);
+  if (P.given.length === p.answer.length) correct();
+}
+function onSlot(i) {
+  if (!P || P.done || P.lock || P.phase !== 'play' && P.phase !== 'raad') return;
+  const p = P.p;
+  if (p.t === 'kern') { P.sel = i; SFX.click(); render(); return; }
+  if (p.t === 'odd') { P.given = [i]; if (i === p.answer[0]) correct(); else wrong(i); }
+}
+function judge() { // translate (en kern bij bevestigen)
+  const p = P.p;
+  if (checkAnswer(p, P.given)) return correct();
+  wrong(-1);
+}
+function wrong(pos) {
+  const p = P.p, g = GEN;
+  // kern: een dubbele kern is niet fout, alleen te lang → geen fout tellen
+  const softKern = p.t === 'kern' && (pos + 1) > p.unit.length && (pos + 1) % p.unit.length === 0;
+  if (!softKern) { P.tries++; RUN.mistakes++; if (RUN.mode !== 'placement') stat(p.t).bad++; }
+  SFX.nope();
+  if (RUN.mode === 'placement') { // instaptoets: geen uitleg, gewoon door
+    feedback('Dank je! Op naar de volgende.', 'denk'); RUN.results.push(false); P.done = true; render(); return;
+  }
+  const txt = explainWrong(p, P.given, p.t === 'translate' ? -1 : pos, Math.min(P.tries, 2));
+  if (P.tries >= 3) return reveal();
+  feedback(txt, 'oei', 'bad'); say(txt);
+  if (P.tries >= 1 && !softKern) markKern();
+  if (RUN.mode === 'lezer') P.peek = true;
+  P.lock = true; setTimeout(() => { if (g === GEN) P.lock = false; }, 1300);
+  // fout stukje even rood laten zien en dan weghalen
+  if (p.t === 'kern' || p.t === 'odd') { const s = $(`#pzBand .slot[data-i="${pos}"]`); s && s.classList.add('bad'); setTimeout(() => { if (g === GEN) { P.sel = -1; render(); if (P.tries >= 1 && !softKern) markKern(); } }, 1300); return; }
+  if (p.t === 'translate') { $$('#pzBand2 .slot').forEach(s => s.classList.add('bad')); P.lock = true; setTimeout(() => { if (g === GEN) { P.lock = false; P.given = []; render(); markKern(); } }, 1600); return; }
+  const blankIdx = p.blanks[P.given.length - 1], s = $(`#pzBand .slot[data-i="${blankIdx}"]`); s && s.classList.add('bad');
+  setTimeout(() => { if (g !== GEN) return; P.given.pop(); if (p.t === 'echo') P.given = []; render(); markKern(); if (p.t === 'echo') playEchoAgain(); }, 1300);
+}
+async function playEchoAgain() { P.phase = 'listen'; render(); await playSeq(); if (P && P.p.t === 'echo') { P.phase = 'play'; render(); } }
+function reveal() { // na 3 pogingen: Bliep laat zien hoe het moet, en we gaan door (nooit vastlopen)
+  const p = P.p; P.done = true; P.revealed = true;
+  if (p.t === 'translate') P.given = p.seq.slice(0, p.n).map(x => p.choices[[...new Set(p.seq.slice(0, p.n))].indexOf(x)] || p.choices[0]);
+  else if (p.t === 'kern') P.sel = p.answer[0];
+  else if (p.t !== 'odd') P.given = p.answer.slice();
+  render(); markKern();
+  if (p.t === 'odd') { const s = $(`#pzBand .slot[data-i="${p.answer[0]}"]`); s && s.classList.add('good'); }
+  const txt = p.t === 'kern' ? `Kijk, zo gaat het: de kern is ${names(p.unit)}. ${miniKern(p.unit)}` : p.t === 'odd' ? `Kijk, dit stukje was fout. Het ritme is ${names(p.unit)}.` : `Kijk, zo gaat het! De kern is ${miniKern(p.unit)}. Volgende keer lukt het vast!`;
+  feedback(txt, 'denk', 'bad'); say(txt);
+  RUN.results.push(false); RUN.streak = 0; RUN.d = Math.max(0, RUN.d - 1);
+}
+function correct() {
+  const p = P.p; P.done = true; SFX.ok();
+  const first = P.tries === 0 && !P.usedHint;
+  RUN.results.push(first);
+  if (RUN.mode === 'placement') { feedback('Dank je! Op naar de volgende.', 'blij'); render(); return; }
+  stat(p.t).ok++;
+  if (RUN.mode === 'lezer' || RUN.mode === 'maker') { RUN.team += first ? 2 : 1; P.peek = true; }
+  // adaptief: 2 keer op rij meteen goed → moeilijker; veel fouten → makkelijker
+  if (first) { RUN.streak++; if (RUN.streak >= 2) { RUN.d = Math.min(2, RUN.d + 1); RUN.streak = 0; } }
+  else { RUN.streak = 0; if (P.tries >= 2) RUN.d = Math.max(0, RUN.d - 1); }
+  let txt = pick(PRAISE);
+  if (p.t === 'kern') txt += ` De kern is ${names(p.unit)}: ${mini(p.unit)} Die komt steeds terug.`;
+  else if (p.t === 'odd') txt += ` Dat stukje paste niet in het ritme.`;
+  else if (p.t === 'translate') txt += ` Zelfde patroon, ander materiaal!`;
+  if (first) txt = '⭐ ' + txt;
+  render(); feedback(txt, 'juich', 'good'); say(txt);
+  if (p.t === 'odd') { const s = $(`#pzBand .slot[data-i="${p.answer[0]}"]`); s && s.classList.add('good'); }
+  if (p.kind === 'klank' && p.t !== 'echo') { const g = GEN; setTimeout(() => { if (g === GEN) playSeq(p.t === 'odd' ? p.good : p.seq); }, 600); }
+}
+async function hint() {
+  if (!P || P.done || P.phase === 'lees' || P.phase === 'maak') return;
+  const p = P.p, g = GEN; P.hint = Math.min(4, P.hint + 1); P.usedHint = true; RUN.hints++; stat(p.t).hints++;
+  const txt = hintText(p, P.hint); feedback('💡 ' + txt, 'denk'); say(txt);
+  if (P.hint === 1 && p.t === 'echo') { await wait(600); if (g === GEN) playEchoAgain(); }
+  if (P.hint >= 2 && p.t !== 'echo') markKern();
+  if (P.hint === 3) { await wait(300); if (g === GEN && p.kind === 'klank') playSeq(p.t === 'odd' ? p.good : p.seq); else if (g === GEN) singSeq(); }
+  if (P.hint === 4) {
+    if (p.t === 'kern' || p.t === 'odd') { const s = $(`#pzBand .slot[data-i="${p.answer[0]}"]`); s && s.classList.add('good'); }
+    else if (p.t === 'translate') { const src = p.seq.slice(0, p.n), letters = [...new Set(src)]; feedback(`💡 Bijvoorbeeld: ${letters.map((x, i) => `${tName(x)} wordt ${tName(p.choices[i])}`).join(', ')}.`, 'denk'); }
+    else { const want = p.answer[P.given.length]; $$('#pzChoices .choice').forEach(c => c.classList.toggle('hint', c.dataset.id === want)); }
+  }
+}
+async function singSeq() { // laat de band 'zingen': elk stukje licht op terwijl de naam klinkt
+  const g = GEN, p = P.p, slots = $$('#pzBand .slot');
+  for (let i = 0; i < p.seq.length; i++) {
+    if (g !== GEN || (p.blanks.includes(i) && p.t !== 'translate')) break;
+    slots[i].classList.add('play'); SFX.place(); await wait(420); slots[i].classList.remove('play');
+  }
+}
+/* ---------- knoppen ---------- */
+function onAct(id) {
+  const p = P && P.p;
+  if (id === 'aNext') { RUN.i++; return nextPuzzle(); }
+  if (id === 'aUndo') { if (P.phase === 'maak') P.kern.pop(); else if (!P.done) P.given.pop(); SFX.click(); return render(); }
+  if (id === 'aReplay') { if (p.t === 'echo') return playEchoAgain(); return playSeq(); }
+  if (id === 'aKern') { P.given = [P.sel]; if (P.sel === p.answer[0]) correct(); else wrong(P.sel); return; }
+  if (id === 'aCover') { P.phase = 'raad'; SFX.whir(); render(); say(`${playerName(OTHER())}, welk stukje komt er op de plek van het vraagteken?`); return; }
+  if (id === 'aPeek') { P.peek = !P.peek; render(); return; }
+  if (id === 'aMake') {
+    const unit = P.kern.slice(), L = unit.length, k = 2, shown = Math.min(2 * L + (L <= 2 ? 2 : 0), MAXBAND - k), seq = repeatTo(unit, shown + k);
+    const blanks = [shown, shown + 1];
+    P.p = { t: 'nextN', seq, blanks, answer: blanks.map(i => seq[i]), unit: smallestUnit(unit), choices: poolFor(RUN.kind), kind: RUN.kind };
+    P.phase = 'play'; SFX.whir(); render();
+    say(`${playerName(OTHER())}, maak de band af! Welke twee stukjes komen hierna?`);
+    if (RUN.kind === 'klank') { const g = GEN; setTimeout(() => { if (g === GEN) playSeq(); }, 900); }
+  }
+}
+function finishRun() {
+  hush();
+  if (RUN.mode === 'placement') return finishPlacement(RUN.results.filter(Boolean).length);
+  if (RUN.mode === 'lezer' || RUN.mode === 'maker') return finishSamen();
+  return finishLevel();
+}
+function initPlay() {
+  $('#pzChoices').addEventListener('click', e => { const b = e.target.closest('.choice'); if (b) onChoice(b.dataset.id); });
+  $('#pzBand').addEventListener('click', e => { const s = e.target.closest('.slot'); if (s && P && P.phase !== 'maak') onSlot(+s.dataset.i); });
+  $('#pzAct').addEventListener('click', e => { const b = e.target.closest('button'); if (b && !b.disabled) onAct(b.id); });
+  $('#pzHint').onclick = () => hint();
+  $('#pzSay').onclick = () => { if (P) say(P.phase === 'lees' || P.phase === 'maak' ? $('#pzInstr').textContent : instruction(P.p)); };
+  $('#pzBack').onclick = async () => { if (await confirmBox('Wil je stoppen? Dit niveau begint dan de volgende keer opnieuw.')) { GEN++; hush(); RUN && RUN.mode === 'placement' ? goMap() : RUN && (RUN.mode === 'lezer' || RUN.mode === 'maker') ? openSamen() : openHall(RUN.hall); } };
+  addEventListener('resize', () => { if (CUR_SCREEN === 'scrPuzzle' && P) render(); });
+}
+
+/* ===== screens/screens.js ===== */
+/* Titel, verhaal, kaart, hal, resultaat */
+const INTRO = [
+  'Hallo! Ik ben Bliep, de robot van de Robo-Fabriek. In mijn fabriek maken we de mooiste dingen.',
+  'Maar oh nee! Na de grote onweersbui is alles in de war. De machines maken de stukjes in de verkeerde volgorde!',
+  'Elke machine werkt met een patroon. Als jij de patronen ontdekt, kunnen we de fabriek hal voor hal repareren.',
+  'Eerst kijk ik even wat je al kunt. Dat zijn vijf puzzels, het hoeft niet allemaal goed. Help je mee?'
+];
+let introI = 0;
+function goTitle() { GEN++; hush(); show('scrTitle'); $('#titleBliep').innerHTML = bliepSVG(S.upgrades, 'blij'); $('#btnPlay').textContent = S.introSeen ? '▶️ Verder spelen' : '▶️ Spelen'; }
+function startPlay() {
+  if (!S.introSeen) { introI = 0; show('scrIntro'); renderIntro(); return; }
+  if (!S.placement.done) return startPlacement();
+  goMap();
+}
+function renderIntro() { $('#introScene').innerHTML = introScene(introI); $('#introText').textContent = INTRO[introI]; say(INTRO[introI]); $('#introNext').textContent = introI === INTRO.length - 1 ? 'Ik help mee! ▶️' : 'Verder ▶️'; }
+function introNext() { SFX.click(); introI++; if (introI >= INTRO.length) { S.introSeen = true; save(); return S.placement.done ? goMap() : startPlacement(); } renderIntro(); }
+function startPlacement() { startRun({ mode: 'placement', total: PLACEMENT.length, kind: 'vorm' }); }
+function finishPlacement(score) {
+  const st = placementStart(score);
+  S.placement = { done: true, score };
+  const h1 = hallState(1); h1.open = Math.max(h1.open, st.h1);
+  if (st.h2) { const h2 = hallState(2); h2.open = Math.max(h2.open, st.h2); }
+  save();
+  showResult({ title: 'Dank je wel!', stars: 0,
+    reward: `<div style="text-align:left"><p><b>${score} van de 5</b> puzzels meteen goed.</p><p>${st.h1 > 1 ? `Je mag in de Lopende band meteen beginnen bij <b>niveau ${st.h1}</b>! (De makkelijkere niveaus kun je ook spelen.)` : 'We beginnen bij het begin: de Lopende band, niveau 1.'}${st.h2 ? ' De Geluidskamer is ook al open!' : ''}</p></div>`,
+    speak: `Dank je wel! ${st.h1 > 1 ? 'Je mag beginnen bij niveau ' + st.h1 + '.' : 'We beginnen bij niveau 1.'}`,
+    btns: [['🏭 Naar de fabriek', 'green', () => goMap()]] });
+}
+/* ---------- kaart ---------- */
+function goMap() {
+  GEN++; hush(); show('scrMap'); musicFor('scrMap');
+  $('#mapSvg').innerHTML = mapSVG(); $('#mapStars').textContent = '⭐ ' + totalStars(); $('#mapBliep').innerHTML = bliepSVG(S.upgrades, 'blij');
+}
+function mapClick(id) {
+  const h = hallDef(id); SFX.click();
+  if (h.soon) { toast('🔧 Deze hal repareren we in een volgende aflevering!'); say('Deze hal repareren we in een volgende aflevering!'); return; }
+  if (!hallOpen(id)) { const t = `Maak eerst niveau ${HALL2_AFTER} van de Lopende band af.`; toast('🔒 ' + t); say(t); return; }
+  openHall(id);
+}
+/* ---------- hal ---------- */
+let HALL = 1;
+function openHall(id) {
+  GEN++; hush(); HALL = id; show('scrHall'); musicFor('scrHall');
+  const h = hallDef(id), st = hallState(id);
+  $('#hallTitle').textContent = `${h.icon} Hal ${id}: ${h.name}`; $('#hallDesc').textContent = h.desc; $('#hallIcon').innerHTML = bliepSVG(S.upgrades, 'denk');
+  const stars = h.levels.reduce((n, _, i) => n + ((st.lv[i + 1] || {}).stars || 0), 0);
+  $('#hallStars').textContent = `⭐ ${stars}/${h.levels.length * 3}`;
+  $('#hallParts').innerHTML = h.parts.map((nm, i) => `<div class="part ${(st.lv[i + 1] || {}).done ? 'ok' : ''}" title="${nm}">${partSVG(id, i)}${nm}</div>`).join('');
+  $('#hallLevels').innerHTML = h.levels.map((lv, i) => {
+    const r = st.lv[i + 1] || {}, open = i + 1 <= st.open, s = r.stars || 0;
+    return `<button class="lvl ${r.done ? 'done' : ''} ${open ? '' : 'locked'}" data-lv="${i}" ${open ? '' : 'aria-disabled="true"'}><span class="num">${open ? i + 1 : '🔒'}</span><span><b>${lv.title}</b><small>${lv.sub}</small><br><span class="stars">${'★'.repeat(s)}${'☆'.repeat(3 - s)}</span></span></button>`;
+  }).join('');
+}
+function startLevel(hall, idx) {
+  const h = hallDef(hall), r = hallState(hall).lv[idx + 1] || {};
+  startRun({ mode: 'level', hall, lvIdx: idx, kind: h.pool, d: r.stars === 3 ? 2 : idx === 0 ? 0 : 1 });
+}
+function finishLevel() {
+  const h = hallDef(RUN.hall), st = hallState(RUN.hall), n = RUN.lvIdx + 1, slip = RUN.mistakes + RUN.hints;
+  const stars = slip <= 2 ? 3 : slip <= 5 ? 2 : 1;
+  const prev = st.lv[n] || {}, firstTime = !prev.done;
+  st.lv[n] = { stars: Math.max(prev.stars || 0, stars), done: true, best: Math.max(prev.best || 0, stars), last: dayKey() };
+  st.open = Math.min(h.levels.length, Math.max(st.open, n + 1));
+  let opened = '';
+  if (RUN.hall === 1 && n >= HALL2_AFTER && !hallOpen(2)) { hallState(2).open = 1; opened = '🔓 De Geluidskamer is open!'; }
+  S.playDays[dayKey()] = 1;
+  // nieuwe Bliep-upgrades
+  const newUp = UPGRADES.filter(u => totalStars() >= u.at && !S.upgrades.includes(u.id));
+  newUp.forEach(u => S.upgrades.push(u.id));
+  save();
+  const hallDone = h.levels.every((_, i) => (st.lv[i + 1] || {}).done);
+  const part = h.parts[n - 1];
+  let rw = `${partSVG(RUN.hall, n - 1)}<div style="text-align:left"><p>${firstTime ? `🔧 <b>${part}</b> werkt weer!` : `Je speelde <b>${h.levels[RUN.lvIdx].title}</b> nog een keer.`}</p>`;
+  if (newUp.length) rw += `<p>🎁 Bliep krijgt: <b>${newUp.map(u => u.name).join(' en ')}</b>!</p>`;
+  if (hallDone && firstTime) rw += `<p>🎉 <b>Hal ${RUN.hall} is helemaal gerepareerd!</b></p>`;
+  if (opened) rw += `<p>${opened}</p>`;
+  rw += '</div>';
+  const btns = [];
+  if (n < h.levels.length) btns.push(['▶️ Volgend niveau', 'green', () => startLevel(RUN.hall, n)]);
+  btns.push([`${h.icon} Naar de hal`, 'white', () => openHall(RUN.hall)]);
+  if (opened) btns.push(['🔊 Naar de Geluidskamer', 'purple', () => openHall(2)]);
+  showResult({ title: hallDone && firstTime ? 'Hal gerepareerd!' : 'Niveau klaar!', stars, reward: rw, mood: 'juich',
+    speak: `${stars === 3 ? 'Geweldig! Drie sterren!' : stars === 2 ? 'Goed gedaan! Twee sterren.' : 'Knap dat je het hebt afgemaakt!'} ${firstTime ? part + ' werkt weer!' : ''} ${newUp.length ? 'Ik krijg een nieuwe ' + newUp[0].name + '!' : ''}`, btns });
+}
+function showResult(o) {
+  GEN++; show('scrResult'); musicFor('scrResult');
+  $('#resTitle').textContent = o.title;
+  $('#resStars').innerHTML = o.stars ? Array.from({ length: 3 }, (_, i) => `<span>${i < o.stars ? '⭐' : '☆'}</span>`).join('') : '';
+  $('#resBliep').innerHTML = bliepSVG(S.upgrades, o.mood || 'juich');
+  $('#resReward').innerHTML = o.reward;
+  $('#resBtns').innerHTML = ''; o.btns.forEach(([t, c, f]) => { const b = document.createElement('button'); b.className = 'btn ' + c; b.textContent = t; b.onclick = () => { SFX.click(); f(); }; $('#resBtns').appendChild(b); });
+  if (o.stars) { SFX.fanfare(); for (let i = 0; i < o.stars; i++) setTimeout(() => SFX.star(), 400 + i * 300); }
+  if (o.speak) say(o.speak);
+}
+
+/* ===== screens/samen.js ===== */
+/* Samen spelen op één apparaat: 'Lezer en bouwer' (coöperatief) en 'Maak een patroon' (om de beurt een patroon voor elkaar). */
+const SAMEN = { mode: 'lezer', hall: 1 };
+function openSamen() {
+  GEN++; hush(); show('scrSamen'); musicFor('scrSamen');
+  $('#name1').value = S.names[0] || ''; $('#name2').value = S.names[1] || '';
+  $$('#scrSamen .mode[data-hall]').forEach(b => { const h = +b.dataset.hall, ok = h === 1 || hallOpen(2); b.disabled = !ok; b.style.opacity = ok ? '' : .5; if (!ok && SAMEN.hall === 2) SAMEN.hall = 1; });
+  renderSamenSel();
+}
+function renderSamenSel() {
+  $$('#scrSamen .mode[data-mode]').forEach(b => b.classList.toggle('sel', b.dataset.mode === SAMEN.mode));
+  $$('#scrSamen .mode[data-hall]').forEach(b => b.classList.toggle('sel', +b.dataset.hall === SAMEN.hall));
+}
+function startSamen() {
+  S.names = [$('#name1').value.trim(), $('#name2').value.trim()]; save();
+  startRun({ mode: SAMEN.mode, kind: SAMEN.hall === 2 ? 'klank' : 'vorm', hall: SAMEN.hall, total: 8, d: 1 });
+}
+function finishSamen() {
+  S.samen.played++; S.samen.best = Math.max(S.samen.best, RUN.team); save();
+  const max = RUN.total * 2;
+  showResult({ title: 'Goed samengewerkt!', stars: RUN.team >= max * .8 ? 3 : RUN.team >= max * .5 ? 2 : 1,
+    reward: `<div><p>Samen verdienden <b>${playerName(0)}</b> en <b>${playerName(1)}</b> <b>${RUN.team}</b> teamsterren.</p><p class="small-note">Meteen goed = 2, met hulp = 1. Jullie record: ${S.samen.best}.</p></div>`,
+    speak: `Goed samengewerkt! Jullie verdienden ${RUN.team} teamsterren.`,
+    btns: [['🔁 Nog een keer', 'green', () => startSamen()], ['🏠 Klaar', 'white', () => goTitle()]] });
+}
+
+/* ===== screens/ouders.js ===== */
+/* Voor ouders: instellingen, voortgang, uitleg en beheer (achter een houd-2-seconden-knop) */
+const TYPE_NL = { next: 'Wat komt hierna?', mid: 'Wat mist er?', nextN: 'Band afmaken', kern: 'Kern vinden', odd: 'Fout vinden', translate: 'Vertalen', echo: 'Naspelen' };
+function openOuders() {
+  hush(); const st = S.settings;
+  $('#setMusic').checked = st.music; $('#setMusicVol').value = st.musicVol; $('#setSfx').checked = st.sfx; $('#setSfxVol').value = st.sfxVol;
+  $('#setSpeech').checked = st.speech; $('#setRate').value = st.rate; $('#setBig').checked = st.big;
+  $('#voiceNote').textContent = !SPEECH.ok ? 'Deze browser kan niet voorlezen; alle uitleg staat ook als tekst in beeld.' : pickVoice() ? `Stem: ${SPEECH.voice.name} (${SPEECH.voice.lang})` : 'Geen Nederlandse stem gevonden op dit apparaat. Installeer er een via de instellingen (Spraak/Tekst-naar-spraak), of lees samen de tekst.';
+  let h = `<p>Instaptoets: ${S.placement.done ? S.placement.score + ' van 5 goed' : 'nog niet gedaan'} · Sterren: ${totalStars()} · Upgrades: ${S.upgrades.length}/${UPGRADES.length} · Samen gespeeld: ${S.samen.played}×</p><table class="prog"><tr><th>Hal</th><th>Niveau</th><th>Sterren</th></tr>`;
+  HALLS.filter(x => !x.soon).forEach(hl => { const s = hallState(hl.id); hl.levels.forEach((lv, i) => { const r = s.lv[i + 1]; h += `<tr><td>${hl.icon} ${hl.id}</td><td>${i + 1}. ${lv.title}</td><td>${r ? '★'.repeat(r.stars) + '☆'.repeat(3 - r.stars) : i + 1 <= s.open ? 'open' : '🔒'}</td></tr>`; }); });
+  h += `</table><table class="prog"><tr><th>Soort puzzel</th><th>Goed</th><th>Fout</th><th>Hints</th></tr>`;
+  for (const t in TYPE_NL) { const x = S.stats[t]; if (x) h += `<tr><td>${TYPE_NL[t]}</td><td>${x.ok}</td><td>${x.bad}</td><td>${x.hints}</td></tr>`; }
+  $('#oudProg').innerHTML = h + '</table>';
+  openOv('ovOuders');
+}
+function initOuders() {
+  const st = () => S.settings, upd = () => { applyVolumes(); document.body.classList.toggle('bigtext', S.settings.big); save(); if (!S.settings.music) musicStop(); else if (AUD.ac && CUR_SCREEN !== 'scrPuzzle') musicStart(); };
+  $('#setMusic').onchange = e => { st().music = e.target.checked; upd(); };
+  $('#setMusicVol').oninput = e => { st().musicVol = +e.target.value; upd(); };
+  $('#setSfx').onchange = e => { st().sfx = e.target.checked; upd(); };
+  $('#setSfxVol').oninput = e => { st().sfxVol = +e.target.value; upd(); SFX.click(); };
+  $('#setSpeech').onchange = e => { st().speech = e.target.checked; upd(); if (!e.target.checked) hush(); };
+  $('#setRate').onchange = e => { st().rate = +e.target.value; upd(); };
+  $('#setBig').onchange = e => { st().big = e.target.checked; upd(); };
+  $('#setTest').onclick = () => say('Hallo! Ik ben Bliep. Rondje, vierkant, rondje, vierkant.');
+  $('#oudClose').onclick = () => { closeOv('ovOuders'); if (CUR_SCREEN === 'scrMap') goMap(); if (CUR_SCREEN === 'scrTitle') goTitle(); };
+  $('#oudReset').onclick = async () => { if (await confirmBox('Alle voortgang wissen? Dit kan niet ongedaan worden.')) { resetSave(); closeOv('ovOuders'); goTitle(); toast('Het spel is gewist.'); } };
+  $('#oudPlacement').onclick = () => { closeOv('ovOuders'); S.placement.done = false; save(); startPlacement(); };
+  $('#oudUnlock').onclick = () => { unlockAll(); toast('🔓 Alle niveaus zijn open.'); openOuders(); };
+}
+function unlockAll() { S.introSeen = true; S.placement.done = true; HALLS.filter(h => !h.soon).forEach(h => hallState(h.id).open = h.levels.length); save(); }
+
+/* ===== main.js ===== */
+/* Opstarten + test-haakjes (window.__rf, alleen voor de automatische tests) */
+function init() {
+  load(); document.body.classList.toggle('bigtext', S.settings.big);
+  const first = () => { audioInit(); if (CUR_SCREEN !== 'scrPuzzle') musicStart(); };
+  addEventListener('pointerdown', first, { capture: true }); addEventListener('keydown', first, { capture: true });
+  $('#btnPlay').onclick = () => { SFX.click(); startPlay(); };
+  $('#btnSamen').onclick = () => { SFX.click(); openSamen(); };
+  holdButton($('#btnParent'), 2000, openOuders);
+  $('#introNext').onclick = introNext;
+  $('#introSkip').onclick = () => { introI = INTRO.length - 1; introNext(); };
+  $('#mapHome').onclick = () => { SFX.click(); goTitle(); };
+  $('#mapSamen').onclick = () => { SFX.click(); openSamen(); };
+  $('#mapSvg').addEventListener('click', e => { const g = e.target.closest('.hall'); if (g) mapClick(+g.dataset.hall); });
+  $('#mapSvg').addEventListener('keydown', e => { const g = e.target.closest('.hall'); if (g && (e.key === 'Enter' || e.key === ' ')) mapClick(+g.dataset.hall); });
+  $('#hallBack').onclick = () => { SFX.click(); goMap(); };
+  $('#hallLevels').addEventListener('click', e => { const b = e.target.closest('.lvl'); if (!b) return; const i = +b.dataset.lv; if (i + 1 > hallState(HALL).open) { toast('🔒 Maak eerst het niveau ervoor af.'); return; } SFX.click(); startLevel(HALL, i); });
+  $('#samenBack').onclick = () => { SFX.click(); goTitle(); };
+  $('#scrSamen').addEventListener('click', e => { const b = e.target.closest('.mode'); if (!b || b.disabled) return; SFX.click(); if (b.dataset.mode) SAMEN.mode = b.dataset.mode; if (b.dataset.hall) SAMEN.hall = +b.dataset.hall; renderSamenSel(); });
+  $('#samenGo').onclick = () => { SFX.click(); startSamen(); };
+  initPlay(); initOuders(); goTitle();
+}
+window.__rf = {
+  get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; },
+  genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
+  load, save, unlockAll, startLevel, goMap, openHall, openSamen, startPlacement, onChoice, onSlot, onAct, hint, totalStars, UPGRADES,
+  goTitle, setRng(f) { RNG = f || Math.random; }, SPEECH
+};
+init();
+
+</script>
+</body>
+</html>

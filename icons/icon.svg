@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"><g >
+      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5aa0e6"/><stop offset="1" stop-color="#2b6cb0"/></linearGradient></defs>
+      <rect width="512" height="512" fill="url(#g)"/><path d="M466.0 236.0L463.4 268.9L417.7 288.5L407.5 313.2L425.9 359.4L404.5 384.5L355.9 373.5L333.2 387.5L320.9 435.7L288.9 443.4L256.0 406.0L229.4 403.9L191.1 435.7L160.7 423.1L156.1 373.5L135.8 356.2L86.1 359.4L68.9 331.3L94.3 288.5L88.1 262.6L46.0 236.0L48.6 203.1L94.3 183.5L104.5 158.8L86.1 112.6L107.5 87.5L156.1 98.5L178.8 84.5L191.1 36.3L223.1 28.6L256.0 66.0L282.6 68.1L320.9 36.3L351.3 48.9L355.9 98.5L376.2 115.8L425.9 112.6L443.1 140.7L417.7 183.5L423.9 209.4Z" fill="#ffffff" opacity=".18"/>
+      <g transform="translate(0 0) scale(1)"><g transform="translate(96 60) scale(1.6)">
+  
+  <line x1="100" y1="30" x2="100" y2="10" stroke="#1f2a44" stroke-width="5"/><circle cx="100" cy="10" r="10" fill="#ffe14d" stroke="#1f2a44" stroke-width="4"/>
+  <circle cx="100" cy="10" r="17" fill="#ffe14d" opacity=".35"/>
+  
+  <rect x="44" y="30" width="112" height="96" rx="28" fill="#9fb7d6" stroke="#1f2a44" stroke-width="6"/>
+  <rect x="58" y="48" width="84" height="66" rx="16" fill="#203047"/>
+  <circle cx="76" cy="76" r="11" fill="#7ff0ff"/><circle cx="124" cy="76" r="11" fill="#7ff0ff"/><circle cx="80" cy="72" r="4" fill="#fff"/><circle cx="128" cy="72" r="4" fill="#fff"/><path d="M84 98 q16 12 32 0" stroke="#7ff0ff" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <rect x="62" y="128" width="76" height="52" rx="14" fill="#9fb7d6" stroke="#1f2a44" stroke-width="6"/>
+  <circle cx="86" cy="150" r="6" fill="#e85d4a"/><circle cx="100" cy="150" r="6" fill="#ffd23f"/><circle cx="114" cy="150" r="6" fill="#3fbf6f"/>
+  <path d="M62 140 L38 166" stroke="#6f8bb0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M138 140 L162 166" stroke="#6f8bb0" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="78" cy="196" r="14" fill="#3d4860" stroke="#1f2a44" stroke-width="5"/><circle cx="122" cy="196" r="14" fill="#3d4860" stroke="#1f2a44" stroke-width="5"/>
+  </g>
+      <g transform="translate(70 380) scale(.9)"><circle cx="50" cy="50" r="34" fill="#E69F00" stroke="#1f2a44" stroke-width="6" stroke-linejoin="round"/><circle cx="38" cy="38" r="8" fill="#fff" opacity=".5"/></g><g transform="translate(352 380) scale(.9)"><polygon points="50,12 88,84 12,84" fill="#F0E442" stroke="#1f2a44" stroke-width="6" stroke-linejoin="round"/></g></g></g></svg>

@@ -1,0 +1,43 @@
+{
+  "id": "./",
+  "name": "Robo-Fabriek – ontdek de patronen",
+  "short_name": "Robo-Fabriek",
+  "description": "Help robot Bliep zijn fabriek te repareren door patronen te ontdekken. Een Nederlands spel over patronen voor kinderen van 6 tot 10 jaar.",
+  "lang": "nl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#dfe8f1",
+  "theme_color": "#2b6cb0",
+  "categories": [
+    "games",
+    "kids",
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
