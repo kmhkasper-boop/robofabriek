@@ -14,6 +14,13 @@ Een Nederlands spel over **patronen** voor kinderen van 6 tot 10 jaar, waarin je
 - **Dagrapport** met opa's commentaar. Samen spelen op één apparaat blijft (Lezer en bouwer, Maak een patroon).
 - Voortgang uit de eerste versie wordt overgezet (sterren → machineniveaus + startgeld).
 
-Volgende fases: meer machines en humor (B), robotvoetbal met teammanagement en aankleden (C).
+## Fase B (nu online)
+- **Nieuwe stijl**: donkerder, metaal en licht, strakkere letters (Exo 2), meters en een hendel op de puzzelmachines.
+- **Real time**: na één werkbeurt ("afregelen") maakt een machine vanzelf robots zolang het spel openstaat; de winkel verkoopt ze vanzelf aan klanten. Ben je weg geweest, dan heeft de fabriek even (begrensd) doorgewerkt.
+- **Makkelijk / normaal / moeilijk** per werkbeurt, met vooraf de beloning. Nieuwe uitdagingen +30%; wat je al beheerst wordt "te makkelijk" en levert minder op. Hints mogen altijd (kosten een beetje).
+- **Investeren** met terugverdientijd ("verdient zichzelf terug in ~X dagen"), etalage, zuinige lampen, kluis; **📊 Financiën** met inkomsten, kosten, winst en grafiek; tips van opa en Bliep.
+- De economie is getest met een simulatie van 7 speelstijlen (`tests/sim_economie.js` in de bronmap).
 
-Werkt offline (PWA), zonder account, reclame of tracking. Geen verzoeken naar buiten (lettertype Fredoka zelf gehost, SIL OFL, zie `fonts/OFL.txt`).
+Volgende fase: robotvoetbal met teammanagement en aankleden (C).
+
+Werkt offline (PWA), zonder account, reclame of tracking. Geen verzoeken naar buiten (lettertype Exo 2 zelf gehost, SIL OFL, zie `fonts/OFL-Exo2.txt`).

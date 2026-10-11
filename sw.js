@@ -1,8 +1,8 @@
 /* Robo-Fabriek – service worker (offline spelen). Pagina: eerst netwerk (updates komen meteen), offline uit de cache. Rest: eerst cache. */
 const ID = 'robofabriek';
-const CORE = ID + '-core-v2';
+const CORE = ID + '-core-v3';
 const PAGE = new URL('./', self.registration.scope).href;
-const ASSETS = ["./", "./manifest.webmanifest", "./fonts/fredoka-latin.woff2", "./fonts/fredoka-latinext.woff2", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-maskable-512.png", "./icons/apple-touch-icon.png", "./icons/favicon-48.png"];
+const ASSETS = ["./", "./manifest.webmanifest", "./fonts/exo2-latin.woff2", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-maskable-512.png", "./icons/apple-touch-icon.png", "./icons/favicon-48.png"];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CORE).then(c => c.addAll(ASSETS.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith(ID + '-') && k !== CORE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 async function networkFirst(req) {
