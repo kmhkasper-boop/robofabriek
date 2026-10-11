@@ -1,20 +1,19 @@
 # 🤖 Robo-Fabriek
 
-Een Nederlands educatief spel over **patronen** voor kinderen van 6 tot 10 jaar. Robot Bliep's fabriek is in de war: ontdek de patronen en repareer de fabriek hal voor hal.
+Een Nederlands spel over **patronen** voor kinderen van 6 tot 10 jaar, waarin je ook een beetje leert **ondernemen**. Opa Tinus gaat met pensioen en geeft jou zijn stoffige robotfabriek. Zet de patronen van de machines goed, maak robots, verkoop ze en bouw de fabriek uit.
 
 ▶️ **Spelen:** https://kmhkasper-boop.github.io/robofabriek/
 
-## Zo werkt het (aflevering 1)
-- **Verhaal + instaptoets**: Bliep vertelt wat er aan de hand is; 5 korte puzzels bepalen waar je begint.
-- **Hal 1 – Lopende band** (8 niveaus): AB → AAB/ABB → ABC → AABB/ABCD, wat mist er?, **vind de kern** (het stukje dat steeds terugkomt), band afmaken, en hetzelfde patroon met ander materiaal.
-- **Hal 2 – Geluidskamer** (6 niveaus): ritmes naspelen, ritmes voortzetten (ook met stiltes), het foute geluid vinden, de ritme-kern, en een vormpatroon als ritme spelen. Elk geluid heeft altijd ook een plaatje, vorm en woord.
-- **Uitleg bij fouten** in stapjes (eerst zelf kijken, dan pas het antwoord), **hints in 4 stapjes**, na 3 pogingen laat Bliep zien hoe het moet. Geen tijdsdruk, geen levens.
-- **Adaptief**: 2 keer op rij meteen goed → iets moeilijker; veel fouten → iets makkelijker.
-- **Beloningen**: per niveau gaat een fabrieksonderdeel weer werken; met sterren krijgt Bliep upgrades (lampje, rupsbanden, grijparm, ...).
-- **Samen op 1 apparaat**: *Lezer en bouwer* (de een zegt het patroon, de ander kiest met de band dicht) en *Maak een patroon* (om de beurt een geheim patroon voor elkaar).
-- **Voorlezen** met de Nederlandse stem van het apparaat (nl-NL). Kleur is nooit de enige aanwijzing (kleurenblind-vriendelijk).
-- **Voor ouders** (2 s vasthouden): muziek/geluid/stem, grotere letters, voortgang per niveau en soort puzzel, instaptoets opnieuw.
+## Fase A (nu online)
+- **Intro met opa Tinus en Bliep** (tekstballonnen + robotbrabbel, geen voorleesstem) en een korte instaptoets.
+- **Fabrieksoverzicht** met kamers: Lopende band (doseermachine), Tik-tak-band, Herhaal-machine, Testkamer, Magazijn. Elke machine heeft patroonpuzzels (patroon afmaken, gat vullen, band afmaken, vertalen, kern vinden, geluidspatronen, fout vinden, groeiende stapels, getallenrijen) en 5 niveaus.
+- **Economie**: werkbeurt → robots met kwaliteit ★ → winkel (vraag per dag) en bestellingen van klanten → munten + reputatie → bouwen en upgraden. Plafonds: kluis, magazijn, minder opbrengst bij vaker werken op één dag.
+- **Onderhoud (zacht)**: machines die je een paar speeldagen niet gebruikt worden moe en gaan piepen (langzamer), smeren = één korte "fout vinden"-puzzel. Nooit kapot, nooit geld kwijt.
+- **Tik-tak-band**: tik onderdelen in de volgorde van het recept. Leuk, maar levert pas echt wat op na upgrades.
+- **Geheime puzzels** op rare plekken (schoorsteen, klok, poster, losse tegel) geven onderdelen voor het robotvoetbal (komt in fase C).
+- **Dagrapport** met opa's commentaar. Samen spelen op één apparaat blijft (Lezer en bouwer, Maak een patroon).
+- Voortgang uit de eerste versie wordt overgezet (sterren → machineniveaus + startgeld).
 
-Hallen 3–7 (Sorteermachine, Groeihal, Spiegelkamer, Programmeerkamer, Hoofdcomputer) volgen.
+Volgende fases: meer machines en humor (B), robotvoetbal met teammanagement en aankleden (C).
 
 Werkt offline (PWA), zonder account, reclame of tracking. Geen verzoeken naar buiten (lettertype Fredoka zelf gehost, SIL OFL, zie `fonts/OFL.txt`).

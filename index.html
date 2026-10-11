@@ -189,13 +189,122 @@ table.prog td,table.prog th{padding:4px 6px;border-bottom:1px solid #dde;text-al
 }
 @media (max-width:480px){ .dots{gap:3px} .dots i{width:9px;height:9px;border-width:2px} .topbar{gap:6px} .topbar .title{font-size:1em} }
 @media (max-height:460px){ .topbar{min-height:46px} .iconbtn{width:44px;height:44px;font-size:1.2em} .btn{min-height:46px} .fb .mini{width:44px;height:44px} .fb{min-height:48px} .machine{padding:8px 8px 18px} }
+
+/* ===== fase A: fabriek ===== */
+body{background:radial-gradient(120% 80% at 50% 0%,#5b8fe0 0%,#2f4f9a 55%,#1d2f63 100%)}
+#scrTitle{background:radial-gradient(90% 70% at 50% 30%,#ffe9b0 0%,#f7b267 40%,#7a5cc7 100%)}
+.titlechars{display:flex;align-items:flex-end;justify-content:center;gap:8px;pointer-events:none;height:min(30vh,240px)}.titlechars>div{width:auto!important;height:100%!important;max-width:none!important}.titlechars svg{height:100%!important;width:auto!important}
+#titleBliep svg,#titleOpa svg{width:100%;height:auto;filter:drop-shadow(0 8px 8px rgba(0,0,0,.25))}
+#titleBliep{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(2deg)}}
+.who{display:block;font-size:.8em;margin-bottom:2px}.who.opa{color:#8a5a2b}.who.bliep{color:#2b6cb0}
+#scrFactory{padding:0;gap:0}
+.hud{display:flex;align-items:center;gap:6px;padding:calc(6px + env(safe-area-inset-top)) calc(8px + env(safe-area-inset-right)) 6px calc(8px + env(safe-area-inset-left));flex:none;flex-wrap:nowrap;overflow:hidden}
+.hp{background:linear-gradient(#fff,#e6eef8);border:3px solid var(--ink);border-radius:999px;padding:2px 10px;font-weight:600;white-space:nowrap;box-shadow:0 3px 0 rgba(0,0,0,.2);font-size:.95em}
+.hp small{opacity:.55;font-size:.7em}.hp.day{margin-left:auto;background:linear-gradient(#ffe58a,#f5c542)}
+.fscroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:0 calc(8px + env(safe-area-inset-right)) 8px calc(8px + env(safe-area-inset-left))}
+.fab{max-width:1200px;margin:0 auto}
+.roof{margin:0 -4px -6px;position:relative}.roof svg{display:block;width:100%;height:auto;max-height:22vh}
+.wall{background:repeating-linear-gradient(0deg,transparent 0 22px,rgba(0,0,0,.08) 22px 24px),linear-gradient(#e98a62,#b85a3c);border:5px solid var(--ink);border-radius:0 0 18px 18px;padding:10px;display:flex;flex-direction:column;gap:10px}
+.rooms{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-aspect-ratio:1/1){.rooms{grid-template-columns:1fr}}
+.room{position:relative;border:4px solid var(--ink);border-radius:16px;overflow:hidden;background:#1c2a44;aspect-ratio:500/220;min-height:150px;box-shadow:0 6px 0 rgba(0,0,0,.25)}
+
+.rscene{position:absolute;inset:0}.rscene svg{width:100%;height:100%;display:block}
+.rtag{position:absolute;left:8px;top:8px;background:rgba(255,255,255,.92);border:3px solid var(--ink);border-radius:12px;padding:2px 10px;display:flex;flex-direction:column;line-height:1.1}
+.rtag .lvs{color:#e0a400;font-size:.85em;letter-spacing:1px}
+.mood{position:absolute;right:8px;top:8px;border-radius:999px;padding:2px 10px;font-weight:600;border:3px solid var(--ink);background:#d6ffe6}
+.mood.m1{background:#fff3c4}.mood.m2{background:#ffd0cc;animation:shake .5s infinite}
+@keyframes shake{25%{transform:translateX(-2px) rotate(-2deg)}75%{transform:translateX(2px) rotate(2deg)}}
+.ract{position:absolute;left:8px;right:8px;bottom:8px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+.ract .btn{box-shadow:0 4px 0 rgba(0,0,0,.3)}
+.room.care2 .rscene{filter:saturate(.6) brightness(.85)}
+.room.locked .rscene{filter:grayscale(.9) brightness(.45)}
+.lockov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;text-align:center;padding:10px}
+.lockov small{opacity:.85;max-width:420px}.need{background:rgba(0,0,0,.4);border-radius:999px;padding:4px 12px}
+.beltmove{animation:beltmv 3s linear infinite}@keyframes beltmv{from{transform:translateX(-30px)}to{transform:translateX(30px)}}
+.smoke{animation:smk 2s ease-in-out infinite}@keyframes smk{50%{transform:translateY(-8px);opacity:.6}}
+.bulb{animation:bulb 1.4s infinite}@keyframes bulb{50%{fill:#fff7c8}}
+.puff{animation:smk 3s ease-in-out infinite}
+.extras{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-aspect-ratio:1/1){.extras{grid-template-columns:1fr}}
+.shopcard,.footcard{position:relative;background:linear-gradient(#fff8e6,#ffe3b0);border:4px solid var(--ink);border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;box-shadow:0 6px 0 rgba(0,0,0,.25)}
+.footcard{background:linear-gradient(#d8ffe4,#8fe0aa)}
+.shopcard .btn{align-self:flex-start}
+.bar{height:14px;border:3px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#3fdc7f,#1f8a4c)}
+.items{display:flex;flex-wrap:wrap;gap:4px}
+.hidden-spot{cursor:pointer}
+button.hidden-spot{background:none;border:0;padding:0;font:inherit}
+.hidden-spot.ready{animation:spark 2.6s infinite}
+@keyframes spark{0%,80%,100%{filter:none}88%{filter:drop-shadow(0 0 6px #fff7a0) drop-shadow(0 0 12px #ffe14d)}}
+.poster{position:absolute;right:10px;top:8px;font-size:1.7em;transform:rotate(8deg);min-width:44px;min-height:44px}
+.tegel{position:absolute;left:46%;top:10px;width:44px;height:44px;opacity:.55!important;border-radius:6px;background:linear-gradient(135deg,#8d7a66,#5f5246)!important;border:2px solid #3a2f2a!important;transform:rotate(-6deg);opacity:.9}
+.tegel::after{content:'';position:absolute;left:8px;top:18px;width:26px;height:3px;background:#3a2f2a;transform:rotate(25deg)}
+.fbottom{flex:none;display:flex;align-items:flex-end;gap:8px;padding:6px calc(8px + env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) calc(8px + env(safe-area-inset-left));background:linear-gradient(rgba(29,47,99,0),rgba(29,47,99,.9) 30%)}
+.fbub{flex:1;display:flex;align-items:flex-end;gap:6px;min-width:0}
+.fbl{width:64px;flex:none;cursor:pointer}.fbl svg{width:100%;height:auto}
+.bubble.small{font-size:.95em;padding:8px 12px;width:auto;flex:1;min-width:0;max-height:5.6em;overflow:auto}
+.fbtns{display:flex;gap:6px;flex:none}
+.fbtns .btn{padding:.3em .8em}
+#fShop.pulse{animation:glow 1.4s infinite}
+@media (max-width:640px){.fbottom{flex-direction:column;align-items:stretch}.fbtns{justify-content:center}.fbl{width:48px}.hp{padding:1px 7px;font-size:.85em}}
+@media (max-height:500px) and (min-aspect-ratio:1/1){.room{min-height:120px}.lockov small{display:none}.ract .btn.small{min-height:40px;padding:.2em .6em}.roof svg{max-height:16vh}.fbl{width:44px}.bubble.small{max-height:3.2em}}
+@media (max-width:400px){.hp small{display:none}.hud{gap:3px}.hud .iconbtn{width:44px;height:44px;min-width:44px;font-size:1.1em}.hp{padding:1px 6px}}
+/* winkel & bouwen */
+.shopstock{display:flex;flex-direction:column;gap:8px;background:#f2f6fb;border-radius:14px;padding:10px}
+.order{display:flex;align-items:center;gap:10px;background:#fff;border:3px solid var(--steel2);border-radius:14px;padding:8px 10px;margin:6px 0}
+.order.ok{border-color:var(--green);background:#eafff1}.order .ci{font-size:1.8em}.order>div{flex:1}
+/* puzzel in de fabriek */
+#scrPuzzle.inmachine .machine{background:linear-gradient(#7d8ea8,#3c4a66);border:5px solid var(--ink);box-shadow:inset 0 4px 0 rgba(255,255,255,.35),0 8px 0 rgba(0,0,0,.25)}
+#scrPuzzle.inmachine .choice{background:linear-gradient(#fff,#e3ebf5);border:4px solid var(--ink);box-shadow:0 5px 0 rgba(31,42,68,.35)}
+#scrPuzzle.inmachine .topbar .title{background:rgba(255,255,255,.9);border:3px solid var(--ink);border-radius:999px;padding:2px 14px}
+#scrPuzzle.inmachine .instr{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:6px 14px;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+/* puzzel-juice */
+.popbot{position:absolute;bottom:-6px;left:-90px;width:80px;animation:rollout 1.8s ease-in-out forwards;pointer-events:none;z-index:3}
+.popbot svg{width:100%;height:auto}.popbot.mis{animation:rollmis 1.8s ease-in-out forwards}
+@keyframes rollout{0%{left:-90px}40%{left:40%;transform:translateY(-14px)}60%{left:55%;transform:none}100%{left:110%}}
+@keyframes rollmis{0%{left:-90px}45%{left:40%;transform:rotate(0)}60%{left:42%;transform:rotate(-30deg) translateY(-10px)}100%{left:110%;transform:rotate(-360deg)}}
+.machine{position:relative;overflow:hidden}
+.slot .dif{position:absolute;top:-1.4em;left:-.4em;background:#ffd23f;border:2px solid var(--ink);border-radius:999px;font-size:.7em;padding:0 5px;font-weight:700}
+.slot{position:relative}
+.big{font-size:1.25em}.q{color:#e0a400}
+/* tik-tak-band */
+.tikwrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.tikrec{display:flex;align-items:center;gap:8px;background:#fff;border:4px solid var(--ink);border-radius:18px;padding:6px 12px}
+#tikRecipe{display:flex;gap:6px;align-items:center}.rc{width:52px;height:52px;border-radius:12px;padding:3px;opacity:.55}.rc svg{width:100%;height:100%}
+.rc.now{opacity:1;background:#fff3c4;outline:3px solid #f5a524;animation:glow 1s infinite}.rc.done{opacity:1;background:#d6ffe6}
+.combo{font-weight:700;margin-left:6px}
+.tiklane{position:relative;width:min(96vw,1000px);height:min(34vh,180px);background:linear-gradient(#3c4a66,#2c3550);border:5px solid var(--ink);border-radius:20px;overflow:hidden;touch-action:none}
+.tikzone{position:absolute;top:0;bottom:0;left:30%;transform:translateX(-50%);background:rgba(63,220,127,.25);border-left:4px dashed #3fdc7f;border-right:4px dashed #3fdc7f}
+.tpart{position:absolute;left:0;top:50%;margin-top:-38px;width:76px;height:76px;padding:4px;background:none;border:0;cursor:pointer;touch-action:none}
+.tpart svg{width:100%;height:100%;pointer-events:none}.tpart.hit{animation:hitup .25s forwards}.tpart.miss{filter:drop-shadow(0 0 8px #ff6b5a)}
+@keyframes hitup{to{margin-top:-120px;opacity:0}}
+.tikbot{position:absolute;right:10px;top:6px;width:60px;animation:hitup 1.2s forwards}.tikbot svg{width:100%;height:auto}
+.tiklane .belt{position:absolute;left:0;right:0;bottom:0;height:16px;background:repeating-linear-gradient(90deg,#1c2a44 0 18px,#3d4a6a 18px 30px)}
+#scrTik{background:radial-gradient(120% 90% at 50% 0%,#ffe9a8,#f5a524)}
+.tikwrap .bubble.small{flex:none;width:auto;max-width:min(94vw,700px);text-align:center}
+/* dagrapport */
+#scrReport{background:radial-gradient(100% 80% at 50% 0%,#3a3f8f,#141a3d)}
+.report{display:flex;gap:12px;align-items:flex-start;justify-content:center;max-width:900px;margin:0 auto}
+.repopa{width:min(28vw,200px);flex:none}.repopa svg{width:100%;height:auto}
+.reprows{display:grid;grid-template-columns:1fr 1fr;gap:6px}.reprows div{display:flex;justify-content:space-between;background:#f2f6fb;border-radius:10px;padding:6px 10px}
+@media (max-width:640px){.report{flex-direction:column;align-items:center}.repopa{width:120px}.reprows{grid-template-columns:1fr}}
+.quip{font-style:italic;color:#8a5a2b}
+/* effecten */
+#fx{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+.conf{position:absolute;top:-12px;width:10px;height:14px;border-radius:2px;animation:conf 2.2s ease-in forwards}
+@keyframes conf{to{transform:translate(var(--dx),105vh) rotate(720deg)}}
+.coinfly{position:absolute;font-size:24px;animation:coinfly 1s ease-in forwards}
+@keyframes coinfly{to{transform:translate(var(--tx),var(--ty)) scale(.6);opacity:.3}}
+body.nofx .beltmove,body.nofx .smoke,body.nofx .bulb,body.nofx .puff{animation:none}
 </style>
 </head>
 <body>
+<div id="defs"></div>
 <!-- ===== TITEL ===== -->
 <section id="scrTitle" class="screen show">
-  <div class="logo">Robo-Fabriek<small>Ontdek de patronen en help Bliep!</small></div>
-  <div id="titleBliep"></div>
+  <div class="logo">Robo-Fabriek<small>Word de baas van opa’s robotfabriek!</small></div>
+  <div class="titlechars"><div id="titleOpa"></div><div id="titleBliep"></div></div>
   <div class="tbtns">
     <button class="btn green" id="btnPlay">▶️ Spelen</button>
     <button class="btn orange" id="btnSamen">👫 Samen spelen</button>
@@ -208,25 +317,41 @@ table.prog td,table.prog th{padding:4px 6px;border-bottom:1px solid #dde;text-al
   <div class="bubble" id="introText"></div>
   <div class="introbtns"><button class="btn white small" id="introSkip">Overslaan ⏭️</button><button class="btn green" id="introNext">Verder ▶️</button></div>
 </section>
-<!-- ===== KAART ===== -->
-<section id="scrMap" class="screen">
-  <div class="topbar"><button class="iconbtn" id="mapHome" aria-label="Naar het begin">🏠</button><div id="mapBliep"></div><div class="title">De fabriek van Bliep</div><span class="pill" id="mapStars">⭐ 0</span><button class="iconbtn" id="mapSamen" aria-label="Samen spelen">👫</button></div>
-  <div class="mapwrap"><svg id="mapSvg" viewBox="0 -70 1000 690" preserveAspectRatio="xMidYMid meet"></svg></div>
+<!-- ===== FABRIEK ===== -->
+<section id="scrFactory" class="screen">
+  <div class="hud"><button class="iconbtn" id="fHome" aria-label="Naar het begin">🏠</button><span class="hp" id="hCoins"></span><span class="hp" id="hRep"></span><span class="hp" id="hStock"></span><span class="hp day" id="hDay"></span><button class="iconbtn" id="fEnd" aria-label="Dag afsluiten">🌙</button></div>
+  <div class="fscroll"><div class="fab">
+    <div class="roof" id="fRoof"></div>
+    <div class="wall"><div class="rooms" id="fRooms"></div>
+      <div class="extras">
+        <div class="shopcard" id="fShopCard"><button class="hidden-spot poster" id="fPoster" data-spot="poster" aria-label="rare poster">🖼️</button><b>🛒 Winkel</b><small>Verkoop robots en lever bestellingen.</small><button class="btn small orange" id="fShop2">Openen</button></div>
+        <div class="footcard" id="fFoot"></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="fbottom"><div class="fbub"><div class="fbl" id="fBliep"></div><div class="bubble small" id="fBubble"></div></div>
+    <div class="fbtns"><button class="btn orange" id="fShop">🛒 Winkel</button><button class="btn purple" id="fBuild">🏗️ Bouwen</button><button class="btn white" id="fSamen" aria-label="Samen spelen">👫</button></div></div>
 </section>
-<!-- ===== HAL ===== -->
-<section id="scrHall" class="screen">
-  <div class="topbar"><button class="iconbtn" id="hallBack" aria-label="Terug naar de fabriek">⬅️</button><div class="title" id="hallTitle"></div><span class="pill" id="hallStars"></span></div>
-  <div class="scroll">
-    <div class="card hallhead"><div class="hb" id="hallIcon"></div><div><p id="hallDesc"></p><div class="parts" id="hallParts"></div></div></div>
-    <div class="levels" id="hallLevels"></div>
+<!-- ===== TIK-TAK-BAND ===== -->
+<section id="scrTik" class="screen">
+  <div class="topbar"><button class="iconbtn" id="tikBack" aria-label="Stoppen">⬅️</button><div class="title">👆 Tik-tak-band</div><span class="pill" id="tikScore"></span><span class="pill" id="tikTime"></span></div>
+  <div class="tikwrap">
+    <div class="tikrec"><span class="rl">Recept:</span><div id="tikRecipe"></div></div>
+    <div class="tiklane" id="tikLane"><div class="tikzone" id="tikZone"></div><div class="belt"></div></div>
+    <div class="bubble small" id="tikMsg"></div>
   </div>
+</section>
+<!-- ===== DAGRAPPORT ===== -->
+<section id="scrReport" class="screen">
+  <div class="scroll"><div class="report"><div class="repopa" id="repOpa"></div><div class="card" id="repBody"></div></div></div>
+  <div style="text-align:center;flex:none;padding-top:8px"><button class="btn green" id="repNext">☀️ Nieuwe dag!</button></div>
 </section>
 <!-- ===== PUZZEL ===== -->
 <section id="scrPuzzle" class="screen">
   <div class="topbar"><button class="iconbtn" id="pzBack" aria-label="Stoppen">⬅️</button><div class="title" id="pzTitle"></div><div class="dots" id="pzDots"></div><button class="iconbtn" id="pzHint" aria-label="Hint">💡</button></div>
   <div class="pmain">
     <div id="pzTurn"></div>
-    <div class="instr"><button class="iconbtn" id="pzSay" aria-label="Lees voor">🔊</button><span id="pzInstr"></span></div>
+    <div class="instr"><span id="pzInstr"></span></div>
     <div class="machine" id="pzMachine"><div class="band" id="pzBand"></div><div class="belt"></div></div>
     <div class="machine" id="pzMachine2" style="display:none"><div class="band" id="pzBand2"></div><div class="belt"></div></div>
     <div class="pside">
@@ -265,21 +390,24 @@ table.prog td,table.prog th{padding:4px 6px;border-bottom:1px solid #dde;text-al
   <div class="ocard">
     <h2>👪 Voor ouders</h2>
     <div class="scroll" style="display:flex;flex-direction:column;gap:12px">
-      <div><h3>🔊 Geluid en stem</h3>
+      <div><h3>🔊 Geluid en beeld</h3>
         <div class="orow"><label><input type="checkbox" id="setMusic"> Muziek</label><input type="range" id="setMusicVol" min="0" max="100" aria-label="Muziek volume"></div>
         <div class="orow"><label><input type="checkbox" id="setSfx"> Geluidjes</label><input type="range" id="setSfxVol" min="0" max="100" aria-label="Geluidjes volume"></div>
-        <div class="orow"><label><input type="checkbox" id="setSpeech"> Voorlezen (Nederlandse stem)</label><label>Tempo <input type="range" id="setRate" min="60" max="120" aria-label="Voorleestempo"></label><button class="btn small white" id="setTest">▶️ Test</button></div>
-        <p class="small-note" id="voiceNote"></p>
+        <div class="orow"><label><input type="checkbox" id="setFx"> Effecten (confetti, vliegende munten)</label></div>
+        <p class="small-note">Er is geen voorleesstem: alle tekst staat in ballonnen, de robots brabbelen een geluidje.</p>
         <div class="orow"><label><input type="checkbox" id="setBig"> Grotere letters</label></div>
       </div>
       <div><h3>📊 Voortgang</h3><div id="oudProg"></div></div>
-      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een sessie (1 niveau) duurt ongeveer 5 minuten.</p></div>
-      <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles openen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
+      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
+      <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles bouwen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
       <p class="small-note">Robo-Fabriek werkt zonder account, zonder reclame en zonder internet (na de eerste keer). De voortgang staat alleen op dit apparaat. Installeren: iPad/iPhone → Safari → Deel → <b>Zet op beginscherm</b>; Android → Chrome → ⋮ → <b>App installeren</b>.</p>
     </div>
     <div style="text-align:right"><button class="btn green" id="oudClose">Sluiten</button></div>
   </div>
 </div>
+<div id="ovShop" class="overlay"><div class="ocard"><h2>🛒 Winkel</h2><div class="scroll" id="shopBody"></div><div style="text-align:right"><button class="btn green" id="shopClose">Sluiten</button></div></div></div>
+<div id="ovBuild" class="overlay"><div class="ocard"><h2>🏗️ Bouwen en verbeteren</h2><div class="scroll" id="buildBody"></div><div style="text-align:right"><button class="btn green" id="buildClose">Sluiten</button></div></div></div>
+<div id="fx" aria-hidden="true"></div>
 <div id="ovConfirm" class="overlay"><div class="ocard" style="width:min(460px,100%);text-align:center"><p id="cfText"></p><div class="orow" style="justify-content:center"><button class="btn white" id="cfNo">Nee</button><button class="btn red" id="cfYes">Ja</button></div></div></div>
 <div class="toast" id="toast"></div>
 <script>if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))addEventListener('load',function(){navigator.serviceWorker.register('sw.js',{scope:'./'}).catch(function(){});});</script>
@@ -301,8 +429,8 @@ function openOv(id) { $('#' + id).classList.add('show'); }
 function closeOv(id) { $('#' + id).classList.remove('show'); }
 let toastT = 0;
 function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => e.classList.remove('show'), 2200); }
-function confirmBox(text) {
-  return new Promise(res => { $('#cfText').textContent = text; openOv('ovConfirm');
+function confirmBox(text, yes = 'Ja', no = 'Nee') {
+  return new Promise(res => { $('#cfText').textContent = text; $('#cfYes').textContent = yes; $('#cfNo').textContent = no; openOv('ovConfirm');
     $('#cfYes').onclick = () => { closeOv('ovConfirm'); res(true); }; $('#cfNo').onclick = () => { closeOv('ovConfirm'); res(false); }; });
 }
 // houd-knop (2 s) als ouderpoortje
@@ -314,32 +442,90 @@ function holdButton(btn, ms, cb) {
   btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') cb(); });
 }
 
+/* ===== data/machines.js ===== */
+/* Machines van de fabriek (fase A). Elke machine: puzzels (soorten per niveau), kosten, effect. Getallen staan hier bij elkaar voor de balans. */
+const MACHINES = {
+  band: { name: 'Doseermachine', room: 'Lopende band', icon: '🏭', buy: 0, up: [0, 120, 280, 550, 900], theme: ['#ffd9a0', '#f2a65a'],
+    desc: 'Stel de knoppen in zodat de onderdelen in het goede patroon op de band komen.', tempo: 3,
+    pool: lv => [[['h1', 0], ['h1', 1]], [['h1', 1], ['h1', 2]], [['h1', 2], ['h1', 3], ['h1', 4]], [['h1', 3], ['h1', 4], ['h1', 6]], [['h1', 4], ['h1', 6], ['h1', 7]]][lv - 1] },
+  kern: { name: 'Herhaal-machine', room: 'Herhaal-machine', icon: '🔁', buy: 150, need: { band: 2 }, up: [0, 200, 400, 700, 1000], theme: ['#bdf2d6', '#4fc28a'],
+    desc: 'Knip de kern uit de strook: dan maakt de machine elke nacht vanzelf robots.', tempo: 2,
+    pool: lv => lv <= 2 ? [['h1', 5]] : [['h1', 5], ['h2', 4]] },
+  test: { name: 'Testkamer', room: 'Testkamer', icon: '🔊', buy: 250, need: { band: 2 }, up: [0, 220, 450, 750, 1100], theme: ['#d7c4ff', '#8f6fe0'],
+    desc: 'Elke robot doet een piep-toet-boem zelftest. Goed gekeurde robots zijn meer waard.', tempo: 2,
+    pool: lv => [[['h2', 0], ['h2', 1]], [['h2', 1], ['h2', 2]], [['h2', 2], ['h2', 3]], [['h2', 3], ['h2', 4]], [['h2', 4], ['h2', 5]]][lv - 1] },
+  mag: { name: 'Magazijn', room: 'Magazijn', icon: '📦', buy: 400, need: { band: 3 }, up: [0, 300, 600, 900, 1300], theme: ['#bfe3ff', '#5d9fe0'],
+    desc: 'Plan de voorraad: hoeveel dozen heb je straks nodig? Meer plek en meer bestellingen.', tempo: 0,
+    pool: lv => [[['g', 'grow'], ['g', 'numseq']]][0] },
+  tik: { name: 'Tik-tak-band', room: 'Tik-tak-band', icon: '👆', buy: 0, up: [0, 90, 220, 450, 800], theme: ['#ffe9a8', '#f5c542'],
+    desc: 'Tik de goede onderdelen in de goede volgorde van de band. Leuk! Levert pas echt wat op als je hem upgradet.', tempo: 0 }
+};
+const MACHINE_ORDER = ['band', 'tik', 'kern', 'test', 'mag'];
+const JOB_LEN = 4;                         // puzzels per werkbeurt
+const JOB_FACTOR = [1, .5, .25];           // 1e, 2e, 3e+ werkbeurt per machine per dag
+const KLUIS = [1500, 3000, 6000, 10000];   // muntenplafond per kluisniveau
+const KLUIS_UP = [0, 500, 1200, 2500];
+const STOCK_CAP = mag => mag ? 30 : 12;    // voorraadplafond
+const priceOf = q => 6 + 4 * q;            // prijs per robot (kwaliteit 1-5)
+const CUSTOMERS = [
+  { who: 'Juf Moer', icon: '👩‍💼', line: 'Voor de etalage!' }, { who: 'Speelgoed Snoes', icon: '🧸', line: 'Kinderen zijn er gek op!' },
+  { who: 'Meneer Taart', icon: '🎂', line: 'Voor een verjaardag. Met strik graag!' }, { who: 'Robotclub Piep', icon: '🤖', line: 'Wij verzamelen ze allemaal.' },
+  { who: 'Burgemeester Bolhoed', icon: '🎩', line: 'Voor het stadhuis. Netjes zijn, hè!' }, { who: 'Oma Knoop', icon: '👵', line: 'Om mee te breien. Grapje!' }];
+const FOOTBALL_AT = 10;                    // verkochte robots tot het stadion gebouwd wordt (fase C)
+const HIDDEN = {
+  rook: { name: 'Rookwolkjes', where: 'schoorsteen', t: 'numseq', item: 'turboschroef', itemName: 'Turboschroef ⚡' },
+  poster: { name: 'Rare poster', where: 'winkel', t: 'oddv', item: 'superlijm', itemName: 'Superlijm 🧴' },
+  tegel: { name: 'Losse tegel', where: 'lopende band', t: 'grow', item: 'veerpoot', itemName: 'Veerpoot 🦘' },
+  klok: { name: 'Opa\u2019s klok', where: 'dak', t: 'mid', item: 'radar', itemName: 'Radar-oog 📡' }
+};
+const HIDDEN_AGAIN = 3;                    // na zoveel speeldagen kan er weer een puzzel op dezelfde plek zitten
+
 /* ===== core/save.js ===== */
-/* Opslag (localStorage) met versienummer + migratie. Verhoog SAVE_V en voeg een stap toe in migrate() bij elke vormverandering. */
+/* Opslag (localStorage) met versienummer + migratie. Verhoog SAVE_V en voeg een stap toe in migrate() bij elke vormverandering.
+   v1 = fase 1 (hallen met niveaus en sterren), v2 = de fabriek (ondernemen). */
 const LS_KEY = 'robofabriek_save';
-const SAVE_V = 1;
+const SAVE_V = 2;
+function freshMachines() { const m = {}; for (const id in MACHINES) m[id] = { owned: MACHINES[id].buy === 0, lv: 1, idle: 0, q: 2, jobs: 0 }; return m; }
 function freshSave() {
   return {
-    v: SAVE_V, created: dayKey(), introSeen: false,
+    v: SAVE_V, created: dayKey(), introSeen: false, veteran: false,
     placement: { done: false, score: 0 },
-    halls: {},                     // { [hal]: { lv: { [niveau]: { stars, done, best } }, open: hoogste open niveau } }
-    stats: {},                     // { [puzzeltype]: { ok, bad, hints } }
-    upgrades: [],                  // ids van Bliep-upgrades
-    names: ['', ''],
-    samen: { played: 0, best: 0 },
-    settings: { music: true, musicVol: 45, sfx: true, sfxVol: 80, speech: true, rate: 90, big: false },
-    playDays: {}, minutes: 0
+    coins: 100, rep: 0, kluis: 1, day: 1, dayDate: dayKey(),
+    machines: freshMachines(), stock: [], orders: [], soldTotal: 0, madeTotal: 0,
+    today: { jobs: {}, made: 0, sold: 0, earned: 0, tik: 0, orders: 0, hidden: 0, notes: [] },
+    reports: [], hidden: {}, items: {}, tips: {},
+    halls: {},                     // (fase 1, alleen nog voor 'samen spelen' en statistiek)
+    stats: {}, upgrades: [], names: ['', ''], samen: { played: 0, best: 0 },
+    settings: { music: true, musicVol: 45, sfx: true, sfxVol: 80, big: false, fx: true },
+    football: { seen: false }
   };
+}
+// v1 → v2: sterren uit fase 1 worden startkwaliteit (machineniveaus) en startkapitaal
+function migrateV1(o) {
+  const f = freshSave(), done = h => Object.values(((o.halls || {})[h] || {}).lv || {}).filter(x => x && x.done).length;
+  let stars = 0; for (const h in (o.halls || {})) for (const l in (o.halls[h].lv || {})) stars += (o.halls[h].lv[l] || {}).stars || 0;
+  const d1 = done(1), d2 = done(2);
+  f.machines.band.lv = clamp(1 + Math.floor(d1 / 2), 1, 5);
+  if (((o.halls[1] || {}).lv || {})[6] && o.halls[1].lv[6].done) { f.machines.kern.owned = true; f.machines.kern.lv = clamp(1 + Math.floor(d1 / 3), 1, 5); }
+  if (d2 > 0) { f.machines.test.owned = true; f.machines.test.lv = clamp(1 + Math.floor(d2 / 2), 1, 5); }
+  f.coins = 100 + Math.min(400, stars * 10);
+  f.veteran = stars > 0; if (f.veteran) f.items.pionier = 1;
+  ['placement', 'stats', 'upgrades', 'names', 'samen', 'halls'].forEach(k => { if (o[k]) f[k] = o[k]; });
+  if (o.settings) for (const k of ['music', 'musicVol', 'sfx', 'sfxVol', 'big']) if (k in o.settings) f.settings[k] = o.settings[k];
+  f.migratedFrom = 1; f.startStars = stars;
+  return f;
 }
 function migrate(o) {
   if (!o || typeof o !== 'object') return freshSave();
-  const f = freshSave();
-  // v0 (geen v-veld, testversie): alleen 'stars' per niveau als getal → omzetten
+  // v0 (testversie zonder v): sterren als getal
   if (!o.v) { o.v = 1; for (const h in (o.halls || {})) for (const l in (o.halls[h].lv || {})) { const x = o.halls[h].lv[l]; if (typeof x === 'number') o.halls[h].lv[l] = { stars: x, done: x > 0, best: x }; } }
-  // ontbrekende velden aanvullen (nieuwe instellingen e.d.)
+  if (o.v === 1) o = migrateV1(o);
+  const f = freshSave();
   for (const k in f) if (!(k in o)) o[k] = f[k];
   for (const k in f.settings) if (!(k in o.settings)) o.settings[k] = f.settings[k];
-  for (const k in f.placement) if (!(k in o.placement)) o.placement[k] = f.placement[k];
+  for (const id in f.machines) if (!o.machines[id]) o.machines[id] = f.machines[id];
+  for (const k in f.today) if (!(k in o.today)) o.today[k] = f.today[k];
+  delete o.settings.speech; delete o.settings.rate;
   o.v = SAVE_V;
   return o;
 }
@@ -349,7 +535,6 @@ function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch
 function resetSave() { const keep = S.settings; S = freshSave(); S.settings = keep; save(); }
 function hallState(h) { if (!S.halls[h]) S.halls[h] = { lv: {}, open: h === 1 ? 1 : 0 }; return S.halls[h]; }
 function stat(type) { if (!S.stats[type]) S.stats[type] = { ok: 0, bad: 0, hints: 0 }; return S.stats[type]; }
-function totalStars() { let n = 0; for (const h in S.halls) for (const l in S.halls[h].lv) n += S.halls[h].lv[l].stars || 0; return n; }
 
 /* ===== core/audio.js ===== */
 /* Geluid: alles met WebAudio gemaakt (geen bestanden). Muziek = rustige loop; geluidjes; de klanken van de Geluidskamer. */
@@ -410,25 +595,20 @@ function musicStart() { if (!AUD.ac || AUD.musicOn) return; AUD.musicOn = true; 
 function musicStop() { AUD.musicOn = false; clearInterval(AUD.mTimer); }
 function musicFor(screen, hall) { if (!AUD.ac) return; if (screen === 'scrPuzzle' && hall === 2) musicStop(); else musicStart(); }
 
-/* ===== core/speech.js ===== */
-/* Voorlezen met de Nederlandse stem van het apparaat (speechSynthesis, nl-NL). Geen stem? Dan staat alles ook als tekst in beeld. */
-const SPEECH = { voice: null, ok: 'speechSynthesis' in window, last: '' };
-function pickVoice() {
-  if (!SPEECH.ok) return null;
-  const vs = speechSynthesis.getVoices();
-  SPEECH.voice = vs.find(v => /^nl[-_]NL/i.test(v.lang)) || vs.find(v => /^nl/i.test(v.lang)) || null;
-  return SPEECH.voice;
+/* ===== core/blip.js ===== */
+/* Geen voorleesstem meer: personages 'praten' met korte robotbrabbel-geluidjes (gesynthetiseerd), de tekst staat in een ballon.
+   say() blijft bestaan (zelfde aanroepen als vroeger), maar maakt alleen brabbel. */
+const VOICES = { bliep: { base: 880, spread: 420, type: 'square', step: .075 }, opa: { base: 160, spread: 70, type: 'sawtooth', step: .11 }, moer: { base: 520, spread: 200, type: 'triangle', step: .085 }, zoef: { base: 660, spread: 300, type: 'sine', step: .06 } };
+let BLIP_T = 0;
+function blipTalk(text, who = 'bliep') {
+  if (!AUD.ac || !S.settings.sfx) return;
+  const v = VOICES[who] || VOICES.bliep, n = clamp(Math.round(plainLen(text) / 7), 2, 7);
+  clearTimeout(BLIP_T);
+  for (let i = 0; i < n; i++) { const f = v.base + (Math.sin(i * 2.3 + text.length) * .5 + .5) * v.spread; tone(f, v.step * .9, v.type, .06, i * v.step, f * (i % 2 ? 1.25 : .85)); }
 }
-if (SPEECH.ok) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
-const plain = t => String(t).replace(/<[^>]+>/g, ' ').replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF\uFE0F\u2B50\u2B06\u2B07\u2190-\u21FF]/gu, '').replace(/\s+/g, ' ').trim();
-function say(text, opt = {}) {
-  SPEECH.last = text;
-  if (!SPEECH.ok || !S.settings.speech) return Promise.resolve();
-  if (!opt.queue) speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(plain(text)); u.lang = 'nl-NL'; if (SPEECH.voice) u.voice = SPEECH.voice; u.rate = S.settings.rate / 100; u.pitch = 1.05;
-  return new Promise(res => { u.onend = u.onerror = () => res(); speechSynthesis.speak(u); setTimeout(res, 12000); });
-}
-function hush() { if (SPEECH.ok) speechSynthesis.cancel(); }
+const plainLen = t => String(t).replace(/<[^>]+>/g, '').length;
+function say(text, opt = {}) { blipTalk(text, opt.who); return Promise.resolve(); }
+function hush() { }
 
 /* ===== data/tokens.js ===== */
 /* De stukjes. Elk stukje heeft een EIGEN VORM én kleur (kleurenblind-vriendelijk palet, Okabe-Ito): kleur is nooit de enige aanwijzing. */
@@ -448,7 +628,8 @@ const TOKENS = {
 const SHAPES = ['rond', 'vier', 'drie', 'ster', 'wiel', 'moer'];
 const SOUNDS = ['piep', 'toet', 'boem'];
 const SOUNDS_R = ['piep', 'toet', 'boem', 'stil'];
-const tName = id => TOKENS[id].name;
+const tName = id => id.startsWith('n:') || id.startsWith('stk:') ? id.split(':')[1] : TOKENS[id].name;
+const tKind = id => id.includes(':') ? 'getal' : TOKENS[id].kind;
 
 /* ===== data/halls.js ===== */
 /* De zeven hallen. Fase 1: hal 1 (Lopende band) en hal 2 (Geluidskamer) zijn speelbaar, de rest komt later.
@@ -498,14 +679,35 @@ const INK = '#1f2a44';
 function starPts(cx, cy, r1, r2, n) { let p = []; for (let i = 0; i < n * 2; i++) { const r = i % 2 ? r2 : r1, a = -Math.PI / 2 + i * Math.PI / n; p.push((cx + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1)); } return p.join(' '); }
 function polyPts(cx, cy, r, n, rot = 0) { let p = []; for (let i = 0; i < n; i++) { const a = rot + i * 2 * Math.PI / n; p.push((cx + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1)); } return p.join(' '); }
 function gearPath(cx, cy, r1, r2, n) { let d = ''; for (let i = 0; i < n * 4; i++) { const a = i * Math.PI * 2 / (n * 4), r = (i % 4 < 2) ? r1 : r2; d += (i ? 'L' : 'M') + (cx + r * Math.cos(a)).toFixed(1) + ' ' + (cy + r * Math.sin(a)).toFixed(1); } return d + 'Z'; }
+// gedeelde verlopen/filters (staan één keer in de pagina, zie DEFS_SVG in main)
+const DEFS_SVG = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <linearGradient id="g-rond" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc24a"/><stop offset="1" stop-color="#e08a00"/></linearGradient>
+ <linearGradient id="g-vier" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ad8ff"/><stop offset="1" stop-color="#3a95d8"/></linearGradient>
+ <linearGradient id="g-drie" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff27a"/><stop offset="1" stop-color="#e2c81a"/></linearGradient>
+ <linearGradient id="g-ster" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2fd3a0"/><stop offset="1" stop-color="#00875f"/></linearGradient>
+ <linearGradient id="g-wiel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0a6d0"/><stop offset="1" stop-color="#b0558a"/></linearGradient>
+ <linearGradient id="g-moer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a55"/><stop offset="1" stop-color="#c24a00"/></linearGradient>
+ <linearGradient id="g-box" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2c27e"/><stop offset="1" stop-color="#c98d45"/></linearGradient>
+ <linearGradient id="g-metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6edf6"/><stop offset=".5" stop-color="#a9b8cc"/><stop offset="1" stop-color="#7d8ea8"/></linearGradient>
+ <linearGradient id="g-metalD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6c7d99"/><stop offset="1" stop-color="#3c4a66"/></linearGradient>
+ <linearGradient id="g-brick" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e98a62"/><stop offset="1" stop-color="#b85a3c"/></linearGradient>
+ <linearGradient id="g-roof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a6b8c"/><stop offset="1" stop-color="#36425e"/></linearGradient>
+ <linearGradient id="g-cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4" stop-opacity=".6"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></linearGradient>
+ <radialGradient id="g-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6c8" stop-opacity=".95"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient>
+ <radialGradient id="g-glowB" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#7ff0ff" stop-opacity=".8"/><stop offset="1" stop-color="#7ff0ff" stop-opacity="0"/></radialGradient>
+ <filter id="f-sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#0b1230" flood-opacity=".3"/></filter>
+</defs></svg>`;
 function tokenSVG(id, opt = {}) {
-  const t = TOKENS[id], c = t.col, s = `stroke="${INK}" stroke-width="6" stroke-linejoin="round"`;
+  if (id.startsWith('n:')) { const v = id.slice(2); return `<svg viewBox="0 0 100 100" role="img" aria-label="${v}"><circle cx="50" cy="50" r="40" fill="url(#g-metal)" stroke="${INK}" stroke-width="6"/><text x="50" y="${v.length > 2 ? 62 : 66}" text-anchor="middle" font-size="${v.length > 2 ? 34 : 44}" font-weight="700" font-family="Fredoka,sans-serif" fill="${INK}">${v}</text></svg>`; }
+  if (id.startsWith('stk:')) { const v = +id.slice(4), n = Math.min(v, 8), h = Math.min(11, 76 / n); let g = ''; for (let i = 0; i < n; i++) g += `<rect x="32" y="${92 - (i + 1) * h}" width="36" height="${h - 1.5}" rx="2" fill="url(#g-box)" stroke="${INK}" stroke-width="2.5"/>`;
+    return `<svg viewBox="0 0 100 100" role="img" aria-label="stapel van ${v}">${g}<rect x="58" y="2" width="40" height="26" rx="13" fill="#fff" stroke="${INK}" stroke-width="3"/><text x="78" y="22" text-anchor="middle" font-size="20" font-weight="700" font-family="Fredoka,sans-serif" fill="${INK}">${v}</text></svg>`; }
+  const t = TOKENS[id], c = TOKENS[id].kind === 'vorm' ? `url(#g-${id})` : t.col, s = `stroke="${INK}" stroke-width="6" stroke-linejoin="round"`, hl = `fill="#fff" opacity=".5"`;
   let g = '';
   switch (id) {
-    case 'rond': g = `<circle cx="50" cy="50" r="34" fill="${c}" ${s}/><circle cx="38" cy="38" r="8" fill="#fff" opacity=".5"/>`; break;
-    case 'vier': g = `<rect x="16" y="16" width="68" height="68" rx="8" fill="${c}" ${s}/><rect x="24" y="24" width="16" height="10" rx="4" fill="#fff" opacity=".5"/>`; break;
-    case 'drie': g = `<polygon points="50,12 88,84 12,84" fill="${c}" ${s}/>`; break;
-    case 'ster': g = `<polygon points="${starPts(50, 53, 40, 17, 5)}" fill="${c}" ${s}/>`; break;
+    case 'rond': g = `<circle cx="50" cy="50" r="34" fill="${c}" ${s}/><ellipse cx="39" cy="37" rx="11" ry="7" ${hl}/>`; break;
+    case 'vier': g = `<rect x="16" y="16" width="68" height="68" rx="9" fill="${c}" ${s}/><rect x="25" y="25" width="18" height="10" rx="5" ${hl}/>`; break;
+    case 'drie': g = `<polygon points="50,12 88,84 12,84" fill="${c}" ${s}/><path d="M44 34 l-12 24" stroke="#fff" stroke-width="5" opacity=".5" stroke-linecap="round"/>`; break;
+    case 'ster': g = `<polygon points="${starPts(50, 53, 40, 17, 5)}" fill="${c}" ${s}/><circle cx="44" cy="44" r="5" ${hl}/>`; break;
     case 'wiel': g = `<path d="${gearPath(50, 50, 40, 30, 8)}" fill="${c}" ${s}/><circle cx="50" cy="50" r="11" fill="#fff" ${s}/>`; break;
     case 'moer': g = `<polygon points="${polyPts(50, 50, 38, 6, Math.PI / 6)}" fill="${c}" ${s}/><circle cx="50" cy="50" r="14" fill="#fff" ${s}/>`; break;
     case 'piep': g = `<circle cx="44" cy="46" r="20" fill="${c}" ${s}/><path d="M70 30 q10 16 0 32 M80 22 q16 24 0 48" fill="none" stroke="${INK}" stroke-width="5" stroke-linecap="round"/><text x="44" y="54" text-anchor="middle" font-size="22" font-weight="700" fill="${INK}" font-family="Fredoka,sans-serif">♪</text>`; break;
@@ -542,66 +744,83 @@ function bliepSVG(up = S.upgrades, mood = 'blij') {
       : `<circle cx="78" cy="196" r="14" fill="#3d4860" stroke="${INK}" stroke-width="5"/><circle cx="122" cy="196" r="14" fill="#3d4860" stroke="${INK}" stroke-width="5"/>`}
   </svg>`;
 }
-/* Fabrieksonderdelen (beloningen per niveau) */
-function partSVG(hall, i) {
-  const s = `stroke="${INK}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"`;
-  const P1 = [
-    `<rect x="8" y="50" width="84" height="20" rx="10" fill="#5b6b86" ${s}/><circle cx="22" cy="60" r="6" fill="#ccc"/><circle cx="78" cy="60" r="6" fill="#ccc"/><rect x="30" y="28" width="22" height="22" fill="#E69F00" ${s}/>`,
-    `<circle cx="50" cy="40" r="22" fill="#ffe14d" ${s}/><rect x="40" y="62" width="20" height="18" fill="#9fb7d6" ${s}/>`,
-    `<path d="${gearPath(38, 44, 24, 17, 8)}" fill="#CC79A7" ${s}/><path d="${gearPath(70, 66, 18, 12, 6)}" fill="#56B4E9" ${s}/>`,
-    `<rect x="30" y="10" width="40" height="40" rx="6" fill="#9fb7d6" ${s}/><rect x="44" y="50" width="12" height="16" fill="#5b6b86" ${s}/><rect x="22" y="66" width="56" height="16" rx="4" fill="#D55E00" ${s}/>`,
-    `<path d="M20 90 V14 H80 V30" fill="none" ${s}/><path d="M68 30 v14 M60 52 l8 -8 8 8" fill="none" ${s}/><rect x="10" y="82" width="22" height="10" fill="#5b6b86"/>`,
-    `<rect x="18" y="38" width="64" height="48" fill="#d9a066" ${s}/><path d="M18 38 l10 -16 h44 l10 16" fill="#e8b980" ${s}/><path d="M50 38 v48" ${s}/>`,
-    `<circle cx="50" cy="50" r="34" fill="#3fbf6f" ${s}/><path d="M34 52 l12 12 22 -26" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>`,
-    `<rect x="36" y="30" width="28" height="62" fill="#c8423b" ${s}/><circle cx="44" cy="22" r="10" fill="#fff" opacity=".9"/><circle cx="60" cy="12" r="8" fill="#fff" opacity=".8"/>`];
-  const P2 = [
-    `<rect x="24" y="10" width="52" height="80" rx="10" fill="#5b6b86" ${s}/><circle cx="50" cy="62" r="16" fill="#203047" ${s}/><circle cx="50" cy="30" r="8" fill="#203047"/>`,
-    `<rect x="38" y="10" width="24" height="44" rx="12" fill="#9fb7d6" ${s}/><path d="M28 44 q22 26 44 0 M50 66 v18 M36 86 h28" fill="none" ${s}/>`,
-    `<path d="M14 70 a36 36 0 0 1 72 0" fill="#fff" ${s}/><path d="M50 70 L70 40" ${s}/><path d="M22 60 h8 M70 60 h8" ${s}/>`,
-    tokenSVG('boem').replace(/<\/?svg[^>]*>/g, ''),
-    tokenSVG('toet').replace(/<\/?svg[^>]*>/g, ''),
-    `<circle cx="50" cy="48" r="30" fill="#c4d3e3" ${s}/><path d="M24 40 h52 M22 56 h56 M50 18 v60 M34 22 v52 M66 22 v52" stroke="#8a97ab" stroke-width="3"/><line x1="50" y1="2" x2="50" y2="18" ${s}/>`];
-  return `<svg viewBox="0 0 100 100">${(hall === 1 ? P1 : P2)[i] || ''}</svg>`;
+/* Robots in de stijl van de mockups (voor de fabriek, de winkel en grapjes). o: body [2 kleuren], mood, armUp, tracks, misbaksel */
+let RB_N = 0;
+function robotSVG(o = {}) {
+  const body = o.body || ['#9ad0ff', '#3a86d8'], id = 'rb' + (RB_N++), eye = '#7ff0ff';
+  const mis = o.misbaksel;
+  const eyes = o.mood === 'dizzy' || mis ? `<path d="M-30 -78 l14 14 M-16 -78 l-14 14 M16 -78 l14 14 M30 -78 l-14 14" stroke="${eye}" stroke-width="5" stroke-linecap="round"/>`
+    : `<circle cx="-22" cy="-72" r="11" fill="${eye}"/><circle cx="22" cy="-72" r="11" fill="${eye}"/><circle cx="-18" cy="-76" r="4" fill="#fff"/><circle cx="26" cy="-76" r="4" fill="#fff"/>`;
+  const mouth = mis ? `<path d="M-14 -46 q7 -8 14 0 q7 8 14 0" stroke="${eye}" stroke-width="5" fill="none" stroke-linecap="round"/>` : `<path d="M-16 -50 q16 14 32 0" stroke="${eye}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  const arms = mis ? `<path d="M-40 -6 L-20 -130" stroke="${body[1]}" stroke-width="13" stroke-linecap="round"/><path d="M40 -6 L70 40" stroke="${body[1]}" stroke-width="13" stroke-linecap="round"/>`
+    : `<path d="M-40 -6 L${o.armUp ? '-70 -46' : '-66 22'}" stroke="${body[1]}" stroke-width="13" stroke-linecap="round"/><path d="M40 -6 L${o.armUp ? '70 -46' : '66 22'}" stroke="${body[1]}" stroke-width="13" stroke-linecap="round"/>`;
+  const wheels = mis ? `<circle cx="-50" cy="-20" r="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/><circle cx="40" cy="-130" r="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/>`
+    : o.tracks ? `<rect x="-50" y="34" width="100" height="30" rx="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/><g fill="#9fb7d6"><circle cx="-32" cy="49" r="7"/><circle cx="-11" cy="49" r="7"/><circle cx="11" cy="49" r="7"/><circle cx="32" cy="49" r="7"/></g>`
+    : `<circle cx="-26" cy="48" r="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/><circle cx="26" cy="48" r="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/><circle cx="-26" cy="48" r="5" fill="#9fb7d6"/><circle cx="26" cy="48" r="5" fill="#9fb7d6"/>`;
+  return `<svg viewBox="-90 -170 180 250" role="img" aria-label="robot"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${body[0]}"/><stop offset="1" stop-color="${body[1]}"/></linearGradient></defs>
+  <ellipse cx="0" cy="66" rx="62" ry="11" fill="#0b1230" opacity=".25"/>${arms}${mis ? '' : wheels}
+  <rect x="-40" y="-20" width="80" height="54" rx="14" fill="url(#${id})" stroke="${INK}" stroke-width="5"/><circle cx="-16" cy="6" r="6" fill="#ff6b5a"/><circle cx="0" cy="6" r="6" fill="#ffd23f"/><circle cx="16" cy="6" r="6" fill="#3fdc7f"/>
+  <g transform="${mis ? 'rotate(-24 0 -70)' : ''}"><line x1="0" y1="-118" x2="0" y2="-140" stroke="${INK}" stroke-width="5"/><circle cx="0" cy="-144" r="9" fill="#ffe14d" stroke="${INK}" stroke-width="4"/>
+  <rect x="-56" y="-118" width="112" height="96" rx="28" fill="url(#${id})" stroke="${INK}" stroke-width="5"/><rect x="-42" y="-104" width="84" height="66" rx="16" fill="#1c2a44"/>${eyes}${mouth}</g>${mis ? wheels : ''}</svg>`;
 }
-/* De fabriekskaart: 7 hallen in een doorsnede van het gebouw */
-const MAP_POS = { 1: [60, 420], 2: [370, 420], 3: [680, 420], 4: [60, 245], 5: [370, 245], 6: [680, 245], 7: [370, 70] };
-function hallProgress(id) { const h = hallDef(id); if (!h || h.soon) return 0; const st = hallState(id); return Object.values(st.lv).filter(x => x.done).length / h.levels.length; }
-function hallOpen(id) { const h = hallDef(id); return h && !h.soon && hallState(id).open > 0; }
-function mapSVG() {
-  let g = `<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9c7d8"/><stop offset="1" stop-color="#93a6bd"/></linearGradient></defs>
-  <rect x="20" y="40" width="960" height="570" rx="20" fill="url(#wall)" stroke="${INK}" stroke-width="6"/>
-  <path d="M20 60 L170 0 L330 60 Z" fill="#8a97ab" stroke="${INK}" stroke-width="5"/><path d="M670 60 L830 0 L980 60 Z" fill="#8a97ab" stroke="${INK}" stroke-width="5"/>
-  <rect x="880" y="-60" width="46" height="110" fill="#c8423b" stroke="${INK}" stroke-width="5"/>`;
-  for (const h of HALLS) {
-    const [x, y] = MAP_POS[h.id], w = h.id === 7 ? 260 : 260, ht = 150, open = hallOpen(h.id), pr = hallProgress(h.id), done = pr >= 1;
-    const fill = h.soon ? '#6c7a90' : !open ? '#7d8aa0' : done ? '#bff0cf' : '#fff6d6';
-    g += `<g class="hall${open ? '' : ' locked'}" data-hall="${h.id}" role="button" aria-label="Hal ${h.id}: ${h.name}${h.soon ? ' (binnenkort)' : !open ? ' (op slot)' : ''}" tabindex="0">
-      <rect class="hbg" x="${x}" y="${y}" width="${w}" height="${ht}" rx="18" fill="${fill}" stroke="${INK}" stroke-width="6"/>
-      <text x="${x + 20}" y="${y + 40}" font-size="30" font-family="Fredoka,sans-serif" font-weight="700" fill="${INK}">${h.id}</text>
-      <text x="${x + w / 2}" y="${y + 84}" font-size="46" text-anchor="middle">${h.icon}</text>
-      <text x="${x + w / 2}" y="${y + 128}" font-size="24" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="600" fill="${INK}">${h.name}</text>`;
-    if (h.soon) g += `<rect x="${x + w - 128}" y="${y + 14}" width="116" height="30" rx="15" fill="#ffd23f" stroke="${INK}" stroke-width="3"/><text x="${x + w - 70}" y="${y + 36}" font-size="18" text-anchor="middle" font-family="Fredoka,sans-serif" font-weight="700" fill="${INK}">binnenkort</text>`;
-    else if (!open) g += `<text x="${x + w - 40}" y="${y + 44}" font-size="30" text-anchor="middle">🔒</text>`;
-    else { // voortgangsbalk + rook als hij nog kapot is
-      g += `<rect x="${x + 70}" y="${y + 24}" width="${w - 90}" height="16" rx="8" fill="#fff" stroke="${INK}" stroke-width="3"/><rect x="${x + 72}" y="${y + 26}" width="${(w - 94) * pr}" height="12" rx="6" fill="#1f8a4c"/>`;
-      if (!done) g += `<g opacity=".7"><circle cx="${x + w - 30}" cy="${y - 4}" r="14" fill="#5d6779"/><circle cx="${x + w - 12}" cy="${y - 20}" r="10" fill="#5d6779"/></g>`;
-      else g += `<text x="${x + w - 26}" y="${y - 4}" font-size="30" text-anchor="middle">✨</text>`;
-    }
-    g += `</g>`;
+/* Opa Tinus: grijze snor, bril, pet, pijp */
+function opaSVG(mood = 'blij') {
+  return `<svg viewBox="0 0 200 240" role="img" aria-label="opa Tinus">
+  <ellipse cx="100" cy="232" rx="70" ry="8" fill="#0b1230" opacity=".25"/>
+  <path d="M40 240 q0 -80 60 -84 q60 4 60 84z" fill="#5a7bb5" stroke="${INK}" stroke-width="5"/><path d="M84 160 l16 30 16 -30" fill="#fff" stroke="${INK}" stroke-width="4"/>
+  <circle cx="100" cy="100" r="54" fill="#f6c9a2" stroke="${INK}" stroke-width="5"/>
+  <path d="M46 92 q-6 -40 30 -50 l48 0 q36 10 30 50 q-10 -30 -54 -30 q-44 0 -54 30z" fill="#e8eef6" stroke="${INK}" stroke-width="4"/>
+  <path d="M42 70 q58 -44 116 0 v10 h-116z" fill="#6b4f3a" stroke="${INK}" stroke-width="5"/><path d="M150 74 h30 q4 8 -6 10 h-26z" fill="#6b4f3a" stroke="${INK}" stroke-width="4"/>
+  <circle cx="80" cy="100" r="15" fill="#fff" stroke="${INK}" stroke-width="4"/><circle cx="120" cy="100" r="15" fill="#fff" stroke="${INK}" stroke-width="4"/><line x1="95" y1="100" x2="105" y2="100" stroke="${INK}" stroke-width="4"/>
+  <circle cx="${mood === 'knipoog' ? 80 : 82}" cy="102" r="5" fill="${INK}"/>${mood === 'knipoog' ? `<path d="M112 102 q8 -6 16 0" stroke="${INK}" stroke-width="4" fill="none"/>` : `<circle cx="122" cy="102" r="5" fill="${INK}"/>`}
+  <path d="M70 128 q30 -14 60 0 q-10 14 -30 8 q-20 6 -30 -8z" fill="#e8eef6" stroke="${INK}" stroke-width="4"/>
+  <path d="M120 140 h24 v-10 h12 v16 h-36z" fill="#7a4a2a" stroke="${INK}" stroke-width="3"/><circle cx="152" cy="118" r="6" fill="#fff" opacity=".7"/><circle cx="160" cy="104" r="4" fill="#fff" opacity=".5"/>
+  </svg>`;
+}
+/* Kamer-scènes (viewBox 500×220) per machine; care 0-2 geeft stof/rook; locked = donker */
+function roomScene(id, m) {
+  const care = m && m.owned ? careOf(m) : 0, lv = m ? m.lv : 1;
+  let g = '';
+  const lamp = x => `<path d="M${x - 14} 24 L${x - 80} 190 L${x + 80} 190 L${x + 14} 24Z" fill="url(#g-cone)"/><rect x="${x - 20}" y="6" width="40" height="18" rx="7" fill="#3c4a66" stroke="${INK}" stroke-width="3"/><ellipse cx="${x}" cy="26" rx="14" ry="5" fill="#fff6c8"/>`;
+  const belt = (x1, x2, y) => `<rect x="${x1}" y="${y}" width="${x2 - x1}" height="22" rx="11" fill="#2c3550" stroke="${INK}" stroke-width="3"/>${Array.from({ length: Math.floor((x2 - x1 - 10) / 26) }, (_, i) => `<rect x="${x1 + 8 + i * 26}" y="${y + 5}" width="14" height="12" rx="3" fill="#3d4a6a" class="beltbit"/>`).join('')}`;
+  const tk = (t, x, y, s) => `<g transform="translate(${x - 50 * s} ${y - 50 * s}) scale(${s})">${tokenSVG(t).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`;
+  const rb = (x, y, s, o) => `<g transform="translate(${x} ${y}) scale(${s})">${robotSVG(o).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`;
+  if (id === 'band') g = lamp(130) + lamp(370) + belt(20, 480, 168) + `<g filter="url(#f-sh)"><rect x="40" y="70" width="130" height="92" rx="14" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/><rect x="54" y="84" width="102" height="36" rx="8" fill="#1c2a44"/>${tk('rond', 74, 102, .32)}${tk('drie', 105, 102, .32)}${tk('drie', 136, 102, .32)}<circle cx="70" cy="140" r="10" fill="#3fdc7f" stroke="${INK}" stroke-width="3"/><circle cx="100" cy="140" r="10" fill="#ffb347" stroke="${INK}" stroke-width="3"/><rect x="120" y="134" width="36" height="12" rx="6" fill="#ffd23f"/></g>`
+    + `<g class="beltmove">${tk('rond', 200, 156, .3)}${tk('drie', 238, 156, .3)}${tk('drie', 276, 156, .3)}</g>` + rb(350, 150, .3, { armUp: true }) + rb(430, 150, .3, {});
+  if (id === 'kern') g = lamp(250) + `<g filter="url(#f-sh)"><rect x="150" y="60" width="200" height="110" rx="20" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/><path d="M215 115 a35 35 0 1 1 10 25" fill="none" stroke="#1f8a4c" stroke-width="10" stroke-linecap="round"/><path d="M220 148 l-14 -2 8 -12z" fill="#1f8a4c"/><text x="300" y="128" font-size="34" font-weight="700" font-family="Fredoka" fill="${INK}">×${lv + 1}</text></g>` + belt(20, 480, 176) + tk('rond', 60, 164, .26) + tk('drie', 92, 164, .26) + tk('rond', 420, 164, .26) + tk('drie', 452, 164, .26);
+  if (id === 'test') g = lamp(150) + lamp(350) + `<g filter="url(#f-sh)"><rect x="50" y="90" width="140" height="84" rx="14" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/><circle cx="90" cy="132" r="26" fill="#2c3550" stroke="${INK}" stroke-width="4"/><circle cx="90" cy="132" r="10" fill="#6b7a99"/><rect x="128" y="110" width="44" height="12" rx="6" fill="#3fdc7f"/><rect x="128" y="128" width="30" height="12" rx="6" fill="#ffd23f"/><rect x="128" y="146" width="38" height="12" rx="6" fill="#ff6b5a"/></g>` + rb(330, 160, .38, { body: ['#ffd18a', '#e08a3a'] }) + `<text x="390" y="80" font-size="30" fill="#fff">♪</text><text x="420" y="60" font-size="24" fill="#fff">♫</text>`;
+  if (id === 'mag') g = lamp(250) + Array.from({ length: 8 }, (_, i) => { const bx = 60 + (i % 5) * 64 + (i >= 5 ? 32 : 0), by = i >= 5 ? 96 : 140; return `<g filter="url(#f-sh)"><rect x="${bx}" y="${by}" width="58" height="44" rx="5" fill="url(#g-box)" stroke="${INK}" stroke-width="3"/><path d="M${bx} ${by + 12} h58 M${bx + 29} ${by} v12" stroke="#a87436" stroke-width="3"/></g>`; }).join('') + `<g transform="translate(420 160)"><rect x="-40" y="-30" width="70" height="44" rx="8" fill="#ffb347" stroke="${INK}" stroke-width="4"/><rect x="30" y="-46" width="8" height="60" fill="#3c4a66"/><circle cx="-24" cy="18" r="10" fill="#2c3550"/><circle cx="16" cy="18" r="10" fill="#2c3550"/></g>`;
+  if (id === 'tik') g = lamp(250) + belt(20, 480, 160) + `<g class="beltmove">${tk('ster', 90, 146, .3)}${tk('rond', 170, 146, .3)}${tk('vier', 250, 146, .3)}${tk('rond', 330, 146, .3)}</g><rect x="226" y="110" width="50" height="76" rx="10" fill="#3fdc7f" opacity=".3" stroke="#1f8a4c" stroke-width="3" stroke-dasharray="6 5"/><text x="250" y="96" font-size="44" text-anchor="middle">👆</text>`;
+  if (m && m.owned) {
+    if (care >= 1) g += `<g class="dust" opacity=".75"><circle cx="60" cy="60" r="10" fill="#d8cbb5"/><circle cx="430" cy="70" r="8" fill="#d8cbb5"/><circle cx="300" cy="50" r="6" fill="#d8cbb5"/></g>`;
+    if (care >= 2) g += `<g class="smoke"><circle cx="110" cy="56" r="16" fill="#5d6779" opacity=".7"/><circle cx="128" cy="36" r="12" fill="#5d6779" opacity=".55"/><circle cx="142" cy="20" r="8" fill="#5d6779" opacity=".4"/></g>`;
   }
-  return g;
+  const [c1, c2] = MACHINES[id].theme;
+  return `<svg viewBox="0 0 500 220" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="bg-${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>
+    <rect width="500" height="220" fill="url(#bg-${id})"/><rect y="186" width="500" height="34" fill="#000" opacity=".12"/>${g}</svg>`;
 }
-/* Intro-scènes */
+/* Het dak met bord, schoorsteen (verborgen rookpuzzel) en opa's klok (verborgen) */
+function roofSVG() {
+  return `<svg viewBox="0 0 1000 170" preserveAspectRatio="xMidYMax meet" class="roofsvg">
+  <path d="M10 168 L500 40 L990 168 Z" fill="url(#g-roof)" stroke="${INK}" stroke-width="6" stroke-linejoin="round"/>
+  <g class="hidden-spot" data-spot="rook" role="button" aria-label="rookwolkjes"><rect x="790" y="40" width="54" height="110" fill="#c94f3a" stroke="${INK}" stroke-width="5"/><rect x="784" y="34" width="66" height="16" rx="4" fill="#8f3426" stroke="${INK}" stroke-width="4"/>
+   <g class="puff"><circle cx="818" cy="20" r="16" fill="#fff" opacity=".9"/><circle cx="842" cy="0" r="12" fill="#fff" opacity=".7"/></g></g>
+  <g filter="url(#f-sh)"><rect x="330" y="92" width="340" height="66" rx="16" fill="#1f2a4d" stroke="${INK}" stroke-width="5"/>
+   <text x="500" y="139" text-anchor="middle" font-size="42" font-weight="700" font-family="Fredoka" fill="#ffe58a" stroke="#b5651d" stroke-width="3" paint-order="stroke">ROBO-FABRIEK</text>
+   ${Array.from({ length: 13 }, (_, i) => `<circle cx="${346 + i * 26}" cy="99" r="4.5" fill="#ffe14d" class="bulb" style="animation-delay:${i * .12}s"/><circle cx="${346 + i * 26}" cy="151" r="4.5" fill="#ffe14d" class="bulb" style="animation-delay:${i * .12 + .6}s"/>`).join('')}</g>
+  <g class="hidden-spot" data-spot="klok" role="button" aria-label="opa's klok"><circle cx="230" cy="128" r="26" fill="#fff" stroke="${INK}" stroke-width="5"/><path d="M230 128 v-16 M230 128 l10 6" stroke="${INK}" stroke-width="4" stroke-linecap="round"/></g>
+  </svg>`;
+}
+/* Intro: opa Tinus en de stoffige fabriek */
 function introScene(i) {
-  const bl = (x, y, s, mood) => `<g transform="translate(${x} ${y}) scale(${s})">${bliepSVG(S.upgrades, mood).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`;
-  const bg = `<rect width="800" height="450" fill="#2c3a57"/><rect y="360" width="800" height="90" fill="#3d4860"/>`;
-  const belt = (y, chaos) => { let s = `<rect x="40" y="${y}" width="720" height="30" rx="15" fill="#1f2a44"/>`; const seq = chaos ? ['drie', 'rond', 'rond', 'ster', 'vier', 'drie', 'wiel'] : ['rond', 'drie', 'rond', 'drie', 'rond', 'drie', 'rond'];
-    seq.forEach((t, k) => s += `<g transform="translate(${70 + k * 96} ${y - 74 + (chaos ? (k % 2 ? -20 : 10) : 0)}) rotate(${chaos ? (k * 37 % 50 - 25) : 0} 40 40) scale(.8)">${tokenSVG(t).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`); return s; };
+  const g = (x, y, s, svg) => `<g transform="translate(${x} ${y}) scale(${s})">${svg.replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`;
+  const bg = `<defs><linearGradient id="isky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a7fd4"/><stop offset="1" stop-color="#ffd9a8"/></linearGradient></defs><rect width="800" height="450" fill="url(#isky)"/><rect y="380" width="800" height="70" fill="#5c6f8f"/>`;
+  const fab = dusty => `<g filter="url(#f-sh)"><rect x="420" y="170" width="330" height="210" fill="url(#g-brick)" stroke="${INK}" stroke-width="5"/><path d="M400 176 L585 100 L770 176Z" fill="url(#g-roof)" stroke="${INK}" stroke-width="5"/><rect x="545" y="270" width="80" height="110" fill="#6b4f3a" stroke="${INK}" stroke-width="4"/>${dusty ? `<path d="M450 200 l60 40 M700 190 l-40 60" stroke="#fff" stroke-width="3" opacity=".7"/><circle cx="470" cy="210" r="14" fill="#d8cbb5" opacity=".8"/><text x="640" y="230" font-size="30">🕸️</text>` : `<text x="585" y="240" font-size="40" text-anchor="middle">✨</text>`}</g>`;
   return `<svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">${bg}${[
-    `${bl(300, 120, 1.1, 'blij')}<text x="400" y="80" text-anchor="middle" font-size="40" font-family="Fredoka,sans-serif" font-weight="700" fill="#fff">Hallo!</text>`,
-    `${belt(300, true)}<g fill="#ffd23f" font-size="60" font-family="Fredoka" font-weight="700"><text x="120" y="120">⚡</text><text x="620" y="140">💥</text></g>${bl(560, 30, .7, 'oei')}`,
-    `${belt(300, false)}${bl(40, 40, .7, 'denk')}<text x="560" y="120" text-anchor="middle" font-size="70">🔍</text>`,
-    `${bl(260, 110, 1.1, 'juich')}<text x="140" y="140" font-size="60">🔧</text><text x="600" y="140" font-size="60">⭐</text>`][i]}</svg>`;
+    fab(true) + g(80, 150, 1.05, opaSVG()) + `<text x="300" y="120" font-size="54">🔑</text>`,
+    fab(true) + g(80, 150, 1.05, opaSVG('knipoog')) + g(300, 200, .9, robotSVG({ mood: 'dizzy', body: ['#c9d3df', '#8a97ab'] })) + `<text x="330" y="150" font-size="34">💤</text>`,
+    `<rect x="60" y="120" width="680" height="250" rx="20" fill="#3a2f2a"/>` + g(110, 170, .9, robotSVG({ misbaksel: true })) + g(320, 180, .9, robotSVG({ misbaksel: true, body: ['#ffd18a', '#e08a3a'] })) + `<text x="560" y="280" font-size="80">🤦</text>`,
+    fab(false) + g(60, 140, 1.1, opaSVG()) + g(280, 190, .9, robotSVG({ armUp: true })) + `<text x="330" y="140" font-size="44">💰</text>`][i]}</svg>`;
 }
 
 /* ===== game/gen.js ===== */
@@ -647,7 +866,7 @@ function choicesFor(unit, pool, d, extra = []) {
 }
 function genPuzzle(lv, d, kind) {
   d = clamp(d, 0, 2);
-  const st = pick(lv.st[d]), pool = poolFor(kind, lv.rest);
+  const st = lv.st ? pick(lv.st[d]) : null, pool = poolFor(kind, lv.rest);
   switch (lv.t) {
     case 'next': {
       const unit = makeUnit(st, pool, { rest: lv.rest }), L = unit.length;
@@ -687,12 +906,33 @@ function genPuzzle(lv, d, kind) {
       const toks = shuffle(toPool).slice(0, Math.min(toPool.length, letters + (d >= 1 && toPool.length > letters ? 1 : 0)));
       return { t: 'translate', seq, blanks: [], answer: null, unit, choices: toks, n, kind, fromKind };
     }
+    case 'oddv': return genPuzzle({ t: 'odd', st: [['AB'], ['AAB', 'ABB'], ['ABC', 'ABB']] }, d, 'vorm');
+    case 'grow': {
+      // groeiende stapels: +1, +2, of driehoeksgetallen (+1, +2, +3, …)
+      const a = 1 + rnd(2), seq = [];
+      if (d < 2) { const s = d === 0 ? 1 : 2; for (let i = 0; i < 5; i++) seq.push(a + s * i); }
+      else { let v = 1; for (let i = 0; i < 5; i++) { seq.push(v); v += i + 2; } }
+      return numPuzzle('grow', seq.map(x => 'stk:' + x), 4, d, seq.slice(1).map((x, i) => x - seq[i]));
+    }
+    case 'numseq': {
+      const start = [2, 5, 10, 3, 7][rnd(5)], kinds = [['+2', '+5', '+10'], ['-3', '+3', '+4', '-2'], ['x2', '+1+2', '+10-5']][d], k = pick(kinds), seq = [];
+      let v = k === '-3' || k === '-2' ? 20 + rnd(6) : k === 'x2' ? 1 + rnd(3) : start;
+      for (let i = 0; i < 6; i++) { seq.push(v); if (k === 'x2') v *= 2; else if (k === '+1+2') v += i % 2 ? 2 : 1; else if (k === '+10-5') v += i % 2 ? -5 : 10; else v += +k; }
+      const b = d === 0 ? 5 : 2 + rnd(4);
+      return numPuzzle('numseq', seq.map(x => 'n:' + x), b, d, seq.slice(1).map((x, i) => x - seq[i]));
+    }
     case 'echo': {
       const n = st, seq = []; for (let i = 0; i < n; i++) seq.push(pick(SOUNDS));
       if (new Set(seq).size === 1) seq[n - 1] = pick(SOUNDS.filter(x => x !== seq[0]));
       return { t: 'echo', seq, blanks: seq.map((_, i) => i), answer: seq.slice(), unit: seq.slice(), choices: SOUNDS.slice(), kind: 'klank' };
     }
   }
+}
+function numPuzzle(t, seq, b, d, diffs) {
+  const ans = seq[b], v = +ans.split(':')[1], pre = ans.split(':')[0] + ':';
+  const opts = new Set([ans]); const cands = shuffle([v + 1, v - 1, v + 2, v - 2, v + diffs[0], v - diffs[0] + 1, seq[b - 1] ? +seq[b - 1].split(':')[1] : v + 3].filter(x => x > 0 && x !== v));
+  for (const c of cands) { if (opts.size >= 2 + Math.min(2, d + 1)) break; opts.add(pre + c); }
+  return { t, seq, blanks: [b], answer: [ans], unit: [], diffs, choices: shuffle([...opts]), kind: 'getal' };
 }
 // is een (deel)antwoord goed? Voor translate: dezelfde structuur als het voorbeeld.
 function checkAnswer(p, given) {
@@ -725,7 +965,9 @@ function instruction(p, extra) {
     case 'mid': return 'Er mist een stukje. Welk stukje hoort in het gat?';
     case 'nextN': return `Maak de band af. Welke ${p.blanks.length} stukjes komen hierna?`;
     case 'kern': return 'Wat is de kern: het stukje dat steeds terugkomt? Tik op het laatste stukje van de kern.';
-    case 'odd': return 'Eén geluid klopt niet! Tik op het foute stukje.';
+    case 'odd': return klank ? 'Eén geluid klopt niet! Tik op het foute stukje.' : 'Eén onderdeel ligt verkeerd op de band! Tik het eraf.';
+    case 'grow': return 'De stapels groeien! Hoe hoog wordt de volgende stapel?';
+    case 'numseq': return 'Welk getal hoort op het vraagteken?';
     case 'translate': return klank ? 'Speel hetzelfde patroon als ritme, met piep, toet en boem.' : 'Maak hetzelfde patroon, maar met andere stukjes.';
     case 'echo': return 'Luister en kijk goed. Speel het ritme na!';
   }
@@ -748,6 +990,8 @@ function explainWrong(p, given, pos, tryN) {
     if (n < L) return tryN === 1 ? `Na dat stukje komt nog iets anders voordat het opnieuw begint. Kijk wat erna komt.` : `Kijk: ${miniKern(u)}. De kern is ${names(u)}.`;
     return tryN === 1 ? `Te lang! Kijk waar het patroon weer opnieuw begint.` : `Kijk: ${miniKern(u)}. De kern is ${names(u)}.`;
   }
+  if (p.t === 'grow' || p.t === 'numseq') { const ds = p.diffs.map(x => (x > 0 ? '+' : '') + x); return tryN === 1 ? `Je koos ${tName(given[given.length - 1])}. Kijk naar de sprongen tussen de getallen. Wat gebeurt er steeds?` : `De sprongen zijn: ${ds.slice(0, Math.max(3, pos)).join(', ')}… Reken maar door!`; }
+  if (p.t === 'odd' && p.kind !== 'klank') return tryN === 1 ? `Dat onderdeel hoort er wel bij. Welke past niet in het patroon?` : `Het patroon is ${miniKern(u)}. Zoek het onderdeel dat niet past.`;
   if (p.t === 'odd') return tryN === 1 ? `Dat geluid past wel in het ritme. Welke past er niet?` : `Het ritme is ${miniKern(u)}. Zoek het stukje dat daar niet bij past.`;
   if (p.t === 'echo') return `Oeps, op die plek hoorde ${een(p.seq[pos])}. Luister nog een keer!`;
   if (p.t === 'translate') {
@@ -763,6 +1007,7 @@ function explainWrong(p, given, pos, tryN) {
 }
 function hintText(p, step) {
   const u = p.unit;
+  if (p.diffs) { const ds = p.diffs.map(x => (x > 0 ? '+' : '') + x); return step === 1 ? 'Tip: kijk hoeveel erbij of eraf gaat, steeds van het ene naar het volgende.' : step === 2 ? `De sprongen staan nu boven de vakjes.` : step === 3 ? `De sprongen: ${ds.join(', ')}.` : 'Kijk, die licht op!'; }
   if (step === 1) return p.t === 'echo' ? 'Ik speel het ritme nog een keer. Kijk welke plaatjes oplichten.'
     : p.t === 'odd' ? 'Tip: het begin van het ritme klopt. Welk stukje komt steeds terug?'
     : p.t === 'translate' ? 'Tip: kijk welke stukjes in het voorbeeld hetzelfde zijn. Die moeten bij jou ook hetzelfde zijn.'
@@ -772,6 +1017,97 @@ function hintText(p, step) {
   return 'Kijk, die lichten op!';
 }
 
+/* ===== game/eco.js ===== */
+/* Economie en onderhoud, als pure functies op de opslag (st). Getest in de unit-tests (plafonds, geen op hol slaande munten). */
+const careOf = m => m.idle >= 4 ? 2 : m.idle >= 2 ? 1 : 0;           // 0 blij, 1 moe, 2 piept
+const CARE = [{ face: '😊', name: 'blij', tempo: 1 }, { face: '😐', name: 'moe', tempo: .75 }, { face: '😵', name: 'piept', tempo: .5 }];
+const kluisCap = st => KLUIS[st.kluis - 1];
+const stockCap = st => STOCK_CAP(st.machines.mag.owned);
+function addCoins(st, n) { const cap = kluisCap(st), before = st.coins; st.coins = Math.min(cap, st.coins + Math.max(0, Math.round(n))); const lost = before + Math.round(n) - st.coins; if (lost > 0) st.today.notes.push('kluisvol'); st.today.earned += st.coins - before; return st.coins - before; }
+function spend(st, n) { if (st.coins < n) return false; st.coins -= n; return true; }
+function canBuy(st, id) { const d = MACHINES[id]; if (!d.need) return true; return Object.entries(d.need).every(([k, lv]) => st.machines[k].owned && st.machines[k].lv >= lv); }
+function upCost(st, id) { const m = st.machines[id], d = MACHINES[id]; return m.lv >= 5 ? null : d.up[m.lv]; }
+function buyMachine(st, id) { const m = st.machines[id]; if (m.owned || !canBuy(st, id) || !spend(st, MACHINES[id].buy)) return false; m.owned = true; m.idle = 0; return true; }
+function upgradeMachine(st, id) { const m = st.machines[id], c = upCost(st, id); if (!m.owned || c == null || !spend(st, c)) return false; m.lv++; m.idle = 0; return true; }
+function upgradeKluis(st) { if (st.kluis >= KLUIS.length) return false; if (!spend(st, KLUIS_UP[st.kluis])) return false; st.kluis++; return true; }
+// werkbeurt klaar: stars 1-3 → kwaliteit; robots afhankelijk van niveau, onderhoud en hoeveelste beurt vandaag
+function jobResult(st, id, stars) {
+  const m = st.machines[id], d = MACHINES[id], n = st.today.jobs[id] || 0, f = JOB_FACTOR[Math.min(n, JOB_FACTOR.length - 1)];
+  const care = careOf(m);
+  m.q = clamp(stars + Math.floor((m.lv - 1) / 2) - (care === 2 ? 1 : 0), 1, 5);
+  let robots = 0, coins = 0, extra = {};
+  if (id === 'band') robots = Math.max(1, Math.round((d.tempo + m.lv) * CARE[care].tempo * f));
+  if (id === 'kern') { robots = Math.max(1, Math.round(m.lv * f)); extra.auto = m.lv * 2; }
+  if (id === 'test') { coins = Math.round((10 + 6 * m.lv) * stars / 3 * f); extra.keur = true; }
+  if (id === 'mag') coins = Math.round((12 + 8 * m.lv) * stars / 3 * f);
+  m.idle = 0; m.jobs++; st.today.jobs[id] = n + 1;
+  const made = addStock(st, robots, m.q + (st.machines.test.owned && careOf(st.machines.test) < 2 ? 0 : 0));
+  const got = addCoins(st, coins);
+  return { robots: made, wanted: robots, coins: got, q: m.q, factor: f, extra };
+}
+function addStock(st, n, q) { const room = Math.max(0, stockCap(st) - st.stock.length), k = Math.min(n, room); for (let i = 0; i < k; i++) st.stock.push(clamp(q, 1, 5)); st.stock.sort((a, b) => b - a); st.madeTotal += k; st.today.made += k; if (k < n) st.today.notes.push('voorraadvol'); return k; }
+// testkamer verhoogt de verkoopprijs met 1 kwaliteitsstap (als hij niet piept)
+const keurBonus = st => st.machines.test.owned && careOf(st.machines.test) < 2 ? 1 : 0;
+function demand(st) { return 6 + Math.floor(st.rep / 40) + (st.machines.mag.owned ? 3 : 0); }
+function sellNow(st) {
+  const left = Math.max(0, demand(st) - st.today.sold), k = Math.min(left, st.stock.length);
+  let sum = 0; const sold = st.stock.splice(0, k); sold.forEach(q => sum += priceOf(Math.min(5, q + keurBonus(st))));
+  const allHappy = Object.values(st.machines).filter(m => m.owned).every(m => careOf(m) === 0);
+  if (allHappy && k) sum = Math.round(sum * 1.1);
+  st.today.sold += k; st.soldTotal += k; const got = addCoins(st, sum);
+  return { sold: k, coins: got, left: Math.max(0, left - k), bonus: allHappy && k > 0 };
+}
+function makeOrders(st) {
+  const n = st.machines.mag.owned ? 3 : 2, out = [];
+  for (let i = 0; i < n; i++) {
+    const c = CUSTOMERS[(st.day * 3 + i * 5) % CUSTOMERS.length], cnt = clamp(2 + Math.floor(st.day / 3) + i, 2, st.machines.mag.owned ? 12 : 8);
+    const minQ = clamp(1 + Math.floor(st.day / 4) + (i === n - 1 ? 1 : 0), 1, 5);
+    out.push({ id: st.day + '-' + i, who: c.who, icon: c.icon, line: c.line, n: cnt, minQ, reward: Math.round(cnt * priceOf(minQ) * 1.4), rep: 5 + cnt, until: st.day + 2 });
+  }
+  return out;
+}
+function canDeliver(st, o) { return st.stock.filter(q => q >= o.minQ).length >= o.n; }
+function deliver(st, id) {
+  const o = st.orders.find(x => x.id === id); if (!o || !canDeliver(st, o)) return null;
+  let k = 0; for (let i = st.stock.length - 1; i >= 0 && k < o.n; i--) if (st.stock[i] >= o.minQ) { st.stock.splice(i, 1); k++; }   // goedkoopste geschikte eerst
+  st.orders = st.orders.filter(x => x !== o); st.soldTotal += o.n; st.today.orders++;
+  st.rep += o.rep; const got = addCoins(st, o.reward);
+  return { coins: got, rep: o.rep };
+}
+// dag afsluiten: nachtproductie (herhaal-machine), rest verkopen, onderhoud, nieuwe bestellingen, rapport
+function closeDay(st) {
+  const r = { day: st.day, made: st.today.made, jobs: Object.values(st.today.jobs).reduce((a, b) => a + b, 0), auto: 0, sold: st.today.sold, orders: st.today.orders, hidden: st.today.hidden, notes: [] };
+  const k = st.machines.kern;
+  if (k.owned && (st.today.jobs.kern || k.jobs > 0)) { const n = Math.round(k.lv * 2 * CARE[careOf(k)].tempo); r.auto = addStock(st, n, st.machines.band.q); }
+  const s = sellNow(st); r.soldEvening = s.sold; r.sold = st.today.sold; r.bonus = s.bonus;
+  r.earned = st.today.earned; r.coins = st.coins;
+  // onderhoud: machines die vandaag niet gebruikt zijn, worden een dagje stoffiger
+  for (const id in st.machines) { const m = st.machines[id]; if (m.owned && !st.today.jobs[id] && !st.today['smeer_' + id]) m.idle++; }
+  r.care = Object.fromEntries(Object.entries(st.machines).filter(([, m]) => m.owned).map(([id, m]) => [id, careOf(m)]));
+  r.notes = [...new Set(st.today.notes)];
+  const dq = st.stock.length ? 0 : 0;
+  st.rep += Math.round(r.sold / 3);
+  r.rep = st.rep;
+  st.orders = st.orders.filter(o => o.until > st.day).concat(makeOrders(st)).slice(-5);
+  st.day++; st.dayDate = dayKey();
+  st.today = { jobs: {}, made: 0, sold: 0, earned: 0, tik: 0, orders: 0, hidden: 0, notes: [] };
+  st.reports = st.reports.concat([r]).slice(-7);
+  return r;
+}
+function smeer(st, id) { const m = st.machines[id]; m.idle = 0; st.today['smeer_' + id] = 1; }
+// Tik-tak-band: opbrengst is bescheiden en groeit met het niveau; na 3 rondes per dag nog maar 30%
+function tikResult(st, combos, best) {
+  const m = st.machines.tik, f = st.today.tik >= 3 ? .3 : 1;
+  const robots = Math.floor(combos * (.25 + .15 * (m.lv - 1)) * f + (f === 1 && combos >= 4 ? 1 : 0));
+  const coins = Math.round((combos * (1 + m.lv) + best) * f);
+  st.today.tik++; m.idle = 0; st.today.jobs.tik = (st.today.jobs.tik || 0) + 1;
+  const made = addStock(st, robots, 1 + Math.floor(m.lv / 2)); const got = addCoins(st, coins);
+  return { robots: made, coins: got, factor: f };
+}
+function hiddenReady(st, spot) { const h = st.hidden[spot]; return !h || st.day - h >= HIDDEN_AGAIN; }
+function hiddenFound(st, spot) { const first = !st.hidden[spot]; st.hidden[spot] = st.day; st.today.hidden++; const it = HIDDEN[spot].item; st.items[it] = (st.items[it] || 0) + 1; const got = addCoins(st, first ? 40 : 15); return { item: HIDDEN[spot].itemName, coins: got, first }; }
+function footballProgress(st) { return Math.min(1, st.soldTotal / FOOTBALL_AT); }
+
 /* ===== game/play.js ===== */
 /* Het puzzelscherm: speelt een reeks puzzels (niveau, instaptoets of samen-spel). Geen tijdsdruk, geen levens. */
 let RUN = null;   // de lopende reeks
@@ -780,6 +1116,8 @@ let GEN = 0;      // verhoogd bij elke nieuwe puzzel, zodat oude timers niets me
 function startRun(run) {
   RUN = Object.assign({ i: 0, mistakes: 0, hints: 0, streak: 0, results: [], d: 1, total: PER_LEVEL, team: 0 }, run);
   show('scrPuzzle'); $('#scrPuzzle').classList.toggle('h2', RUN.kind === 'klank');
+  const th = RUN.mid ? MACHINES[RUN.mid].theme : RUN.mode === 'hidden' ? ['#fff3c4', '#f5a524'] : null;
+  $('#scrPuzzle').classList.toggle('inmachine', !!th); $('#scrPuzzle').style.background = th ? `radial-gradient(120% 90% at 50% 0%, ${th[0]}, ${th[1]})` : '';
   musicFor('scrPuzzle', RUN.kind === 'klank' ? 2 : 1);
   nextPuzzle();
 }
@@ -787,7 +1125,10 @@ function runTitle() {
   if (RUN.mode === 'placement') return 'Even kijken wat je al kunt';
   if (RUN.mode === 'lezer') return '🗣️ Lezer en bouwer';
   if (RUN.mode === 'maker') return '🛠️ Maak een patroon';
-  const h = hallDef(RUN.hall); return `${h.icon} ${RUN.lvIdx + 1}. ${h.levels[RUN.lvIdx].title}`;
+  if (RUN.mode === 'job') { const d = MACHINES[RUN.mid]; return `${d.icon} ${d.name} · niveau ${S.machines[RUN.mid].lv}`; }
+  if (RUN.mode === 'smeer') return `🔧 Smeerbeurt: ${MACHINES[RUN.mid].room}`;
+  if (RUN.mode === 'hidden') return `✨ Geheime puzzel: ${HIDDEN[RUN.spot].name}`;
+  return '';
 }
 function playerName(k) { return (S.names[k] || '').trim() || ('Speler ' + (k + 1)); }
 function nextPuzzle() {
@@ -797,7 +1138,10 @@ function nextPuzzle() {
   if (RUN.mode === 'placement') { const c = PLACEMENT[RUN.i]; p = genPuzzle(c.lv, c.d, c.kind); }
   else if (RUN.mode === 'lezer') p = genPuzzle({ t: RUN.i % 3 === 2 ? 'mid' : 'next', st: [['AB', 'ABB'], ['ABB', 'AAB', 'ABC'], ['ABC', 'AABB']] }, RUN.d, RUN.kind);
   else if (RUN.mode === 'maker') p = null;
-  else p = genPuzzle(hallDef(RUN.hall).levels[RUN.lvIdx], RUN.d, RUN.kind);
+  else if (RUN.mode === 'job') { const [src, x] = pick(RUN.pool); p = src === 'g' ? genPuzzle({ t: x }, RUN.d, 'vorm') : genPuzzle(HALLS[src === 'h1' ? 0 : 1].levels[x], RUN.d, src === 'h1' ? 'vorm' : 'klank'); }
+  else if (RUN.mode === 'smeer') p = genPuzzle({ t: 'odd', st: [['AB'], ['AB', 'ABB'], ['ABC']] }, 0, RUN.kind);
+  else if (RUN.mode === 'hidden') { const t = HIDDEN[RUN.spot].t; p = t === 'mid' ? genPuzzle({ t: 'mid', st: [['AB', 'ABB'], ['ABC', 'AABB'], ['ABC', 'AABB']] }, 1, 'vorm') : genPuzzle({ t }, 1, 'vorm'); }
+  $('#scrPuzzle').classList.toggle('h2', !!p && p.kind === 'klank');
   P = { p, given: [], tries: 0, hint: 0, done: false, sel: -1, phase: 'play', kern: [], usedHint: false };
   if (RUN.mode === 'lezer') P.phase = 'lees';
   if (RUN.mode === 'maker') { P.phase = 'maak'; P.kern = []; }
@@ -836,7 +1180,7 @@ function bandLayout(n, el) {
   ts = clamp(Math.min(ts, maxH / Math.max(1, rows * .9)), 30, 96);
   el.style.setProperty('--cols', cols); el.style.setProperty('--ts', ts + 'px');
 }
-function slotHTML(id, cls = '', i) { return `<div class="slot ${cls}" data-i="${i}">${id ? tokenSVG(id) + (TOKENS[id].kind === 'klank' ? `<span class="lab">${tName(id)}</span>` : '') : ''}</div>`; }
+function slotHTML(id, cls = '', i) { return `<div class="slot ${cls}" data-i="${i}">${id ? tokenSVG(id) + (tKind(id) === 'klank' ? `<span class="lab">${tName(id)}</span>` : '') : ''}</div>`; }
 function render() {
   $('#pzTitle').textContent = runTitle();
   $('#pzDots').innerHTML = Array.from({ length: RUN.total }, (_, i) => `<i class="${i < RUN.i ? 'ok' : i === RUN.i ? 'now' : ''}"></i>`).join('');
@@ -876,7 +1220,7 @@ function render() {
   // keuzes
   const ch = $('#pzChoices');
   const showChoices = !['kern', 'odd'].includes(p.t) && P.phase !== 'lees' && P.phase !== 'listen';
-  ch.innerHTML = showChoices ? p.choices.map(id => `<button class="choice" data-id="${id}" aria-label="${tName(id)}">${tokenSVG(id)}${TOKENS[id].kind === 'klank' ? `<span class="lab">${tName(id)}</span>` : ''}</button>`).join('') : '';
+  ch.innerHTML = showChoices ? p.choices.map(id => `<button class="choice" data-id="${id}" aria-label="${tName(id)}">${tokenSVG(id)}${tKind(id) === 'klank' ? `<span class="lab">${tName(id)}</span>` : ''}</button>`).join('') : '';
   // acties
   const act = [];
   if (P.phase === 'lees') act.push(`<button class="btn orange" id="aCover">🙈 Klaar, band dicht!</button>`);
@@ -892,7 +1236,7 @@ function renderMaker() {
   $('#pzInstr').innerHTML = `${playerName(ME())}: kies 2, 3 of 4 stukjes. Dat wordt de kern. ${playerName(OTHER())}: niet kijken!`;
   const band = $('#pzBand'); band.innerHTML = Array.from({ length: 4 }, (_, i) => slotHTML(P.kern[i], P.kern[i] ? '' : 'blank' + (i === P.kern.length ? ' cur' : ''), i)).join('');
   bandLayout(4, band); $('#pzMachine').classList.remove('cover'); $('#pzMachine2').style.display = 'none';
-  $('#pzChoices').innerHTML = pool.map(id => `<button class="choice" data-id="${id}" aria-label="${tName(id)}">${tokenSVG(id)}${TOKENS[id].kind === 'klank' ? `<span class="lab">${tName(id)}</span>` : ''}</button>`).join('');
+  $('#pzChoices').innerHTML = pool.map(id => `<button class="choice" data-id="${id}" aria-label="${tName(id)}">${tokenSVG(id)}${tKind(id) === 'klank' ? `<span class="lab">${tName(id)}</span>` : ''}</button>`).join('');
   const okK = P.kern.length >= 2 && new Set(P.kern).size >= 2;
   $('#pzAct').innerHTML = (P.kern.length ? `<button class="btn white small" id="aUndo">⌫ Terug</button>` : '') + `<button class="btn green" id="aMake" ${okK ? '' : 'disabled'}>✔ Zet op de band</button>`;
 }
@@ -902,6 +1246,7 @@ function feedback(html, mood = 'blij', cls = '') {
 }
 function clearFeedback() { feedback('', 'blij'); }
 function markKern(seq) {  // kleurstreepjes onder de band per kern-herhaling (hint)
+  if (P.p.diffs) { $$('#pzBand .slot').forEach((s, i) => { if (i > 0 && !s.querySelector('.dif')) s.insertAdjacentHTML('beforeend', `<span class="dif">${P.p.diffs[i - 1] > 0 ? '+' : ''}${P.p.diffs[i - 1]}</span>`); }); return; }
   const L = P.p.unit.length; $$('#pzBand .slot').forEach((s, i) => { s.classList.remove('k0', 'k1'); s.classList.add('k' + (Math.floor(i / L) % 2)); });
 }
 /* ---------- invoer ---------- */
@@ -943,7 +1288,8 @@ function wrong(pos) {
   }
   const txt = explainWrong(p, P.given, p.t === 'translate' ? -1 : pos, Math.min(P.tries, 2));
   if (P.tries >= 3) return reveal();
-  feedback(txt, 'oei', 'bad'); say(txt);
+  feedback((RUN.mode === 'job' && P.tries === 1 ? `<small>${pick(OOPS)}</small><br>` : '') + txt, 'oei', 'bad'); say(txt);
+  if (RUN.mode === 'job' && P.tries === 1) popRobot(true);
   if (P.tries >= 1 && !softKern) markKern();
   if (RUN.mode === 'lezer') P.peek = true;
   P.lock = true; setTimeout(() => { if (g === GEN) P.lock = false; }, 1300);
@@ -981,6 +1327,7 @@ function correct() {
   else if (p.t === 'translate') txt += ` Zelfde patroon, ander materiaal!`;
   if (first) txt = '⭐ ' + txt;
   render(); feedback(txt, 'juich', 'good'); say(txt);
+  if (RUN.mode === 'job' || RUN.mode === 'hidden') popRobot(false);
   if (p.t === 'odd') { const s = $(`#pzBand .slot[data-i="${p.answer[0]}"]`); s && s.classList.add('good'); }
   if (p.kind === 'klank' && p.t !== 'echo') { const g = GEN; setTimeout(() => { if (g === GEN) playSeq(p.t === 'odd' ? p.good : p.seq); }, 600); }
 }
@@ -1026,112 +1373,309 @@ function finishRun() {
   hush();
   if (RUN.mode === 'placement') return finishPlacement(RUN.results.filter(Boolean).length);
   if (RUN.mode === 'lezer' || RUN.mode === 'maker') return finishSamen();
-  return finishLevel();
+  if (RUN.mode === 'smeer') return finishSmeer();
+  if (RUN.mode === 'hidden') return finishHidden();
+  return finishJob();
 }
 function initPlay() {
   $('#pzChoices').addEventListener('click', e => { const b = e.target.closest('.choice'); if (b) onChoice(b.dataset.id); });
   $('#pzBand').addEventListener('click', e => { const s = e.target.closest('.slot'); if (s && P && P.phase !== 'maak') onSlot(+s.dataset.i); });
   $('#pzAct').addEventListener('click', e => { const b = e.target.closest('button'); if (b && !b.disabled) onAct(b.id); });
   $('#pzHint').onclick = () => hint();
-  $('#pzSay').onclick = () => { if (P) say(P.phase === 'lees' || P.phase === 'maak' ? $('#pzInstr').textContent : instruction(P.p)); };
-  $('#pzBack').onclick = async () => { if (await confirmBox('Wil je stoppen? Dit niveau begint dan de volgende keer opnieuw.')) { GEN++; hush(); RUN && RUN.mode === 'placement' ? goMap() : RUN && (RUN.mode === 'lezer' || RUN.mode === 'maker') ? openSamen() : openHall(RUN.hall); } };
+  $('#pzBack').onclick = async () => { if (await confirmBox('Wil je stoppen? De machine maakt dan nu niks.')) { GEN++; hush(); RUN && (RUN.mode === 'lezer' || RUN.mode === 'maker') ? openSamen() : RUN && RUN.mode === 'placement' && !S.placement.done ? (S.placement = { done: true, score: 0 }, save(), goFactory()) : goFactory(); } };
   addEventListener('resize', () => { if (CUR_SCREEN === 'scrPuzzle' && P) render(); });
 }
 
+const OOPS = ['Oeps, een misbaksel! Arm op zijn hoofd 🤪', 'Deze robot rijdt achteruit, haha!', 'Hij heeft zijn wielen op zijn rug 🙃', 'Boing! Die is scheef.'];
+function popRobot(mis) {
+  if (!S.settings.fx && !mis) return; const m = $('#pzMachine'), b = document.createElement('div');
+  b.className = 'popbot' + (mis ? ' mis' : ''); b.innerHTML = robotSVG(mis ? { misbaksel: true } : { armUp: true, body: pick([['#9ad0ff', '#3a86d8'], ['#ffd18a', '#e08a3a'], ['#bdf2d6', '#4fc28a'], ['#d7c4ff', '#8f6fe0']]) });
+  m.appendChild(b); setTimeout(() => b.remove(), 1800);
+}
+
 /* ===== screens/screens.js ===== */
-/* Titel, verhaal, kaart, hal, resultaat */
+/* Titel, intro met opa Tinus, instaptoets, resultaatscherm */
 const INTRO = [
-  'Hallo! Ik ben Bliep, de robot van de Robo-Fabriek. In mijn fabriek maken we de mooiste dingen.',
-  'Maar oh nee! Na de grote onweersbui is alles in de war. De machines maken de stukjes in de verkeerde volgorde!',
-  'Elke machine werkt met een patroon. Als jij de patronen ontdekt, kunnen we de fabriek hal voor hal repareren.',
-  'Eerst kijk ik even wat je al kunt. Dat zijn vijf puzzels, het hoeft niet allemaal goed. Help je mee?'
+  { who: 'opa', name: 'Opa Tinus', t: 'Hé, jij daar! Ik ben opa Tinus. Veertig jaar lang maakte ik hier de beste robots van het land.' },
+  { who: 'opa', name: 'Opa Tinus', t: 'Maar nu ga ik met pensioen. Eindelijk tijd om postzegels te sorteren! Dus… de fabriek is van JOU. Hier is de sleutel. En dat is Bliep, mijn assistent. Hij slaapt nog.' },
+  { who: 'bliep', name: 'Bliep', t: 'Bliep?! Oei… de machines zijn jaren niet gebruikt. Kijk wat ze maken: robots met hun arm op hun hoofd en wielen op hun rug!' },
+  { who: 'opa', name: 'Opa Tinus', t: 'Elke machine werkt met een patroon. Zet de patronen goed, maak mooie robots en verkoop ze. Van het geld maak je de fabriek groter. Wie weet word jij de beste robotbaas van het land!' }
 ];
 let introI = 0;
-function goTitle() { GEN++; hush(); show('scrTitle'); $('#titleBliep').innerHTML = bliepSVG(S.upgrades, 'blij'); $('#btnPlay').textContent = S.introSeen ? '▶️ Verder spelen' : '▶️ Spelen'; }
+function goTitle() { GEN++; hush(); show('scrTitle'); musicFor('scrTitle'); $('#titleBliep').innerHTML = robotSVG({ armUp: true }); $('#titleOpa').innerHTML = opaSVG('knipoog'); $('#btnPlay').textContent = S.introSeen ? '▶️ Naar mijn fabriek' : '▶️ Spelen'; }
 function startPlay() {
   if (!S.introSeen) { introI = 0; show('scrIntro'); renderIntro(); return; }
   if (!S.placement.done) return startPlacement();
-  goMap();
+  goFactory();
 }
-function renderIntro() { $('#introScene').innerHTML = introScene(introI); $('#introText').textContent = INTRO[introI]; say(INTRO[introI]); $('#introNext').textContent = introI === INTRO.length - 1 ? 'Ik help mee! ▶️' : 'Verder ▶️'; }
-function introNext() { SFX.click(); introI++; if (introI >= INTRO.length) { S.introSeen = true; save(); return S.placement.done ? goMap() : startPlacement(); } renderIntro(); }
+function renderIntro() {
+  const it = INTRO[introI]; let t = it.t;
+  if (introI === 3 && S.veteran) t += ' En ik hoorde dat jij Bliep al eens geholpen hebt. Daarom krijg je een voorsprong!';
+  $('#introScene').innerHTML = introScene(introI);
+  $('#introText').innerHTML = `<b class="who ${it.who}">${it.name}</b>${t}`; say(t, { who: it.who });
+  $('#introNext').textContent = introI === INTRO.length - 1 ? 'Ik word robotbaas! ▶️' : 'Verder ▶️';
+}
+function introNext() { SFX.click(); introI++; if (introI >= INTRO.length) { S.introSeen = true; save(); return S.placement.done ? goFactory() : startPlacement(); } renderIntro(); }
 function startPlacement() { startRun({ mode: 'placement', total: PLACEMENT.length, kind: 'vorm' }); }
 function finishPlacement(score) {
-  const st = placementStart(score);
+  const st = placementStart(score), lv = score >= 4 ? 3 : score >= 3 ? 2 : 1;
   S.placement = { done: true, score };
-  const h1 = hallState(1); h1.open = Math.max(h1.open, st.h1);
-  if (st.h2) { const h2 = hallState(2); h2.open = Math.max(h2.open, st.h2); }
+  S.machines.band.lv = Math.max(S.machines.band.lv, lv);
+  if (!S.orders.length) S.orders = makeOrders(S);
   save();
   showResult({ title: 'Dank je wel!', stars: 0,
-    reward: `<div style="text-align:left"><p><b>${score} van de 5</b> puzzels meteen goed.</p><p>${st.h1 > 1 ? `Je mag in de Lopende band meteen beginnen bij <b>niveau ${st.h1}</b>! (De makkelijkere niveaus kun je ook spelen.)` : 'We beginnen bij het begin: de Lopende band, niveau 1.'}${st.h2 ? ' De Geluidskamer is ook al open!' : ''}</p></div>`,
-    speak: `Dank je wel! ${st.h1 > 1 ? 'Je mag beginnen bij niveau ' + st.h1 + '.' : 'We beginnen bij niveau 1.'}`,
-    btns: [['🏭 Naar de fabriek', 'green', () => goMap()]] });
-}
-/* ---------- kaart ---------- */
-function goMap() {
-  GEN++; hush(); show('scrMap'); musicFor('scrMap');
-  $('#mapSvg').innerHTML = mapSVG(); $('#mapStars').textContent = '⭐ ' + totalStars(); $('#mapBliep').innerHTML = bliepSVG(S.upgrades, 'blij');
-}
-function mapClick(id) {
-  const h = hallDef(id); SFX.click();
-  if (h.soon) { toast('🔧 Deze hal repareren we in een volgende aflevering!'); say('Deze hal repareren we in een volgende aflevering!'); return; }
-  if (!hallOpen(id)) { const t = `Maak eerst niveau ${HALL2_AFTER} van de Lopende band af.`; toast('🔒 ' + t); say(t); return; }
-  openHall(id);
-}
-/* ---------- hal ---------- */
-let HALL = 1;
-function openHall(id) {
-  GEN++; hush(); HALL = id; show('scrHall'); musicFor('scrHall');
-  const h = hallDef(id), st = hallState(id);
-  $('#hallTitle').textContent = `${h.icon} Hal ${id}: ${h.name}`; $('#hallDesc').textContent = h.desc; $('#hallIcon').innerHTML = bliepSVG(S.upgrades, 'denk');
-  const stars = h.levels.reduce((n, _, i) => n + ((st.lv[i + 1] || {}).stars || 0), 0);
-  $('#hallStars').textContent = `⭐ ${stars}/${h.levels.length * 3}`;
-  $('#hallParts').innerHTML = h.parts.map((nm, i) => `<div class="part ${(st.lv[i + 1] || {}).done ? 'ok' : ''}" title="${nm}">${partSVG(id, i)}${nm}</div>`).join('');
-  $('#hallLevels').innerHTML = h.levels.map((lv, i) => {
-    const r = st.lv[i + 1] || {}, open = i + 1 <= st.open, s = r.stars || 0;
-    return `<button class="lvl ${r.done ? 'done' : ''} ${open ? '' : 'locked'}" data-lv="${i}" ${open ? '' : 'aria-disabled="true"'}><span class="num">${open ? i + 1 : '🔒'}</span><span><b>${lv.title}</b><small>${lv.sub}</small><br><span class="stars">${'★'.repeat(s)}${'☆'.repeat(3 - s)}</span></span></button>`;
-  }).join('');
-}
-function startLevel(hall, idx) {
-  const h = hallDef(hall), r = hallState(hall).lv[idx + 1] || {};
-  startRun({ mode: 'level', hall, lvIdx: idx, kind: h.pool, d: r.stars === 3 ? 2 : idx === 0 ? 0 : 1 });
-}
-function finishLevel() {
-  const h = hallDef(RUN.hall), st = hallState(RUN.hall), n = RUN.lvIdx + 1, slip = RUN.mistakes + RUN.hints;
-  const stars = slip <= 2 ? 3 : slip <= 5 ? 2 : 1;
-  const prev = st.lv[n] || {}, firstTime = !prev.done;
-  st.lv[n] = { stars: Math.max(prev.stars || 0, stars), done: true, best: Math.max(prev.best || 0, stars), last: dayKey() };
-  st.open = Math.min(h.levels.length, Math.max(st.open, n + 1));
-  let opened = '';
-  if (RUN.hall === 1 && n >= HALL2_AFTER && !hallOpen(2)) { hallState(2).open = 1; opened = '🔓 De Geluidskamer is open!'; }
-  S.playDays[dayKey()] = 1;
-  // nieuwe Bliep-upgrades
-  const newUp = UPGRADES.filter(u => totalStars() >= u.at && !S.upgrades.includes(u.id));
-  newUp.forEach(u => S.upgrades.push(u.id));
-  save();
-  const hallDone = h.levels.every((_, i) => (st.lv[i + 1] || {}).done);
-  const part = h.parts[n - 1];
-  let rw = `${partSVG(RUN.hall, n - 1)}<div style="text-align:left"><p>${firstTime ? `🔧 <b>${part}</b> werkt weer!` : `Je speelde <b>${h.levels[RUN.lvIdx].title}</b> nog een keer.`}</p>`;
-  if (newUp.length) rw += `<p>🎁 Bliep krijgt: <b>${newUp.map(u => u.name).join(' en ')}</b>!</p>`;
-  if (hallDone && firstTime) rw += `<p>🎉 <b>Hal ${RUN.hall} is helemaal gerepareerd!</b></p>`;
-  if (opened) rw += `<p>${opened}</p>`;
-  rw += '</div>';
-  const btns = [];
-  if (n < h.levels.length) btns.push(['▶️ Volgend niveau', 'green', () => startLevel(RUN.hall, n)]);
-  btns.push([`${h.icon} Naar de hal`, 'white', () => openHall(RUN.hall)]);
-  if (opened) btns.push(['🔊 Naar de Geluidskamer', 'purple', () => openHall(2)]);
-  showResult({ title: hallDone && firstTime ? 'Hal gerepareerd!' : 'Niveau klaar!', stars, reward: rw, mood: 'juich',
-    speak: `${stars === 3 ? 'Geweldig! Drie sterren!' : stars === 2 ? 'Goed gedaan! Twee sterren.' : 'Knap dat je het hebt afgemaakt!'} ${firstTime ? part + ' werkt weer!' : ''} ${newUp.length ? 'Ik krijg een nieuwe ' + newUp[0].name + '!' : ''}`, btns });
+    reward: `<div style="text-align:left"><p><b>${score} van de 5</b> puzzels meteen goed.</p><p>${lv > 1 ? `Je doseermachine begint meteen op <b>niveau ${lv}</b>!` : 'We beginnen bij het begin: de doseermachine op niveau 1.'}</p><p>Je hebt <b>${S.coins} munten</b> startgeld. Tijd om robots te maken!</p></div>`,
+    btns: [['🏭 Naar mijn fabriek', 'green', () => goFactory()]] });
 }
 function showResult(o) {
   GEN++; show('scrResult'); musicFor('scrResult');
   $('#resTitle').textContent = o.title;
   $('#resStars').innerHTML = o.stars ? Array.from({ length: 3 }, (_, i) => `<span>${i < o.stars ? '⭐' : '☆'}</span>`).join('') : '';
-  $('#resBliep').innerHTML = bliepSVG(S.upgrades, o.mood || 'juich');
+  $('#resBliep').innerHTML = o.art || robotSVG({ armUp: true });
   $('#resReward').innerHTML = o.reward;
   $('#resBtns').innerHTML = ''; o.btns.forEach(([t, c, f]) => { const b = document.createElement('button'); b.className = 'btn ' + c; b.textContent = t; b.onclick = () => { SFX.click(); f(); }; $('#resBtns').appendChild(b); });
-  if (o.stars) { SFX.fanfare(); for (let i = 0; i < o.stars; i++) setTimeout(() => SFX.star(), 400 + i * 300); }
+  if (o.stars) { SFX.fanfare(); for (let i = 0; i < o.stars; i++) setTimeout(() => SFX.star(), 400 + i * 300); confetti(); }
+  $$('#resReward .count').forEach(countUp);
   if (o.speak) say(o.speak);
+}
+function countUp(el) { const to = +el.dataset.to, t0 = performance.now(); const f = now => { const k = Math.min(1, (now - t0) / 900); el.textContent = Math.round(to * k); if (k < 1) requestAnimationFrame(f); else el.textContent = to; }; requestAnimationFrame(f); }
+function confetti(n = 40) {
+  if (!S.settings.fx) return; const box = $('#fx');
+  for (let i = 0; i < n; i++) { const c = document.createElement('i'); c.className = 'conf'; c.style.left = rnd(100) + 'vw'; c.style.background = pick(['#ffd23f', '#3fdc7f', '#ff6b5a', '#7ff0ff', '#c79bff']); c.style.animationDelay = (rnd(40) / 100) + 's'; c.style.setProperty('--dx', (rnd(200) - 100) + 'px'); box.appendChild(c); setTimeout(() => c.remove(), 2400); }
+}
+function coinBurst(fromEl, n = 6) {
+  if (!S.settings.fx || !fromEl) return; const r = fromEl.getBoundingClientRect(), to = $('#hCoins').getBoundingClientRect(), box = $('#fx');
+  for (let i = 0; i < n; i++) { const c = document.createElement('i'); c.className = 'coinfly'; c.textContent = '🪙'; c.style.left = (r.left + r.width / 2) + 'px'; c.style.top = (r.top + r.height / 2) + 'px';
+    c.style.setProperty('--tx', (to.left - r.left - r.width / 2) + 'px'); c.style.setProperty('--ty', (to.top - r.top - r.height / 2) + 'px'); c.style.animationDelay = i * 60 + 'ms'; box.appendChild(c); setTimeout(() => c.remove(), 1400); }
+}
+
+/* ===== screens/factory.js ===== */
+/* Het fabrieksoverzicht: kamers met machines, HUD, winkel, bouwen, verborgen puzzels, dagrapport */
+const JOKES = [
+  'Weet je waarom robots nooit bang zijn? Ze hebben nerven van staal! Bliep-bliep-haha!',
+  'Opa zegt: “Een robot zonder patroon is als een fiets zonder… eh… fiets.”',
+  'Ik heb vannacht gedroomd dat ik een broodrooster was. Heel warm.',
+  'Gisteren maakte de band een robot met drie neuzen. Hij ruikt nu alles drie keer.',
+  'Mijn favoriete muziek? Heavy METAL natuurlijk!',
+  'Kartonco zegt dat hun robots waterdicht zijn. Ze zijn van karton. Dus nee.',
+  'Tip van opa: smeer je machines, niet je boterham. Of allebei.',
+  'Ik tel graag tot oneindig. Ik ben nu bij zeven.'];
+let PENDING_REPORT = null;
+function goFactory() {
+  GEN++; hush();
+  if (S.dayDate !== dayKey() && Object.keys(S.today.jobs).length) { PENDING_REPORT = closeDay(S); save(); return showReport(PENDING_REPORT); }
+  if (S.dayDate !== dayKey()) { S.dayDate = dayKey(); save(); }
+  if (!S.orders.length) { S.orders = makeOrders(S); save(); }
+  show('scrFactory'); musicFor('scrFactory'); renderFactory();
+}
+function machineDone(id) { return S.machines[id].owned; }
+function renderHud() {
+  $('#hCoins').innerHTML = `🪙 <b>${S.coins}</b><small>/${kluisCap(S)}</small>`;
+  $('#hRep').innerHTML = `⭐ <b>${S.rep}</b>`; $('#hStock').innerHTML = `🤖 <b>${S.stock.length}</b><small>/${stockCap(S)}</small>`; $('#hDay').textContent = `Dag ${S.day}`;
+  const ready = S.orders.some(o => canDeliver(S, o)) || (S.stock.length && S.today.sold < demand(S));
+  $('#fShop').classList.toggle('pulse', !!ready);
+}
+function roomCard(id) {
+  const d = MACHINES[id], m = S.machines[id], care = careOf(m);
+  if (!m.owned) {
+    const ok = canBuy(S, id), need = d.need ? Object.entries(d.need).map(([k, lv]) => `${MACHINES[k].name} niveau ${lv}`).join(', ') : '';
+    return `<div class="room locked" data-m="${id}"><div class="rscene">${roomScene(id, null)}</div><div class="lockov"><b>${d.icon} ${d.room}</b><small>${d.desc}</small>
+      ${ok ? `<button class="btn small ${S.coins >= d.buy ? 'green' : 'white'}" data-act="buy">🔨 Bouwen · 🪙 ${d.buy}</button>` : `<span class="need">🔒 Eerst: ${need}</span>`}</div></div>`;
+  }
+  const c = upCost(S, id), jobs = S.today.jobs[id] || 0;
+  return `<div class="room care${care}" data-m="${id}"><div class="rscene">${roomScene(id, m)}</div>
+    ${id === 'band' ? `<button class="hidden-spot tegel ${hiddenReady(S, 'tegel') ? 'ready' : ''}" data-spot="tegel" aria-label="losse tegel"></button>` : ''}
+    <div class="rtag"><b>${d.icon} ${d.room}</b><span class="lvs">${'★'.repeat(m.lv)}${'☆'.repeat(5 - m.lv)}</span></div>
+    <div class="mood m${care}" title="${CARE[care].name}">${CARE[care].face} ${CARE[care].name}</div>
+    <div class="ract">
+      <button class="btn small green" data-act="work">${id === 'tik' ? '👆 Spelen' : '▶️ Werken'}${jobs ? `<small> ${jobs}×</small>` : ''}</button>
+      ${care ? `<button class="btn small orange" data-act="smeer">🔧 Smeren</button>` : ''}
+      ${c != null ? `<button class="btn small ${S.coins >= c ? 'purple' : 'white'}" data-act="up">⬆️ 🪙 ${c}</button>` : '<span class="pill">MAX</span>'}
+    </div></div>`;
+}
+function renderFactory() {
+  renderHud();
+  $('#fRoof').innerHTML = roofSVG();
+  $$('#fRoof .hidden-spot').forEach(g => g.classList.toggle('ready', hiddenReady(S, g.dataset.spot)));
+  $('#fRooms').innerHTML = MACHINE_ORDER.map(roomCard).join('');
+  const fp = footballProgress(S);
+  $('#fFoot').innerHTML = fp < 1 ? `<b>⚽ Robotvoetbal</b><small>Verkoop ${FOOTBALL_AT} robots, dan bouwt opa een stadion!</small><div class="bar"><i style="width:${fp * 100}%"></i></div><small>${Math.min(S.soldTotal, FOOTBALL_AT)}/${FOOTBALL_AT} verkocht</small>`
+    : `<b>🏟️ Het stadion wordt gebouwd!</b><small>Robotvoetbal tegen Kartonco komt in de volgende update. Verborgen onderdelen die je vindt, bewaar je alvast.</small><div class="items">${Object.entries(S.items).filter(([k]) => k !== 'pionier').map(([k, n]) => `<span class="pill">${itemName(k)} ×${n}</span>`).join('') || '<small>Nog geen onderdelen gevonden… zoek eens goed in de fabriek 👀</small>'}</div>`;
+  $('#fPoster').classList.toggle('ready', hiddenReady(S, 'poster'));
+  advise();
+}
+const itemName = k => (Object.values(HIDDEN).find(h => h.item === k) || { itemName: k }).itemName;
+function advise(force) {
+  let t, who = 'bliep';
+  const m = S.machines, sick = MACHINE_ORDER.find(id => m[id].owned && careOf(m[id]) === 2), tired = MACHINE_ORDER.find(id => m[id].owned && careOf(m[id]) === 1);
+  const buyable = MACHINE_ORDER.find(id => !m[id].owned && canBuy(S, id) && S.coins >= MACHINES[id].buy);
+  const jobsToday = Object.values(S.today.jobs).reduce((a, b) => a + b, 0);
+  if (force) t = force;
+  else if (S.madeTotal === 0) t = 'Tik bij de <b>Lopende band</b> op <b>▶️ Werken</b>. Dan maken we onze eerste robots!';
+  else if (S.soldTotal === 0 && S.stock.length) t = 'Er staan robots klaar! Open de <b>🛒 Winkel</b> en verkoop ze.';
+  else if (sick) t = `Help! De <b>${MACHINES[sick].room}</b> piept en rookt. Even <b>🔧 smeren</b>?`;
+  else if (S.orders.some(o => canDeliver(S, o))) t = 'Je kunt een <b>bestelling</b> leveren! Kijk in de 🛒 Winkel.';
+  else if (buyable) t = `Je hebt genoeg munten om de <b>${MACHINES[buyable].room}</b> te bouwen! 🔨`;
+  else if (S.stock.length >= stockCap(S)) t = 'Het magazijn is vol! Verkoop eerst wat robots.';
+  else if (tired) t = `De <b>${MACHINES[tired].room}</b> wordt een beetje moe. Smeren of ermee werken helpt.`;
+  else if (jobsToday >= 4) t = 'Wat een werkdag! Druk op <b>🌙</b> om de dag af te sluiten. Dan verkoopt de winkel de rest.';
+  else t = pick(JOKES);
+  $('#fBubble').innerHTML = t; $('#fBliep').innerHTML = robotSVG({ armUp: !sick, mood: sick ? 'dizzy' : '' });
+  say(t.replace(/<[^>]+>/g, ''), { who });
+}
+function roomAction(id, act, btn) {
+  const d = MACHINES[id];
+  if (act === 'buy') { if (!buyMachine(S, id)) { SFX.nope(); toast(`Je hebt 🪙 ${d.buy} nodig.`); return; } save(); SFX.fanfare(); confetti(); toast(`🔨 ${d.room} gebouwd!`); renderFactory(); advise(`Tadaa! De <b>${d.room}</b> staat er. ${d.desc}`); return; }
+  if (act === 'up') { const c = upCost(S, id); if (!upgradeMachine(S, id)) { SFX.nope(); toast(`Je hebt 🪙 ${c} nodig.`); return; } save(); SFX.star(); confetti(25); renderFactory(); advise(`⬆️ ${d.name} is nu niveau ${S.machines[id].lv}! ${id === 'tik' ? 'De grijper is groter en je maakt meer robots.' : 'Hij maakt meer robots, maar de patronen worden ook pittiger!'}`); return; }
+  if (act === 'smeer') return startRun({ mode: 'smeer', mid: id, total: 1, kind: id === 'test' ? 'klank' : 'vorm', d: 0 });
+  if (act === 'work') { if (id === 'tik') return startTik(); return startJob(id); }
+}
+function startJob(id) {
+  const m = S.machines[id];
+  if (S.stock.length >= stockCap(S) && (id === 'band' || id === 'kern')) { toast('📦 Het magazijn is vol! Verkoop eerst robots in de winkel.'); SFX.nope(); return; }
+  startRun({ mode: 'job', mid: id, total: JOB_LEN, pool: MACHINES[id].pool(m.lv), kind: id === 'test' ? 'klank' : 'vorm', d: m.lv <= 1 ? 0 : 1 });
+}
+function jobStars() { const slip = RUN.mistakes + RUN.hints; return slip <= 1 ? 3 : slip <= 3 ? 2 : 1; }
+function finishJob() {
+  const id = RUN.mid, stars = jobStars(), r = jobResult(S, id, stars), d = MACHINES[id]; save();
+  let rw = `<div style="text-align:left">`;
+  if (r.robots) rw += `<p class="big">🤖 +<b class="count" data-to="${r.robots}">0</b> robots <span class="q">${'★'.repeat(r.q)}</span></p>`;
+  if (r.wanted > r.robots) rw += `<p>📦 Het magazijn zat vol, dus ${r.wanted - r.robots} robot(s) pasten er niet meer in.</p>`;
+  if (r.coins) rw += `<p class="big">🪙 +<b class="count" data-to="${r.coins}">0</b></p>`;
+  if (r.extra.auto) rw += `<p>🔁 Vannacht maakt de herhaal-machine vanzelf nog ${r.extra.auto} robots.</p>`;
+  if (r.extra.keur) rw += `<p>✅ De testkamer keurt je robots: ze zijn meer waard in de winkel!</p>`;
+  if (r.factor < 1) rw += `<p class="small-note">😴 De ${d.name} heeft vandaag al gewerkt, dus hij maakt nu minder. Morgen is hij weer fris!</p>`;
+  rw += `<p class="small-note">Kwaliteit ${'★'.repeat(r.q)}: ${stars === 3 ? 'perfect afgesteld!' : stars === 2 ? 'netjes!' : 'een paar misbaksels ertussen, haha.'}</p></div>`;
+  showResult({ title: stars === 3 ? 'Perfecte productie!' : 'Productie klaar!', stars, reward: rw, art: robotSVG({ armUp: true, body: pick([['#9ad0ff', '#3a86d8'], ['#ffd18a', '#e08a3a'], ['#bdf2d6', '#4fc28a']]) }),
+    btns: [['🏭 Naar de fabriek', 'green', () => goFactory()], ['🛒 Winkel', 'orange', () => { goFactory(); openShop(); }]] });
+}
+function finishSmeer() {
+  const id = RUN.mid; smeer(S, id); save(); SFX.whir();
+  showResult({ title: 'Gesmeerd!', stars: 0, reward: `<p>🔧 De <b>${MACHINES[id].room}</b> glimt weer en is blij. 😊</p><p class="small-note">Een machine die je gebruikt of smeert, blijft blij. Een paar speeldagen niets doen maakt hem moe.</p>`,
+    btns: [['🏭 Naar de fabriek', 'green', () => goFactory()]] });
+}
+/* ---------- verborgen puzzels ---------- */
+function hiddenClick(spot) {
+  if (!hiddenReady(S, spot)) { toast(pick(['Hier is niks meer… of toch? Kom over een paar dagen terug. 👀', 'Bliep: “Ik zie alleen stof.”', 'Hmm, nu even niet.'])); return; }
+  SFX.whir(); toast(`✨ Psst… een geheime puzzel bij de ${HIDDEN[spot].where}!`);
+  startRun({ mode: 'hidden', spot, total: 1, kind: 'vorm', d: 1 });
+}
+function finishHidden() {
+  const spot = RUN.spot, ok = RUN.results[0] !== undefined;
+  const r = hiddenFound(S, spot); save();
+  showResult({ title: 'Geheime puzzel opgelost!', stars: 0, art: robotSVG({ armUp: true, body: ['#ffe58a', '#f5a524'] }),
+    reward: `<p class="big">🎁 <b>${r.item}</b></p><p>Bewaar het goed: dit onderdeel helpt straks bij het <b>robotvoetbal</b>!</p><p class="big">🪙 +<b class="count" data-to="${r.coins}">0</b></p>`, btns: [['🏭 Naar de fabriek', 'green', () => goFactory()]] });
+  confetti(60); SFX.fanfare();
+}
+/* ---------- winkel ---------- */
+function openShop() {
+  SFX.click(); const left = Math.max(0, demand(S) - S.today.sold), qs = {}; S.stock.forEach(q => qs[q] = (qs[q] || 0) + 1);
+  let h = `<div class="shopstock"><div><b>🤖 Voorraad: ${S.stock.length}</b> ${Object.entries(qs).sort((a, b) => b[0] - a[0]).map(([q, n]) => `<span class="pill">${n}× ${'★'.repeat(q)}</span>`).join(' ')}</div>
+    <div class="small-note">Vandaag komen er nog <b>${left}</b> klanten in de winkel. Prijs: 🪙 ${priceOf(1)} (★) tot 🪙 ${priceOf(5)} (★★★★★)${keurBonus(S) ? ', +1 ★ door de testkamer' : ''}.</div>
+    <button class="btn green" id="shSell" ${S.stock.length && left ? '' : 'disabled'}>💰 Verkoop ${Math.min(left, S.stock.length)} robots</button></div><h3>📋 Bestellingen</h3>`;
+  h += S.orders.length ? S.orders.map(o => { const ok = canDeliver(S, o), have = S.stock.filter(q => q >= o.minQ).length;
+    return `<div class="order ${ok ? 'ok' : ''}"><span class="ci">${o.icon}</span><div><b>${o.who}</b> wil <b>${o.n}</b> robots van minstens ${'★'.repeat(o.minQ)}<br><small>“${o.line}” · beloning 🪙 ${o.reward} + ⭐ ${o.rep}${o.until <= S.day ? ' · laatste dag!' : ''}</small></div>
+      <button class="btn small ${ok ? 'green' : 'white'}" data-order="${o.id}" ${ok ? '' : 'disabled'}>${ok ? '📦 Leveren' : `${have}/${o.n}`}</button></div>`; }).join('') : '<p class="small-note">Geen bestellingen. Morgen komen er nieuwe!</p>';
+  $('#shopBody').innerHTML = h; openOv('ovShop');
+}
+function shopClick(e) {
+  if (e.target.closest('#shSell')) { const r = sellNow(S); save(); SFX.fanfare(); coinBurst(e.target, 8); toast(`💰 ${r.sold} robots verkocht voor 🪙 ${r.coins}${r.bonus ? ' (+10% omdat alle machines blij zijn!)' : ''}`); renderFactory(); openShop(); if (S.soldTotal >= FOOTBALL_AT && !S.football.seen) { S.football.seen = true; save(); closeOv('ovShop'); confetti(80); advise('WOW! Opa belt: “Zoveel robots verkocht? Dan bouw ik een <b>voetbalstadion</b>! Robotvoetbal komt eraan!” ⚽'); } return; }
+  const b = e.target.closest('[data-order]'); if (b) { const r = deliver(S, b.dataset.order); if (r) { save(); SFX.fanfare(); confetti(30); toast(`📦 Geleverd! 🪙 +${r.coins} en ⭐ +${r.rep}`); renderFactory(); openShop(); } }
+}
+/* ---------- bouwen (overzicht) ---------- */
+function openBuild() {
+  SFX.click();
+  let h = MACHINE_ORDER.map(id => { const d = MACHINES[id], m = S.machines[id], c = m.owned ? upCost(S, id) : d.buy, ok = m.owned || canBuy(S, id);
+    return `<div class="order"><span class="ci">${d.icon}</span><div><b>${d.room}</b> ${m.owned ? `niveau ${m.lv}/5` : ''}<br><small>${d.desc}</small></div>${c == null ? '<span class="pill">MAX</span>' : ok ? `<button class="btn small ${S.coins >= c ? 'green' : 'white'}" data-b="${id}">${m.owned ? '⬆️' : '🔨'} 🪙 ${c}</button>` : '<span class="pill">🔒</span>'}</div>`; }).join('');
+  h += `<div class="order"><span class="ci">🏦</span><div><b>Kluis</b> niveau ${S.kluis}<br><small>Er passen nu ${kluisCap(S)} munten in. Daarboven vallen ze ernaast!</small></div>${S.kluis < KLUIS.length ? `<button class="btn small ${S.coins >= KLUIS_UP[S.kluis] ? 'green' : 'white'}" data-b="kluis">⬆️ 🪙 ${KLUIS_UP[S.kluis]}</button>` : '<span class="pill">MAX</span>'}</div>`;
+  $('#buildBody').innerHTML = h; openOv('ovBuild');
+}
+function buildClick(e) {
+  const b = e.target.closest('[data-b]'); if (!b) return; const id = b.dataset.b;
+  if (id === 'kluis') { if (upgradeKluis(S)) { save(); SFX.star(); toast('🏦 Grotere kluis!'); } else { SFX.nope(); toast('Niet genoeg munten.'); } renderFactory(); return openBuild(); }
+  closeOv('ovBuild'); roomAction(id, S.machines[id].owned ? 'up' : 'buy');
+}
+/* ---------- dagrapport ---------- */
+async function endDay() {
+  if (!Object.keys(S.today.jobs).length) { toast('Je hebt vandaag nog niets gemaakt! Eerst even werken. 🙂'); return; }
+  if (!await confirmBox('Dag afsluiten? De winkel verkoopt dan de rest, en morgen komen er nieuwe bestellingen.', 'Ja, slapen! 🌙', 'Nog even niet')) return;
+  const r = closeDay(S); save(); showReport(r);
+}
+function showReport(r) {
+  GEN++; show('scrReport'); musicFor('scrResult'); PENDING_REPORT = null;
+  const care = Object.entries(r.care).map(([id, c]) => `<span class="pill">${MACHINES[id].icon} ${CARE[c].face}</span>`).join(' ');
+  const quips = r.sold >= 10 ? 'Opa: “Wat een omzet! Ik laat mijn postzegels even liggen om te juichen.”' : r.sold ? 'Opa: “Goed bezig! Elke robot is er één.”' : 'Opa: “Rustig dagje? Morgen beter. Ik ga een dutje doen.”';
+  $('#repBody').innerHTML = `<h1>🌙 Dagrapport · dag ${r.day}</h1>
+   <div class="reprows">
+    <div><span>🏭 Werkbeurten</span><b>${r.jobs}</b></div>
+    <div><span>🤖 Robots gemaakt</span><b>${r.made}</b></div>
+    ${r.auto ? `<div><span>🔁 Vannacht vanzelf gemaakt</span><b>+${r.auto}</b></div>` : ''}
+    <div><span>💰 Robots verkocht</span><b>${r.sold}</b></div>
+    <div><span>📦 Bestellingen geleverd</span><b>${r.orders}</b></div>
+    ${r.hidden ? `<div><span>✨ Geheime puzzels</span><b>${r.hidden}</b></div>` : ''}
+    <div><span>🪙 Verdiend vandaag</span><b>${r.earned}</b></div>
+    <div><span>⭐ Reputatie</span><b>${r.rep}</b></div>
+   </div>
+   <p>Machines: ${care}</p>
+   ${r.notes.includes('kluisvol') ? '<p>🏦 De kluis zat vol! Bouw een grotere kluis, anders vallen munten ernaast.</p>' : ''}
+   ${r.notes.includes('voorraadvol') ? '<p>📦 Het magazijn was vol. Verkoop vaker, of bouw het Magazijn.</p>' : ''}
+   ${Object.values(r.care).some(c => c > 0) ? '<p>🔧 Sommige machines worden moe. Werk ermee of smeer ze!</p>' : ''}
+   ${r.bonus ? '<p>😊 Alle machines waren blij: +10% verkoop!</p>' : ''}
+   <p class="quip">${quips}</p>`;
+  $('#repOpa').innerHTML = opaSVG(r.sold ? 'knipoog' : 'blij');
+  SFX.fanfare();
+}
+
+/* ===== screens/tik.js ===== */
+/* Tik-tak-band: onderdelen rollen voorbij; tik ze in de groene grijpzone, in de volgorde van het recept (een patroonkern).
+   Mis je er een, dan gebeurt er niks ergs; een verkeerde tik zet alleen je combo terug. Opbrengst klein, groeit met upgrades. */
+let TIK = null, TIK_TIME = 30;
+function startTik() {
+  GEN++; const lv = S.machines.tik.lv, unit = makeUnit(pick(lv <= 1 ? ['AB'] : lv <= 3 ? ['AB', 'ABB', 'ABC'] : ['ABC', 'AABB', 'ABB']), SHAPES);
+  TIK = { unit, need: 0, combo: 0, best: 0, combos: 0, score: 0, parts: [], t0: 0, last: 0, spawnT: 0, gen: GEN, zone: 70 + lv * 12, speed: 160, over: false };
+  show('scrTik'); musicFor('scrTik');
+  $('#tikZone').style.width = TIK.zone + 'px'; $('#tikLane').querySelectorAll('.tpart').forEach(x => x.remove());
+  renderTikRecipe(); $('#tikMsg').textContent = 'Tik de onderdelen in deze volgorde, als ze in het groene vak zijn!';
+  TIK.t0 = performance.now(); TIK.last = TIK.t0; TIK.pre = 3; requestAnimationFrame(tikFrame);
+}
+function renderTikRecipe() { $('#tikRecipe').innerHTML = TIK.unit.map((id, i) => `<span class="rc ${i === TIK.need ? 'now' : i < TIK.need ? 'done' : ''}">${tokenSVG(id)}</span>`).join('') + `<span class="combo">🔥 ${TIK.combo}</span>`; $('#tikScore').textContent = `🤖 ${TIK.combos}`; }
+function tikFrame(now) {
+  if (!TIK || TIK.gen !== GEN || TIK.over) return;
+  const dt = Math.min(.05, (now - TIK.last) / 1000); TIK.last = now;
+  const left = Math.max(0, TIK_TIME - (now - TIK.t0) / 1000); $('#tikTime').textContent = '⏱️ ' + Math.ceil(left);
+  if (left <= 0) return endTik();
+  const lane = $('#tikLane'), W = lane.clientWidth;
+  TIK.spawnT -= dt;
+  if (TIK.spawnT <= 0) { TIK.spawnT = .85 + Math.random() * .35;
+    const others = SHAPES.filter(x => !TIK.unit.includes(x)), id = Math.random() < .72 ? TIK.unit[(TIK.feed = (TIK.feed || 0) + 1) % TIK.unit.length] : pick(others);
+    const el = document.createElement('button'); el.className = 'tpart'; const x0 = TIK.pre > 0 ? W * (.55 + .2 * (3 - TIK.pre--)) : W + 10; if (TIK.pre >= 0 && x0 < W) TIK.spawnT = 0; el.dataset.id = id; el.innerHTML = tokenSVG(id); el.setAttribute('aria-label', tName(id)); lane.appendChild(el);
+    TIK.parts.push({ el, id, x: x0 }); }
+  for (const p of TIK.parts) { p.x -= TIK.speed * dt; p.el.style.transform = `translateX(${p.x}px)`; }
+  TIK.parts = TIK.parts.filter(p => { if (p.x < -80) { p.el.remove(); return false; } return true; });
+  requestAnimationFrame(tikFrame);
+}
+function tikInZone(p) { const z = $('#tikZone').getBoundingClientRect(), r = p.el.getBoundingClientRect(), c = r.left + r.width / 2; return c >= z.left - 6 && c <= z.right + 6; }
+function tikTap(el) {
+  if (!TIK || TIK.over) return; const p = TIK.parts.find(x => x.el === el); if (!p || p.hit) return;
+  const want = TIK.unit[TIK.need];
+  if (tikInZone(p) && p.id === want) {
+    p.hit = true; el.classList.add('hit'); SFX.place(); TIK.need++;
+    if (TIK.need >= TIK.unit.length) { TIK.need = 0; TIK.combos++; TIK.combo++; TIK.best = Math.max(TIK.best, TIK.combo); SFX.star(); $('#tikMsg').textContent = pick(['Robot in elkaar! 🤖', 'Klik-klak, klaar!', 'Nog eentje!', 'Super snel!']); popTik(); }
+    setTimeout(() => { el.remove(); TIK.parts = TIK.parts.filter(x => x !== p); }, 250);
+  } else {
+    SFX.nope(); el.classList.add('miss'); TIK.combo = 0; TIK.need = 0; setTimeout(() => el.classList.remove('miss'), 300);
+    $('#tikMsg').textContent = !tikInZone(p) ? 'Wacht tot hij in het groene vak is!' : `Oeps! Eerst ${een(want)}. Opnieuw beginnen met het recept.`;
+  }
+  renderTikRecipe();
+}
+function popTik() { const b = document.createElement('div'); b.className = 'tikbot'; b.innerHTML = robotSVG({ armUp: true, body: pick([['#9ad0ff', '#3a86d8'], ['#ffd18a', '#e08a3a']]) }); $('#tikLane').appendChild(b); setTimeout(() => b.remove(), 1200); }
+function endTik() {
+  TIK.over = true; const r = tikResult(S, TIK.combos, TIK.best); save();
+  const lv = S.machines.tik.lv;
+  showResult({ title: TIK.combos >= 6 ? 'Tik-kampioen!' : 'Tijd om!', stars: 0,
+    reward: `<p class="big">🔥 ${TIK.combos} robots in elkaar getikt (beste reeks ${TIK.best})</p>${r.robots ? `<p class="big">🤖 +<b class="count" data-to="${r.robots}">0</b> robots voor de winkel</p>` : '<p>🤖 De oude grijper liet ze allemaal vallen… haha!</p>'}<p class="big">🪙 +<b class="count" data-to="${r.coins}">0</b></p>
+      ${lv < 5 ? `<p class="small-note">💡 De Tik-tak-band levert nog weinig op. Met een <b>upgrade</b> (⬆️) wordt de grijpzone groter en houd je meer robots over!</p>` : ''}${r.factor < 1 ? '<p class="small-note">😴 Vandaag al 3 keer gespeeld: nu levert het minder op. Morgen weer vol!</p>' : ''}`,
+    btns: [['👆 Nog een keer', 'orange', () => startTik()], ['🏭 Naar de fabriek', 'green', () => goFactory()]] });
 }
 
 /* ===== screens/samen.js ===== */
@@ -1140,7 +1684,7 @@ const SAMEN = { mode: 'lezer', hall: 1 };
 function openSamen() {
   GEN++; hush(); show('scrSamen'); musicFor('scrSamen');
   $('#name1').value = S.names[0] || ''; $('#name2').value = S.names[1] || '';
-  $$('#scrSamen .mode[data-hall]').forEach(b => { const h = +b.dataset.hall, ok = h === 1 || hallOpen(2); b.disabled = !ok; b.style.opacity = ok ? '' : .5; if (!ok && SAMEN.hall === 2) SAMEN.hall = 1; });
+  $$('#scrSamen .mode[data-hall]').forEach(b => { const h = +b.dataset.hall, ok = true; b.disabled = !ok; b.style.opacity = ok ? '' : .5; if (!ok && SAMEN.hall === 2) SAMEN.hall = 1; });
   renderSamenSel();
 }
 function renderSamenSel() {
@@ -1162,14 +1706,15 @@ function finishSamen() {
 
 /* ===== screens/ouders.js ===== */
 /* Voor ouders: instellingen, voortgang, uitleg en beheer (achter een houd-2-seconden-knop) */
-const TYPE_NL = { next: 'Wat komt hierna?', mid: 'Wat mist er?', nextN: 'Band afmaken', kern: 'Kern vinden', odd: 'Fout vinden', translate: 'Vertalen', echo: 'Naspelen' };
+const TYPE_NL = { next: 'Wat komt hierna?', mid: 'Wat mist er?', nextN: 'Band afmaken', kern: 'Kern vinden', odd: 'Fout vinden', translate: 'Vertalen', echo: 'Naspelen', grow: 'Groeiende stapels', numseq: 'Getallenrijen' };
 function openOuders() {
   hush(); const st = S.settings;
-  $('#setMusic').checked = st.music; $('#setMusicVol').value = st.musicVol; $('#setSfx').checked = st.sfx; $('#setSfxVol').value = st.sfxVol;
-  $('#setSpeech').checked = st.speech; $('#setRate').value = st.rate; $('#setBig').checked = st.big;
-  $('#voiceNote').textContent = !SPEECH.ok ? 'Deze browser kan niet voorlezen; alle uitleg staat ook als tekst in beeld.' : pickVoice() ? `Stem: ${SPEECH.voice.name} (${SPEECH.voice.lang})` : 'Geen Nederlandse stem gevonden op dit apparaat. Installeer er een via de instellingen (Spraak/Tekst-naar-spraak), of lees samen de tekst.';
-  let h = `<p>Instaptoets: ${S.placement.done ? S.placement.score + ' van 5 goed' : 'nog niet gedaan'} · Sterren: ${totalStars()} · Upgrades: ${S.upgrades.length}/${UPGRADES.length} · Samen gespeeld: ${S.samen.played}×</p><table class="prog"><tr><th>Hal</th><th>Niveau</th><th>Sterren</th></tr>`;
-  HALLS.filter(x => !x.soon).forEach(hl => { const s = hallState(hl.id); hl.levels.forEach((lv, i) => { const r = s.lv[i + 1]; h += `<tr><td>${hl.icon} ${hl.id}</td><td>${i + 1}. ${lv.title}</td><td>${r ? '★'.repeat(r.stars) + '☆'.repeat(3 - r.stars) : i + 1 <= s.open ? 'open' : '🔒'}</td></tr>`; }); });
+  $('#setMusic').checked = st.music; $('#setMusicVol').value = st.musicVol; $('#setSfx').checked = st.sfx; $('#setSfxVol').value = st.sfxVol; $('#setBig').checked = st.big; $('#setFx').checked = st.fx;
+  const m = S.machines;
+  let h = `<p>Instaptoets: ${S.placement.done ? S.placement.score + ' van 5 goed' : 'nog niet gedaan'} · Speeldag ${S.day} · Munten ${S.coins} · Reputatie ${S.rep} · Robots gemaakt ${S.madeTotal}, verkocht ${S.soldTotal} · Geheime puzzels ${Object.keys(S.hidden).length}/${Object.keys(HIDDEN).length} · Samen gespeeld ${S.samen.played}×${S.migratedFrom ? ` · Overgezet uit de eerste versie (${S.startStars} sterren)` : ''}</p>
+  <table class="prog"><tr><th>Machine</th><th>Niveau</th><th>Staat</th><th>Puzzels</th></tr>`;
+  const PZ = { band: 'patroon afmaken, gat vullen, band afmaken, vertalen', kern: 'de kern vinden', test: 'geluidspatronen naspelen/afmaken, fout geluid vinden', mag: 'groeiende stapels, getallenrijen', tik: 'tikspel met een patroon-recept' };
+  MACHINE_ORDER.forEach(id => { const x = m[id]; h += `<tr><td>${MACHINES[id].icon} ${MACHINES[id].room}</td><td>${x.owned ? x.lv + '/5' : '—'}</td><td>${x.owned ? CARE[careOf(x)].face + ' ' + CARE[careOf(x)].name : 'nog niet gebouwd'}</td><td>${PZ[id]}</td></tr>`; });
   h += `</table><table class="prog"><tr><th>Soort puzzel</th><th>Goed</th><th>Fout</th><th>Hints</th></tr>`;
   for (const t in TYPE_NL) { const x = S.stats[t]; if (x) h += `<tr><td>${TYPE_NL[t]}</td><td>${x.ok}</td><td>${x.bad}</td><td>${x.hints}</td></tr>`; }
   $('#oudProg').innerHTML = h + '</table>';
@@ -1181,21 +1726,20 @@ function initOuders() {
   $('#setMusicVol').oninput = e => { st().musicVol = +e.target.value; upd(); };
   $('#setSfx').onchange = e => { st().sfx = e.target.checked; upd(); };
   $('#setSfxVol').oninput = e => { st().sfxVol = +e.target.value; upd(); SFX.click(); };
-  $('#setSpeech').onchange = e => { st().speech = e.target.checked; upd(); if (!e.target.checked) hush(); };
-  $('#setRate').onchange = e => { st().rate = +e.target.value; upd(); };
+  $('#setFx').onchange = e => { st().fx = e.target.checked; upd(); };
   $('#setBig').onchange = e => { st().big = e.target.checked; upd(); };
-  $('#setTest').onclick = () => say('Hallo! Ik ben Bliep. Rondje, vierkant, rondje, vierkant.');
-  $('#oudClose').onclick = () => { closeOv('ovOuders'); if (CUR_SCREEN === 'scrMap') goMap(); if (CUR_SCREEN === 'scrTitle') goTitle(); };
+  $('#oudClose').onclick = () => { closeOv('ovOuders'); if (CUR_SCREEN === 'scrFactory') renderFactory(); if (CUR_SCREEN === 'scrTitle') goTitle(); };
   $('#oudReset').onclick = async () => { if (await confirmBox('Alle voortgang wissen? Dit kan niet ongedaan worden.')) { resetSave(); closeOv('ovOuders'); goTitle(); toast('Het spel is gewist.'); } };
   $('#oudPlacement').onclick = () => { closeOv('ovOuders'); S.placement.done = false; save(); startPlacement(); };
-  $('#oudUnlock').onclick = () => { unlockAll(); toast('🔓 Alle niveaus zijn open.'); openOuders(); };
+  $('#oudUnlock').onclick = () => { unlockAll(); toast('🔓 Alle machines gebouwd, intro en toets overgeslagen.'); openOuders(); };
 }
-function unlockAll() { S.introSeen = true; S.placement.done = true; HALLS.filter(h => !h.soon).forEach(h => hallState(h.id).open = h.levels.length); save(); }
+function unlockAll() { S.introSeen = true; S.placement.done = true; for (const id in S.machines) S.machines[id].owned = true; if (!S.orders.length) S.orders = makeOrders(S); save(); }
 
 /* ===== main.js ===== */
 /* Opstarten + test-haakjes (window.__rf, alleen voor de automatische tests) */
 function init() {
-  load(); document.body.classList.toggle('bigtext', S.settings.big);
+  $('#defs').innerHTML = DEFS_SVG;
+  load(); document.body.classList.toggle('bigtext', S.settings.big); document.body.classList.toggle('nofx', !S.settings.fx);
   const first = () => { audioInit(); if (CUR_SCREEN !== 'scrPuzzle') musicStart(); };
   addEventListener('pointerdown', first, { capture: true }); addEventListener('keydown', first, { capture: true });
   $('#btnPlay').onclick = () => { SFX.click(); startPlay(); };
@@ -1203,22 +1747,35 @@ function init() {
   holdButton($('#btnParent'), 2000, openOuders);
   $('#introNext').onclick = introNext;
   $('#introSkip').onclick = () => { introI = INTRO.length - 1; introNext(); };
-  $('#mapHome').onclick = () => { SFX.click(); goTitle(); };
-  $('#mapSamen').onclick = () => { SFX.click(); openSamen(); };
-  $('#mapSvg').addEventListener('click', e => { const g = e.target.closest('.hall'); if (g) mapClick(+g.dataset.hall); });
-  $('#mapSvg').addEventListener('keydown', e => { const g = e.target.closest('.hall'); if (g && (e.key === 'Enter' || e.key === ' ')) mapClick(+g.dataset.hall); });
-  $('#hallBack').onclick = () => { SFX.click(); goMap(); };
-  $('#hallLevels').addEventListener('click', e => { const b = e.target.closest('.lvl'); if (!b) return; const i = +b.dataset.lv; if (i + 1 > hallState(HALL).open) { toast('🔒 Maak eerst het niveau ervoor af.'); return; } SFX.click(); startLevel(HALL, i); });
-  $('#samenBack').onclick = () => { SFX.click(); goTitle(); };
+  // fabriek
+  $('#fHome').onclick = () => { SFX.click(); goTitle(); };
+  $('#fEnd').onclick = () => { SFX.click(); endDay(); };
+  $('#fShop').onclick = openShop; $('#fShop2').onclick = openShop;
+  $('#fBuild').onclick = openBuild;
+  $('#fSamen').onclick = () => { SFX.click(); openSamen(); };
+  $('#fRooms').addEventListener('click', e => { const sp = e.target.closest('.hidden-spot'); if (sp) return hiddenClick(sp.dataset.spot); const b = e.target.closest('[data-act]'); if (!b) return; SFX.click(); roomAction(b.closest('.room').dataset.m, b.dataset.act, b); });
+  $('#fRoof').addEventListener('click', e => { const sp = e.target.closest('.hidden-spot'); if (sp) hiddenClick(sp.dataset.spot); });
+  $('#fPoster').onclick = () => hiddenClick('poster');
+  $('#fBliep').onclick = () => { SFX.piep(); advise(pick(JOKES)); };
+  $('#shopBody').addEventListener('click', shopClick); $('#shopClose').onclick = () => { closeOv('ovShop'); renderFactory(); };
+  $('#buildBody').addEventListener('click', buildClick); $('#buildClose').onclick = () => closeOv('ovBuild');
+  $('#repNext').onclick = () => { SFX.click(); goFactory(); };
+  // tikspel
+  $('#tikLane').addEventListener('pointerdown', e => { const p = e.target.closest('.tpart'); if (p) { e.preventDefault(); tikTap(p); } });
+  $('#tikBack').onclick = () => { GEN++; if (TIK) TIK.over = true; goFactory(); };
+  // samen
+  $('#samenBack').onclick = () => { SFX.click(); S.introSeen && S.placement.done ? goFactory() : goTitle(); };
   $('#scrSamen').addEventListener('click', e => { const b = e.target.closest('.mode'); if (!b || b.disabled) return; SFX.click(); if (b.dataset.mode) SAMEN.mode = b.dataset.mode; if (b.dataset.hall) SAMEN.hall = +b.dataset.hall; renderSamenSel(); });
   $('#samenGo').onclick = () => { SFX.click(); startSamen(); };
+  addEventListener('resize', () => { if (CUR_SCREEN === 'scrFactory') renderHud(); });
   initPlay(); initOuders(); goTitle();
 }
 window.__rf = {
-  get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; },
-  genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
-  load, save, unlockAll, startLevel, goMap, openHall, openSamen, startPlacement, onChoice, onSlot, onAct, hint, totalStars, UPGRADES,
-  goTitle, setRng(f) { RNG = f || Math.random; }, SPEECH
+  get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
+  genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
+  MACHINES, HIDDEN, KLUIS, eco: { careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
+  load, save, unlockAll, goFactory, openShop, openBuild, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
 
