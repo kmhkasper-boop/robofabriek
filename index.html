@@ -1426,9 +1426,10 @@ function newMatch(teams, o = {}) {
 }
 function avgSlim(M, t) { const b = M.bots.filter(x => x.team === t); return b.reduce((a, x) => a + x.st.slim, 0) / b.length; }
 // juichen overslaan (tik) → meteen naar de aftrap
-function skipCele(M) { if (M.cele > 0) { M.cele = 0; M.fx = []; startCount(M); return true; } return false; }
+function skipCele(M) { if (M.cele > 0) { M.cele = 0; M.fx = []; startCount(M, null, true); return true; } return false; }
 // aftrap met 3-2-1: iedereen staat stil tot GO
-function startCount(M, team) { if (team == null) team = M.kickTeam ?? 0; kickoff(M, team); M.kickTeam = null; M.count = 3; M.events.push({ type: 'count', n: 3 }); }
+// na een goal: snel 'Klaar? GO!' (0,6 s); bij de aftrap van de wedstrijd/2e helft: 3-2-1 (1,5 s)
+function startCount(M, team, quick) { if (team == null) team = M.kickTeam ?? 0; kickoff(M, team); M.kickTeam = null; M.quick = !!quick; M.count = M.countLen = quick ? .6 : 1.5; M.events.push({ type: 'count', n: quick ? 1 : 3 }); }
 function kickoff(M, team) {
   const P = [[38, 30], [30, 14], [30, 46]];
   M.bots.forEach(b => { const p = P[b.i % 3]; b.x = b.team ? FW - p[0] : p[0]; b.y = p[1]; b.vx = b.vy = 0; b.down = 0; b.wobble = 0; b.cool = .3; });
@@ -1514,8 +1515,9 @@ function readKeeper(M, team) { const t = 1 - team, seq = M.kseq[t]; if (!seq) re
 // inputs: [{mx,my,shoot,push,play}, …] per menselijke speler (index = ctrl-slot), met b.human = slot
 function step(M, dt, inputs = []) {
   if (M.over || M.pause) return;
-  if (M.cele > 0) { M.cele -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); if (M.cele <= 0) startCount(M); return; }
-  if (M.count > 0) { const before = Math.ceil(M.count); M.count -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); const now = Math.ceil(M.count); if (now !== before) { M.events.push({ type: 'count', n: now }); if (now === 0) M.fx.push({ x: 50, y: 30, txt: 'GO!', t: .8, col: '#5dff8a', big: true }); } return; }
+  M.events.length = 0;   // events zijn per stap (anders vuurt de goal-confetti elke frame opnieuw tijdens het juichen)
+  if (M.cele > 0) { M.cele -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); if (M.cele <= 0) startCount(M, null, true); return; }
+  if (M.count > 0) { const before = Math.ceil(M.count); M.count -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); const now = Math.ceil(M.count); const tick = M.countLen / 3, b2 = Math.ceil((M.count + dt) / tick), n2 = Math.ceil(Math.max(0, M.count) / tick); if (b2 !== n2) { M.events.push({ type: 'count', n: M.quick ? (n2 ? 1 : 0) : n2 }); if (n2 === 0) M.fx.push({ x: 50, y: 30, txt: 'GO!', t: .45, col: '#5dff8a', big: true }); } return; }
   M.t += dt; M.events.length = 0; const B = M.ball;
   if (M.half === 1 && M.t >= HALF_LEN) { M.pause = 'rust'; M.half = 2; return; }
   if (M.t >= 2 * HALF_LEN) { M.over = true; return; }
@@ -1578,7 +1580,7 @@ function step(M, dt, inputs = []) {
       if (Math.abs(B.x - k.x) < 1.6 && Math.abs(B.y - k.y) < 6.5 + .3 * k.skill && toward) { B.vx = -B.vx * .6; B.vy = (M.rng() - .5) * 20; B.x = k.x + (k.team ? -2 : 2); const wasShot = B.shot; B.shot = null; k.dive = null; M.events.push({ type: 'save', team: k.team }); M.fx.push({ x: k.x, y: k.y - 4, txt: 'GEKEERD!', t: 1.4, col: '#38d6ff' }); if (wasShot) k.saves = (k.saves || 0) + 1; } }
     // goal of uit
     if (B.x < 0 || B.x > FW) { const t = B.x > FW ? 0 : 1;
-      if (B.y > GY0 && B.y < GY1) { M.score[t]++; M.events.push({ type: 'goal', team: t }); M.fx.push({ x: 50, y: 30, txt: GOAL_LINES[Math.floor(M.rng() * GOAL_LINES.length)], t: 2, col: '#ffb43b', big: true }); M.keepers.forEach(k => k.dive = null); M.kickTeam = 1 - t; M.cele = 2.6; return; }
+      if (B.y > GY0 && B.y < GY1) { M.score[t]++; M.events.push({ type: 'goal', team: t }); M.fx.push({ x: 50, y: 30, txt: GOAL_LINES[Math.floor(M.rng() * GOAL_LINES.length)], t: 2, col: '#ffb43b', big: true }); M.keepers.forEach(k => k.dive = null); M.kickTeam = 1 - t; M.cele = 1; return; }
       B.vx *= -.7; B.x = clamp(B.x, .5, FW - .5); B.shot = null; M.keepers.forEach(k => k.dive = null); }
     // oppakken
     const sp = Math.hypot(B.vx, B.vy); let best = null, bd = 9;
@@ -2427,7 +2429,7 @@ function matchFrame(now) {
 function matchEvents(M) {
   for (const e of M.events) {
     if (e.type === 'count') { if (S.settings.sfx && AUD.ac) tone(e.n ? 660 : 1320, e.n ? .12 : .3, 'square', .05); }
-    if (e.type === 'goal') { SFX.fanfare(); if (S.settings.fx) confetti(e.team === 0 || FB.mode === 'versus' ? 60 : 10); }
+    if (e.type === 'goal') { SFX.fanfare(); if (S.settings.fx) { confetti(e.team === 0 || FB.mode === 'versus' ? 40 : 8); clearTimeout(FB.confT); FB.confT = setTimeout(clearConfetti, 1000); } }
     else if (e.type === 'ko') { tone(900, .35, 'square', .08, 0, 180); tone(1400, .2, 'sine', .05, .15, 600); }
     else if (e.type === 'fall') SFX.toet();
     else if (e.type === 'save') SFX.piep();
@@ -2524,7 +2526,7 @@ function drawMatch(M) {
   // teksten
   for (const f of M.fx) { const [x, y] = FP(f.x, f.y); g.save(); g.font = `800 ${f.big ? Math.max(28, v.s * 6) : Math.max(13, v.s * 2.4)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.lineWidth = 4; g.strokeStyle = '#000'; g.fillStyle = f.col; const yy = y - (1.6 - f.t) * 18; g.globalAlpha = Math.min(1, f.t * 2); if (f.big) { const [cx, cy] = FP(50, 30); g.strokeText(f.txt, cx, cy); g.fillText(f.txt, cx, cy); } else { g.strokeText(f.txt, x, yy); g.fillText(f.txt, x, yy); } g.restore(); }
   if (M.cele > 0) { g.fillStyle = `rgba(255,180,59,${.12 * Math.min(1, M.cele)})`; g.fillRect(0, 0, v.W, v.H); g.font = `700 ${Math.max(13, v.s * 2.2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = 'rgba(255,255,255,.85)'; g.fillText('tik om door te gaan', v.W / 2, v.H - Math.max(26, v.s * 4)); }
-  if (M.count > 0) { const n = Math.ceil(M.count), fr = M.count - Math.floor(M.count); g.fillStyle = 'rgba(8,12,24,.35)'; g.fillRect(0, 0, v.W, v.H); g.save(); g.font = `900 ${Math.max(60, v.s * 16) * (1 + .4 * fr)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineWidth = 8; g.strokeStyle = '#0b1020'; g.fillStyle = '#ffd34a'; const [cx, cy] = FP(50, 30); g.globalAlpha = Math.min(1, .3 + fr * 1.4); g.strokeText(n, cx, cy); g.fillText(n, cx, cy); g.restore(); }
+  if (M.count > 0) { const tk = M.countLen / 3, n = M.quick ? 'Klaar?' : Math.ceil(M.count / tk), fr = M.quick ? M.count / M.countLen : (M.count / tk) % 1; g.fillStyle = 'rgba(8,12,24,.35)'; g.fillRect(0, 0, v.W, v.H); g.save(); g.font = `900 ${Math.max(M.quick ? 40 : 60, v.s * (M.quick ? 9 : 16)) * (1 + .3 * fr)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineWidth = 8; g.strokeStyle = '#0b1020'; g.fillStyle = '#ffd34a'; const [cx, cy] = FP(50, 30); g.globalAlpha = Math.min(1, .3 + fr * 1.4); g.strokeText(n, cx, cy); g.fillText(n, cx, cy); g.restore(); }
 }
 function botCols(look) { if (look.rival) return RIVALS[look.rival].col; return LOOKS.body[look.body || 0]; }
 function drawBot(g, b, M) {
@@ -2605,7 +2607,7 @@ function endMatch() {
 
 // juichen overslaan: tik ergens op het veld (niet op de knoppen)
 function clearConfetti() { document.querySelectorAll('.confetti,.conf').forEach(e => e.remove()); }
-document.addEventListener('pointerdown', e => { if (CUR_SCREEN !== 'scrMatch' || !FB.M || !(FB.M.cele > 0)) return; if (e.target.closest('.abtn,.joy,button')) return; if (skipCele(FB.M)) clearConfetti(); });
+document.addEventListener('pointerdown', e => { if (CUR_SCREEN !== 'scrMatch' || !FB.M || !(FB.M.cele > 0)) return; if (e.target.closest('#mPause,.pausebtn')) return; if (skipCele(FB.M)) clearConfetti(); }, { capture: true });
 
 /* ---------- competitiestand ---------- */
 function openStand(which = 'cur') {
