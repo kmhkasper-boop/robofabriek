@@ -425,6 +425,8 @@ input[type=text],.namein{background:#0f1520;color:#fff;border:1px solid var(--ed
 #resTitle{color:#fff}
 .fbdiff{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}.fbdiff .btn{padding:6px 4px;line-height:1.1}.opatip.coach{border:2px solid #ffc94a;box-shadow:0 0 14px #ffc94a55}p.coach{background:#ffc94a22;border:1px solid #ffc94a88;border-radius:10px;padding:8px}.abtn.turbo{width:62px;height:62px;font-size:12px;background:radial-gradient(circle at 35% 30%,#7fe8ff,#1484b8)}
 @media (max-height:500px){.pl1 .abtn.turbo,.pl2 .abtn.turbo{bottom:calc(env(safe-area-inset-bottom) + 204px)!important}}
+table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,table.stand td{padding:5px 4px;text-align:center;border-bottom:1px solid #ffffff1a}table.stand td:nth-child(2){text-align:left}table.stand tr.me{background:#38d6ff22;font-weight:800}i.fm{display:inline-block;width:16px;height:16px;line-height:16px;border-radius:4px;font-style:normal;font-size:10px;margin:0 1px;color:#fff}i.fm.w{background:#2fae5f}i.fm.d{background:#8a8f9c}i.fm.l{background:#c8423a}.pill.rsv{background:#ffc94a33;border-color:#ffc94a88}
+.finrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}.finrow div{display:flex;flex-direction:column;align-items:center;background:#ffffff10;border-radius:10px;padding:8px}.finrow b{font-size:1.4em}
 </style>
 </head>
 <body>
@@ -536,6 +538,7 @@ input[type=text],.namein{background:#0f1520;color:#fff;border:1px solid var(--ed
     <div style="text-align:right"><button class="btn green" id="oudClose">Sluiten</button></div>
   </div>
 </div>
+<div id="ovStand" class="overlay"><div class="ocard"><h2 id="standTitle">📊 Stand</h2><div class="scroll" id="standBody"></div><div style="text-align:right"><button class="btn green" id="standClose">Sluiten</button></div></div></div>
 <div id="ovShop" class="overlay"><div class="ocard"><h2>🛒 Winkel</h2><div class="scroll" id="shopBody"></div><div style="text-align:right"><button class="btn green" id="shopClose">Sluiten</button></div></div></div>
 <div id="ovBuild" class="overlay"><div class="ocard"><h2>📈 Investeren</h2><div class="scroll" id="buildBody"></div><div style="text-align:right"><button class="btn green" id="buildClose">Sluiten</button></div></div></div>
 <div id="ovJob" class="overlay"><div class="ocard"><h2 id="jobTitle"></h2><div class="scroll"><p class="small-note" id="jobSub"></p><div class="diffs" id="jobDiffs"></div><p class="small-note" id="jobNote"></p></div><div style="text-align:right"><button class="btn white" id="jobClose">Annuleren</button></div></div></div>
@@ -629,7 +632,7 @@ const STOCK_CAP = st => st.machines.mag.owned ? 30 + 10 * st.machines.mag.lv : 1
 const priceOf = q => 6 + 4 * q;                  // prijs per robot (kwaliteit 1-5)
 const DAY_MIN = 10;                              // een speeldag ≈ 10 minuten spelen (voor terugverdientijd)
 const UPKEEP = (m, lv) => 6 + 3 * (lv - 1);      // vaste kosten per machine per dag
-const OFFLINE_MIN = st => 20 + (st.machines.kern.owned ? 10 * st.machines.kern.lv : 0); // max minuten productie als je weg bent (half tempo)
+const OFFLINE_MIN = st => 60 + (st.machines.kern.owned && st.machines.kern.tuned ? 60 * st.machines.kern.lv : 0); // max minuten productie als je weg bent (half tempo)
 const INTEREST = .01, INTEREST_MAX = 30;         // spaarvarken: 1% per dag, max 30
 const CUSTOMERS = [
   { who: 'Juf Moer', icon: '👩‍💼', line: 'Voor de etalage!' }, { who: 'Speelgoed Snoes', icon: '🧸', line: 'Kinderen zijn er gek op!' },
@@ -1009,6 +1012,13 @@ const DIVS = [
   { name: 'Robo-Bokaal', rival: 'robox', maxLv: 5, kasCap: 2600, prize: 250 }
 ];
 const MATCHES_PER_DIV = 3, PROMOTE_PTS = 4;      // 3 wedstrijden, 4 punten (winst 3, gelijk 1) = promotie
+// extra teams in elke competitie (alleen in de stand; hun wedstrijden worden gesimuleerd). str = sterkte 0-1
+const LEAGUE_EXTRA = [
+  [{ id: 'dozen', name: 'De Dozenschuivers', icon: '🧃', str: .35 }, { id: 'bliksem', name: 'Blikkie Bliksem', icon: '🥫', str: .45 }],
+  [{ id: 'roltrap', name: 'FC Roltrap', icon: '🛴', str: .5 }, { id: 'stofzuig', name: 'Stofzuigers United', icon: '🧹', str: .55 }],
+  [{ id: 'kraan', name: 'Kraanwagen Kickers', icon: '🏗️', str: .6 }, { id: 'tandwiel', name: 'Tandwiel Twente', icon: '⚙️', str: .62 }],
+  [{ id: 'quantum', name: 'Quantum Kluns', icon: '🌀', str: .7 }, { id: 'laser', name: 'Laserlama’s', icon: '🦙', str: .72 }]
+];
 const RIVALS = {
   kartonco: { name: 'Kartonco', icon: '📦', col: ['#d9b07a', '#9a6a35'], boss: 'Meneer Plakband', st: { snel: 0, slim: 0, sterk: 0, verd: 0, stevig: 0 }, keeper: ['L', 'R'],
     lines: ['Onze robots zijn van 100% gerecycled karton!', 'Niet duwen! Dan scheur ik!', 'Wie heeft mijn plakband gezien?'] },
@@ -1266,24 +1276,45 @@ function autoQ(st) { return clamp(st.machines.band.q + testBonus(st), 1, 5); }
 function rateOf(st, id) { const m = st.machines[id], d = MACHINES[id]; if (!m.owned || !d.rate || !m.tuned) return 0; return d.rate[Math.min(m.tuned, m.lv) - 1] * CARE[careOf(m)].tempo; }
 const totalRate = st => ['band', 'kern'].reduce((a, id) => a + rateOf(st, id), 0);
 function demand(st) { return 30 + Math.floor(st.rep / 4) + 10 * (st.biz.etalage || 0) + (st.machines.mag.owned ? 12 * st.machines.mag.lv : 0); }
-const sellRate = st => demand(st) / DAY_MIN;     // klanten per minuut
+// klanten per minuut. Begrensd op ±1,5× het productietempo (+1), zodat de winkel na upgrades niet sneller leegverkoopt dan je kunt maken
+const sellRate = st => Math.min(demand(st) / DAY_MIN, 1 + 1.5 * totalRate(st));
 function addStock(st, n, q) { const room = Math.max(0, stockCap(st) - st.stock.length), k = Math.min(n, room); for (let i = 0; i < k; i++) st.stock.push(clamp(q, 1, 5)); st.stock.sort((a, b) => b - a); st.madeTotal += k; st.today.made += k; if (k < n) st.today.notes.push('voorraadvol'); return k; }
-function sellOne(st) { if (!st.stock.length || st.today.sold >= demand(st)) return 0; const q = st.stock.shift(); st.today.sold++; st.soldTotal++; if (st.soldTotal % 5 === 0) st.rep++; return addCoins(st, priceOf(q), 'sales'); }
+// gereserveerd voor open bestellingen: per bestelling de goedkoopste robots die nog net goed genoeg zijn. De winkel verkoopt die nooit.
+function reservedIdx(st) {
+  const res = new Set(); [...st.orders].sort((a, b) => b.minQ - a.minQ).forEach(o => { const pick = []; for (let i = st.stock.length - 1; i >= 0 && pick.length < o.n; i--) if (!res.has(i) && st.stock[i] >= o.minQ) pick.push(i); pick.forEach(i => res.add(i)); });
+  return res;
+}
+const reservedCount = st => reservedIdx(st).size;
+const sellable = st => st.stock.length - reservedCount(st);
+function sellOne(st) { if (!st.stock.length || st.today.sold >= demand(st)) return 0; const res = reservedIdx(st); let i = 0; while (i < st.stock.length && res.has(i)) i++; if (i >= st.stock.length) return 0; const q = st.stock.splice(i, 1)[0]; st.today.sold++; st.soldTotal++; if (st.soldTotal % 5 === 0) st.rep++; return addCoins(st, priceOf(q), 'sales'); }
 // real-time: sec seconden laten lopen. Geeft {made, sold, coins} terug (voor animaties).
 function tick(st, sec) {
   const out = { made: 0, sold: 0, coins: 0 }; st.acc = st.acc || { make: 0, sell: 0 };
   st.acc.make += totalRate(st) * sec / 60; const mk = Math.floor(st.acc.make); st.acc.make -= mk;
   if (mk) out.made = addStock(st, mk, autoQ(st));
+  if (st.sellPause) { st.acc.sell = 0; return out; }
   st.acc.sell += sellRate(st) * sec / 60; let sl = Math.floor(st.acc.sell); st.acc.sell -= sl;
   while (sl-- > 0) { const c = sellOne(st); if (!c) { st.acc.sell = 0; break; } out.sold++; out.coins += c; }
   return out;
 }
 // terug na een tijdje weg: productie (half tempo, max OFFLINE_MIN minuten), niet verkopen
+// Vroeger: max 20-30 min productie en géén verkoop → het magazijn zat 's avonds al vol (de winkel stopt na de dagvraag),
+// dus 's nachts kwam er 0 bij en er werd niets gemeld. Nu: de nachtwinkel verkoopt ook (half tempo, eigen nachtvraag, nooit gereserveerde robots),
+// productie loopt langer door (Herhaal-machine verlengt), en er komt altijd een 'Terwijl je sliep…'-verslag.
 function offline(st, now) {
   const mins = st.lastSeen ? (now - st.lastSeen) / 60000 : 0; st.lastSeen = now;
-  if (mins < 1) return null; const m = Math.min(mins, OFFLINE_MIN(st));
-  const n = Math.floor(totalRate(st) * m * .5); const made = n ? addStock(st, n, autoQ(st)) : 0;
-  return { mins: Math.round(mins), capped: mins > OFFLINE_MIN(st), made };
+  if (mins < 1) return null; const cap = OFFLINE_MIN(st), m = Math.min(mins, cap);
+  const r = { mins: Math.round(mins), capped: mins > cap, capMin: cap, made: 0, sold: 0, coins: 0, full: false, untuned: totalRate(st) === 0, rate: totalRate(st) };
+  // in stapjes van 1 minuut: maken en (als de verkoop niet op pauze staat) verkopen, zodat er ruimte blijft
+  let make = 0, sell = 0, nightLeft = Math.ceil(demand(st) * .6); const sr = st.sellPause ? 0 : sellRate(st) * .5;
+  for (let t = 0; t < m; t++) {
+    make += totalRate(st) * .5; const mk = Math.floor(make); make -= mk;
+    if (mk) { const room = stockCap(st) - st.stock.length; const k = Math.min(mk, room); if (k < mk) r.full = true; if (k > 0) { for (let i = 0; i < k; i++) st.stock.push(autoQ(st)); st.stock.sort((a, b) => b - a); st.madeTotal += k; r.made += k; } }
+    sell += sr; let sl = Math.floor(sell); sell -= sl;
+    while (sl-- > 0 && nightLeft > 0) { const res = reservedIdx(st); let i = 0; while (i < st.stock.length && res.has(i)) i++; if (i >= st.stock.length) break; const q = st.stock.splice(i, 1)[0]; st.soldTotal++; nightLeft--; r.sold++; r.coins += addCoins(st, priceOf(q), 'sales'); }
+  }
+  st.today.night = (st.today.night || 0) + r.made; st.lastNight = r;
+  return r;
 }
 // ---- werkbeurt (puzzels) ----
 const masteryKey = (id, lv, diff) => `${id}:${lv}:${diff}`;
@@ -1328,7 +1359,7 @@ function closeDay(st) {
   const up = Math.min(st.coins, upkeep(st)); st.coins -= up; f.upkeep += up;
   const rente = Math.min(INTEREST_MAX, Math.floor(st.coins * INTEREST)); addCoins(st, rente, 'other');
   const inc = f.sales + f.orders + f.other, exp = f.invest + f.upkeep;
-  const r = { day: st.day, made: st.today.made, jobs: Object.values(st.today.jobs).reduce((a, b) => a + b, 0), sold: st.today.sold, orders: st.today.orders, hidden: st.today.hidden,
+  const r = { day: st.day, auto: st.today.night || 0, made: st.today.made, jobs: Object.values(st.today.jobs).reduce((a, b) => a + b, 0), sold: st.today.sold, orders: st.today.orders, hidden: st.today.hidden,
     inc, exp, profit: inc - f.upkeep, invest: f.invest, upkeep: f.upkeep, rente, sales: f.sales, ordersC: f.orders, earned: st.today.earned, coins: st.coins, notes: [...new Set(st.today.notes)] };
   for (const id in st.machines) { const m = st.machines[id]; if (m.owned && !st.today.jobs[id] && !st.today['smeer_' + id]) m.idle++; }
   r.care = Object.fromEntries(Object.entries(st.machines).filter(([, m]) => m.owned).map(([id, m]) => [id, careOf(m)]));
@@ -1394,6 +1425,10 @@ function newMatch(teams, o = {}) {
   kickoff(M, 0); return M;
 }
 function avgSlim(M, t) { const b = M.bots.filter(x => x.team === t); return b.reduce((a, x) => a + x.st.slim, 0) / b.length; }
+// juichen overslaan (tik) → meteen naar de aftrap
+function skipCele(M) { if (M.cele > 0) { M.cele = 0; M.fx = []; startCount(M); return true; } return false; }
+// aftrap met 3-2-1: iedereen staat stil tot GO
+function startCount(M, team) { if (team == null) team = M.kickTeam ?? 0; kickoff(M, team); M.kickTeam = null; M.count = 3; M.events.push({ type: 'count', n: 3 }); }
 function kickoff(M, team) {
   const P = [[38, 30], [30, 14], [30, 46]];
   M.bots.forEach(b => { const p = P[b.i % 3]; b.x = b.team ? FW - p[0] : p[0]; b.y = p[1]; b.vx = b.vy = 0; b.down = 0; b.wobble = 0; b.cool = .3; });
@@ -1479,7 +1514,8 @@ function readKeeper(M, team) { const t = 1 - team, seq = M.kseq[t]; if (!seq) re
 // inputs: [{mx,my,shoot,push,play}, …] per menselijke speler (index = ctrl-slot), met b.human = slot
 function step(M, dt, inputs = []) {
   if (M.over || M.pause) return;
-  if (M.cele > 0) { M.cele -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); return; }
+  if (M.cele > 0) { M.cele -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); if (M.cele <= 0) startCount(M); return; }
+  if (M.count > 0) { const before = Math.ceil(M.count); M.count -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); const now = Math.ceil(M.count); if (now !== before) { M.events.push({ type: 'count', n: now }); if (now === 0) M.fx.push({ x: 50, y: 30, txt: 'GO!', t: .8, col: '#5dff8a', big: true }); } return; }
   M.t += dt; M.events.length = 0; const B = M.ball;
   if (M.half === 1 && M.t >= HALF_LEN) { M.pause = 'rust'; M.half = 2; return; }
   if (M.t >= 2 * HALF_LEN) { M.over = true; return; }
@@ -1542,7 +1578,7 @@ function step(M, dt, inputs = []) {
       if (Math.abs(B.x - k.x) < 1.6 && Math.abs(B.y - k.y) < 6.5 + .3 * k.skill && toward) { B.vx = -B.vx * .6; B.vy = (M.rng() - .5) * 20; B.x = k.x + (k.team ? -2 : 2); const wasShot = B.shot; B.shot = null; k.dive = null; M.events.push({ type: 'save', team: k.team }); M.fx.push({ x: k.x, y: k.y - 4, txt: 'GEKEERD!', t: 1.4, col: '#38d6ff' }); if (wasShot) k.saves = (k.saves || 0) + 1; } }
     // goal of uit
     if (B.x < 0 || B.x > FW) { const t = B.x > FW ? 0 : 1;
-      if (B.y > GY0 && B.y < GY1) { M.score[t]++; M.events.push({ type: 'goal', team: t }); M.fx.push({ x: 50, y: 30, txt: GOAL_LINES[Math.floor(M.rng() * GOAL_LINES.length)], t: 2, col: '#ffb43b', big: true }); M.keepers.forEach(k => k.dive = null); kickoff(M, 1 - t); M.cele = 1.8; return; }
+      if (B.y > GY0 && B.y < GY1) { M.score[t]++; M.events.push({ type: 'goal', team: t }); M.fx.push({ x: 50, y: 30, txt: GOAL_LINES[Math.floor(M.rng() * GOAL_LINES.length)], t: 2, col: '#ffb43b', big: true }); M.keepers.forEach(k => k.dive = null); M.kickTeam = 1 - t; M.cele = 2.6; return; }
       B.vx *= -.7; B.x = clamp(B.x, .5, FW - .5); B.shot = null; M.keepers.forEach(k => k.dive = null); }
     // oppakken
     const sp = Math.hypot(B.vx, B.vy); let best = null, bd = 9;
@@ -1618,6 +1654,24 @@ function coachTip(st) {
   if (d > 0) t += ' Te moeilijk? Zet het stadion even op 🙂 Makkelijk, dat mag gewoon.';
   return t;
 }
+// ---- competitiestand: jij, de hoofdrivaal en 2 extra teams ----
+function leagueTeams(div) { const R = RIVALS[DIVS[div].rival]; return [{ id: 'me', name: 'Jouw team', icon: '⭐', me: true }, { id: DIVS[div].rival, name: R.name, icon: R.icon, str: .6 }, ...LEAGUE_EXTRA[div]]; }
+function newLeague(div) { return { div, rows: Object.fromEntries(leagueTeams(div).map(t => [t.id, { p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, form: [] }])), log: [] }; }
+function leagueAdd(L, a, b, ga, gb) {
+  for (const [id, f, g] of [[a, ga, gb], [b, gb, ga]]) { const r = L.rows[id]; r.p++; r.gf += f; r.ga += g; const x = f > g ? 'W' : f === g ? 'G' : 'V'; r[x === 'W' ? 'w' : x === 'G' ? 'd' : 'l']++; r.form = r.form.concat([x]).slice(-5); }
+}
+function simScore(rng, sa, sb) { const goals = s => { let n = 0; for (let i = 0; i < 6; i++) if (rng() < .12 + .38 * s) n++; return n; }; return [goals(sa + .15 * (sa - sb)), goals(sb + .15 * (sb - sa))]; }
+function leagueRound(st, myScore) {
+  const f = st.football; if (!f.league || f.league.div !== f.div) f.league = newLeague(f.div);
+  const L = f.league, T = leagueTeams(f.div), rid = DIVS[f.div].rival; leagueAdd(L, 'me', rid, myScore[0], myScore[1]);
+  const rng = mkRng((st.day * 7919 + f.history.length * 31 + f.div) >>> 0), [x, y] = [T[2], T[3]], [a, b] = simScore(rng, x.str, y.str); leagueAdd(L, x.id, y.id, a, b);
+  L.log = L.log.concat([{ round: L.rows.me.p, games: [['me', rid, myScore[0], myScore[1]], [x.id, y.id, a, b]] }]).slice(-6);
+  return L;
+}
+function leagueTable(st, L) {
+  const f = st.football; L = L || f.league || newLeague(f.div); const T = leagueTeams(L.div);
+  return T.map(t => ({ ...t, ...L.rows[t.id], pts: 3 * L.rows[t.id].w + L.rows[t.id].d, gd: L.rows[t.id].gf - L.rows[t.id].ga })).sort((p, q) => q.pts - p.pts || q.gd - p.gd || q.gf - p.gf || (p.me ? -1 : 1));
+}
 function applyMatch(st, res, mode) {
   const f = st.football, D = DIVS[f.div], won = res.score[0] > res.score[1], draw = res.score[0] === res.score[1];
   const out = { won, draw, prize: 0, dmg: [], promoted: false, champion: false, stay: false, pts: 0 };
@@ -1625,10 +1679,10 @@ function applyMatch(st, res, mode) {
   if (mode === 'versus') { out.prize = addKas(st, 15); return out; }
   const pay = FB_DIFF[fbDiff(st)].pay; out.diff = fbDiff(st); out.prize = addKas(st, Math.round((won ? D.prize : draw ? D.prize / 2 : D.prize / 4) * pay)); if (won) st.rep += 3; else if (draw) st.rep += 1; f.lastLost = !won && !draw;
   f.divRes.push(won ? 3 : draw ? 1 : 0); f.history = f.history.concat([{ day: st.day, div: f.div, score: res.score, rival: D.rival }]).slice(-20);
-  out.pts = f.divRes.reduce((a, b) => a + b, 0);
+  out.pts = f.divRes.reduce((a, b) => a + b, 0); leagueRound(st, res.score);
   if (f.divRes.length >= MATCHES_PER_DIV || out.pts >= PROMOTE_PTS + 2) {
     if (out.pts >= PROMOTE_PTS) { if (f.div < DIVS.length - 1) { f.div++; out.promoted = true; } else { f.titles++; out.champion = true; } } else out.stay = true;
-    f.divRes = [];
+    f.divRes = []; f.lastLeague = f.league; f.league = newLeague(f.div);
   }
   return out;
 }
@@ -2022,7 +2076,7 @@ const fmt1 = x => (Math.round(x * 10) / 10).toString().replace('.', ',');
 const pbText = o => o.payback ? `verdient zichzelf terug in ~${fmt1(o.payback)} ${o.payback <= 1 ? 'dag' : 'dagen'}` : o.why === 'klanten' ? 'nu nog geen extra winst: de winkel heeft eerst meer klanten nodig' : o.id === 'tik' ? 'meer munten en robots als je het tikspel speelt' : 'geen extra inkomsten';
 function renderHud() {
   $('#hCoins').innerHTML = `🪙 <b>${S.coins}</b><small>/${kluisCap(S)}</small>`;
-  $('#hRep').innerHTML = `⭐ <b>${S.rep}</b>`; $('#hRate').innerHTML = `⚙️ <b>${fmt1(totalRate(S))}</b><small>/min</small>`; $('#hStock').innerHTML = `🤖 <b>${S.stock.length}</b><small>/${stockCap(S)}</small>`; $('#hDay').textContent = `Dag ${S.day}`;
+  $('#hRep').innerHTML = `⭐ <b>${S.rep}</b>`; $('#hRate').innerHTML = `⚙️ <b>${fmt1(totalRate(S))}</b><small>/min</small>`; $('#hStock').innerHTML = `🤖 <b>${S.stock.length}</b><small>/${stockCap(S)}</small>${reservedCount(S) ? `<small> 🔒${reservedCount(S)}</small>` : ''}${S.sellPause ? '<small> ⏸️</small>' : ''}`; $('#hDay').textContent = `Dag ${S.day}`;
   const ready = S.orders.some(o => canDeliver(S, o)) || (S.stock.length && S.today.sold < demand(S));
   $('#fShop').classList.toggle('pulse', !!ready);
 }
@@ -2141,15 +2195,17 @@ function finishHidden() {
 /* ---------- winkel ---------- */
 function openShop() {
   SFX.click(); const left = Math.max(0, demand(S) - S.today.sold), qs = {}; S.stock.forEach(q => qs[q] = (qs[q] || 0) + 1);
-  let h = `<div class="shopstock"><div><b>🤖 Voorraad: ${S.stock.length}</b> ${Object.entries(qs).sort((a, b) => b[0] - a[0]).map(([q, n]) => `<span class="pill">${n}× ${'★'.repeat(q)}</span>`).join(' ')}</div>
+  const rsv = reservedCount(S);
+  let h = `<div class="shopstock"><div><b>🤖 Voorraad: ${S.stock.length}</b>${rsv ? ` <span class="pill rsv">🔒 ${rsv} gereserveerd voor bestellingen</span>` : ''} ${Object.entries(qs).sort((a, b) => b[0] - a[0]).map(([q, n]) => `<span class="pill">${n}× ${'★'.repeat(q)}</span>`).join(' ')}</div>
     <div class="small-note">Vandaag komen er nog <b>${left}</b> klanten in de winkel. Prijs: 🪙 ${priceOf(1)} (★) tot 🪙 ${priceOf(5)} (★★★★★)${testBonus(S) ? ', +1 ★ door de testkamer' : ''}.</div>
-    <button class="btn green" id="shSell" ${S.stock.length && left ? '' : 'disabled'}>💰 Verkoop ${Math.min(left, S.stock.length)} robots</button></div><h3>📋 Bestellingen</h3>`;
+    <div class="orow"><button class="btn green" id="shSell" ${sellable(S) && left ? '' : 'disabled'}>💰 Verkoop ${Math.min(left, sellable(S))} robots</button><button class="btn ${S.sellPause ? 'red' : 'white'} small" id="shPause">${S.sellPause ? '▶️ Verkoop hervatten' : '⏸️ Verkoop pauzeren'}</button></div>${S.sellPause ? '<p class="small-note">De winkel verkoopt nu niets vanzelf: handig om te sparen voor een grote bestelling.</p>' : '<p class="small-note">🔒 De winkel verkoopt nooit robots die je nodig hebt voor een bestelling.</p>'}</div><h3>📋 Bestellingen</h3>`;
   h += S.orders.length ? S.orders.map(o => { const ok = canDeliver(S, o), have = S.stock.filter(q => q >= o.minQ).length;
     return `<div class="order ${ok ? 'ok' : ''}"><span class="ci">${o.icon}</span><div><b>${o.who}</b> wil <b>${o.n}</b> robots van minstens ${'★'.repeat(o.minQ)}<br><small>“${o.line}” · beloning 🪙 ${o.reward} + ⭐ ${o.rep}${o.until <= S.day ? ' · laatste dag!' : ''}</small></div>
       <button class="btn small ${ok ? 'green' : 'white'}" data-order="${o.id}" ${ok ? '' : 'disabled'}>${ok ? '📦 Leveren' : `${have}/${o.n}`}</button></div>`; }).join('') : '<p class="small-note">Geen bestellingen. Morgen komen er nieuwe!</p>';
   $('#shopBody').innerHTML = h; openOv('ovShop');
 }
 function shopClick(e) {
+  if (e.target.closest('#shPause')) { S.sellPause = !S.sellPause; save(); SFX.click(); renderFactory(); openShop(); return; }
   if (e.target.closest('#shSell')) { const r = sellNow(S); save(); SFX.fanfare(); coinBurst(e.target, 8); toast(`💰 ${r.sold} robots verkocht voor 🪙 ${r.coins}${r.bonus ? ' (+10% omdat alle machines blij zijn!)' : ''}`); renderFactory(); openShop(); if (S.soldTotal >= FOOTBALL_AT && !S.football.seen) { S.football.seen = true; save(); closeOv('ovShop'); confetti(80); advise('WOW! Opa belt: “Zoveel robots verkocht? Dan bouw ik een <b>voetbalstadion</b>!” Het stadion is open: tik op ⚽ Naar het stadion!'); } return; }
   const b = e.target.closest('[data-order]'); if (b) { const r = deliver(S, b.dataset.order); if (r) { save(); SFX.fanfare(); confetti(30); toast(`📦 Geleverd! 🪙 +${r.coins} en ⭐ +${r.rep}`); renderFactory(); openShop(); } }
 }
@@ -2261,7 +2317,21 @@ function liveTick() {
 }
 function welcomeBack() {
   const r = offline(S, Date.now()); save();
-  if (r && r.made) toast(`🌙 Terwijl je weg was (${r.mins >= 120 ? Math.round(r.mins / 60) + ' uur' : r.mins + ' min'}) maakte de fabriek ${r.made} robots.${r.capped ? ' (Langer weg? De herhaal-machine laat hem langer doorwerken.)' : ''}`);
+  if (!r || r.mins < 15 || !S.machines.band.tuned && !S.soldTotal) return;
+  if (r.mins < 60 || !['scrFactory', 'scrTitle', null, undefined].includes(CUR_SCREEN)) { if (r.made || r.sold) toast(`🌙 Terwijl je weg was (${r.mins >= 120 ? Math.round(r.mins / 60) + ' uur' : r.mins + ' min'}): ${r.made} robots gemaakt, ${r.sold} verkocht (🪙 ${r.coins}).`); return; }
+  showNight(r);
+}
+function showNight(r) {
+  const tijd = r.mins >= 120 ? Math.round(r.mins / 60) + ' uur' : r.mins + ' minuten', capU = r.capMin >= 120 ? Math.round(r.capMin / 60) + ' uur' : r.capMin + ' min';
+  let h = `<p>Je was <b>${tijd}</b> weg. De fabriek draaide ${r.capped ? `<b>${capU}</b> door (op half tempo), daarna ging de nachtploeg slapen` : 'de hele tijd door (op half tempo)'}.</p>
+    <div class="finrow"><div><span>🤖 Gemaakt</span><b>+${r.made}</b></div><div><span>🛒 Nachtwinkel verkocht</span><b>${r.sold}</b></div><div><span>🪙 Verdiend</span><b>+${r.coins}</b></div></div>`;
+  const tips = [];
+  if (r.untuned) tips.push('Bliep: “Er draaide niks: regel eerst een machine af met een puzzel, dan maakt hij vanzelf robots.”');
+  if (r.full) tips.push('Opa: “Het magazijn was vol, dus de machines stonden een tijdje stil. Een groter 📦 Magazijn helpt!”');
+  if (r.capped) tips.push(`Opa: “Upgrade de 🔁 Herhaal-machine: dan werkt de nachtploeg langer door (nu ${capU}).”`);
+  if (!tips.length) tips.push('Bliep: “Piep! Alles liep gesmeerd. Ik heb de hele nacht robots geteld. 1, 2, 3… ik ben bij 7 in slaap gevallen.”');
+  h += tips.map(t => `<p class="small-note">${t}</p>`).join('');
+  showResult({ title: '🌙 Terwijl je sliep…', stars: 0, reward: `<div>${h}</div>`, art: opaSVG('knipoog'), btns: [['🏭 Naar de fabriek', 'green', () => goFactory()]] });
 }
 
 /* ===== screens/tik.js ===== */
@@ -2327,7 +2397,7 @@ function goStadion() {
   const hurt = f.lineup.filter(i => f.robots[i].dmg > 0).length;
   $('#stBody').innerHTML = `<div class="ladder">${DIVS.map((d, i) => `<span class="${i === f.div ? 'cur' : i < f.div ? 'done' : ''}">${i < f.div ? '✓ ' : ''}${d.name}</span>`).join('')}</div>
    <div class="rivalcard"><div class="ri">${R.icon}</div><div><h3>${R.name}</h3><small class="small-note">Baas: ${R.boss}</small><br><q>${pick(R.lines)}</q>
-     <div class="divdots">${dots}</div><small class="small-note">${MATCHES_PER_DIV} wedstrijden · ${PROMOTE_PTS} punten = promotie (winst 3, gelijk 1). Nu: ${divPoints(S)} punten.</small></div></div>
+     <div class="divdots">${dots}</div><small class="small-note">${MATCHES_PER_DIV} wedstrijden · ${PROMOTE_PTS} punten = promotie (winst 3, gelijk 1). Nu: ${divPoints(S)} punten.</small><br><button class="btn small white" data-stand="cur">📊 Bekijk de stand${(() => { const t = leagueTable(S), i = t.findIndex(x => x.me); return t[0].p ? ` (jij: ${i + 1}e)` : ''; })()}</button></div></div>
    <div class="card"><b>Jouw opstelling</b><div class="lineup">${f.lineup.map(i => `<div class="mini">${fbBotSVG(f.robots[i].look, f.robots[i].dmg)}<br>${f.robots[i].name}${f.robots[i].dmg ? ' 🩹' : ''}${f.robots[i].fit ? ' 💪' : ''}</div>`).join('')}</div>
      ${hurt ? `<p class="small-note">🩹 ${hurt} robot(s) zijn beschadigd en spelen slechter. Repareer ze in de werkplaats (🛠️ Team).</p>` : ''}
      <p class="small-note">🏦 Clubkas: elke avond gaat ${Math.round(f.kasShare * 100)}% van de fabriekswinst erin, plus prijzengeld. Maximaal 🪙 ${kasCap(S)} in deze divisie, en upgrades tot niveau ${D.maxLv}. Geld helpt, maar slim spelen wint!</p></div>
@@ -2339,7 +2409,7 @@ function startMatch(mode) {
   fbInit(S); const f = S.football, rid = DIVS[f.div].rival; FB.mode = mode; FB.ended = false; FB.boost = 1;
   const me = playerTeam(f), them = mode === 'versus' ? { bots: me.bots.map(b => ({ ...b, look: Object.assign({}, b.look, { body: (b.look.body + 3) % 6 }) })), keeper: me.keeper } : rivalTeam(rid);
   const M = newMatch([me, them], { seed: (Date.now() & 0xffff) + 1, map: f.history.length + f.div, keeperSeq1: mode === 'versus' ? null : RIVALS[rid].keeper, diff: fbDiff(S), div: f.div, rubber: mode !== 'versus', ctrl: mode === 'solo' ? [0] : mode === 'coop' ? [0, 0] : [0, 1] });
-  M.playLv = [f.playLv, 0]; M.radar = f.lineup.some(i => f.robots[i].gear === 'radar'); FB.M = M; FB.inp = [{}, {}];
+  startCount(M, 0); M.playLv = [f.playLv, 0]; M.radar = f.lineup.some(i => f.robots[i].gear === 'radar'); FB.M = M; FB.inp = [{}, {}];
   show('scrMatch'); buildControls(); resizeMatch(); musicFor('scrMatch');
   if (mode !== 'versus') { const R = RIVALS[rid]; setTimeout(() => toast(`${R.icon} ${R.boss}: “${pick(R.lines)}”`), 300); }
   else toast('⚔️ Speler 1 (links, blauw) tegen speler 2 (rechts, roze)!');
@@ -2356,6 +2426,7 @@ function matchFrame(now) {
 }
 function matchEvents(M) {
   for (const e of M.events) {
+    if (e.type === 'count') { if (S.settings.sfx && AUD.ac) tone(e.n ? 660 : 1320, e.n ? .12 : .3, 'square', .05); }
     if (e.type === 'goal') { SFX.fanfare(); if (S.settings.fx) confetti(e.team === 0 || FB.mode === 'versus' ? 60 : 10); }
     else if (e.type === 'ko') { tone(900, .35, 'square', .08, 0, 180); tone(1400, .2, 'sine', .05, .15, 600); }
     else if (e.type === 'fall') SFX.toet();
@@ -2404,7 +2475,7 @@ function joyBind(el, s) {
 function setStick(s, jx, jy) { const port = FB.view && FB.view.port; FB.inp[s].mx = port ? -jy : jx; FB.inp[s].my = port ? jx : jy; FB.inp[s].stick = Math.hypot(jx, jy) > .1; }
 const KEYMAP = { solo: [{ u: ['ArrowUp', 'KeyW'], d: ['ArrowDown', 'KeyS'], l: ['ArrowLeft', 'KeyA'], r: ['ArrowRight', 'KeyD'], shoot: ['Space', 'KeyJ'], push: ['KeyX', 'KeyK'], play: ['KeyC', 'KeyL'], sprint: ['ShiftLeft', 'ShiftRight', 'KeyE'] }],
   two: [{ u: ['KeyW'], d: ['KeyS'], l: ['KeyA'], r: ['KeyD'], shoot: ['KeyF'], push: ['KeyG'], sprint: ['KeyE'] }, { u: ['ArrowUp'], d: ['ArrowDown'], l: ['ArrowLeft'], r: ['ArrowRight'], shoot: ['KeyK', 'Enter'], push: ['KeyL'], sprint: ['ShiftRight'] }] };
-addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return; if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['shoot', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
+addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return; if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) clearConfetti(); if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['shoot', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
 addEventListener('keyup', e => { FB.keys[e.code] = false; });
 function keyInput() {
   const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two'];
@@ -2452,7 +2523,8 @@ function drawMatch(M) {
   if (B.shot) { g.strokeStyle = 'rgba(255,180,59,.5)'; g.lineWidth = br; g.beginPath(); g.moveTo(bx, by); const [tx, ty] = FP(B.x - B.vx * .06, B.y - B.vy * .06); g.lineTo(tx, ty); g.stroke(); }
   // teksten
   for (const f of M.fx) { const [x, y] = FP(f.x, f.y); g.save(); g.font = `800 ${f.big ? Math.max(28, v.s * 6) : Math.max(13, v.s * 2.4)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.lineWidth = 4; g.strokeStyle = '#000'; g.fillStyle = f.col; const yy = y - (1.6 - f.t) * 18; g.globalAlpha = Math.min(1, f.t * 2); if (f.big) { const [cx, cy] = FP(50, 30); g.strokeText(f.txt, cx, cy); g.fillText(f.txt, cx, cy); } else { g.strokeText(f.txt, x, yy); g.fillText(f.txt, x, yy); } g.restore(); }
-  if (M.cele > 0) { g.fillStyle = `rgba(255,180,59,${.15 * M.cele})`; g.fillRect(0, 0, v.W, v.H); }
+  if (M.cele > 0) { g.fillStyle = `rgba(255,180,59,${.12 * Math.min(1, M.cele)})`; g.fillRect(0, 0, v.W, v.H); g.font = `700 ${Math.max(13, v.s * 2.2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = 'rgba(255,255,255,.85)'; g.fillText('tik om door te gaan', v.W / 2, v.H - Math.max(26, v.s * 4)); }
+  if (M.count > 0) { const n = Math.ceil(M.count), fr = M.count - Math.floor(M.count); g.fillStyle = 'rgba(8,12,24,.35)'; g.fillRect(0, 0, v.W, v.H); g.save(); g.font = `900 ${Math.max(60, v.s * 16) * (1 + .4 * fr)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineWidth = 8; g.strokeStyle = '#0b1020'; g.fillStyle = '#ffd34a'; const [cx, cy] = FP(50, 30); g.globalAlpha = Math.min(1, .3 + fr * 1.4); g.strokeText(n, cx, cy); g.fillText(n, cx, cy); g.restore(); }
 }
 function botCols(look) { if (look.rival) return RIVALS[look.rival].col; return LOOKS.body[look.body || 0]; }
 function drawBot(g, b, M) {
@@ -2505,7 +2577,7 @@ function halfTime() {
   $('#halfBtns').innerHTML = (FB.mode !== 'versus' ? `<button class="btn purple" id="halfCheer">📣 Juich-ritme</button>` : '') + `<button class="btn green" id="halfGo">▶️ 2e helft</button>`;
   $('#halfBody').onclick = e => { const b = e.target.closest('[data-sub]'); if (!b) return; const k = +b.dataset.sub, bench = f.robots.map((r, i) => i).filter(i => !f.lineup.includes(i)).sort((a, c) => f.robots[a].dmg - f.robots[c].dmg)[0]; if (bench == null) return;
     const outRi = f.lineup[k]; swapIn(S, outRi, bench); const r = f.robots[bench], bot = M.bots[k]; Object.assign(bot, { name: r.name, look: r.look, st: botStats(r), glue: r.gear === 'superlijm', kos: 0 }); bot.maxhp = bot.hp = 3 + 1.5 * bot.st.stevig; save(); SFX.ok(); toast(`🔁 ${r.name} komt erin!`); halfTime(); };
-  const go = () => { closeOv('ovHalf'); M.pause = null; kickoff(M, 1); M.boost[0] = FB.boost; show('scrMatch'); resizeMatch(); FB.last = performance.now(); FB.raf = requestAnimationFrame(matchFrame); };
+  const go = () => { closeOv('ovHalf'); M.pause = null; startCount(M, 1); M.boost[0] = FB.boost; show('scrMatch'); resizeMatch(); FB.last = performance.now(); FB.raf = requestAnimationFrame(matchFrame); };
   $('#halfGo').onclick = go;
   const ch = $('#halfCheer'); if (ch) ch.onclick = () => { closeOv('ovHalf'); startRun({ mode: 'fbcheer', total: 1, pool: [['h2', Math.min(5, 1 + S.football.div)]], d: 1, kind: 'klank' }); };
   FB.resume = go; openOv('ovHalf');
@@ -2527,8 +2599,24 @@ function endMatch() {
   if (!out.won && FB.mode !== 'versus') rw += `<p class="coach">🧢 Coach Opa: “${coachTip(S)}”</p>`;
   if (false) rw += `<p class="small-note">💡 ${pick(['Kijk naar de 🧤 pijltjes: welke kant duikt hun keeper? Schiet naar de andere kant (joystick die kant op tijdens het schieten).', 'Train je robots: dat kost bijna niks en ze spelen beter.', 'Upgrade "Slimmer": dan spelen je teamgenoten beter zelfstandig.', 'Programmeer een spelzet bij Tactiek!', 'Een betere fabriek = meer geld in de clubkas = betere robots. Alles hangt samen!'])}</p>`;
   showResult({ title, stars: out.won ? 3 : out.draw ? 2 : 0, reward: `<div>${rw}</div>`, art: fbBotSVG(f.robots[f.lineup[0]].look, 0, out.won),
-    btns: [['🏟️ Stadion', 'green', () => goStadion()], ['🛠️ Team', 'white', () => goTeam()]] });
+    btns: [['🏟️ Stadion', 'green', () => goStadion()], ...(FB.mode !== 'versus' ? [['📊 Stand', 'white', () => openStand(out.promoted || out.stay || out.champion ? 'last' : 'cur')]] : []), ['🛠️ Team', 'white', () => goTeam()]] });
   if (!out.won) { SFX.nope(); }
+}
+
+// juichen overslaan: tik ergens op het veld (niet op de knoppen)
+function clearConfetti() { document.querySelectorAll('.confetti,.conf').forEach(e => e.remove()); }
+document.addEventListener('pointerdown', e => { if (CUR_SCREEN !== 'scrMatch' || !FB.M || !(FB.M.cele > 0)) return; if (e.target.closest('.abtn,.joy,button')) return; if (skipCele(FB.M)) clearConfetti(); });
+
+/* ---------- competitiestand ---------- */
+function openStand(which = 'cur') {
+  const f = S.football, L = which === 'last' && f.lastLeague ? f.lastLeague : (f.league && f.league.div === f.div ? f.league : newLeague(f.div)), D = DIVS[L.div], rows = leagueTable(S, L);
+  const name = id => (leagueTeams(L.div).find(t => t.id === id) || {}).name || id, icon = id => (leagueTeams(L.div).find(t => t.id === id) || {}).icon || '';
+  const fm = a => a.map(x => `<i class="fm ${x === 'W' ? 'w' : x === 'G' ? 'd' : 'l'}">${x}</i>`).join('');
+  let h = `<p class="small-note">${which === 'last' ? 'Eindstand van het seizoen.' : `Seizoen bezig: ronde ${L.rows.me.p} van ${MATCHES_PER_DIV}.`} Winst = 3 punten, gelijk = 1. Jij speelt elke ronde tegen ${RIVALS[D.rival].icon} ${RIVALS[D.rival].name}; de andere teams spelen tegen elkaar. Met ${PROMOTE_PTS} punten promoveer je!</p>
+  <table class="stand"><tr><th>#</th><th>Team</th><th title="Gespeeld">G</th><th title="Gewonnen">W</th><th title="Gelijk">G</th><th title="Verloren">V</th><th title="Doelpunten">Doel</th><th>Ptn</th><th>Vorm</th></tr>
+  ${rows.map((r, i) => `<tr class="${r.me ? 'me' : ''}"><td>${i + 1}</td><td>${r.icon} ${r.name}</td><td>${r.p}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${r.gf}-${r.ga}</td><td><b>${r.pts}</b></td><td>${fm(r.form)}</td></tr>`).join('')}</table>`;
+  h += L.log.length ? `<h3>Laatste uitslagen</h3>${[...L.log].reverse().map(g => `<div class="small-note"><b>Ronde ${g.round}:</b> ${g.games.map(([a, b, x, y]) => `${icon(a)} ${name(a)} <b>${x}-${y}</b> ${name(b)} ${icon(b)}`).join(' · ')}</div>`).join('')}` : '<p class="small-note">Nog geen wedstrijden gespeeld. Speel je eerste wedstrijd!</p>';
+  $('#standTitle').textContent = `📊 Stand ${D.name}`; $('#standBody').innerHTML = h; openOv('ovStand');
 }
 
 /* ===== screens/team.js ===== */
@@ -2702,7 +2790,8 @@ function init() {
   $('#fFoot').addEventListener('click', e => { if (e.target.closest('#fGoStadion')) { SFX.click(); goStadion(); } });
   $('#stBack').onclick = () => { SFX.click(); goFactory(); }; $('#stTeam').onclick = () => { SFX.click(); goTeam(); };
   $('#stPlay').onclick = () => { SFX.click(); startMatch('solo'); }; $('#stCoop').onclick = () => { SFX.click(); startMatch('coop'); }; $('#stVs').onclick = () => { SFX.click(); startMatch('versus'); };
-  $('#stBody').addEventListener('click', e => { const b = e.target.closest('[data-fbdiff]'); if (!b) return; SFX.click(); setFbDiff(S, +b.dataset.fbdiff); save(); goStadion(); });
+  $('#standClose').onclick = () => closeOv('ovStand');
+  $('#stBody').addEventListener('click', e => { const sb = e.target.closest('[data-stand]'); if (sb) { SFX.click(); return openStand(sb.dataset.stand); } const b = e.target.closest('[data-fbdiff]'); if (!b) return; SFX.click(); setFbDiff(S, +b.dataset.fbdiff); save(); goStadion(); });
   $('#tmBack').onclick = () => { SFX.click(); goStadion(); }; $('#scrTeam').addEventListener('click', teamClick);
   $('#mPause').onclick = async () => { const M = FB.M; if (!M) return; M.pause = 'pauze'; if (await confirmBox('Pauze. Wil je de wedstrijd stoppen? (Telt niet mee.)')) { FB.M = null; cancelAnimationFrame(FB.raf); goStadion(); } else { M.pause = null; FB.last = performance.now(); FB.raf = requestAnimationFrame(matchFrame); } }; $('#fFin').onclick = openFin; $('#finClose').onclick = () => closeOv('ovFin'); $('#jobClose').onclick = () => closeOv('ovJob');
   $('#fSamen').onclick = () => { SFX.click(); openSamen(); };
@@ -2729,7 +2818,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, showNight, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
