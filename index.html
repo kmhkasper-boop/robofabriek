@@ -427,6 +427,8 @@ input[type=text],.namein{background:#0f1520;color:#fff;border:1px solid var(--ed
 @media (max-height:500px){.pl1 .abtn.turbo,.pl2 .abtn.turbo{bottom:calc(env(safe-area-inset-bottom) + 204px)!important}}
 table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,table.stand td{padding:5px 4px;text-align:center;border-bottom:1px solid #ffffff1a}table.stand td:nth-child(2){text-align:left}table.stand tr.me{background:#38d6ff22;font-weight:800}i.fm{display:inline-block;width:16px;height:16px;line-height:16px;border-radius:4px;font-style:normal;font-size:10px;margin:0 1px;color:#fff}i.fm.w{background:#2fae5f}i.fm.d{background:#8a8f9c}i.fm.l{background:#c8423a}.pill.rsv{background:#ffc94a33;border-color:#ffc94a88}
 .finrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}.finrow div{display:flex;flex-direction:column;align-items:center;background:#ffffff10;border-radius:10px;padding:8px}.finrow b{font-size:1.4em}
+.abtn.pass{background:radial-gradient(circle at 40% 35%,#ffe98a,#c9a210);width:70px;height:70px;color:#2a2000}.abtn.shoot.down{box-shadow:0 0 0 6px #ffb43b88,0 4px 0 rgba(0,0,0,.5)}
+@media (max-height:500px){.pl1 .abtn.pass,.pl2 .abtn.pass{bottom:calc(env(safe-area-inset-bottom) + 204px)!important}}
 </style>
 </head>
 <body>
@@ -1429,7 +1431,7 @@ function avgSlim(M, t) { const b = M.bots.filter(x => x.team === t); return b.re
 function skipCele(M) { if (M.cele > 0) { M.cele = 0; M.fx = []; startCount(M, null, true); return true; } return false; }
 // aftrap met 3-2-1: iedereen staat stil tot GO
 // na een goal: snel 'Klaar? GO!' (0,6 s); bij de aftrap van de wedstrijd/2e helft: 3-2-1 (1,5 s)
-function startCount(M, team, quick) { if (team == null) team = M.kickTeam ?? 0; kickoff(M, team); M.kickTeam = null; M.quick = !!quick; M.count = M.countLen = quick ? .6 : 1.5; M.events.push({ type: 'count', n: quick ? 1 : 3 }); }
+function startCount(M, team, quick) { if (team == null) team = M.kickTeam ?? 0; kickoff(M, team); M.kickTeam = null; M.quick = !!quick; (M.ctrl || []).forEach((t, s) => { if (t != null && !M.bots.some(b => b.human === s)) { const c = M.bots.find(b => b.team === t && b.human == null); if (c) c.human = s; } }); M.count = M.countLen = quick ? .6 : 1.5; M.events.push({ type: 'count', n: quick ? 1 : 3 }); }
 function kickoff(M, team) {
   const P = [[38, 30], [30, 14], [30, 46]];
   M.bots.forEach(b => { const p = P[b.i % 3]; b.x = b.team ? FW - p[0] : p[0]; b.y = p[1]; b.vx = b.vy = 0; b.down = 0; b.wobble = 0; b.cool = .3; });
@@ -1452,14 +1454,14 @@ function sayAt(M, b, txt, col) { M.fx.push({ x: b.x, y: b.y - 3, txt, t: 1.6, co
 function inBush(M, x, y) { return M.map.bushes.some(([bx, by, r]) => Math.hypot(x - bx, y - by) < r); }
 function solid(M, x, y, r) { return M.map.crates.find(([cx, cy, w, h]) => x + r > cx && x - r < cx + w && y + r > cy && y - r < cy + h); }
 // ---- acties ----
-function shoot(M, b, aim) {
+function shoot(M, b, aim, power = 1) {
   const B = M.ball; if (B.owner !== b) return false;
   const kp = M.keepers[1 - b.team], gx = goalX(b.team);
   let side = aim; const human = b.human != null || M.kid[b.team] && b === kidBot(M, b.team);
   if (!side && b.aimRead) side = readKeeper(M, b.team); b.aimRead = false;
   if (!side) side = (kp.y > 30 ? 'L' : 'R');            // richt-hulp: de kant waar de keeper niet staat
   const ty = 30 + (side === 'L' ? -6.5 : 6.5) + (M.rng() - .5) * (human && M.assist ? 2 : 2 * (5 - .6 * b.st.slim) * (M.rubber && b.team === 1 ? (M.score[1] - M.score[0] >= 2 ? 1.6 : 1) * [1.3, 1, .9][M.diff] : 1));
-  const sp = 40 + 5 * b.st.sterk, d = Math.hypot(gx - b.x, ty - b.y);
+  const sp = (40 + 5 * b.st.sterk) * Math.min(1.15, power), d = Math.hypot(gx - b.x, ty - b.y);
   B.owner = null; B.vx = (gx - b.x) / d * sp; B.vy = (ty - b.y) / d * sp; B.last = b; B.safe = false; B.shot = { team: b.team, side, y: ty }; b.cool = .5;
   M.stats[b.team].shots++; M.events.push({ type: 'shot', team: b.team });
   // keeper kiest een duik: rivalen volgen hun patroon, anders een gok (beter met slimmer)
@@ -1472,6 +1474,24 @@ function pass(M, b, to, safe) {
   const B = M.ball; if (B.owner !== b || !to) return false;
   const lead = .25, tx = to.x + to.vx * lead, ty = to.y + to.vy * lead, d = Math.hypot(tx - b.x, ty - b.y) || 1, sp = 40;
   B.owner = null; B.vx = (tx - b.x) / d * sp; B.vy = (ty - b.y) / d * sp; B.last = b; B.safe = safe || to.hidden; B.passTo = to; B.shot = null; b.cool = .35; return true;
+}
+// ---- gericht spelen (mens) ----
+// teamgenoot het dichtst bij de joystickrichting; zonder richting de dichtstbijzijnde vrije teamgenoot
+function passTarget(M, b, dx, dy) {
+  const mates = M.bots.filter(o => o.team === b.team && o !== b && o.down <= 0); if (!mates.length) return null;
+  const m = Math.hypot(dx || 0, dy || 0);
+  if (m > .3) { let best = null, bs = -9; for (const o of mates) { const vx = o.x - b.x, vy = o.y - b.y, d = Math.hypot(vx, vy) || 1, c = (vx * dx + vy * dy) / (d * m); const sc = c - d / 200; if (sc > bs) { bs = sc; best = o; } } return best; }
+  const free = o => !M.bots.some(x => x.team !== b.team && x.down <= 0 && dist(x, o) < 5);
+  return mates.slice().sort((p, q) => (free(q) - free(p)) || dist(p, b) - dist(q, b))[0];
+}
+// schieten in de joystickrichting, waar dan ook. Alleen als je ongeveer op het doel richt: zachte richt-hulp (via de keeper-logica)
+function aimShot(M, b, dx, dy, power = 1) {
+  const B = M.ball; if (B.owner !== b) return false; let m = Math.hypot(dx || 0, dy || 0);
+  const gx = goalX(b.team); if (m < .3) { dx = b.aimX ?? (gx - b.x); dy = b.aimY ?? 0; m = Math.hypot(dx, dy) || 1; }
+  const ux = dx / m, uy = dy / m, toG = Math.hypot(gx - b.x, 30 - b.y), cg = ((gx - b.x) * ux + (30 - b.y) * uy) / (toG || 1);
+  if (cg > .9 && toG < 50) { const t = (gx - b.x) / (ux || 1e-6), yAt = b.y + uy * t; return shoot(M, b, yAt < 30 ? 'L' : 'R', power); }
+  const sp = (34 + 5 * b.st.sterk) * power; B.owner = null; B.vx = ux * sp; B.vy = uy * sp; B.last = b; B.safe = false; B.shot = null; B.passTo = null; b.cool = .4;
+  M.stats[b.team].shots++; M.events.push({ type: 'kick', team: b.team }); return true;
 }
 function push(M, b) {
   if (b.cool > 0 || b.down > 0) return false; b.cool = .8;
@@ -1527,7 +1547,7 @@ function step(M, dt, inputs = []) {
     const mine = M.bots.filter(b => b.team === t && (b.human == null || b.human === s));
     if (!cur) { cur = mine[0]; cur.human = s; }
     const own = B.owner; if (own && own.team === t && own !== cur && own.human == null) { cur.human = null; own.human = s; cur = own; }
-    else if ((!own || own.team !== t) && M.t - (cur.sw || 0) > .6) { const best = mine.filter(b => b.down <= 0).sort((p, q) => dist(p, B) - dist(q, B))[0]; if (best && best !== cur && dist(best, B) + 5 < dist(cur, B)) { cur.human = null; best.human = s; best.sw = M.t; cur = best; } }
+    else if ((!own || own.team !== t) && M.t - (cur.sw || 0) > .6 && !(B.passTo === cur && !own)) { const best = mine.filter(b => b.down <= 0).sort((p, q) => dist(p, B) - dist(q, B))[0]; if (best && best !== cur && dist(best, B) + 5 < dist(cur, B)) { cur.human = null; best.human = s; best.sw = M.t; cur = best; } }
   }
   for (const b of M.bots) {
     b.cool -= dt; if (b.sprintT > 0) b.sprintT -= dt; if (b.down > 0) { b.down -= dt; b.vx *= .8; b.vy *= .8; continue; } if (b.wobble > 0) b.wobble -= dt;
@@ -1535,7 +1555,11 @@ function step(M, dt, inputs = []) {
     if (!b.glue && b.st.stevig < 2 && M.rng() < dt * .022 * (2 - b.st.stevig) * (Math.hypot(b.vx, b.vy) > 6 ? 1 : .3)) { b.wobble = 1.6; b.falls = (b.falls || 0) + 1; M.stats[b.team].falls++; sayAt(M, b, FALL_LINES[Math.floor(M.rng() * FALL_LINES.length)], '#ff9f9f'); if (B.owner === b) { B.owner = null; B.vx = b.vx; B.vy = b.vy; b.cool = .8; } M.events.push({ type: 'fall', bot: b }); }
     let ax, ay; const vm = vmax(M, b);
     if (b.human != null) { const I = inputs[b.human] || {}; const m = Math.hypot(I.mx || 0, I.my || 0); ax = m > .15 ? (I.mx / Math.max(1, m)) * vm : 0; ay = m > .15 ? (I.my / Math.max(1, m)) * vm : 0;
-      if (I.shoot) { if (B.owner === b) shoot(M, b, I.my < -.35 ? 'L' : I.my > .35 ? 'R' : null); else if (B.owner && B.owner.team === b.team) pass(M, B.owner, b); }
+      if (!B.owner && B.passTo === b && dist(b, B) < 40) { const d = Math.hypot(B.x - b.x, B.y - b.y) || 1; ax = (B.x - b.x) / d * vm; ay = (B.y - b.y) / d * vm; } // bal komt naar je toe: vanzelf naar de bal lopen
+      if (m > .3) { b.aimX = I.mx / m; b.aimY = I.my / m; }
+      if (B.owner === b) b.passTgt = passTarget(M, b, I.mx, I.my); else b.passTgt = null;
+      if (I.shoot) { if (B.owner === b) aimShot(M, b, I.mx, I.my, I.power || 1); else if (B.owner && B.owner.team === b.team) pass(M, B.owner, b); }
+      if (I.pass) { if (B.owner === b) { const to = b.passTgt || passTarget(M, b, I.mx, I.my); if (to && pass(M, b, to)) { to.human = b.human; b.human = null; to.sw = M.t; b.passTgt = null; M.events.push({ type: 'pass', team: b.team }); continue; } } else if (B.owner && B.owner.team === b.team) pass(M, B.owner, b); }
       if (I.push) push(M, b);
       if (I.sprint && !(b.sprintCool > M.t)) { b.sprintT = 1.3; b.sprintCool = M.t + 5; sayAt(M, b, '💨 Turbo!', '#38d6ff'); }
       if (I.play && B.owner && B.owner.team === b.team && M.playLv && M.playLv[b.team] && !(M.playCool > M.t)) { M.play[b.team] = { left: M.playLv[b.team] + 1, until: M.t + 4 }; M.playCool = M.t + 15; sayAt(M, b, '📋 Spelzet!', '#38d6ff'); M.events.push({ type: 'play' }); } }
@@ -1584,7 +1608,7 @@ function step(M, dt, inputs = []) {
       B.vx *= -.7; B.x = clamp(B.x, .5, FW - .5); B.shot = null; M.keepers.forEach(k => k.dive = null); }
     // oppakken
     const sp = Math.hypot(B.vx, B.vy); let best = null, bd = 9;
-    for (const b of M.bots) { if (b.down > 0 || b.cool > 0) continue; if (B.safe && B.passTo && b.team !== B.passTo.team) continue; const d = dist(b, B); const r = sp > 30 ? 1.6 : 2.4; if (d < r && d < bd) { best = b; bd = d; } }
+    for (const b of M.bots) { if (b.down > 0 || b.cool > 0) continue; if (B.safe && B.passTo && b.team !== B.passTo.team) continue; const d = dist(b, B); const r = b === B.passTo ? 3.2 : sp > 30 ? 1.6 : 2.4; if (d < r && d < bd) { best = b; bd = d; } }
     if (best) { if (B.shot && best.team !== B.shot.team) M.events.push({ type: 'block' }); B.owner = best; B.safe = false; B.shot = null; best.cool = .15; }
   }
   for (const k of M.keepers) if (k.dive && !B.shot && !(k.diveT > 0)) { k.dive = null; }
@@ -2390,7 +2414,7 @@ function endTik() {
 
 /* ===== screens/voetbal.js ===== */
 /* Stadion, wedstrijd (canvas + touch), rust, uitslag (fase C). */
-const FB = { M: null, mode: 'solo', raf: 0, acc: 0, last: 0, inp: [{}, {}], keys: {}, view: null, sel: 0, tab: 'opst', boost: 1, ended: false };
+const FB = { hold: [null, null], M: null, mode: 'solo', raf: 0, acc: 0, last: 0, inp: [{}, {}], keys: {}, view: null, sel: 0, tab: 'opst', boost: 1, ended: false };
 function goStadion() {
   fbInit(S); S.football.seen = true; save(); show('scrStadion'); musicFor('scrStadion');
   const f = S.football, D = DIVS[f.div], R = RIVALS[D.rival];
@@ -2420,7 +2444,7 @@ function startMatch(mode) {
 function matchFrame(now) {
   if (CUR_SCREEN !== 'scrMatch' || !FB.M) return;
   const M = FB.M; FB.acc += Math.min(.1, (now - FB.last) / 1000); FB.last = now;
-  while (FB.acc >= 1 / 60) { FB.acc -= 1 / 60; keyInput(); step(M, 1 / 60, FB.inp); FB.inp.forEach(i => { i.shoot = i.push = i.play = i.sprint = false; }); matchEvents(M); if (M.pause || M.over) break; }
+  while (FB.acc >= 1 / 60) { FB.acc -= 1 / 60; keyInput(); step(M, 1 / 60, FB.inp); FB.inp.forEach(i => { i.shoot = i.push = i.play = i.sprint = i.pass = false; i.power = 1; }); matchEvents(M); if (M.pause || M.over) break; }
   drawMatch(M); matchHud(M);
   if (M.pause === 'rust') return halfTime();
   if (M.over) return endMatch();
@@ -2453,17 +2477,20 @@ function buildControls() {
   const two = FB.mode !== 'solo'; let h = '';
   const side = (s, L) => `<div class="joy" id="mJoy${s}" style="${L ? 'left' : 'right'}:calc(env(safe-area-inset-${L ? 'left' : 'right'}) + 14px);bottom:calc(env(safe-area-inset-bottom) + 14px)"><i></i></div>`;
   if (!two) {
-    h = side(0, true) + `<button class="abtn shoot" id="mShoot0" style="right:calc(env(safe-area-inset-right) + 18px);bottom:calc(env(safe-area-inset-bottom) + 24px)">⚽<br>Schiet</button>
-      <button class="abtn push" id="mPush0" style="right:calc(env(safe-area-inset-right) + 108px);bottom:calc(env(safe-area-inset-bottom) + 14px)">💥<br>Duw</button>
-      <button class="abtn play" id="mPlay0" style="right:calc(env(safe-area-inset-right) + 40px);bottom:calc(env(safe-area-inset-bottom) + 116px)">📋<br>Spelzet</button>
-      <button class="abtn turbo" id="mTurbo0" style="right:calc(env(safe-area-inset-right) + 128px);bottom:calc(env(safe-area-inset-bottom) + 100px)">💨<br>Turbo</button>`;
+    const R = (r, bt) => `right:calc(env(safe-area-inset-right) + ${r}px);bottom:calc(env(safe-area-inset-bottom) + ${bt}px)`;
+    h = side(0, true) + `<button class="abtn shoot" id="mShoot0" style="${R(18, 24)}">⚽<br>Schiet</button>
+      <button class="abtn pass" id="mPass0" style="${R(104, 40)}">👟<br>Pass</button>
+      <button class="abtn push" id="mPush0" style="${R(18, 112)}">💥<br>Duw</button>
+      <button class="abtn turbo" id="mTurbo0" style="${R(100, 128)}">💨<br>Turbo</button>
+      <button class="abtn play" id="mPlay0" style="${R(170, 126)}">📋<br>Spelzet</button>`;
   } else {
-    h = `<div class="pl1">${side(0, true)}<button class="abtn shoot" id="mShoot0" style="left:calc(env(safe-area-inset-left) + 22px);bottom:calc(env(safe-area-inset-bottom) + 160px)">⚽<br>Schiet</button><button class="abtn push" id="mPush0" style="left:calc(env(safe-area-inset-left) + 106px);bottom:calc(env(safe-area-inset-bottom) + 150px)">💥<br>Duw</button><button class="abtn turbo" id="mTurbo0" style="left:calc(env(safe-area-inset-left) + 64px);bottom:calc(env(safe-area-inset-bottom) + 236px)">💨<br>Turbo</button></div>
-      <div class="pl2">${side(1, false)}<button class="abtn shoot" id="mShoot1" style="right:calc(env(safe-area-inset-right) + 22px);bottom:calc(env(safe-area-inset-bottom) + 160px)">⚽<br>Schiet</button><button class="abtn push" id="mPush1" style="right:calc(env(safe-area-inset-right) + 106px);bottom:calc(env(safe-area-inset-bottom) + 150px)">💥<br>Duw</button><button class="abtn turbo" id="mTurbo1" style="right:calc(env(safe-area-inset-right) + 64px);bottom:calc(env(safe-area-inset-bottom) + 236px)">💨<br>Turbo</button></div>`;
+    h = `<div class="pl1">${side(0, true)}<button class="abtn shoot" id="mShoot0" style="left:calc(env(safe-area-inset-left) + 22px);bottom:calc(env(safe-area-inset-bottom) + 160px)">⚽<br>Schiet</button><button class="abtn push" id="mPush0" style="left:calc(env(safe-area-inset-left) + 106px);bottom:calc(env(safe-area-inset-bottom) + 150px)">💥<br>Duw</button><button class="abtn turbo" id="mTurbo0" style="left:calc(env(safe-area-inset-left) + 22px);bottom:calc(env(safe-area-inset-bottom) + 236px)">💨<br>Turbo</button><button class="abtn pass" id="mPass0" style="left:calc(env(safe-area-inset-left) + 92px);bottom:calc(env(safe-area-inset-bottom) + 232px)">👟<br>Pass</button></div>
+      <div class="pl2">${side(1, false)}<button class="abtn shoot" id="mShoot1" style="right:calc(env(safe-area-inset-right) + 22px);bottom:calc(env(safe-area-inset-bottom) + 160px)">⚽<br>Schiet</button><button class="abtn push" id="mPush1" style="right:calc(env(safe-area-inset-right) + 106px);bottom:calc(env(safe-area-inset-bottom) + 150px)">💥<br>Duw</button><button class="abtn turbo" id="mTurbo1" style="right:calc(env(safe-area-inset-right) + 22px);bottom:calc(env(safe-area-inset-bottom) + 236px)">💨<br>Turbo</button><button class="abtn pass" id="mPass1" style="right:calc(env(safe-area-inset-right) + 92px);bottom:calc(env(safe-area-inset-bottom) + 232px)">👟<br>Pass</button></div>`;
   }
   $('#mCtl').innerHTML = h;
   [0, 1].forEach(s => { const j = $('#mJoy' + s); if (j) joyBind(j, s);
-    for (const [id, k] of [['mShoot', 'shoot'], ['mPush', 'push'], ['mPlay', 'play'], ['mTurbo', 'sprint']]) { const b = $('#' + id + s); if (b) b.addEventListener('pointerdown', e => { e.preventDefault(); FB.inp[s][k] = true; b.classList.add('down'); setTimeout(() => b.classList.remove('down'), 120); }); } });
+    const sh = $('#mShoot' + s); if (sh) { sh.addEventListener('pointerdown', e => { e.preventDefault(); shootStart(s); sh.classList.add('down'); }); const up = e => { if (FB.hold[s] == null) return; sh.classList.remove('down'); shootFire(s); }; ['pointerup', 'pointercancel', 'pointerleave'].forEach(t => sh.addEventListener(t, up)); }
+    for (const [id, k] of [['mPass', 'pass'], ['mPush', 'push'], ['mPlay', 'play'], ['mTurbo', 'sprint']]) { const b = $('#' + id + s); if (b) b.addEventListener('pointerdown', e => { e.preventDefault(); FB.inp[s][k] = true; b.classList.add('down'); setTimeout(() => b.classList.remove('down'), 120); }); } });
 }
 function joyBind(el, s) {
   let pid = null; const knob = el.querySelector('i');
@@ -2475,10 +2502,14 @@ function joyBind(el, s) {
   el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end); el.addEventListener('lostpointercapture', end);
 }
 function setStick(s, jx, jy) { const port = FB.view && FB.view.port; FB.inp[s].mx = port ? -jy : jx; FB.inp[s].my = port ? jx : jy; FB.inp[s].stick = Math.hypot(jx, jy) > .1; }
-const KEYMAP = { solo: [{ u: ['ArrowUp', 'KeyW'], d: ['ArrowDown', 'KeyS'], l: ['ArrowLeft', 'KeyA'], r: ['ArrowRight', 'KeyD'], shoot: ['Space', 'KeyJ'], push: ['KeyX', 'KeyK'], play: ['KeyC', 'KeyL'], sprint: ['ShiftLeft', 'ShiftRight', 'KeyE'] }],
-  two: [{ u: ['KeyW'], d: ['KeyS'], l: ['KeyA'], r: ['KeyD'], shoot: ['KeyF'], push: ['KeyG'], sprint: ['KeyE'] }, { u: ['ArrowUp'], d: ['ArrowDown'], l: ['ArrowLeft'], r: ['ArrowRight'], shoot: ['KeyK', 'Enter'], push: ['KeyL'], sprint: ['ShiftRight'] }] };
-addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return; if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) clearConfetti(); if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['shoot', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
-addEventListener('keyup', e => { FB.keys[e.code] = false; });
+const KEYMAP = { solo: [{ u: ['ArrowUp', 'KeyW'], d: ['ArrowDown', 'KeyS'], l: ['ArrowLeft', 'KeyA'], r: ['ArrowRight', 'KeyD'], shoot: ['Space', 'KeyJ'], push: ['KeyX', 'KeyK'], pass: ['KeyZ', 'KeyH'], play: ['KeyC', 'KeyL'], sprint: ['ShiftLeft', 'ShiftRight', 'KeyE'] }],
+  two: [{ u: ['KeyW'], d: ['KeyS'], l: ['KeyA'], r: ['KeyD'], shoot: ['KeyF'], push: ['KeyG'], pass: ['KeyR'], sprint: ['KeyE'] }, { u: ['ArrowUp'], d: ['ArrowDown'], l: ['ArrowLeft'], r: ['ArrowRight'], shoot: ['KeyK', 'Enter'], push: ['KeyL'], pass: ['KeyO'], sprint: ['ShiftRight'] }] };
+addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return; if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) clearConfetti(); if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['pass', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; if (m.shoot.includes(e.code)) shootStart(s); }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
+addEventListener('keyup', e => { FB.keys[e.code] = false; if (CUR_SCREEN !== 'scrMatch') return; const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { if (m.shoot.includes(e.code)) shootFire(s); }); });
+// Schiet vasthouden = harder (max na 0,7 s). Kort tikken = normaal schot.
+function shootStart(s) { if (FB.hold[s] == null) FB.hold[s] = performance.now(); }
+function shootFire(s) { if (FB.hold[s] == null) return; const held = performance.now() - FB.hold[s]; FB.hold[s] = null; FB.inp[s].shoot = true; FB.inp[s].power = held < 180 ? 1 : 1 + .35 * Math.min(1, (held - 180) / 520); }
+const holdPow = s => FB.hold[s] == null ? 0 : Math.min(1, (performance.now() - FB.hold[s]) / 700);
 function keyInput() {
   const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two'];
   map.forEach((m, s) => { if (FB.inp[s].stick) return; const k = a => a.some(c => FB.keys[c]); const x = (k(m.r) ? 1 : 0) - (k(m.l) ? 1 : 0), y = (k(m.d) ? 1 : 0) - (k(m.u) ? 1 : 0);
@@ -2516,7 +2547,9 @@ function drawMatch(M) {
   for (const k of M.keepers) drawBot(g, { x: k.x, y: k.y, team: k.team, look: k.team ? (FB.mode === 'versus' ? { body: 4 } : { rival: DIVS[S.football.div].rival }) : { body: 5 }, keeper: true, fx: k.team ? -1 : 1, down: 0 }, M);
   // robots (in een bosje: half doorzichtig)
   const bots = M.bots.slice().sort((a, b) => FP(a.x, a.y)[1] - FP(b.x, b.y)[1]);
+  for (const b of bots) if (b.human != null && b.passTgt) { const [x, y] = FP(b.passTgt.x, b.passTgt.y), r = v.s * 3.2, pulse = 1 + .12 * Math.sin(performance.now() / 120); g.save(); g.strokeStyle = '#ffe14a'; g.lineWidth = 3; g.setLineDash([6, 5]); g.beginPath(); g.arc(x, y + v.s, r * pulse, 0, 7); g.stroke(); g.setLineDash([]); g.font = `800 ${Math.max(11, v.s * 1.9)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = '#ffe14a'; g.fillText('👟 pass', x, y - r - 4); g.restore(); }
   for (const b of bots) drawBot(g, b, M);
+  for (const b of bots) if (b.human != null && M.ball.owner === b) { const ax = b.aimX ?? (b.team ? -1 : 1), ay = b.aimY ?? 0, pw = holdPow(b.human), L = 9 + 7 * pw; const [x0, y0] = FP(b.x, b.y), [x1, y1] = FP(b.x + ax * L, b.y + ay * L); const an = Math.atan2(y1 - y0, x1 - x0), hs = v.s * 1.8; g.save(); g.strokeStyle = g.fillStyle = pw > 0 ? `rgb(255,${200 - 140 * pw | 0},60)` : 'rgba(255,255,255,.9)'; g.lineWidth = Math.max(3, v.s * .7); g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); g.beginPath(); g.moveTo(x1 + Math.cos(an) * hs, y1 + Math.sin(an) * hs); g.lineTo(x1 + Math.cos(an + 2.4) * hs, y1 + Math.sin(an + 2.4) * hs); g.lineTo(x1 + Math.cos(an - 2.4) * hs, y1 + Math.sin(an - 2.4) * hs); g.fill(); g.restore(); }
   for (const [bx, by, r] of M.map.bushes) { const [x, y] = FP(bx, by); g.save(); g.globalAlpha = .82; for (let k = 0; k < 7; k++) { const a = k * .9; g.fillStyle = k % 2 ? '#2f9e55' : '#247a43'; g.beginPath(); g.arc(x + Math.cos(a) * r * v.s * .5, y + Math.sin(a) * r * v.s * .5, r * v.s * .55, 0, 7); g.fill(); } g.restore(); }
   // bal
   const B = M.ball, [bx, by] = FP(B.x, B.y), br = Math.max(4, v.s * .9);
