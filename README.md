@@ -21,6 +21,12 @@ Een Nederlands spel over **patronen** voor kinderen van 6 tot 10 jaar, waarin je
 - **Investeren** met terugverdientijd ("verdient zichzelf terug in ~X dagen"), etalage, zuinige lampen, kluis; **📊 Financiën** met inkomsten, kosten, winst en grafiek; tips van opa en Bliep.
 - De economie is getest met een simulatie van 7 speelstijlen (`tests/sim_economie.js` in de bronmap).
 
-Volgende fase: robotvoetbal met teammanagement en aankleden (C).
+## Fase C (nu online): Robotvoetbal
+- Na 25 verkochte robots opent opa het **stadion**: 4 divisies, elk met een rivaal (Kartonco, TurboTech, MegaMetaal, Robo-X). 3 wedstrijden per divisie; 4 punten = promotie.
+- **3 tegen 3**, 2 × 90 seconden, kratten en bosjes om je in te verstoppen. Joystick + Schiet + Duw (+ Spelzet), of het toetsenbord. Alleen tegen de computer, samen tegen de computer, of tegen elkaar op één apparaat.
+- Richt-hulp, automatisch wisselen naar de robot bij de bal, en slimme AI-teamgenoten. Grappige knock-outs (BOING!) en vroege robots die vanzelf uit elkaar vallen.
+- Patronen: het duikpatroon van de keeper lezen, spelzetten programmeren met herhaalblokken, en een juich-ritme in de rust.
+- **Teammanagement:** opstelling en wissels, upgrades, werkplaats, training, aankleden (kleur, hoofd, hoed, ogen) en geheime onderdelen als uitrusting.
+- Een deel van de fabriekswinst gaat naar de **clubkas**, met een plafond per divisie: geld helpt, maar slim spelen wint.
 
 Werkt offline (PWA), zonder account, reclame of tracking. Geen verzoeken naar buiten (lettertype Exo 2 zelf gehost, SIL OFL, zie `fonts/OFL-Exo2.txt`).

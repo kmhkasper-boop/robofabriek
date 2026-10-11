@@ -382,6 +382,47 @@ input[type=text],.namein{background:#0f1520;color:#fff;border:1px solid var(--ed
 .toast{background:#0f1520;color:#fff;border:1px solid var(--edge)}
 .mode{background:linear-gradient(#26314a,#171e2d)!important;color:var(--ink)!important;border:2px solid var(--edge)!important}
 .mode.sel,.mode[aria-pressed=true]{border-color:var(--cyan)!important}
+
+/* ===== voetbal (fase C) ===== */
+#scrTeam,#scrStadion{background:radial-gradient(90% 60% at 50% 0%,rgba(56,214,255,.18),transparent 70%),linear-gradient(#16203a,#0b0f18)}
+.stbody{display:flex;flex-direction:column;gap:12px;padding-bottom:110px}
+.rivalcard{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:linear-gradient(#26314a,#151c2b);border:1px solid var(--edge);border-radius:12px;padding:12px}
+.rivalcard .ri{font-size:3em;line-height:1}.rivalcard h3{margin:0;color:#fff}.rivalcard q{color:var(--amber);font-style:italic}
+.divdots{display:flex;gap:6px;margin-top:6px}.divdots span{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:#0d121c;border:1px solid var(--edge);font-weight:800}
+.divdots .w{background:#14301f;border-color:var(--good)}.divdots .d{background:#3a3016;border-color:#7a5d1d}.divdots .l{background:#3a1612;border-color:#a33}
+.ladder{display:flex;gap:6px;flex-wrap:wrap}.ladder span{padding:4px 10px;border-radius:8px;border:1px solid var(--edge);background:#151c2a;font-size:.85em}.ladder .cur{border-color:var(--cyan);color:#fff;background:#173a4a}.ladder .done{color:var(--good)}
+.stbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:10px}
+.lineup{display:flex;gap:8px;justify-content:center}.lineup .mini{width:72px;text-align:center;font-size:.75em}.mini svg{width:64px;height:64px}
+.tabs{display:flex;gap:4px;overflow-x:auto;flex:none;padding:2px}.tabs button{flex:none;background:#1c2433;color:var(--ink2);border:1px solid var(--edge);border-radius:8px 8px 0 0;padding:8px 12px;font:inherit;font-weight:700;cursor:pointer}
+.tabs button[aria-selected=true]{background:#273247;color:#fff;border-bottom-color:#273247}
+.tmrobots{display:flex;gap:6px;overflow-x:auto;flex:none;padding:6px 2px}
+.rb{flex:none;width:86px;background:#1c2433;border:2px solid var(--edge);border-radius:10px;padding:4px;color:var(--ink);font:inherit;font-size:.72em;cursor:pointer;position:relative;text-align:center}
+.rb svg{width:60px;height:60px;display:block;margin:0 auto}.rb.sel{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(56,214,255,.3)}.rb .in{position:absolute;left:3px;top:3px;background:var(--good);color:#06240f;border-radius:6px;padding:0 5px;font-weight:800}
+.rb .dm{position:absolute;right:3px;top:3px}
+.tmbody{background:#273247;border:1px solid var(--edge);border-radius:0 10px 10px 10px;padding:12px}
+.statrow{display:grid;grid-template-columns:110px 1fr auto;gap:8px;align-items:center;margin:6px 0}
+.pips{display:flex;gap:3px}.pips i{width:16px;height:10px;border-radius:3px;background:#0d121c;border:1px solid #3b4a63}.pips i.on{background:linear-gradient(#5ff0a8,#1f8a52)}.pips i.cap{border-color:#7a5d1d}.pips i.gear{background:linear-gradient(#ffd46b,#c98a12)}
+.swatches{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 10px}.swatches button{min-width:44px;min-height:44px;border-radius:10px;border:2px solid var(--edge);background:#1c2433;color:#fff;font:inherit;cursor:pointer;padding:4px 8px}.swatches button.on{border-color:var(--cyan)}
+.preview{display:flex;justify-content:center}.preview svg{width:140px;height:140px}
+#scrMatch{background:#0b0f18;padding:0}
+#mCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.mhud{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top) + 6px) 8px 0;pointer-events:none}.mhud>*{pointer-events:auto}
+.mscore{flex:1;text-align:center;font-weight:800;font-size:1.15em;color:#fff;text-shadow:0 2px 0 #000;pointer-events:none}
+.mscore b{display:inline-block;background:rgba(12,16,26,.85);border:1px solid #56667f;border-radius:8px;padding:2px 10px;margin:0 4px}
+.mkeep{background:rgba(12,16,26,.85);border:1px solid #2f7a9a;color:var(--cyan);border-radius:8px;padding:2px 8px;font-weight:700;font-size:.85em;pointer-events:none;min-width:44px}
+.mctl{position:absolute;inset:0;pointer-events:none}
+.joy{position:absolute;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08),rgba(255,255,255,.03));border:2px solid rgba(255,255,255,.25);pointer-events:auto;touch-action:none}
+.joy i{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px;border-radius:50%;background:linear-gradient(#5a6b88,#36425a);border:2px solid rgba(255,255,255,.4)}
+.abtn{position:absolute;width:78px;height:78px;border-radius:50%;pointer-events:auto;touch-action:none;font:inherit;font-weight:800;color:#fff;border:2px solid rgba(255,255,255,.35);font-size:.85em;line-height:1.1;box-shadow:0 4px 0 rgba(0,0,0,.5)}
+.abtn.shoot{background:radial-gradient(circle at 40% 35%,#ffc451,#d9780c)}.abtn.push{background:radial-gradient(circle at 40% 35%,#ff7d6e,#b8372c)}.abtn.play{background:radial-gradient(circle at 40% 35%,#6ad8ff,#1f7fb0);width:58px;height:58px;font-size:.7em}
+.abtn.play[disabled]{opacity:.35}
+.abtn:active,.abtn.down{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.5)}
+.pl2 .joy,.pl2 .abtn{border-color:rgba(255,120,200,.6)}
+.stbtns{display:grid!important;grid-template-columns:repeat(3,1fr);gap:8px;max-width:640px;margin:0 auto}.stbtns #stPlay{grid-column:1/-1;order:-1}.stbtns .btn{width:100%;margin:0;padding:10px 6px}
+.pl1 .abtn,.pl2 .abtn{width:64px;height:64px;font-size:.75em}.pl1 .joy,.pl2 .joy{width:112px;height:112px}
+@media (max-height:500px){.pl1 .abtn,.pl2 .abtn{bottom:calc(env(safe-area-inset-bottom) + 130px)!important}}
+#scrResult,#scrSamen,#scrIntro,#scrPuzzle:not(.inmachine){background:radial-gradient(100% 70% at 50% 0%,#24304d,#0b0f18)!important}
+#resTitle{color:#fff}
 </style>
 </head>
 <body>
@@ -484,7 +525,7 @@ input[type=text],.namein{background:#0f1520;color:#fff;border:1px solid var(--ed
         <div class="orow"><label><input type="checkbox" id="setBig"> Grotere letters</label></div>
       </div>
       <div><h3>📊 Voortgang</h3><div id="oudProg"></div></div>
-      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
+      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
       <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles bouwen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
       <p class="small-note">Robo-Fabriek werkt zonder account, zonder reclame en zonder internet (na de eerste keer). De voortgang staat alleen op dit apparaat. Installeren: iPad/iPhone → Safari → Deel → <b>Zet op beginscherm</b>; Android → Chrome → ⋮ → <b>App installeren</b>.</p>
     </div>
@@ -495,6 +536,25 @@ input[type=text],.namein{background:#0f1520;color:#fff;border:1px solid var(--ed
 <div id="ovBuild" class="overlay"><div class="ocard"><h2>📈 Investeren</h2><div class="scroll" id="buildBody"></div><div style="text-align:right"><button class="btn green" id="buildClose">Sluiten</button></div></div></div>
 <div id="ovJob" class="overlay"><div class="ocard"><h2 id="jobTitle"></h2><div class="scroll"><p class="small-note" id="jobSub"></p><div class="diffs" id="jobDiffs"></div><p class="small-note" id="jobNote"></p></div><div style="text-align:right"><button class="btn white" id="jobClose">Annuleren</button></div></div></div>
 <div id="ovFin" class="overlay"><div class="ocard"><h2>📊 Financiën</h2><div class="scroll" id="finBody"></div><div style="text-align:right"><button class="btn green" id="finClose">Sluiten</button></div></div></div>
+
+<!-- ===== Robotvoetbal (fase C) ===== -->
+<section class="screen" id="scrStadion" aria-label="Stadion">
+  <div class="topbar"><button class="iconbtn" id="stBack" aria-label="Terug naar de fabriek">🏭</button><div class="title" id="stTitle">⚽ Stadion</div><span class="hp" id="stKas"></span></div>
+  <div class="scroll stbody" id="stBody"></div>
+  <div class="fbottom stbtns"><button class="btn white" id="stTeam">🛠️ Team</button><button class="btn purple" id="stCoop">👫 Samen</button><button class="btn white" id="stVs">⚔️ Tegen elkaar</button><button class="btn green big" id="stPlay">⚽ Spelen</button></div>
+</section>
+<section class="screen" id="scrTeam" aria-label="Team">
+  <div class="topbar"><button class="iconbtn" id="tmBack" aria-label="Terug naar het stadion">⬅️</button><div class="title">🛠️ Teammanagement</div><span class="hp" id="tmKas"></span></div>
+  <div class="tabs" id="tmTabs" role="tablist"></div>
+  <div class="tmrobots" id="tmRobots"></div>
+  <div class="scroll tmbody" id="tmBody"></div>
+</section>
+<section class="screen" id="scrMatch" aria-label="Wedstrijd">
+  <canvas id="mCanvas"></canvas>
+  <div class="mhud"><button class="iconbtn" id="mPause" aria-label="Pauze">⏸️</button><div class="mscore" id="mScore"></div><div class="mkeep" id="mKeep"></div></div>
+  <div class="mctl" id="mCtl"></div>
+</section>
+<div id="ovHalf" class="overlay"><div class="ocard"><h2 id="halfTitle">Rust!</h2><div class="scroll" id="halfBody"></div><div class="obtns" id="halfBtns"></div></div></div>
 <div id="fx" aria-hidden="true"></div>
 <div id="ovConfirm" class="overlay"><div class="ocard" style="width:min(460px,100%);text-align:center"><p id="cfText"></p><div class="orow" style="justify-content:center"><button class="btn white" id="cfNo">Nee</button><button class="btn red" id="cfYes">Ja</button></div></div></div>
 <div class="toast" id="toast"></div>
@@ -584,7 +644,7 @@ const HIDDEN_AGAIN = 3;                    // na zoveel speeldagen kan er weer e
 /* Opslag (localStorage) met versienummer + migratie. Verhoog SAVE_V en voeg een stap toe in migrate() bij elke vormverandering.
    v1 = fase 1 (hallen met niveaus en sterren), v2 = de fabriek (fase A), v3 = real-time productie, moeilijkheid, financiën (fase B). */
 const LS_KEY = 'robofabriek_save';
-const SAVE_V = 3;
+const SAVE_V = 4;
 function freshMachines() { const m = {}; for (const id in MACHINES) m[id] = { owned: MACHINES[id].buy === 0, lv: 1, idle: 0, q: 2, jobs: 0, tuned: 0 }; return m; }
 function freshSave() {
   return {
@@ -622,6 +682,7 @@ function migrate(o) {
   if (!o.v) { o.v = 1; for (const h in (o.halls || {})) for (const l in (o.halls[h].lv || {})) { const x = o.halls[h].lv[l]; if (typeof x === 'number') o.halls[h].lv[l] = { stars: x, done: x > 0, best: x }; } }
   if (o.v === 1) o = migrateV1(o);
   if (o.v === 2) { for (const id in (o.machines || {})) { const m = o.machines[id]; m.tuned = m.jobs > 0 ? m.lv : 0; } o.v = 3; }
+  if (o.v === 3) o.v = 4;   // v4: voetbalteam (wordt hieronder aangevuld door fbInit)
   const f = freshSave();
   for (const k in f) if (!(k in o)) o[k] = f[k];
   for (const k in f.settings) if (!(k in o.settings)) o.settings[k] = f.settings[k];
@@ -629,6 +690,7 @@ function migrate(o) {
   for (const k in f.today) if (!(k in o.today)) o.today[k] = f.today[k];
   delete o.settings.speech; delete o.settings.rate;
   o.v = SAVE_V;
+  if (typeof fbInit === 'function') fbInit(o);
   return o;
 }
 let S = freshSave();
@@ -925,6 +987,58 @@ function introScene(i) {
     fab(false) + g(60, 140, 1.1, opaSVG()) + g(280, 190, .9, robotSVG({ armUp: true })) + `<text x="330" y="140" font-size="44">💰</text>`][i]}</svg>`;
 }
 
+/* ===== data/football.js ===== */
+/* Robotvoetbal (fase C): rivalen, divisies, upgrades, uiterlijk, uitrusting, grappige namen. */
+const STATS = [
+  { id: 'snel', name: 'Sneller', icon: '⚡', desc: 'Rent harder. Ook naar de bal.' },
+  { id: 'slim', name: 'Slimmer', icon: '🧠', desc: 'Speelt beter zelfstandig: slimmer passen, beter vrijlopen, betere keeper.' },
+  { id: 'sterk', name: 'Sterker', icon: '💪', desc: 'Hardere schoten en harder duwen.' },
+  { id: 'verd', name: 'Verdedigen', icon: '🛡️', desc: 'Pakt makkelijker de bal af en blijft staan bij een duw.' },
+  { id: 'stevig', name: 'Stevigheid', icon: '🔩', desc: 'Valt niet meer uit elkaar. Niveau 5: bijna onbeschadigbaar.' }
+];
+const UP_COST = [40, 90, 160, 260, 400];          // clubkas per niveau per eigenschap per robot
+// divisies: tegenstander, max upgrade-niveau, plafond clubkas, prijzengeld
+const DIVS = [
+  { name: 'Kartonliga', rival: 'kartonco', maxLv: 2, kasCap: 400, prize: 60 },
+  { name: 'Turbodivisie', rival: 'turbotech', maxLv: 3, kasCap: 900, prize: 100 },
+  { name: 'Metaalcompetitie', rival: 'megametaal', maxLv: 4, kasCap: 1600, prize: 160 },
+  { name: 'Robo-Bokaal', rival: 'robox', maxLv: 5, kasCap: 2600, prize: 250 }
+];
+const MATCHES_PER_DIV = 3, PROMOTE_PTS = 4;      // 3 wedstrijden, 4 punten (winst 3, gelijk 1) = promotie
+const RIVALS = {
+  kartonco: { name: 'Kartonco', icon: '📦', col: ['#d9b07a', '#9a6a35'], boss: 'Meneer Plakband', st: { snel: 0, slim: 0, sterk: 0, verd: 0, stevig: 0 }, keeper: ['L', 'R'],
+    lines: ['Onze robots zijn van 100% gerecycled karton!', 'Niet duwen! Dan scheur ik!', 'Wie heeft mijn plakband gezien?'] },
+  turbotech: { name: 'TurboTech', icon: '🏎️', col: ['#7ce3ff', '#1f7fb0'], boss: 'Juffrouw Vroem', st: { snel: 4, slim: 2, sterk: 1, verd: 1, stevig: 1 }, keeper: ['L', 'L', 'R'],
+    lines: ['Snelheid is alles! …Waar is de bal?', 'Vroem vroem! Oeps, verkeerde goal.', 'Wij remmen voor niemand. Ook niet voor muren.'] },
+  megametaal: { name: 'MegaMetaal', icon: '🏋️', col: ['#c9ced8', '#5a6372'], boss: 'Baron Bout', st: { snel: 2, slim: 3, sterk: 4, verd: 4, stevig: 4 }, keeper: ['R', 'L', 'L', 'R'],
+    lines: ['Wij wegen 300 kilo. Per teen.', 'Jullie duwen? Schattig!', 'Mijn robots ontbijten met moeren.'] },
+  robox: { name: 'Robo-X', icon: '🤖', col: ['#ff6bd1', '#7a1f8a'], boss: 'Dr. Byte', st: { snel: 4, slim: 4, sterk: 3, verd: 3, stevig: 4 }, keeper: ['L', 'R', 'R', 'L', 'R'],
+    lines: ['Berekening: kans op jullie winst is 0,0001%.', 'Mijn robots hebben nog nooit gelachen. Probeer maar.', 'Patronen? Ik ben een patroon.'] }
+};
+const LOOKS = {
+  body: [['#9ad0ff', '#3a86d8'], ['#ffd18a', '#e08a3a'], ['#bdf2d6', '#4fc28a'], ['#ff9f9f', '#d64545'], ['#d8c4ff', '#7a5fd0'], ['#e8eef7', '#7d8aa0']],
+  head: ['rond', 'hoekig', 'ton'],
+  hat: ['geen', 'pet', 'kroon', 'kegel', 'propeller', 'koksmuts'],
+  eyes: ['blij', 'stoer', 'scheel']
+};
+const HAT_NAME = { geen: 'Geen', pet: 'Pet', kroon: 'Kroon', kegel: 'Verkeerskegel', propeller: 'Propellerpet', koksmuts: 'Koksmuts' };
+// uitrusting = de geheime onderdelen uit verborgen puzzels (§0: verborgen puzzels lonen altijd in het voetbal)
+const GEAR = {
+  turboschroef: { name: 'Turboschroef', icon: '⚡', desc: '+1 Sneller (ook boven het divisie-maximum).', st: 'snel' },
+  veerpoot: { name: 'Veerpoot', icon: '🦘', desc: '+1 Sterker: schiet als een kangoeroe.', st: 'sterk' },
+  radar: { name: 'Radar-oog', icon: '📡', desc: '+1 Slimmer, en laat zien welke kant de keeper op duikt.', st: 'slim' },
+  superlijm: { name: 'Superlijm', icon: '🧴', desc: 'Valt nooit meer vanzelf uit elkaar (+1 Stevigheid).', st: 'stevig' }
+};
+const NAME_A = ['Bout', 'Moertje', 'Kwispel', 'Pruttel', 'Tandwiel', 'Rammel', 'Piepje', 'Knars', 'Bliksem', 'Wiebel', 'Snoer', 'Klonk'];
+const NAME_B = ['3000', 'de Snelle', 'Junior', 'XL', 'Turbo', 'Mini', 'de Dappere', '2.0', 'Deluxe', 'Pro', 'van Blik', 'Supreme'];
+function funnyName(i) { return `${NAME_A[(i * 5 + 3) % NAME_A.length]} ${NAME_B[(i * 7 + 1) % NAME_B.length]}`; }
+function freshTeam() {
+  return [0, 1, 2, 3, 4, 5].map(i => ({ id: i, name: funnyName(i), look: { body: i % 6, head: i % 3, hat: 0, eyes: 0 }, gear: null, lv: { snel: 0, slim: 0, sterk: 0, verd: 0, stevig: 0 }, dmg: 0, fit: 0, xp: 0 }));
+}
+const KO_LINES = ['BOING!', 'KLONK!', 'Au, mijn bout!', 'Grrr…', 'Boem! Arm eraf!', 'Waar is mijn hoofd?', 'Piep… piep…', 'Wie deed het licht uit?'];
+const FALL_LINES = ['Oeps, been eraf!', 'Mijn schroefje!', 'Kraak!', 'Even… opnieuw opstarten…', 'Wie heeft mij in elkaar gezet?!'];
+const GOAL_LINES = ['GOOOOAL!', 'Wat een knal!', 'In de kruising!', 'Het net trilt nog!'];
+
 /* ===== game/gen.js ===== */
 /* Puzzelmaker. Elke puzzel: { t, seq, blanks, answer, choices, unit, ... }. Alles is puur (geen DOM), zodat het getest kan worden.
    Kern-idee (onderzoek): de herhalende eenheid ('kern') vinden. Elke puzzel weet zijn kern, voor hints en uitleg. */
@@ -1218,6 +1332,7 @@ function closeDay(st) {
   st.orders = st.orders.filter(o => o.until > st.day).concat(makeOrders(st)).slice(-5);
   st.day++; st.dayDate = dayKey();
   st.today = { jobs: {}, made: 0, sold: 0, earned: 0, tik: 0, orders: 0, hidden: 0, notes: [], fin: { sales: 0, orders: 0, other: 0, invest: 0, upkeep: 0 } };
+  if (typeof fbDaily === 'function') fbDaily(st, r);
   st.reports = st.reports.concat([r]).slice(-14);
   return r;
 }
@@ -1252,6 +1367,243 @@ function investOptions(st) {
 }
 function doInvest(st, o) { if (o.kind === 'buy') return buyMachine(st, o.id); if (o.kind === 'up') return upgradeMachine(st, o.id); if (o.kind === 'biz') return buyBiz(st, o.id); if (o.kind === 'kluis') return upgradeKluis(st); }
 
+/* ===== game/fbsim.js ===== */
+/* Robotvoetbal-motor (fase C): pure simulatie, geen DOM. Gebruikt door het wedstrijdscherm en tests/sim_voetbal.js.
+   Veld 100 × 60. Team 0 speelt naar rechts (goal x=100), team 1 naar links. Elk team: 3 veldrobots + een automatische keeper. */
+const FW = 100, FH = 60, GY0 = 21, GY1 = 39, HALF_LEN = 90;
+const FIELD_MAPS = [
+  { crates: [[46, 8, 8, 6], [46, 46, 8, 6]], bushes: [[30, 30, 5], [70, 30, 5]] },
+  { crates: [[38, 26, 6, 8], [56, 26, 6, 8]], bushes: [[50, 10, 5], [50, 50, 5], [20, 48, 4], [80, 12, 4]] },
+  { crates: [[30, 12, 6, 6], [64, 42, 6, 6], [47, 52, 6, 5]], bushes: [[30, 46, 5], [70, 14, 5]] }
+];
+function mkRng(seed) { let x = seed >>> 0 || 1; return () => { x ^= x << 13; x >>>= 0; x ^= x >> 17; x ^= x << 5; x >>>= 0; return x / 4294967296; }; }
+// stats: {snel,slim,sterk,verd,stevig} (0-6), extra: {glue, radar, look, name}
+function newMatch(teams, o = {}) {
+  const M = { t: 0, half: 1, score: [0, 0], over: false, pause: null, rng: mkRng(o.seed || 1), map: FIELD_MAPS[(o.map || 0) % FIELD_MAPS.length], bots: [], fx: [], events: [],
+    ball: { x: 50, y: 30, vx: 0, vy: 0, owner: null, safe: false, last: null, shot: null }, keepers: [], play: [null, null], boost: [1, 1], stats: [{ shots: 0, ko: 0, falls: 0 }, { shots: 0, ko: 0, falls: 0 }],
+    kseq: [o.keeperSeq0 || null, o.keeperSeq1 || null], kidx: [0, 0], khist: [[], []], ctrl: o.ctrl || [null, null], kid: o.kid || {}, assist: o.assist !== false };
+  teams.forEach((T, t) => T.bots.forEach((b, i) => {
+    const s = b.st, maxhp = 3 + 1.5 * s.stevig;
+    M.bots.push({ team: t, i, name: b.name || '', look: b.look, st: s, glue: !!b.glue, x: 0, y: 0, vx: 0, vy: 0, fx: t ? -1 : 1, fy: 0, hp: maxhp, maxhp, down: 0, wobble: 0, cool: 0, think: 0, tx: 50, ty: 30, kos: 0, hidden: false, say: null, human: null });
+  }));
+  for (let t = 0; t < 2; t++) { const sk = teams[t].keeper == null ? avgSlim(M, t) : teams[t].keeper; M.keepers.push({ team: t, x: t ? 97 : 3, y: 30, dive: null, diveT: 0, skill: sk }); }
+  kickoff(M, 0); return M;
+}
+function avgSlim(M, t) { const b = M.bots.filter(x => x.team === t); return b.reduce((a, x) => a + x.st.slim, 0) / b.length; }
+function kickoff(M, team) {
+  const P = [[38, 30], [30, 14], [30, 46]];
+  M.bots.forEach(b => { const p = P[b.i % 3]; b.x = b.team ? FW - p[0] : p[0]; b.y = p[1]; b.vx = b.vy = 0; b.down = 0; b.wobble = 0; b.cool = .3; });
+  const k = M.bots.find(b => b.team === team && b.i === 0); k.x = team ? 52 : 48; k.y = 30;
+  Object.assign(M.ball, { x: 50, y: 30, vx: 0, vy: 0, owner: null, safe: false, shot: null }); M.play = [null, null];
+  M.keepers.forEach(k => { k.y = 30; k.dive = null; });
+}
+const vmax = (M, b) => (M.play[1 - b.team] && M.play[1 - b.team].until > M.t ? .55 : 1) * (13 + 2.6 * b.st.snel) * (b.wobble > 0 ? .45 : 1) * M.boost[b.team] * (M.ball.owner === b ? .86 : 1);
+const goalX = t => t ? 0 : FW;
+const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+function sayAt(M, b, txt, col) { M.fx.push({ x: b.x, y: b.y - 3, txt, t: 1.6, col: col || '#fff' }); }
+function inBush(M, x, y) { return M.map.bushes.some(([bx, by, r]) => Math.hypot(x - bx, y - by) < r); }
+function solid(M, x, y, r) { return M.map.crates.find(([cx, cy, w, h]) => x + r > cx && x - r < cx + w && y + r > cy && y - r < cy + h); }
+// ---- acties ----
+function shoot(M, b, aim) {
+  const B = M.ball; if (B.owner !== b) return false;
+  const kp = M.keepers[1 - b.team], gx = goalX(b.team);
+  let side = aim; const human = b.human != null || M.kid[b.team] && b === kidBot(M, b.team);
+  if (!side && b.aimRead) side = readKeeper(M, b.team); b.aimRead = false;
+  if (!side) side = (kp.y > 30 ? 'L' : 'R');            // richt-hulp: de kant waar de keeper niet staat
+  const ty = 30 + (side === 'L' ? -6.5 : 6.5) + (M.rng() - .5) * (human && M.assist ? 2 : 2 * (5 - .6 * b.st.slim));
+  const sp = 40 + 5 * b.st.sterk, d = Math.hypot(gx - b.x, ty - b.y);
+  B.owner = null; B.vx = (gx - b.x) / d * sp; B.vy = (ty - b.y) / d * sp; B.last = b; B.safe = false; B.shot = { team: b.team, side, y: ty }; b.cool = .5;
+  M.stats[b.team].shots++; M.events.push({ type: 'shot', team: b.team });
+  // keeper kiest een duik: rivalen volgen hun patroon, anders een gok (beter met slimmer)
+  const t = 1 - b.team, seq = M.kseq[t];
+  let dive; if (seq) { dive = seq[M.kidx[t] % seq.length]; M.kidx[t]++; } else dive = M.rng() < .3 + .1 * kp.skill ? side : (side === 'L' ? 'R' : 'L');
+  kp.dive = dive; kp.diveT = .35; M.khist[t].push(dive); if (M.khist[t].length > 6) M.khist[t].shift();
+  return true;
+}
+function pass(M, b, to, safe) {
+  const B = M.ball; if (B.owner !== b || !to) return false;
+  const lead = .25, tx = to.x + to.vx * lead, ty = to.y + to.vy * lead, d = Math.hypot(tx - b.x, ty - b.y) || 1, sp = 40;
+  B.owner = null; B.vx = (tx - b.x) / d * sp; B.vy = (ty - b.y) / d * sp; B.last = b; B.safe = safe || to.hidden; B.passTo = to; B.shot = null; b.cool = .35; return true;
+}
+function push(M, b) {
+  if (b.cool > 0 || b.down > 0) return false; b.cool = .8;
+  const opp = M.bots.filter(o => o.team !== b.team && o.down <= 0 && dist(o, b) < 5.5).sort((p, q) => dist(p, b) - dist(q, b))[0];
+  sayAt(M, b, '💨', '#9fb0c8'); if (!opp) return false;
+  const d = dist(opp, b) || 1, k = (16 + 4 * b.st.sterk) / (1 + .25 * opp.st.verd);
+  opp.vx += (opp.x - b.x) / d * k; opp.vy += (opp.y - b.y) / d * k;
+  let dmg = Math.max(.4, 1 + .4 * b.st.sterk - .3 * opp.st.verd); if (opp.st.stevig >= 5) dmg *= .3;
+  opp.hp -= dmg; if (M.ball.owner === opp) { M.ball.owner = null; M.ball.vx = opp.vx * .6; M.ball.vy = opp.vy * .6; opp.cool = .7; }
+  if (opp.hp <= 0) { opp.down = 2.4; opp.hp = opp.maxhp; opp.kos++; M.stats[b.team].ko++; sayAt(M, opp, KO_LINES[Math.floor(M.rng() * KO_LINES.length)], '#ffb43b'); M.events.push({ type: 'ko', team: b.team, bot: opp }); }
+  else M.events.push({ type: 'bump' });
+  return true;
+}
+const kidBot = (M, t) => M.bots.find(b => b.team === t && b.kidCtl);
+// ---- AI ----
+function aiThink(M, b) {
+  const B = M.ball, own = B.owner, mates = M.bots.filter(o => o.team === b.team && o !== b), opps = M.bots.filter(o => o.team !== b.team);
+  const kid = M.kid[b.team] && b.kidCtl, sl = kid ? b.st.slim - 2 : b.st.slim, dir = b.team ? -1 : 1, gx = goalX(b.team);
+  b.think = Math.max(.12, .55 - .07 * sl) * (.7 + .6 * M.rng());
+  if (own === b) {
+    const dg = Math.hypot(gx - b.x, 30 - b.y), press = opps.some(o => o.down <= 0 && dist(o, b) < 6);
+    if (dg < 17 + 1.5 * Math.max(0, sl)) { const aim = kid ? (M.rng() < .6 ? readKeeper(M, b.team) : null) : (M.rng() < .15 * sl ? readKeeper(M, b.team) : null); return void shoot(M, b, aim); }
+    if (press && M.rng() < .35 + .1 * sl) { const open = mates.filter(m => m.down <= 0 && (m.x - b.x) * dir > -6 && !opps.some(o => dist(o, m) < 5)).sort((p, q) => (q.x - p.x) * dir - (p.x - q.x) * dir)[0]; if (open) return void pass(M, b, open); }
+    b.tx = gx - dir * 6; b.ty = 30 + (b.y < 30 ? -4 : 4); return;
+  }
+  if (own && own.team === b.team) {      // vrijlopen, liefst in een bosje
+    const lane = [14, 30, 46][b.i % 3], bush = M.map.bushes.find(([x, y]) => (x - own.x) * dir > 4 && Math.abs(y - lane) < 12);
+    if (bush && sl >= 1 && M.rng() < .5) { b.tx = bush[0]; b.ty = bush[1]; } else { b.tx = clamp(own.x + dir * 14, 8, 92); b.ty = lane; }
+    if ((gx - b.x) * dir < 14) b.tx = gx - dir * 16; return;
+  }
+  // bal los of bij de tegenstander: dichtstbijzijnde jaagt, de rest dekt
+  const target = own || B, chaser = [b, ...mates].filter(m => m.down <= 0 && !m.human).sort((p, q) => dist(p, target) - dist(q, target))[0];
+  const humanChasing = mates.some(m => m.human != null && dist(m, target) < dist(b, target));
+  if (chaser === b && !(humanChasing && own)) { b.tx = target.x + (B.vx || 0) * .15 * Math.max(0, sl) / 3; b.ty = target.y; if (own && dist(b, own) < 4.5 && M.rng() < .35 + .12 * sl) push(M, b); return; }
+  const lane = [30, 18, 42][b.i % 3], ownGoal = goalX(1 - b.team);
+  b.tx = clamp((target.x + ownGoal) / 2 + (b.i === 0 ? dir * 6 : 0), 6, 94); b.ty = (lane + target.y) / 2;
+}
+function readKeeper(M, team) { const t = 1 - team, seq = M.kseq[t]; if (!seq) return null; const next = seq[M.kidx[t] % seq.length]; return next === 'L' ? 'R' : 'L'; }
+// ---- stap ----
+// inputs: [{mx,my,shoot,push,play}, …] per menselijke speler (index = ctrl-slot), met b.human = slot
+function step(M, dt, inputs = []) {
+  if (M.over || M.pause) return;
+  if (M.cele > 0) { M.cele -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); return; }
+  M.t += dt; M.events.length = 0; const B = M.ball;
+  if (M.half === 1 && M.t >= HALF_LEN) { M.pause = 'rust'; M.half = 2; return; }
+  if (M.t >= 2 * HALF_LEN) { M.over = true; return; }
+  // wie bestuurt een mens? automatisch wisselen naar de robot het dichtst bij de bal (solo/co-op met 1 per team)
+  for (let s = 0; s < M.ctrl.length; s++) { const t = M.ctrl[s]; if (t == null) continue;
+    let cur = M.bots.find(b => b.human === s);
+    const mine = M.bots.filter(b => b.team === t && (b.human == null || b.human === s));
+    if (!cur) { cur = mine[0]; cur.human = s; }
+    const own = B.owner; if (own && own.team === t && own !== cur && own.human == null) { cur.human = null; own.human = s; cur = own; }
+    else if ((!own || own.team !== t) && M.t - (cur.sw || 0) > .6) { const best = mine.filter(b => b.down <= 0).sort((p, q) => dist(p, B) - dist(q, B))[0]; if (best && best !== cur && dist(best, B) + 5 < dist(cur, B)) { cur.human = null; best.human = s; best.sw = M.t; cur = best; } }
+  }
+  for (const b of M.bots) {
+    b.cool -= dt; if (b.down > 0) { b.down -= dt; b.vx *= .8; b.vy *= .8; continue; } if (b.wobble > 0) b.wobble -= dt;
+    // vanzelf uit elkaar vallen (slechte, vroege robots)
+    if (!b.glue && b.st.stevig < 2 && M.rng() < dt * .022 * (2 - b.st.stevig) * (Math.hypot(b.vx, b.vy) > 6 ? 1 : .3)) { b.wobble = 1.6; b.falls = (b.falls || 0) + 1; M.stats[b.team].falls++; sayAt(M, b, FALL_LINES[Math.floor(M.rng() * FALL_LINES.length)], '#ff9f9f'); if (B.owner === b) { B.owner = null; B.vx = b.vx; B.vy = b.vy; b.cool = .8; } M.events.push({ type: 'fall', bot: b }); }
+    let ax, ay; const vm = vmax(M, b);
+    if (b.human != null) { const I = inputs[b.human] || {}; const m = Math.hypot(I.mx || 0, I.my || 0); ax = m > .15 ? (I.mx / Math.max(1, m)) * vm : 0; ay = m > .15 ? (I.my / Math.max(1, m)) * vm : 0;
+      if (I.shoot) { if (B.owner === b) shoot(M, b, I.my < -.35 ? 'L' : I.my > .35 ? 'R' : null); else if (B.owner && B.owner.team === b.team) pass(M, B.owner, b); }
+      if (I.push) push(M, b);
+      if (I.play && B.owner && B.owner.team === b.team && M.playLv && M.playLv[b.team] && !(M.playCool > M.t)) { M.play[b.team] = { left: M.playLv[b.team] + 1, until: M.t + 4 }; M.playCool = M.t + 15; sayAt(M, b, '📋 Spelzet!', '#38d6ff'); M.events.push({ type: 'play' }); } }
+    else { b.think -= dt; if (b.think <= 0 || B.owner === b && b.think > .3) aiThink(M, b); let dx = b.tx - b.x, dy = b.ty - b.y; const d = Math.hypot(dx, dy); const sp = d > 1.5 ? vm : vm * d / 1.5;
+      if (d > 2) { const ux = dx / d, uy = dy / d, cr = solid(M, b.x + ux * 4, b.y + uy * 4, 1.6) || solid(M, b.x + ux * 2, b.y + uy * 2, 1.6);
+        if (cr) { const cy = cr[1] + cr[3] / 2, cx = cr[0] + cr[2] / 2, sgn = Math.abs(ux) > Math.abs(uy) ? (b.y < cy ? -1 : 1) : (b.x < cx ? -1 : 1);
+          if (Math.abs(ux) > Math.abs(uy)) { dx = ux * .3; dy = sgn; } else { dx = sgn; dy = uy * .3; } } }
+      const dd = Math.hypot(dx, dy) || 1; ax = d ? dx / dd * sp : 0; ay = d ? dy / dd * sp : 0; }
+    b.vx += (ax - b.vx) * Math.min(1, dt * 8); b.vy += (ay - b.vy) * Math.min(1, dt * 8);
+    let nx = b.x + b.vx * dt, ny = b.y + b.vy * dt;
+    const inside = solid(M, b.x, b.y, 1.6); if (!inside && solid(M, nx, b.y, 1.6)) { nx = b.x; b.vx *= -.3; } if (!inside && solid(M, nx, ny, 1.6)) { ny = b.y; b.vy *= -.3; }
+    b.x = clamp(nx, 1.5, FW - 1.5); b.y = clamp(ny, 1.5, FH - 1.5);
+    const sp2 = Math.hypot(b.vx, b.vy); if (sp2 > 1) { b.fx = b.vx / sp2; b.fy = b.vy / sp2; }
+    b.hidden = inBush(M, b.x, b.y);
+  }
+  // botsen tussen robots
+  for (let i = 0; i < M.bots.length; i++) for (let j = i + 1; j < M.bots.length; j++) { const a = M.bots[i], c = M.bots[j], d = dist(a, c); if (d < 2.6 && d > 0) { const o = (2.6 - d) / 2, ux = (a.x - c.x) / d, uy = (a.y - c.y) / d; a.x += ux * o; a.y += uy * o; c.x -= ux * o; c.y -= uy * o; } }
+  // spelzet: automatisch doorpassen en afmaken
+  for (let t = 0; t < 2; t++) { const pl = M.play[t]; if (pl && (B.owner && B.owner.team !== t || pl.until < M.t)) { M.play[t] = null; continue; } if (!pl || !B.owner) continue; const o = B.owner;
+    const dir = t ? -1 : 1, mates = M.bots.filter(m => m.team === t && m !== o && m.down <= 0);
+    mates.forEach((m, k) => { m.tx = clamp(o.x + dir * 16, 6, 94); m.ty = [16, 44][k % 2]; m.think = .5; });   // vrijlopen naar voren
+    pl.wait = (pl.wait ?? .6) - dt;
+    if (pl.left > 0) { if (pl.wait > 0) continue; const to = mates.filter(m => (m.x - o.x) * dir > 3).sort((p, q) => (q.x - p.x) * dir)[0];
+      if (to && o.cool <= 0) { pass(M, o, to, true); pl.left--; pl.wait = .7; } else if (!to) { pl.left = 0; } }
+    else if (o.cool <= 0) { M.play[t] = null; o.aimRead = true; if (Math.abs(goalX(t) - o.x) < 26) shoot(M, o, readKeeper(M, t)); } }
+  // bal
+  if (B.owner) { const o = B.owner; if (o.down > 0) B.owner = null; else { B.x = o.x + o.fx * 1.8; B.y = o.y + o.fy * 1.8; if (solid(M, B.x, B.y, .3)) { B.x = o.x; B.y = o.y; } B.vx = o.vx; B.vy = o.vy;
+      const thief = M.bots.find(x => x.team !== o.team && x.down <= 0 && x.cool <= 0 && dist(x, o) < 2.8 && !x.human);
+      const hthief = M.bots.find(x => x.team !== o.team && x.down <= 0 && x.cool <= 0 && dist(x, o) < 2.8 && x.human != null);
+      const confused = M.play[o.team] && M.play[o.team].until > M.t; const th = thief || hthief; if (th && !confused && M.rng() < dt * (.9 + .35 * th.st.verd - .2 * o.st.verd + (th.human != null ? .6 : 0))) { B.owner = th; o.cool = .6; th.cool = .3; B.shot = null; } } }
+  else {
+    B.x += B.vx * dt; B.y += B.vy * dt; const f = Math.pow(.55, dt); B.vx *= f; B.vy *= f;
+    if (B.y < .8 || B.y > FH - .8) { B.vy *= -.8; B.y = clamp(B.y, .8, FH - .8); }
+    const cr = solid(M, B.x, B.y, .6); if (cr) { const [cx, cy, w, h] = cr; const pen = [[B.x - (cx - .7), 'l'], [cx + w + .7 - B.x, 'r'], [B.y - (cy - .7), 't'], [cy + h + .7 - B.y, 'b']].sort((a, b) => a[0] - b[0])[0][1];
+      if (pen === 'l') { B.x = cx - .7; B.vx = -Math.abs(B.vx) * .7; } else if (pen === 'r') { B.x = cx + w + .7; B.vx = Math.abs(B.vx) * .7; } else if (pen === 't') { B.y = cy - .7; B.vy = -Math.abs(B.vy) * .7; } else { B.y = cy + h + .7; B.vy = Math.abs(B.vy) * .7; } B.shot = null; }
+    // keepers
+    for (const k of M.keepers) { const toward = (k.team ? B.vx > 0 : B.vx < 0) && Math.abs(B.x - k.x) < 30;
+      const near = Math.abs(B.x - k.x) < 11;
+      if (k.dive && k.diveT > 0 && near) { k.diveT -= dt; k.y += ((k.dive === 'L' ? 23.5 : 36.5) - k.y) * Math.min(1, dt * 14); }
+      else if (!toward || !B.shot) k.y += (clamp(B.y, GY0 + 2, GY1 - 2) - k.y) * Math.min(1, dt * (1.5 + .5 * k.skill));
+      else if (!near) k.y += (clamp(B.y + B.vy * Math.abs((B.x - k.x) / (B.vx || 1)), GY0, GY1) - k.y) * Math.min(1, dt * (1.6 + .5 * k.skill));
+      if (Math.abs(B.x - k.x) < 1.6 && Math.abs(B.y - k.y) < 4.4 + .3 * k.skill && toward) { B.vx = -B.vx * .6; B.vy = (M.rng() - .5) * 20; B.x = k.x + (k.team ? -2 : 2); const wasShot = B.shot; B.shot = null; k.dive = null; M.events.push({ type: 'save', team: k.team }); M.fx.push({ x: k.x, y: k.y - 4, txt: 'GEKEERD!', t: 1.4, col: '#38d6ff' }); if (wasShot) k.saves = (k.saves || 0) + 1; } }
+    // goal of uit
+    if (B.x < 0 || B.x > FW) { const t = B.x > FW ? 0 : 1;
+      if (B.y > GY0 && B.y < GY1) { M.score[t]++; M.events.push({ type: 'goal', team: t }); M.fx.push({ x: 50, y: 30, txt: GOAL_LINES[Math.floor(M.rng() * GOAL_LINES.length)], t: 2, col: '#ffb43b', big: true }); M.keepers.forEach(k => k.dive = null); kickoff(M, 1 - t); M.cele = 1.8; return; }
+      B.vx *= -.7; B.x = clamp(B.x, .5, FW - .5); B.shot = null; M.keepers.forEach(k => k.dive = null); }
+    // oppakken
+    const sp = Math.hypot(B.vx, B.vy); let best = null, bd = 9;
+    for (const b of M.bots) { if (b.down > 0 || b.cool > 0) continue; if (B.safe && B.passTo && b.team !== B.passTo.team) continue; const d = dist(b, B); const r = sp > 30 ? 1.6 : 2.4; if (d < r && d < bd) { best = b; bd = d; } }
+    if (best) { if (B.shot && best.team !== B.shot.team) M.events.push({ type: 'block' }); B.owner = best; B.safe = false; B.shot = null; best.cool = .15; }
+  }
+  for (const k of M.keepers) if (k.dive && !B.shot && !(k.diveT > 0)) { k.dive = null; }
+  M.fx = M.fx.filter(f => (f.t -= dt) > 0);
+}
+// ---- teams opbouwen uit de opslag ----
+function botStats(r, cap) {
+  const s = {}; for (const k of ['snel', 'slim', 'sterk', 'verd', 'stevig']) s[k] = Math.min(r.lv[k], cap ?? 9);
+  if (r.gear && GEAR[r.gear]) s[GEAR[r.gear].st] += 1;
+  if (r.fit) { s.snel += .5; s.slim += .5; }
+  if (r.dmg) { s.snel = Math.max(0, s.snel - .5 * r.dmg); s.stevig = Math.max(0, s.stevig - .5 * r.dmg); }
+  return s;
+}
+function playerTeam(fb) { return { bots: fb.lineup.map(i => fb.robots[i]).map(r => ({ name: r.name, look: r.look, st: botStats(r), glue: r.gear === 'superlijm', id: r.id })), keeper: 1 + .5 * (fb.keeperLv || 0) }; }
+function rivalTeam(id) { const R = RIVALS[id]; return { bots: [0, 1, 2].map(i => ({ name: R.name + ' ' + (i + 1), look: { rival: id }, st: Object.assign({}, R.st) })), keeper: R.st.slim }; }
+
+/* ===== game/team.js ===== */
+/* Teammanagement + competitie (fase C), pure functies op de opslag. */
+function fbInit(st) {
+  const f = st.football = st.football || {};
+  const d = { seen: false, kas: 0, div: 0, divRes: [], history: [], robots: freshTeam(), lineup: [0, 1, 2], playLv: 0, playProg: 0, keeperLv: 0, trained: {}, titles: 0, kasShare: .25, cheers: 0 };
+  for (const k in d) if (!(k in f)) f[k] = d[k];
+  return f;
+}
+const fbUnlocked = st => st.soldTotal >= FOOTBALL_AT || st.football.seen;
+const kasCap = st => DIVS[st.football.div].kasCap;
+function addKas(st, n) { const f = st.football, before = f.kas; f.kas = Math.min(kasCap(st), f.kas + Math.max(0, Math.round(n))); return f.kas - before; }
+function spendKas(st, n) { if (st.football.kas < n) return false; st.football.kas -= n; return true; }
+// munten van de fabriek naar de clubkas (begrensd door het divisieplafond)
+function deposit(st, n) { const room = kasCap(st) - st.football.kas, k = Math.max(0, Math.min(n, room, st.coins)); if (!k) return 0; st.coins -= k; st.today.fin && (st.today.fin.invest += k); st.football.kas += k; return k; }
+// elke avond gaat een deel van de winst naar de clubkas
+function fbDaily(st, r) { if (!st.football || !fbUnlocked(st)) return 0; const n = Math.max(0, Math.round(r.profit * st.football.kasShare)); const got = addKas(st, n); r.kas = got; return got; }
+const maxLv = st => DIVS[st.football.div].maxLv;
+function fbUpCost(st, ri, stat) { const r = st.football.robots[ri], lv = r.lv[stat]; return lv >= maxLv(st) ? null : UP_COST[lv]; }
+function fbUpgrade(st, ri, stat) { const c = fbUpCost(st, ri, stat); if (c == null || !spendKas(st, c)) return false; st.football.robots[ri].lv[stat]++; return true; }
+const repairCost = (st, r) => r.dmg * (st.machines.test.owned ? 12 : 20);
+function repair(st, ri) { const r = st.football.robots[ri], c = repairCost(st, r); if (!r.dmg || !spendKas(st, c)) return false; r.dmg = 0; return true; }
+const TRAIN_COST = 15;
+function canTrain(st, ri) { return st.football.trained[ri] !== st.day && st.football.kas >= TRAIN_COST; }
+function finishTrain(st, ri, stars) {
+  const f = st.football, r = f.robots[ri]; if (!spendKas(st, TRAIN_COST)) return null; f.trained[ri] = st.day; r.fit = 1; r.xp += stars;
+  let up = null; if (r.xp >= 6) { const cand = STATS.map(s => s.id).filter(k => r.lv[k] < maxLv(st)).sort((a, b) => r.lv[a] - r.lv[b])[0]; if (cand) { r.lv[cand]++; up = cand; } r.xp -= 6; }
+  return { fit: true, up, xp: r.xp };
+}
+function gearFree(st, g) { const used = st.football.robots.filter(r => r.gear === g).length; return (st.items[g] || 0) - used; }
+function equip(st, ri, g) { const r = st.football.robots[ri]; if (g && r.gear !== g && gearFree(st, g) <= 0) return false; r.gear = g || null; return true; }
+function setLook(st, ri, k, v) { st.football.robots[ri].look[k] = v; }
+function toggleLineup(st, ri) {
+  const L = st.football.lineup; if (L.includes(ri)) { if (L.length <= 1) return false; L.splice(L.indexOf(ri), 1); return true; }
+  if (L.length >= 3) L.shift(); L.push(ri); return true;
+}
+function swapIn(st, outRi, inRi) { const L = st.football.lineup, i = L.indexOf(outRi); if (i < 0 || L.includes(inRi)) return false; L[i] = inRi; return true; }
+function playProgress(st, ok) { const f = st.football; if (ok) f.playProg++; if (f.playProg >= 3 && f.playLv < 3) { f.playLv++; f.playProg = 0; return true; } return false; }
+const PLAY_NAMES = ['', 'Tik-tak (1 pass + schot)', 'Driehoek (herhaal 2×: pass)', 'Draaikolk (herhaal 3×: pass)'];
+// uitslag verwerken. mode: 'solo' | 'coop' tellen mee voor de competitie; 'versus' is een oefenpotje
+function applyMatch(st, res, mode) {
+  const f = st.football, D = DIVS[f.div], won = res.score[0] > res.score[1], draw = res.score[0] === res.score[1];
+  const out = { won, draw, prize: 0, dmg: [], promoted: false, champion: false, stay: false, pts: 0 };
+  f.lineup.forEach((ri, k) => { const r = f.robots[ri], kos = res.kos[k] || 0, falls = res.falls[k] || 0; const add = Math.min(2, kos + (falls >= 2 ? 1 : 0)); r.dmg = Math.min(3, r.dmg + add); r.fit = 0; if (add) out.dmg.push([ri, add]); });
+  if (mode === 'versus') { out.prize = addKas(st, 15); return out; }
+  out.prize = addKas(st, won ? D.prize : draw ? D.prize / 2 : D.prize / 4); if (won) st.rep += 3; else if (draw) st.rep += 1;
+  f.divRes.push(won ? 3 : draw ? 1 : 0); f.history = f.history.concat([{ day: st.day, div: f.div, score: res.score, rival: D.rival }]).slice(-20);
+  out.pts = f.divRes.reduce((a, b) => a + b, 0);
+  if (f.divRes.length >= MATCHES_PER_DIV || out.pts >= PROMOTE_PTS + 2) {
+    if (out.pts >= PROMOTE_PTS) { if (f.div < DIVS.length - 1) { f.div++; out.promoted = true; } else { f.titles++; out.champion = true; } } else out.stay = true;
+    f.divRes = [];
+  }
+  return out;
+}
+const divPoints = st => st.football.divRes.reduce((a, b) => a + b, 0);
+
 /* ===== game/play.js ===== */
 /* Het puzzelscherm: speelt een reeks puzzels (niveau, instaptoets of samen-spel). Geen tijdsdruk, geen levens. */
 let RUN = null;   // de lopende reeks
@@ -1267,6 +1619,9 @@ function startRun(run) {
 }
 function runTitle() {
   if (RUN.mode === 'placement') return 'Even kijken wat je al kunt';
+  if (RUN.mode === 'fbtrain') return '🏋️ Training: ' + S.football.robots[FB.trainRi].name;
+  if (RUN.mode === 'fbplay') return '🧠 Programmeer een spelzet';
+  if (RUN.mode === 'fbcheer') return '📣 Supporters-ritme';
   if (RUN.mode === 'lezer') return '🗣️ Lezer en bouwer';
   if (RUN.mode === 'maker') return '🛠️ Maak een patroon';
   if (RUN.mode === 'job') { const d = MACHINES[RUN.mid]; return `${d.icon} ${d.name} · niveau ${S.machines[RUN.mid].lv}`; }
@@ -1282,7 +1637,7 @@ function nextPuzzle() {
   if (RUN.mode === 'placement') { const c = PLACEMENT[RUN.i]; p = genPuzzle(c.lv, c.d, c.kind); }
   else if (RUN.mode === 'lezer') p = genPuzzle({ t: RUN.i % 3 === 2 ? 'mid' : 'next', st: [['AB', 'ABB'], ['ABB', 'AAB', 'ABC'], ['ABC', 'AABB']] }, RUN.d, RUN.kind);
   else if (RUN.mode === 'maker') p = null;
-  else if (RUN.mode === 'job') { const [src, x] = pick(RUN.pool); p = src === 'g' ? genPuzzle({ t: x }, RUN.d, 'vorm') : genPuzzle(HALLS[src === 'h1' ? 0 : 1].levels[x], RUN.d, src === 'h1' ? 'vorm' : 'klank'); }
+  else if (RUN.mode === 'job' || RUN.mode.startsWith('fb')) { const [src, x] = pick(RUN.pool); p = src === 'g' ? genPuzzle({ t: x }, RUN.d, 'vorm') : genPuzzle(HALLS[src === 'h1' ? 0 : 1].levels[x], RUN.d, src === 'h1' ? 'vorm' : 'klank'); }
   else if (RUN.mode === 'smeer') p = genPuzzle({ t: 'odd', st: [['AB'], ['AB', 'ABB'], ['ABC']] }, 0, RUN.kind);
   else if (RUN.mode === 'hidden') { const t = HIDDEN[RUN.spot].t; p = t === 'mid' ? genPuzzle({ t: 'mid', st: [['AB', 'ABB'], ['ABC', 'AABB'], ['ABC', 'AABB']] }, 1, 'vorm') : genPuzzle({ t }, 1, 'vorm'); }
   $('#scrPuzzle').classList.toggle('h2', !!p && p.kind === 'klank');
@@ -1519,6 +1874,7 @@ function finishRun() {
   if (RUN.mode === 'lezer' || RUN.mode === 'maker') return finishSamen();
   if (RUN.mode === 'smeer') return finishSmeer();
   if (RUN.mode === 'hidden') return finishHidden();
+  if (RUN.mode.startsWith('fb')) return finishFbRun();
   return finishJob();
 }
 function initPlay() {
@@ -1526,7 +1882,7 @@ function initPlay() {
   $('#pzBand').addEventListener('click', e => { const s = e.target.closest('.slot'); if (s && P && P.phase !== 'maak') onSlot(+s.dataset.i); });
   $('#pzAct').addEventListener('click', e => { const b = e.target.closest('button'); if (b && !b.disabled) onAct(b.id); });
   $('#pzHint').onclick = () => hint();
-  $('#pzBack').onclick = async () => { if (await confirmBox('Wil je stoppen? De machine maakt dan nu niks.')) { GEN++; hush(); RUN && (RUN.mode === 'lezer' || RUN.mode === 'maker') ? openSamen() : RUN && RUN.mode === 'placement' && !S.placement.done ? (S.placement = { done: true, score: 0 }, save(), goFactory()) : goFactory(); } };
+  $('#pzBack').onclick = async () => { if (await confirmBox('Wil je stoppen? De machine maakt dan nu niks.')) { GEN++; hush(); RUN && (RUN.mode === 'lezer' || RUN.mode === 'maker') ? openSamen() : RUN && RUN.mode === 'placement' && !S.placement.done ? (S.placement = { done: true, score: 0 }, save(), goFactory()) : RUN && RUN.mode === 'fbcheer' ? (FB.boost = 1, FB.resume()) : RUN && RUN.mode.startsWith('fb') ? goTeam() : goFactory(); } };
   addEventListener('resize', () => { if (CUR_SCREEN === 'scrPuzzle' && P) render(); });
 }
 
@@ -1666,7 +2022,7 @@ function renderFactory() {
   $('#fRooms').innerHTML = MACHINE_ORDER.map(roomCard).join('');
   const fp = footballProgress(S);
   $('#fFoot').innerHTML = fp < 1 ? `<b>⚽ Robotvoetbal</b><small>Verkoop ${FOOTBALL_AT} robots, dan bouwt opa een stadion!</small><div class="bar"><i style="width:${fp * 100}%"></i></div><small>${Math.min(S.soldTotal, FOOTBALL_AT)}/${FOOTBALL_AT} verkocht</small>`
-    : `<b>🏟️ Het stadion wordt gebouwd!</b><small>Robotvoetbal tegen Kartonco komt in de volgende update. Verborgen onderdelen die je vindt, bewaar je alvast.</small><div class="items">${Object.entries(S.items).filter(([k]) => k !== 'pionier').map(([k, n]) => `<span class="pill">${itemName(k)} ×${n}</span>`).join('') || '<small>Nog geen onderdelen gevonden… zoek eens goed in de fabriek 👀</small>'}</div>`;
+    : `<b>🏟️ Stadion · ${DIVS[fbInit(S).div].name}</b><small>Volgende tegenstander: ${RIVALS[DIVS[S.football.div].rival].icon} ${RIVALS[DIVS[S.football.div].rival].name} · clubkas 🪙 ${S.football.kas}</small><button class="btn green small" id="fGoStadion">⚽ Naar het stadion</button>`;
   $('#fPoster').classList.toggle('ready', hiddenReady(S, 'poster'));
   advise();
 }
@@ -1764,7 +2120,7 @@ function openShop() {
   $('#shopBody').innerHTML = h; openOv('ovShop');
 }
 function shopClick(e) {
-  if (e.target.closest('#shSell')) { const r = sellNow(S); save(); SFX.fanfare(); coinBurst(e.target, 8); toast(`💰 ${r.sold} robots verkocht voor 🪙 ${r.coins}${r.bonus ? ' (+10% omdat alle machines blij zijn!)' : ''}`); renderFactory(); openShop(); if (S.soldTotal >= FOOTBALL_AT && !S.football.seen) { S.football.seen = true; save(); closeOv('ovShop'); confetti(80); advise('WOW! Opa belt: “Zoveel robots verkocht? Dan bouw ik een <b>voetbalstadion</b>! Robotvoetbal komt eraan!” ⚽'); } return; }
+  if (e.target.closest('#shSell')) { const r = sellNow(S); save(); SFX.fanfare(); coinBurst(e.target, 8); toast(`💰 ${r.sold} robots verkocht voor 🪙 ${r.coins}${r.bonus ? ' (+10% omdat alle machines blij zijn!)' : ''}`); renderFactory(); openShop(); if (S.soldTotal >= FOOTBALL_AT && !S.football.seen) { S.football.seen = true; save(); closeOv('ovShop'); confetti(80); advise('WOW! Opa belt: “Zoveel robots verkocht? Dan bouw ik een <b>voetbalstadion</b>!” Het stadion is open: tik op ⚽ Naar het stadion!'); } return; }
   const b = e.target.closest('[data-order]'); if (b) { const r = deliver(S, b.dataset.order); if (r) { save(); SFX.fanfare(); confetti(30); toast(`📦 Geleverd! 🪙 +${r.coins} en ⭐ +${r.rep}`); renderFactory(); openShop(); } }
 }
 /* ---------- investeren ---------- */
@@ -1871,7 +2227,7 @@ function liveTick() {
   if (r.sold && CUR_SCREEN === 'scrFactory') { const c = $('#fShopCard'); if (c) { const e = document.createElement('div'); e.className = 'coinpop'; e.textContent = `+🪙 ${r.coins}`; c.appendChild(e); setTimeout(() => e.remove(), 1000); } if (S.settings.sfx && AUD.ac) tone(1320, .06, 'square', .03); }
   if ((r.made || r.sold) && CUR_SCREEN === 'scrFactory') renderHud();
   if (LIVE_N % 5 === 0) { S.lastSeen = Date.now(); save(); }
-  if (r.sold && S.soldTotal >= FOOTBALL_AT && !S.football.seen && CUR_SCREEN === 'scrFactory') { S.football.seen = true; save(); confetti(80); renderFactory(); advise('WOW! Opa belt: “Zoveel robots verkocht? Dan bouw ik een <b>voetbalstadion</b>! Robotvoetbal komt eraan!” ⚽'); }
+  if (r.sold && S.soldTotal >= FOOTBALL_AT && !S.football.seen && CUR_SCREEN === 'scrFactory') { S.football.seen = true; save(); confetti(80); renderFactory(); advise('WOW! Opa belt: “Zoveel robots verkocht? Dan bouw ik een <b>voetbalstadion</b>!” Het stadion is open: tik op ⚽ Naar het stadion!'); }
 }
 function welcomeBack() {
   const r = offline(S, Date.now()); save();
@@ -1928,6 +2284,310 @@ function endTik() {
     reward: `<p class="big">🔥 ${TIK.combos} robots in elkaar getikt (beste reeks ${TIK.best})</p>${r.robots ? `<p class="big">🤖 +<b class="count" data-to="${r.robots}">0</b> robots voor de winkel</p>` : '<p>🤖 De oude grijper liet ze allemaal vallen… haha!</p>'}<p class="big">🪙 +<b class="count" data-to="${r.coins}">0</b></p>
       ${lv < 5 ? `<p class="small-note">💡 De Tik-tak-band levert nog weinig op. Met een <b>upgrade</b> (⬆️) wordt de grijpzone groter en houd je meer robots over!</p>` : ''}${r.factor < 1 ? '<p class="small-note">😴 Vandaag al 3 keer gespeeld: nu levert het minder op. Morgen weer vol!</p>' : ''}`,
     btns: [['👆 Nog een keer', 'orange', () => startTik()], ['🏭 Naar de fabriek', 'green', () => goFactory()]] });
+}
+
+/* ===== screens/voetbal.js ===== */
+/* Stadion, wedstrijd (canvas + touch), rust, uitslag (fase C). */
+const FB = { M: null, mode: 'solo', raf: 0, acc: 0, last: 0, inp: [{}, {}], keys: {}, view: null, sel: 0, tab: 'opst', boost: 1, ended: false };
+function goStadion() {
+  fbInit(S); S.football.seen = true; save(); show('scrStadion'); musicFor('scrStadion');
+  const f = S.football, D = DIVS[f.div], R = RIVALS[D.rival];
+  $('#stTitle').textContent = `⚽ ${D.name}`; $('#stKas').innerHTML = `🏦 <b>${f.kas}</b><small>/${kasCap(S)}</small>`;
+  const dots = Array.from({ length: MATCHES_PER_DIV }, (_, i) => { const r = f.divRes[i]; return `<span class="${r === 3 ? 'w' : r === 1 ? 'd' : r === 0 ? 'l' : ''}">${r === 3 ? 'W' : r === 1 ? 'G' : r === 0 ? 'V' : i + 1}</span>`; }).join('');
+  const hurt = f.lineup.filter(i => f.robots[i].dmg > 0).length;
+  $('#stBody').innerHTML = `<div class="ladder">${DIVS.map((d, i) => `<span class="${i === f.div ? 'cur' : i < f.div ? 'done' : ''}">${i < f.div ? '✓ ' : ''}${d.name}</span>`).join('')}</div>
+   <div class="rivalcard"><div class="ri">${R.icon}</div><div><h3>${R.name}</h3><small class="small-note">Baas: ${R.boss}</small><br><q>${pick(R.lines)}</q>
+     <div class="divdots">${dots}</div><small class="small-note">${MATCHES_PER_DIV} wedstrijden · ${PROMOTE_PTS} punten = promotie (winst 3, gelijk 1). Nu: ${divPoints(S)} punten.</small></div></div>
+   <div class="card"><b>Jouw opstelling</b><div class="lineup">${f.lineup.map(i => `<div class="mini">${fbBotSVG(f.robots[i].look, f.robots[i].dmg)}<br>${f.robots[i].name}${f.robots[i].dmg ? ' 🩹' : ''}${f.robots[i].fit ? ' 💪' : ''}</div>`).join('')}</div>
+     ${hurt ? `<p class="small-note">🩹 ${hurt} robot(s) zijn beschadigd en spelen slechter. Repareer ze in de werkplaats (🛠️ Team).</p>` : ''}
+     <p class="small-note">🏦 Clubkas: elke avond gaat ${Math.round(f.kasShare * 100)}% van de fabriekswinst erin, plus prijzengeld. Maximaal 🪙 ${kasCap(S)} in deze divisie, en upgrades tot niveau ${D.maxLv}. Geld helpt, maar slim spelen wint!</p></div>
+   <div class="opatip"><div class="o">${opaSVG('knipoog')}</div><div>${pick(['Opa: “Tip: kijk welke kant hun keeper op duikt. Keepers zijn net mensen: ze doen steeds hetzelfde patroon!”', 'Bliep: “Druk op Schiet als een teamgenoot de bal heeft: dan passt hij naar jou!”', 'Opa: “Een spelzet is een programmaatje: herhaal het blok en hup, de tegenstander snapt er niks van.”', 'Bliep: “Duwen mag! Maar alleen met een grappige BOING. Zo zijn de regels.”', 'Opa: “Verstop je in een bosje. Dan ziet de tegenstander je niet en kun je vrij de bal krijgen!”'])}</div></div>`;
+}
+/* ---------- wedstrijd starten ---------- */
+function startMatch(mode) {
+  fbInit(S); const f = S.football, rid = DIVS[f.div].rival; FB.mode = mode; FB.ended = false; FB.boost = 1;
+  const me = playerTeam(f), them = mode === 'versus' ? { bots: me.bots.map(b => ({ ...b, look: Object.assign({}, b.look, { body: (b.look.body + 3) % 6 }) })), keeper: me.keeper } : rivalTeam(rid);
+  const M = newMatch([me, them], { seed: (Date.now() & 0xffff) + 1, map: f.history.length + f.div, keeperSeq1: mode === 'versus' ? null : RIVALS[rid].keeper, ctrl: mode === 'solo' ? [0] : mode === 'coop' ? [0, 0] : [0, 1] });
+  M.playLv = [f.playLv, 0]; M.radar = f.lineup.some(i => f.robots[i].gear === 'radar'); FB.M = M; FB.inp = [{}, {}];
+  show('scrMatch'); buildControls(); resizeMatch(); musicFor('scrMatch');
+  if (mode !== 'versus') { const R = RIVALS[rid]; setTimeout(() => toast(`${R.icon} ${R.boss}: “${pick(R.lines)}”`), 300); }
+  else toast('⚔️ Speler 1 (links, blauw) tegen speler 2 (rechts, roze)!');
+  cancelAnimationFrame(FB.raf); FB.last = performance.now(); FB.acc = 0; FB.raf = requestAnimationFrame(matchFrame);
+}
+function matchFrame(now) {
+  if (CUR_SCREEN !== 'scrMatch' || !FB.M) return;
+  const M = FB.M; FB.acc += Math.min(.1, (now - FB.last) / 1000); FB.last = now;
+  while (FB.acc >= 1 / 60) { FB.acc -= 1 / 60; keyInput(); step(M, 1 / 60, FB.inp); FB.inp.forEach(i => { i.shoot = i.push = i.play = false; }); matchEvents(M); if (M.pause || M.over) break; }
+  drawMatch(M); matchHud(M);
+  if (M.pause === 'rust') return halfTime();
+  if (M.over) return endMatch();
+  FB.raf = requestAnimationFrame(matchFrame);
+}
+function matchEvents(M) {
+  for (const e of M.events) {
+    if (e.type === 'goal') { SFX.fanfare(); if (S.settings.fx) confetti(e.team === 0 || FB.mode === 'versus' ? 60 : 10); }
+    else if (e.type === 'ko') { tone(900, .35, 'square', .08, 0, 180); tone(1400, .2, 'sine', .05, .15, 600); }
+    else if (e.type === 'fall') SFX.toet();
+    else if (e.type === 'save') SFX.piep();
+    else if (e.type === 'shot') tone(220, .12, 'sawtooth', .06, 0, 440);
+    else if (e.type === 'bump') tone(160, .08, 'sine', .12);
+    else if (e.type === 'play') SFX.ok();
+  }
+}
+function matchHud(M) {
+  const t = Math.max(0, (M.half === 1 ? HALF_LEN : 2 * HALF_LEN) - M.t), mm = Math.floor(t / 60), ss = String(Math.floor(t % 60)).padStart(2, '0');
+  const names = FB.mode === 'versus' ? ['Speler 1', 'Speler 2'] : ['Jij', RIVALS[DIVS[S.football.div].rival].name];
+  $('#mScore').innerHTML = `${names[0]} <b>${M.score[0]} – ${M.score[1]}</b> ${names[1]}<br><small>${M.half === 1 ? '1e' : '2e'} helft · ${mm}:${ss}</small>`;
+  const port = FB.view && FB.view.port, ar = d => d === 'L' ? (port ? '⬅' : '⬆') : (port ? '➡' : '⬇');
+  if (FB.mode !== 'versus') { const h = M.khist[1].slice(-4); let next = ''; if (M.radar && M.kseq[1]) next = ` · 📡 ${ar(M.kseq[1][M.kidx[1] % M.kseq[1].length])}`;
+    $('#mKeep').innerHTML = `🧤 ${h.length ? h.map(ar).join(' ') : '…'} ?${next}`; $('#mKeep').title = 'Zo dook hun keeper de vorige keren. Zie je het patroon? Schiet naar de andere kant!'; }
+  else $('#mKeep').innerHTML = '';
+  const pb = $('#mPlay0'); if (pb) { pb.disabled = !M.playLv[0] || M.playCool > M.t; }
+}
+/* ---------- besturing ---------- */
+function buildControls() {
+  const two = FB.mode !== 'solo'; let h = '';
+  const side = (s, L) => `<div class="joy" id="mJoy${s}" style="${L ? 'left' : 'right'}:calc(env(safe-area-inset-${L ? 'left' : 'right'}) + 14px);bottom:calc(env(safe-area-inset-bottom) + 14px)"><i></i></div>`;
+  if (!two) {
+    h = side(0, true) + `<button class="abtn shoot" id="mShoot0" style="right:calc(env(safe-area-inset-right) + 18px);bottom:calc(env(safe-area-inset-bottom) + 24px)">⚽<br>Schiet</button>
+      <button class="abtn push" id="mPush0" style="right:calc(env(safe-area-inset-right) + 108px);bottom:calc(env(safe-area-inset-bottom) + 14px)">💥<br>Duw</button>
+      <button class="abtn play" id="mPlay0" style="right:calc(env(safe-area-inset-right) + 40px);bottom:calc(env(safe-area-inset-bottom) + 116px)">📋<br>Spelzet</button>`;
+  } else {
+    h = `<div class="pl1">${side(0, true)}<button class="abtn shoot" id="mShoot0" style="left:calc(env(safe-area-inset-left) + 22px);bottom:calc(env(safe-area-inset-bottom) + 160px)">⚽<br>Schiet</button><button class="abtn push" id="mPush0" style="left:calc(env(safe-area-inset-left) + 106px);bottom:calc(env(safe-area-inset-bottom) + 150px)">💥<br>Duw</button></div>
+      <div class="pl2">${side(1, false)}<button class="abtn shoot" id="mShoot1" style="right:calc(env(safe-area-inset-right) + 22px);bottom:calc(env(safe-area-inset-bottom) + 160px)">⚽<br>Schiet</button><button class="abtn push" id="mPush1" style="right:calc(env(safe-area-inset-right) + 106px);bottom:calc(env(safe-area-inset-bottom) + 150px)">💥<br>Duw</button></div>`;
+  }
+  $('#mCtl').innerHTML = h;
+  [0, 1].forEach(s => { const j = $('#mJoy' + s); if (j) joyBind(j, s);
+    for (const [id, k] of [['mShoot', 'shoot'], ['mPush', 'push'], ['mPlay', 'play']]) { const b = $('#' + id + s); if (b) b.addEventListener('pointerdown', e => { e.preventDefault(); FB.inp[s][k] = true; b.classList.add('down'); setTimeout(() => b.classList.remove('down'), 120); }); } });
+}
+function joyBind(el, s) {
+  let pid = null; const knob = el.querySelector('i');
+  const upd = e => { const r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2; let dx = e.clientX - cx, dy = e.clientY - cy; const m = Math.hypot(dx, dy), R = r.width / 2 - 10; if (m > R) { dx *= R / m; dy *= R / m; }
+    knob.style.transform = `translate(${dx}px,${dy}px)`; setStick(s, dx / R, dy / R); };
+  el.addEventListener('pointerdown', e => { e.preventDefault(); pid = e.pointerId; el.setPointerCapture && el.setPointerCapture(pid); upd(e); });
+  el.addEventListener('pointermove', e => { if (e.pointerId === pid) upd(e); });
+  const end = e => { if (e.pointerId !== pid) return; pid = null; knob.style.transform = ''; setStick(s, 0, 0); };
+  el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end); el.addEventListener('lostpointercapture', end);
+}
+function setStick(s, jx, jy) { const port = FB.view && FB.view.port; FB.inp[s].mx = port ? -jy : jx; FB.inp[s].my = port ? jx : jy; FB.inp[s].stick = Math.hypot(jx, jy) > .1; }
+const KEYMAP = { solo: [{ u: ['ArrowUp', 'KeyW'], d: ['ArrowDown', 'KeyS'], l: ['ArrowLeft', 'KeyA'], r: ['ArrowRight', 'KeyD'], shoot: ['Space', 'KeyJ'], push: ['KeyX', 'KeyK'], play: ['KeyC', 'KeyL'] }],
+  two: [{ u: ['KeyW'], d: ['KeyS'], l: ['KeyA'], r: ['KeyD'], shoot: ['KeyF'], push: ['KeyG'] }, { u: ['ArrowUp'], d: ['ArrowDown'], l: ['ArrowLeft'], r: ['ArrowRight'], shoot: ['KeyK', 'Enter'], push: ['KeyL'] }] };
+addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return; if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['shoot', 'push', 'play']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
+addEventListener('keyup', e => { FB.keys[e.code] = false; });
+function keyInput() {
+  const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two'];
+  map.forEach((m, s) => { if (FB.inp[s].stick) return; const k = a => a.some(c => FB.keys[c]); const x = (k(m.r) ? 1 : 0) - (k(m.l) ? 1 : 0), y = (k(m.d) ? 1 : 0) - (k(m.u) ? 1 : 0);
+    const port = FB.view && FB.view.port; FB.inp[s].mx = port ? -y : x; FB.inp[s].my = port ? x : y; });
+}
+/* ---------- tekenen ---------- */
+function resizeMatch() {
+  const c = $('#mCanvas'), dpr = Math.min(2, devicePixelRatio || 1), W = innerWidth, H = innerHeight; c.width = W * dpr; c.height = H * dpr;
+  const port = H > W * 1.05, top = port ? 74 : 52, two = FB.mode !== 'solo';
+  let s, ox, oy;
+  if (port) { const ctl = 170; s = Math.min((W - 16) / 60, (H - top - ctl) / 100); ox = (W - 60 * s) / 2; oy = top + Math.max(0, (H - top - ctl - 100 * s) / 2); }
+  else { const side = two || H < 500 ? 0 : 0; s = Math.min((W - 16 - side) / 100, (H - top - 8) / 60); ox = (W - 100 * s) / 2; oy = top + (H - top - 8 - 60 * s) / 2; }
+  FB.view = { port, s, ox, oy, dpr, W, H };
+}
+addEventListener('resize', () => { if (CUR_SCREEN === 'scrMatch') resizeMatch(); });
+function FP(x, y) { const v = FB.view; return v.port ? [v.ox + y * v.s, v.oy + (FW - x) * v.s] : [v.ox + x * v.s, v.oy + y * v.s]; }
+function FRect(x, y, w, h) { const a = FP(x, y), b = FP(x + w, y + h); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.abs(b[0] - a[0]), Math.abs(b[1] - a[1])]; }
+function drawMatch(M) {
+  const c = $('#mCanvas'), g = c.getContext('2d'), v = FB.view; g.setTransform(v.dpr, 0, 0, v.dpr, 0, 0);
+  // tribune
+  const bg = g.createLinearGradient(0, 0, 0, v.H); bg.addColorStop(0, '#1b2440'); bg.addColorStop(1, '#0b0f18'); g.fillStyle = bg; g.fillRect(0, 0, v.W, v.H);
+  for (let i = 0; i < 90; i++) { const x = (i * 97) % v.W, y = (i * 53) % v.H; g.fillStyle = `hsla(${(i * 47) % 360},70%,65%,${.15 + .15 * Math.sin(M.t * 3 + i)})`; g.fillRect(x, y, 3, 3); }
+  // veld
+  const [fx, fy, fw, fh] = FRect(0, 0, FW, FH); g.save(); g.shadowColor = 'rgba(0,0,0,.6)'; g.shadowBlur = 24; g.fillStyle = '#1f6b3a'; g.fillRect(fx - 6, fy - 6, fw + 12, fh + 12); g.restore();
+  for (let i = 0; i < 10; i++) { const [x, y, w, h] = FRect(i * 10, 0, 10, FH); g.fillStyle = i % 2 ? '#2f8a4c' : '#2a7d45'; g.fillRect(x, y, w, h); }
+  const light = g.createRadialGradient(fx + fw / 2, fy + fh / 2, 10, fx + fw / 2, fy + fh / 2, Math.max(fw, fh) * .7); light.addColorStop(0, 'rgba(255,255,220,.12)'); light.addColorStop(1, 'rgba(0,0,0,.25)'); g.fillStyle = light; g.fillRect(fx, fy, fw, fh);
+  g.strokeStyle = 'rgba(255,255,255,.75)'; g.lineWidth = Math.max(1.5, v.s * .25); g.strokeRect(fx, fy, fw, fh);
+  g.beginPath(); const m1 = FP(50, 0), m2 = FP(50, FH); g.moveTo(...m1); g.lineTo(...m2); g.stroke(); g.beginPath(); g.arc(...FP(50, 30), 8 * v.s, 0, 7); g.stroke();
+  for (const t of [0, 1]) { const [x, y, w, h] = FRect(t ? FW - 12 : 0, 16, 12, 28); g.strokeRect(x, y, w, h);
+    const [gx, gy, gw, gh] = FRect(t ? FW : -3, GY0, 3, GY1 - GY0); g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(gx, gy, gw, gh); g.strokeStyle = '#fff'; g.strokeRect(gx, gy, gw, gh);
+    g.save(); g.strokeStyle = 'rgba(255,255,255,.25)'; g.lineWidth = 1; for (let k = 1; k < 6; k++) { const a = FP(t ? FW : -3, GY0 + k * 3), b = FP(t ? FW + 3 : 0, GY0 + k * 3); g.beginPath(); g.moveTo(...a); g.lineTo(...b); g.stroke(); } g.restore(); g.strokeStyle = 'rgba(255,255,255,.75)'; }
+  // kratten en bosjes
+  for (const [cx, cy, w, h] of M.map.crates) { const [x, y, ww, hh] = FRect(cx, cy, w, h); const gr = g.createLinearGradient(x, y, x, y + hh); gr.addColorStop(0, '#8a96aa'); gr.addColorStop(1, '#4a5568'); g.fillStyle = gr; g.fillRect(x, y, ww, hh); g.strokeStyle = '#1c2333'; g.lineWidth = 2; g.strokeRect(x, y, ww, hh); g.beginPath(); g.moveTo(x, y); g.lineTo(x + ww, y + hh); g.moveTo(x + ww, y); g.lineTo(x, y + hh); g.stroke(); g.fillStyle = '#ffb43b'; g.fillRect(x, y + hh * .42, ww, hh * .16); }
+  // keepers
+  for (const k of M.keepers) drawBot(g, { x: k.x, y: k.y, team: k.team, look: k.team ? (FB.mode === 'versus' ? { body: 4 } : { rival: DIVS[S.football.div].rival }) : { body: 5 }, keeper: true, fx: k.team ? -1 : 1, down: 0 }, M);
+  // robots (in een bosje: half doorzichtig)
+  const bots = M.bots.slice().sort((a, b) => FP(a.x, a.y)[1] - FP(b.x, b.y)[1]);
+  for (const b of bots) drawBot(g, b, M);
+  for (const [bx, by, r] of M.map.bushes) { const [x, y] = FP(bx, by); g.save(); g.globalAlpha = .82; for (let k = 0; k < 7; k++) { const a = k * .9; g.fillStyle = k % 2 ? '#2f9e55' : '#247a43'; g.beginPath(); g.arc(x + Math.cos(a) * r * v.s * .5, y + Math.sin(a) * r * v.s * .5, r * v.s * .55, 0, 7); g.fill(); } g.restore(); }
+  // bal
+  const B = M.ball, [bx, by] = FP(B.x, B.y), br = Math.max(4, v.s * .9);
+  g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(bx + 2, by + br * .8, br, br * .45, 0, 0, 7); g.fill();
+  g.fillStyle = '#fff'; g.beginPath(); g.arc(bx, by, br, 0, 7); g.fill(); g.strokeStyle = '#1c2333'; g.lineWidth = 1.5; g.stroke(); g.fillStyle = '#1c2333'; g.beginPath(); g.arc(bx + Math.cos(M.t * 9) * br * .35, by + Math.sin(M.t * 9) * br * .35, br * .35, 0, 7); g.fill();
+  if (B.shot) { g.strokeStyle = 'rgba(255,180,59,.5)'; g.lineWidth = br; g.beginPath(); g.moveTo(bx, by); const [tx, ty] = FP(B.x - B.vx * .06, B.y - B.vy * .06); g.lineTo(tx, ty); g.stroke(); }
+  // teksten
+  for (const f of M.fx) { const [x, y] = FP(f.x, f.y); g.save(); g.font = `800 ${f.big ? Math.max(28, v.s * 6) : Math.max(13, v.s * 2.4)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.lineWidth = 4; g.strokeStyle = '#000'; g.fillStyle = f.col; const yy = y - (1.6 - f.t) * 18; g.globalAlpha = Math.min(1, f.t * 2); if (f.big) { const [cx, cy] = FP(50, 30); g.strokeText(f.txt, cx, cy); g.fillText(f.txt, cx, cy); } else { g.strokeText(f.txt, x, yy); g.fillText(f.txt, x, yy); } g.restore(); }
+  if (M.cele > 0) { g.fillStyle = `rgba(255,180,59,${.15 * M.cele})`; g.fillRect(0, 0, v.W, v.H); }
+}
+function botCols(look) { if (look.rival) return RIVALS[look.rival].col; return LOOKS.body[look.body || 0]; }
+function drawBot(g, b, M) {
+  const v = FB.view, [x, y] = FP(b.x, b.y), s = v.s * (b.keeper ? 2 : 2.3), [c1, c2] = botCols(b.look || {});
+  g.save(); g.translate(x, y); if (b.hidden) g.globalAlpha = .45;
+  const wob = b.wobble > 0 ? Math.sin(M.t * 30) * .25 : 0; if (b.down > 0) g.rotate(Math.PI / 2 * (b.team ? -1 : 1)); else g.rotate(wob);
+  g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(0, s * .95, s * .9, s * .35, 0, 0, 7); g.fill();
+  // ring: wie bestuur je?
+  if (b.human != null) { g.strokeStyle = b.human ? '#ff7ad1' : '#38d6ff'; g.lineWidth = 3; g.beginPath(); g.ellipse(0, s * .95, s * 1.1, s * .45, 0, 0, 7); g.stroke(); }
+  if (FB.mode !== 'versus' && b.team === 1 && !b.keeper) { g.strokeStyle = 'rgba(255,107,90,.7)'; g.lineWidth = 2; g.beginPath(); g.ellipse(0, s * .95, s * .95, s * .38, 0, 0, 7); g.stroke(); }
+  // lijf
+  const gr = g.createLinearGradient(-s, -s, s, s); gr.addColorStop(0, c1); gr.addColorStop(1, c2); g.fillStyle = gr; g.strokeStyle = '#1c2333'; g.lineWidth = 2;
+  g.beginPath(); g.roundRect ? g.roundRect(-s * .7, -s * .3, s * 1.4, s * 1.1, s * .25) : g.rect(-s * .7, -s * .3, s * 1.4, s * 1.1); g.fill(); g.stroke();
+  // hoofd
+  const hy = -s * .75, head = (b.look && LOOKS.head[b.look.head || 0]) || 'rond'; g.fillStyle = gr;
+  g.beginPath(); if (head === 'rond') g.arc(0, hy, s * .55, 0, 7); else if (head === 'hoekig') g.rect(-s * .55, hy - s * .5, s * 1.1, s * .95); else g.ellipse(0, hy, s * .65, s * .45, 0, 0, 7); g.fill(); g.stroke();
+  if (b.keeper) { g.fillStyle = '#ffb43b'; g.beginPath(); g.arc(-s * .85, 0, s * .28, 0, 7); g.arc(s * .85, 0, s * .28, 0, 7); g.fill(); }
+  // ogen
+  const grumpy = b.down > 0 || b.kos > 0 && M.t % 6 < 1.5; g.fillStyle = '#0b0f18';
+  const eyes = (b.look && LOOKS.eyes[b.look.eyes || 0]) || 'blij';
+  if (b.down > 0) { g.strokeStyle = '#0b0f18'; g.lineWidth = 2; for (const ex of [-.22, .22]) { g.beginPath(); g.moveTo(s * ex - 3, hy - 3); g.lineTo(s * ex + 3, hy + 3); g.moveTo(s * ex + 3, hy - 3); g.lineTo(s * ex - 3, hy + 3); g.stroke(); } }
+  else { for (const ex of [-.22, .22]) { g.beginPath(); g.arc(s * ex + (eyes === 'scheel' ? (ex < 0 ? 2 : -2) : 0), hy - s * .02, s * .11, 0, 7); g.fill(); }
+    if (eyes === 'stoer' || grumpy) { g.strokeStyle = '#0b0f18'; g.lineWidth = 2; g.beginPath(); g.moveTo(-s * .38, hy - s * .25); g.lineTo(-s * .1, hy - s * .15); g.moveTo(s * .38, hy - s * .25); g.lineTo(s * .1, hy - s * .15); g.stroke(); } }
+  // hoed
+  const hat = b.look && LOOKS.hat[b.look.hat || 0];
+  if (hat && hat !== 'geen') { const ty = hy - s * .5; g.lineWidth = 1.5; g.strokeStyle = '#1c2333';
+    if (hat === 'pet') { g.fillStyle = '#d64545'; g.beginPath(); g.arc(0, ty + 2, s * .45, Math.PI, 0); g.fill(); g.fillRect(0, ty, s * .6, 3); }
+    else if (hat === 'kroon') { g.fillStyle = '#ffcf3b'; g.beginPath(); g.moveTo(-s * .4, ty + 3); g.lineTo(-s * .4, ty - s * .3); g.lineTo(-s * .2, ty - s * .1); g.lineTo(0, ty - s * .35); g.lineTo(s * .2, ty - s * .1); g.lineTo(s * .4, ty - s * .3); g.lineTo(s * .4, ty + 3); g.fill(); g.stroke(); }
+    else if (hat === 'kegel') { g.fillStyle = '#ff8a1c'; g.beginPath(); g.moveTo(-s * .35, ty + 3); g.lineTo(0, ty - s * .7); g.lineTo(s * .35, ty + 3); g.fill(); g.stroke(); g.fillStyle = '#fff'; g.fillRect(-s * .17, ty - s * .3, s * .34, 3); }
+    else if (hat === 'propeller') { g.fillStyle = '#3a86d8'; g.beginPath(); g.arc(0, ty + 2, s * .4, Math.PI, 0); g.fill(); const a = M.t * 20; g.strokeStyle = '#ffcf3b'; g.lineWidth = 3; g.beginPath(); g.moveTo(Math.cos(a) * s * .5, ty - s * .25); g.lineTo(-Math.cos(a) * s * .5, ty - s * .25); g.stroke(); }
+    else if (hat === 'koksmuts') { g.fillStyle = '#fff'; g.fillRect(-s * .3, ty - s * .2, s * .6, s * .25); g.beginPath(); g.arc(-s * .2, ty - s * .3, s * .22, 0, 7); g.arc(s * .2, ty - s * .3, s * .22, 0, 7); g.arc(0, ty - s * .45, s * .24, 0, 7); g.fill(); } }
+  // KO: veer + sterretjes
+  if (b.down > 0) { g.rotate(-Math.PI / 2 * (b.team ? -1 : 1)); g.strokeStyle = '#c9d4e4'; g.lineWidth = 2; g.beginPath(); for (let k = 0; k < 8; k++) g.lineTo((k % 2 ? 4 : -4), -s * 1.2 - k * 3); g.stroke(); for (let k = 0; k < 3; k++) { const a = M.t * 5 + k * 2.1; g.fillStyle = '#ffcf3b'; g.font = `${Math.max(10, s * .7)}px sans-serif`; g.fillText('★', Math.cos(a) * s - 5, -s * 1.6 + Math.sin(a) * s * .3); } }
+  if (b.wobble > 0 && b.down <= 0) { g.fillStyle = '#c9d4e4'; g.fillRect(s * .8, s * .1 + Math.sin(M.t * 12) * 4, s * .4, s * .12); }  // losse schroef
+  g.restore();
+}
+/* ---------- rust + einde ---------- */
+function halfTime() {
+  const M = FB.M; SFX.fanfare();
+  $('#halfTitle').textContent = `Rust! ${M.score[0]} – ${M.score[1]}`;
+  const f = S.football; let h = '';
+  if (FB.mode !== 'versus') {
+    h += `<div class="opatip"><div class="o">${opaSVG(M.score[0] >= M.score[1] ? 'knipoog' : '')}</div><div>${M.score[0] > M.score[1] ? 'Opa: “Goed bezig! Niet gaan zweven, hè. Behalve als je een propellerpet hebt.”' : M.score[0] === M.score[1] ? 'Opa: “Gelijk! Kijk goed naar hun keeper: welke kant duikt hij steeds op?”' : 'Opa: “Achter? Geen paniek. Duw eens met een grappige BOING, en gebruik je spelzet!”'}</div></div>`;
+    h += `<p><b>📣 Supporters-ritme</b>: maak het juich-ritme af. Goed = je robots worden 2e helft 10% sneller!</p>`;
+    const hurt = M.bots.filter(b => b.team === 0 && b.kos >= 2);
+    h += `<p><b>🔁 Wissels</b> (vervang een robot door een bankspeler):</p><div class="swatches">${f.lineup.map((ri, k) => `<button data-sub="${k}">${f.robots[ri].name}${M.bots[k].kos ? ' 😵×' + M.bots[k].kos : ''}</button>`).join('')}</div>`;
+    if (hurt.length) h += `<p class="small-note">😵 Sommige robots zijn al vaak omver geduwd. Een frisse bankspeler kan helpen!</p>`;
+  } else h = '<p>Even uitblazen! Wissel van kant? Nee hoor, de robots zijn te lui om te lopen.</p>';
+  $('#halfBody').innerHTML = h;
+  $('#halfBtns').innerHTML = (FB.mode !== 'versus' ? `<button class="btn purple" id="halfCheer">📣 Juich-ritme</button>` : '') + `<button class="btn green" id="halfGo">▶️ 2e helft</button>`;
+  $('#halfBody').onclick = e => { const b = e.target.closest('[data-sub]'); if (!b) return; const k = +b.dataset.sub, bench = f.robots.map((r, i) => i).filter(i => !f.lineup.includes(i)).sort((a, c) => f.robots[a].dmg - f.robots[c].dmg)[0]; if (bench == null) return;
+    const outRi = f.lineup[k]; swapIn(S, outRi, bench); const r = f.robots[bench], bot = M.bots[k]; Object.assign(bot, { name: r.name, look: r.look, st: botStats(r), glue: r.gear === 'superlijm', kos: 0 }); bot.maxhp = bot.hp = 3 + 1.5 * bot.st.stevig; save(); SFX.ok(); toast(`🔁 ${r.name} komt erin!`); halfTime(); };
+  const go = () => { closeOv('ovHalf'); M.pause = null; kickoff(M, 1); M.boost[0] = FB.boost; show('scrMatch'); resizeMatch(); FB.last = performance.now(); FB.raf = requestAnimationFrame(matchFrame); };
+  $('#halfGo').onclick = go;
+  const ch = $('#halfCheer'); if (ch) ch.onclick = () => { closeOv('ovHalf'); startRun({ mode: 'fbcheer', total: 1, pool: [['h2', Math.min(5, 1 + S.football.div)]], d: 1, kind: 'klank' }); };
+  FB.resume = go; openOv('ovHalf');
+}
+function endMatch() {
+  const M = FB.M; cancelAnimationFrame(FB.raf); if (FB.ended) return; FB.ended = true;
+  const res = { score: M.score.slice(), kos: M.bots.filter(b => b.team === 0).map(b => b.kos), falls: M.bots.filter(b => b.team === 0).map(b => b.falls || 0) };
+  const out = applyMatch(S, res, FB.mode); save(); FB.M = null;
+  const f = S.football, R = RIVALS[DIVS[out.promoted ? f.div - 1 : f.div].rival];
+  let title = FB.mode === 'versus' ? (res.score[0] > res.score[1] ? 'Speler 1 wint!' : res.score[0] < res.score[1] ? 'Speler 2 wint!' : 'Gelijkspel!') : out.won ? 'GEWONNEN!' : out.draw ? 'Gelijkspel!' : 'Verloren… (deze keer)';
+  let rw = `<p class="big">${res.score[0]} – ${res.score[1]}</p>`;
+  if (FB.mode !== 'versus') rw += `<p>${out.won ? `${R.boss}: “Dit… dit was niet berekend!”` : out.draw ? `${R.boss}: “Gelijk? Ik wil een herkansing!”` : `${R.boss}: “Hahaha! …Ahum. Goed gespeeld, hoor.”`}</p>`;
+  rw += `<p>🏦 +🪙 ${out.prize} in de clubkas${out.won ? ' (prijzengeld)' : ' (troostprijs)'}</p>`;
+  if (out.dmg.length) rw += `<p>🩹 Schade: ${out.dmg.map(([ri, n]) => `${f.robots[ri].name} (+${n})`).join(', ')}. Even naar de werkplaats!</p>`;
+  if (out.promoted) rw += `<p>🏆 <b>PROMOTIE!</b> Op naar de ${DIVS[f.div].name}. Upgrades kunnen nu tot niveau ${DIVS[f.div].maxLv}!</p>`;
+  if (out.champion) rw += `<p>👑 <b>KAMPIOEN van de Robo-Bokaal!</b> Opa huilt van trots (of is het olie?).</p>`;
+  if (out.stay) rw += `<p>Net geen promotie (${out.pts} punten). Upgrade, train en probeer opnieuw!</p>`;
+  if (!out.won && FB.mode !== 'versus') rw += `<p class="small-note">💡 ${pick(['Kijk naar de 🧤 pijltjes: welke kant duikt hun keeper? Schiet naar de andere kant (joystick die kant op tijdens het schieten).', 'Train je robots: dat kost bijna niks en ze spelen beter.', 'Upgrade "Slimmer": dan spelen je teamgenoten beter zelfstandig.', 'Programmeer een spelzet bij Tactiek!', 'Een betere fabriek = meer geld in de clubkas = betere robots. Alles hangt samen!'])}</p>`;
+  showResult({ title, stars: out.won ? 3 : out.draw ? 2 : 0, reward: `<div>${rw}</div>`, art: fbBotSVG(f.robots[f.lineup[0]].look, 0, out.won),
+    btns: [['🏟️ Stadion', 'green', () => goStadion()], ['🛠️ Team', 'white', () => goTeam()]] });
+  if (!out.won) { SFX.nope(); }
+}
+
+/* ===== screens/team.js ===== */
+/* Teammanagement-scherm (fase C): opstelling, upgrades, werkplaats, training, aankleden, tactiek. */
+function fbBotSVG(look, dmg = 0, happy = false) {
+  const [c1, c2] = look.rival ? RIVALS[look.rival].col : LOOKS.body[look.body || 0], head = LOOKS.head[look.head || 0], hat = LOOKS.hat[look.hat || 0], eyes = LOOKS.eyes[look.eyes || 0];
+  const id = 'fb' + Math.random().toString(36).slice(2, 7), S2 = 'stroke="#1c2333" stroke-width="3"';
+  const headSvg = head === 'rond' ? `<circle cx="50" cy="38" r="20" fill="url(#${id})" ${S2}/>` : head === 'hoekig' ? `<rect x="30" y="20" width="40" height="36" rx="5" fill="url(#${id})" ${S2}/>` : `<ellipse cx="50" cy="38" rx="24" ry="17" fill="url(#${id})" ${S2}/>`;
+  const ex = eyes === 'scheel' ? [3, -3] : [0, 0];
+  let eyeSvg = `<circle cx="${42 + ex[0]}" cy="38" r="4" fill="#0b0f18"/><circle cx="${58 + ex[1]}" cy="38" r="4" fill="#0b0f18"/>`;
+  if (eyes === 'stoer') eyeSvg += `<path d="M35 30 L46 33 M65 30 L54 33" stroke="#0b0f18" stroke-width="3"/>`;
+  const mouth = happy ? `<path d="M42 46 Q50 53 58 46" fill="none" stroke="#0b0f18" stroke-width="2.5"/>` : `<path d="M44 48 L56 48" stroke="#0b0f18" stroke-width="2.5"/>`;
+  const hats = { geen: '', pet: `<path d="M30 22 Q50 2 70 22 Z" fill="#d64545" ${S2}/><rect x="50" y="18" width="26" height="5" rx="2" fill="#a83030"/>`,
+    kroon: `<path d="M32 22 L32 6 L41 14 L50 3 L59 14 L68 6 L68 22 Z" fill="#ffcf3b" ${S2}/>`, kegel: `<path d="M36 22 L50 -6 L64 22 Z" fill="#ff8a1c" ${S2}/><rect x="42" y="6" width="16" height="4" fill="#fff"/>`,
+    propeller: `<path d="M32 22 Q50 6 68 22 Z" fill="#3a86d8" ${S2}/><path d="M30 6 L70 10" stroke="#ffcf3b" stroke-width="4"/><circle cx="50" cy="8" r="3" fill="#1c2333"/>`,
+    koksmuts: `<rect x="36" y="12" width="28" height="10" fill="#fff" ${S2}/><circle cx="40" cy="8" r="8" fill="#fff"/><circle cx="60" cy="8" r="8" fill="#fff"/><circle cx="50" cy="3" r="9" fill="#fff"/>` };
+  const bandage = dmg ? `<path d="M30 70 L70 82 M30 82 L70 70" stroke="#f3e2c0" stroke-width="7" opacity=".9"/>` : '';
+  return `<svg viewBox="0 -8 100 112" role="img" aria-label="robot"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>
+    <ellipse cx="50" cy="100" rx="28" ry="5" fill="rgba(0,0,0,.35)"/><rect x="36" y="88" width="10" height="12" rx="3" fill="#4a5568"/><rect x="54" y="88" width="10" height="12" rx="3" fill="#4a5568"/>
+    <rect x="16" y="62" width="10" height="22" rx="5" fill="url(#${id})" ${S2}/><rect x="74" y="62" width="10" height="22" rx="5" fill="url(#${id})" ${S2}/>
+    <rect x="26" y="56" width="48" height="36" rx="10" fill="url(#${id})" ${S2}/><circle cx="50" cy="72" r="6" fill="#0b0f18" opacity=".25"/>${bandage}
+    <rect x="47" y="50" width="6" height="8" fill="#4a5568"/>${headSvg}${eyeSvg}${mouth}${hats[hat] || ''}</svg>`;
+}
+const TABS = [['opst', '📋 Opstelling'], ['up', '⬆️ Upgrades'], ['werk', '🔧 Werkplaats'], ['train', '🏋️ Training'], ['kleed', '🎨 Aankleden'], ['tact', '🧠 Tactiek']];
+function goTeam(tab) { fbInit(S); if (tab) FB.tab = tab; show('scrTeam'); renderTeam(); }
+function renderTeam() {
+  const f = S.football, sel = FB.sel = clamp(FB.sel, 0, 5), r = f.robots[sel], D = DIVS[f.div];
+  $('#tmKas').innerHTML = `🏦 <b>${f.kas}</b><small>/${kasCap(S)}</small>`;
+  $('#tmTabs').innerHTML = TABS.map(([id, t]) => `<button role="tab" aria-selected="${FB.tab === id}" data-tab="${id}">${t}</button>`).join('');
+  $('#tmRobots').innerHTML = f.robots.map((x, i) => `<button class="rb ${i === sel ? 'sel' : ''}" data-r="${i}">${f.lineup.includes(i) ? '<span class="in">IN</span>' : ''}${x.dmg ? '<span class="dm">🩹</span>' : ''}${fbBotSVG(x.look, x.dmg)}${x.name}</button>`).join('');
+  const pips = (k) => { const lv = r.lv[k], gear = r.gear && GEAR[r.gear].st === k ? 1 : 0; return `<div class="pips">${Array.from({ length: 6 }, (_, i) => `<i class="${i < lv ? 'on' : i < lv + gear ? 'gear' : ''} ${i === D.maxLv - 1 ? 'cap' : ''}"></i>`).join('')}</div>`; };
+  let h = '';
+  if (FB.tab === 'opst') {
+    h = `<p><b>${r.name}</b> ${f.lineup.includes(sel) ? 'staat in de opstelling.' : 'zit op de bank.'} Kies 3 robots voor de volgende wedstrijd.</p>
+      <button class="btn ${f.lineup.includes(sel) ? 'white' : 'green'}" data-do="line">${f.lineup.includes(sel) ? '🪑 Naar de bank' : '✅ In de opstelling'}</button>
+      ${STATS.map(st => `<div class="statrow"><span>${st.icon} ${st.name}</span>${pips(st.id)}<span></span></div>`).join('')}
+      <p class="small-note">${r.dmg ? `🩹 Schade ${r.dmg}: speelt langzamer en valt sneller om.` : '✔️ Helemaal heel.'} ${r.fit ? '💪 Getraind: extra fit in de volgende wedstrijd.' : ''} ${r.gear ? `Uitrusting: ${GEAR[r.gear].icon} ${GEAR[r.gear].name}.` : ''}</p>
+      <p class="small-note">🧤 Keeper-robot: niveau ${f.keeperLv}. ${f.keeperLv < D.maxLv ? `<button class="btn small purple" data-do="keeper">Keeper trainen · 🏦 ${UP_COST[f.keeperLv] + 20}</button>` : '(divisie-maximum)'}</p>`;
+  } else if (FB.tab === 'up') {
+    h = `<p><b>${r.name}</b> · upgrades tot <b>niveau ${D.maxLv}</b> in de ${D.name}. Promoveer om verder te gaan. <span class="small-note">(Goud = uitrusting.)</span></p>` +
+      STATS.map(st => { const c = fbUpCost(S, sel, st.id); return `<div class="statrow"><span>${st.icon} ${st.name}</span>${pips(st.id)}<button class="btn small ${c != null && f.kas >= c ? 'green' : 'white'}" data-up="${st.id}" ${c == null || f.kas < c ? 'disabled' : ''}>${c == null ? 'max' : '🏦 ' + c}</button></div><small class="small-note">${st.desc}</small>`; }).join('') +
+      `<div class="finbox" style="margin-top:10px"><h4>Clubkas aanvullen</h4><p class="small-note">Munten van de fabriek (🪙 ${S.coins}) naar de clubkas. Maximaal 🪙 ${kasCap(S)} in deze divisie.</p><div class="swatches"><button data-dep="50">+50</button><button data-dep="200">+200</button><button data-dep="9999">Zoveel mogelijk</button></div></div>`;
+  } else if (FB.tab === 'werk') {
+    const hurt = f.robots.map((x, i) => [x, i]).filter(([x]) => x.dmg);
+    h = `<p>🔧 De werkplaats. ${S.machines.test.owned ? 'Dankzij de Testkamer is repareren goedkoper!' : 'Tip: met een Testkamer in de fabriek wordt repareren goedkoper.'}</p>` +
+      (hurt.length ? hurt.map(([x, i]) => `<div class="inv"><div style="width:56px">${fbBotSVG(x.look, x.dmg)}</div><div><b>${x.name}</b><br><small class="small-note">Schade ${x.dmg}/3 · ${pick(['Er rammelt iets.', 'Zijn arm zit achterstevoren.', 'Hij piept bij elke stap.', 'Er komt rook uit zijn oor.'])}</small></div><button class="btn small green" data-rep="${i}" ${f.kas < repairCost(S, x) ? 'disabled' : ''}>🏦 ${repairCost(S, x)}</button></div>`).join('') : '<p>Alle robots zijn heel. De monteur leest de krant. 📰</p>');
+  } else if (FB.tab === 'train') {
+    h = `<p>🏋️ <b>${r.name}</b> trainen: 3 patroonpuzzels (🏦 ${TRAIN_COST}). Getraind = extra fit in de volgende wedstrijd. Elke 6 ⭐ ervaring = een gratis upgrade!</p>
+      <div class="statrow"><span>⭐ Ervaring</span><div class="meter"><i style="width:${Math.round(r.xp / 6 * 100)}%"></i></div><span>${r.xp}/6</span></div>
+      <button class="btn green" data-do="train" ${canTrain(S, sel) ? '' : 'disabled'}>${f.trained[sel] === S.day ? 'Vandaag al getraind 😴' : '▶️ Trainen'}</button>
+      <p class="small-note">Bliep: “Training is zoals oefenen met voetballen in de tuin. Saai? Nee! Je wordt er beter van. Ik heb het zelf geprobeerd. Ik ben nu heel goed in omvallen.”</p>`;
+  } else if (FB.tab === 'kleed') {
+    const sw = (k, arr, lab) => `<p><b>${lab}</b></p><div class="swatches">${arr.map((v, i) => `<button class="${r.look[k] === i ? 'on' : ''}" data-look="${k}:${i}" ${k === 'body' ? `style="background:linear-gradient(${v[0]},${v[1]})"` : ''} aria-label="${lab} ${i + 1}">${k === 'body' ? '' : k === 'hat' ? HAT_NAME[v] : v}</button>`).join('')}</div>`;
+    const gears = ['', ...Object.keys(GEAR)].filter(g => !g || (S.items[g] || 0) > 0);
+    h = `<div class="preview">${fbBotSVG(r.look, r.dmg, true)}</div><p style="text-align:center"><b>${r.name}</b> <button class="btn small white" data-do="name">🎲 Andere naam</button></p>
+      ${sw('body', LOOKS.body, 'Kleur')}${sw('head', LOOKS.head, 'Hoofd')}${sw('hat', LOOKS.hat, 'Hoed')}${sw('eyes', LOOKS.eyes, 'Ogen')}
+      <p><b>Uitrusting</b> (geheime onderdelen uit de fabriek)</p><div class="swatches">${gears.map(g => `<button class="${(r.gear || '') === g ? 'on' : ''}" data-gear="${g}" ${g && r.gear !== g && gearFree(S, g) <= 0 ? 'disabled' : ''}>${g ? `${GEAR[g].icon} ${GEAR[g].name} (${gearFree(S, g)} vrij)` : 'Geen'}</button>`).join('')}</div>
+      <p class="small-note">${r.gear ? GEAR[r.gear].desc : Object.keys(S.items).some(k => GEAR[k]) ? 'Kies een onderdeel om aan te doen.' : '🔍 Nog geen geheime onderdelen. Zoek in de fabriek naar rare plekken: de schoorsteen, een losse tegel, opa’s klok, een poster…'}</p>`;
+  } else if (FB.tab === 'tact') {
+    h = `<p>🧠 <b>Spelzet</b>: een programmaatje voor je team. Druk tijdens de wedstrijd op <b>📋 Spelzet</b> als je de bal hebt: je robots passen volgens het programma, de tegenstander raakt even in de war en de laatste schiet naar de goede hoek.</p>
+      <p>Nu: <b>${f.playLv ? PLAY_NAMES[f.playLv] : 'nog geen spelzet'}</b></p>
+      ${f.playLv < 3 ? `<div class="statrow"><span>Volgende spelzet</span><div class="meter"><i style="width:${Math.round(f.playProg / 3 * 100)}%"></i></div><span>${f.playProg}/3</span></div>
+      <button class="btn green" data-do="play">▶️ Programmeren (zoek het herhaalblok)</button>` : '<p>🏆 Alle spelzetten geprogrammeerd!</p>'}
+      <p class="small-note">Opa: “Een herhaalblok is gewoon een patroon dat je een paar keer doet. Pass, pass, pass… schot! Net als tandenpoetsen, maar dan leuker.”</p>`;
+  }
+  $('#tmBody').innerHTML = h;
+}
+function teamClick(e) {
+  const f = S.football, t = e.target.closest('button'); if (!t || t.disabled) return; const d = t.dataset;
+  if (d.tab) { FB.tab = d.tab; SFX.click(); return renderTeam(); }
+  if (d.r != null) { FB.sel = +d.r; SFX.click(); return renderTeam(); }
+  const sel = FB.sel, r = f.robots[sel];
+  if (d.do === 'line') { toggleLineup(S, sel); SFX.place(); }
+  else if (d.do === 'keeper') { const c = UP_COST[f.keeperLv] + 20; if (spendKas(S, c)) { f.keeperLv++; SFX.star(); toast('🧤 De keeper duikt nu beter!'); } }
+  else if (d.up) { if (fbUpgrade(S, sel, d.up)) { SFX.star(); confetti(20); toast(`${STATS.find(s => s.id === d.up).icon} ${r.name}: ${pick(['Zoef!', 'Wow, voelt goed!', 'Ik ben net een nieuwe robot!', 'Bliep-bloep!'])}`); } }
+  else if (d.dep) { const n = deposit(S, +d.dep); toast(n ? `🏦 +🪙 ${n} in de clubkas` : 'De clubkas is vol (of je hebt geen munten).'); SFX.place(); }
+  else if (d.rep != null) { if (repair(S, +d.rep)) { SFX.ok(); toast(`🔧 ${f.robots[+d.rep].name} is weer als nieuw!`); } }
+  else if (d.do === 'train') { FB.trainRi = sel; return startRun({ mode: 'fbtrain', total: 3, pool: [['h1', clamp(2 + f.div, 1, 7)], ['h2', clamp(1 + f.div, 0, 5)]], kind: 'vorm' }); }
+  else if (d.do === 'play') return startRun({ mode: 'fbplay', total: 3, pool: [['h1', 5]], kind: 'vorm' });
+  else if (d.look) { const [k, v] = d.look.split(':'); setLook(S, sel, k, +v); SFX.place(); }
+  else if (d.gear != null) { if (!equip(S, sel, d.gear)) { SFX.nope(); return; } SFX.ok(); }
+  else if (d.do === 'name') { r.nameI = (r.nameI || r.id) + 7; r.name = funnyName(r.nameI); SFX.click(); }
+  else return;
+  save(); renderTeam();
+}
+// na een puzzel-reeks voor het voetbal
+function finishFbRun() {
+  const good = RUN.results.filter(Boolean).length, stars = jobStars(), f = S.football;
+  if (RUN.mode === 'fbcheer') { FB.boost = good ? 1.1 : 1; showResult({ title: good ? 'De supporters gaan los!' : 'Een beetje vals gejuicht…', stars: good ? 3 : 1, reward: `<div><p>${good ? '📣 Je robots worden de 2e helft 10% sneller!' : '📣 Geen extra snelheid, maar de supporters juichen toch. Lief.'}</p></div>`, art: fbBotSVG(f.robots[f.lineup[0]].look, 0, true), btns: [['▶️ 2e helft', 'green', () => FB.resume && FB.resume()]] }); return; }
+  if (RUN.mode === 'fbtrain') { const r = finishTrain(S, FB.trainRi, stars); save(); const rb = f.robots[FB.trainRi];
+    showResult({ title: 'Training klaar!', stars, reward: `<div><p>💪 ${rb.name} is extra fit voor de volgende wedstrijd.</p><p>⭐ Ervaring: ${r ? r.xp : rb.xp}/6</p>${r && r.up ? `<p>🎉 Gratis upgrade: <b>${STATS.find(s => s.id === r.up).name}</b>!</p>` : ''}</div>`, art: fbBotSVG(rb.look, 0, true), btns: [['🛠️ Team', 'green', () => goTeam('train')]] }); return; }
+  if (RUN.mode === 'fbplay') { let lv = false; for (let i = 0; i < good; i++) lv = playProgress(S, true) || lv; save();
+    showResult({ title: lv ? 'Nieuwe spelzet!' : 'Programma opgeslagen', stars, reward: lv ? `<div><p>📋 Je team kent nu: <b>${PLAY_NAMES[f.playLv]}</b>. Druk in de wedstrijd op 📋 Spelzet!</p></div>` : `<div><p>Nog ${3 - f.playProg} goede puzzel(s) tot de volgende spelzet.</p></div>`, art: robotSVG({ armUp: true }), btns: [['🛠️ Team', 'green', () => goTeam('tact')]] }); }
 }
 
 /* ===== screens/samen.js ===== */
@@ -2003,7 +2663,12 @@ function init() {
   $('#fHome').onclick = () => { SFX.click(); goTitle(); };
   $('#fEnd').onclick = () => { SFX.click(); endDay(); };
   $('#fShop').onclick = openShop; $('#fShop2').onclick = openShop;
-  $('#fBuild').onclick = openBuild; $('#fFin').onclick = openFin; $('#finClose').onclick = () => closeOv('ovFin'); $('#jobClose').onclick = () => closeOv('ovJob');
+  $('#fBuild').onclick = openBuild;
+  $('#fFoot').addEventListener('click', e => { if (e.target.closest('#fGoStadion')) { SFX.click(); goStadion(); } });
+  $('#stBack').onclick = () => { SFX.click(); goFactory(); }; $('#stTeam').onclick = () => { SFX.click(); goTeam(); };
+  $('#stPlay').onclick = () => { SFX.click(); startMatch('solo'); }; $('#stCoop').onclick = () => { SFX.click(); startMatch('coop'); }; $('#stVs').onclick = () => { SFX.click(); startMatch('versus'); };
+  $('#tmBack').onclick = () => { SFX.click(); goStadion(); }; $('#scrTeam').addEventListener('click', teamClick);
+  $('#mPause').onclick = async () => { const M = FB.M; if (!M) return; M.pause = 'pauze'; if (await confirmBox('Pauze. Wil je de wedstrijd stoppen? (Telt niet mee.)')) { FB.M = null; cancelAnimationFrame(FB.raf); goStadion(); } else { M.pause = null; FB.last = performance.now(); FB.raf = requestAnimationFrame(matchFrame); } }; $('#fFin').onclick = openFin; $('#finClose').onclick = () => closeOv('ovFin'); $('#jobClose').onclick = () => closeOv('ovJob');
   $('#fSamen').onclick = () => { SFX.click(); openSamen(); };
   $('#fRooms').addEventListener('click', e => { const sp = e.target.closest('.hidden-spot'); if (sp) return hiddenClick(sp.dataset.spot); const b = e.target.closest('[data-act]'); if (!b) return; SFX.click(); roomAction(b.closest('.room').dataset.m, b.dataset.act, b); });
   $('#fRoof').addEventListener('click', e => { const sp = e.target.closest('.hidden-spot'); if (sp) hiddenClick(sp.dataset.spot); });
@@ -2028,7 +2693,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  load, save, unlockAll, goFactory, openShop, openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { fbInit, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
