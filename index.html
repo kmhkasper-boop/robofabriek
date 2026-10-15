@@ -429,6 +429,20 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 .finrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}.finrow div{display:flex;flex-direction:column;align-items:center;background:#ffffff10;border-radius:10px;padding:8px}.finrow b{font-size:1.4em}
 .abtn.pass{background:radial-gradient(circle at 40% 35%,#ffe98a,#c9a210);width:70px;height:70px;color:#2a2000}.abtn.shoot.down{box-shadow:0 0 0 6px #ffb43b88,0 4px 0 rgba(0,0,0,.5)}
 @media (max-height:500px){.pl1 .abtn.pass,.pl2 .abtn.pass{bottom:calc(env(safe-area-inset-bottom) + 204px)!important}}
+.bigscr{color:#eef3fb;overflow:auto}.bigwrap{width:min(560px,100%);margin:0 auto;padding:calc(env(safe-area-inset-top) + 8px) 12px calc(env(safe-area-inset-bottom) + 12px);display:flex;flex-direction:column;gap:10px;min-height:100%}
+.bighead{display:flex;align-items:center;gap:8px}.bighead b{flex:1;font-size:1.05em}.bigsub{margin:0;color:#cfd8e8}
+.sboard{display:grid;gap:4px;width:min(92vw,58vh,520px);aspect-ratio:1;margin:0 auto;background:#0b0f18;border:4px solid #3c4a66;border-radius:14px;padding:4px;box-shadow:inset 0 0 18px #000}
+.stile{position:relative;overflow:hidden;border-radius:8px;border:2px solid #ffffff33;padding:0;background:radial-gradient(circle at 50% 30%,#3c4f78,#18213a);cursor:pointer;touch-action:manipulation}
+.stile.hole{background:#05070c;border-color:transparent}.stile.hint{outline:4px solid #ffe14a;animation:pulse 1s infinite}
+.spic{position:absolute}.spic svg{width:100%;height:100%;display:block}.snum{position:absolute;left:4px;top:2px;font-size:12px;font-weight:800;color:#fff;text-shadow:0 1px 2px #000;background:#0008;border-radius:6px;padding:0 4px}
+.bigfoot{display:flex;align-items:center;justify-content:space-between;gap:10px}.spreview{width:78px;height:78px;border-radius:10px;background:radial-gradient(circle at 50% 30%,#3c4f78,#18213a);border:2px solid #ffffff33;position:relative;text-align:center}.spreview svg{width:100%;height:100%}.spreview small{position:absolute;bottom:-16px;left:0;right:0;font-size:10px;color:#cfd8e8}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(92vw,520px);margin:0 auto}
+.scard{aspect-ratio:1.25;border-radius:12px;background:linear-gradient(#f4f7fb,#d9e1ec);border:3px solid #3c4a66;padding:2px;cursor:pointer;touch-action:manipulation;box-shadow:0 3px 0 #0006}.scard svg{width:100%;height:100%}
+.scard.sel{border-color:#38d6ff;box-shadow:0 0 0 4px #38d6ff88;transform:translateY(-3px)}.scard.hint{border-color:#ffe14a;animation:pulse 1s infinite}
+.sfb{min-height:2.6em;text-align:center;font-size:.95em}.sfb .good{color:#7dffa8}.sfb .bad{color:#ffb4a8}
+.crate{background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;color:#ffe14a;font:inherit;font-weight:800;margin:0 auto;animation:crateWiggle 1.2s infinite}.crate.open{animation:none}
+.cratesvg{width:min(48vw,200px)}@keyframes crateWiggle{0%,80%,100%{transform:rotate(0)}85%{transform:rotate(-6deg)}90%{transform:rotate(6deg)}95%{transform:rotate(-3deg)}}
+.crateout{animation:pop .4s ease-out}@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
 </style>
 </head>
 <body>
@@ -495,6 +509,8 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
   </div>
 </section>
 <!-- ===== RESULTAAT ===== -->
+<section id="scrMont" class="screen bigscr" aria-label="Montagehal"><div class="bigwrap" id="montBody"></div></section>
+<section id="scrSort" class="screen bigscr" aria-label="Sorteerhal"><div class="bigwrap" id="sortBody"></div></section>
 <section id="scrResult" class="screen">
   <h1 id="resTitle"></h1>
   <div class="bigstars" id="resStars"></div>
@@ -533,7 +549,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
         <p class="small-note">Bij robotvoetbal zijn tegenstanders nooit veel sneller dan de robot van je kind, er is een Turbo-knop en wie 2 doelpunten achter staat krijgt wat hulp. Makkelijk geeft iets minder prijzengeld, Pittig meer.</p>
       </div>
       <div><h3>📊 Voortgang</h3><div id="oudProg"></div></div>
-      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
+      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). Met nieuwe hallen komen er grotere puzzels bij: in de <b>Montagehal</b> een schuifpuzzel (altijd oplosbaar, minder zetten = meer beloning) en in de <b>Sorteerhal</b> een sorteerbak waarin je setjes van 3 zoekt (elke eigenschap alles gelijk of alles anders: logisch redeneren). Na elke nieuwe hal krijgen de oude machines een extra moeilijkheid (Expert, Meester); makkelijk blijft altijd kiesbaar. Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
       <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles bouwen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
       <p class="small-note">Robo-Fabriek werkt zonder account, zonder reclame en zonder internet (na de eerste keer). De voortgang staat alleen op dit apparaat. Installeren: iPad/iPhone → Safari → Deel → <b>Zet op beginscherm</b>; Android → Chrome → ⋮ → <b>App installeren</b>.</p>
     </div>
@@ -614,10 +630,16 @@ const MACHINES = {
   mag: { name: 'Magazijn', room: 'Magazijn', icon: '📦', buy: 500, need: { band: 3 }, up: [0, 500, 1100, 1800, 2800], theme: ['#1d3047', '#3f7fc0'],
     desc: 'Meer plek voor robots en grotere klanten: meer verkoop per dag.',
     pool: lv => [['g', 'grow'], ['g', 'numseq']] },
+  mont: { name: 'Montagerobot', room: 'Montagehal', icon: '🧩', buy: 900, need: { band: 3 }, up: [0, 600, 1300, 2200, 3300], rate: [1.2, 1.7, 2.3, 3, 3.8], theme: ['#33283f', '#b0629a'], big: 'slide',
+    desc: 'Schuifpuzzel: schuif het plaatje van het robotonderdeel weer heel. Minder zetten = meer beloning. Daarna monteert hij vanzelf robots én trekt hij nieuwe klanten.' },
+  sort: { name: 'Sorteerbak', room: 'Sorteerhal', icon: '🗃️', buy: 1300, need: { mont: 1 }, up: [0, 800, 1600, 2600, 3800], qb: [1, 1, 1, 1, 1], theme: ['#20363a', '#3aa39b'], big: 'set',
+    desc: 'Sorteer de bak leeg: vind steeds 3 onderdelen die bij elkaar horen. Netjes gesorteerd = betere robots (+★) en meer klanten.' },
   tik: { name: 'Tik-tak-band', room: 'Tik-tak-band', icon: '👆', buy: 0, up: [0, 90, 220, 450, 800], theme: ['#4a4020', '#c9a227'],
     desc: 'Tik de goede onderdelen in de goede volgorde. Leuk! Levert pas echt wat op als je hem upgradet.' }
 };
-const MACHINE_ORDER = ['band', 'tik', 'kern', 'test', 'mag'];
+const MACHINE_ORDER = ['band', 'tik', 'kern', 'test', 'mag', 'mont', 'sort'];
+const NEW_HALLS = ['mont', 'sort'];                 // uitbreidingen (fase D): elke gekochte hal geeft de oude machines een moeilijker puzzelniveau
+const AUTO_NEXT = ['band', 'kern', 'test', 'mag']; // snelle machines: na een goed antwoord meteen door naar de volgende puzzel
 // bedrijfs-upgrades (geen machines): etalage = meer klanten, zuinige lampen = lagere kosten (bespaart, maar groeit niet)
 const BIZ = {
   etalage: { name: 'Etalage', icon: '🪟', up: [200, 450, 900, 1500, 2400], desc: 'Een mooiere winkel: +10 klanten per dag per niveau.' },
@@ -625,7 +647,7 @@ const BIZ = {
 };
 const JOB_LEN = 4;                               // puzzels per werkbeurt
 const JOB_FACTOR = [1, .8, .6, .45, .35];        // 1e, 2e, … werkbeurt op dezelfde machine op één dag
-const DIFFS = [{ id: 0, name: 'Makkelijk', icon: '🟢', m: .6 }, { id: 1, name: 'Normaal', icon: '🟡', m: 1 }, { id: 2, name: 'Moeilijk', icon: '🔴', m: 1.5 }];
+const DIFFS = [{ id: 0, name: 'Makkelijk', icon: '🟢', m: .6 }, { id: 1, name: 'Normaal', icon: '🟡', m: 1 }, { id: 2, name: 'Moeilijk', icon: '🔴', m: 1.5 }, { id: 3, name: 'Expert', icon: '🟣', m: 2 }, { id: 4, name: 'Meester', icon: '⚫', m: 2.5 }];
 const NOVELTY = n => n === 0 ? 1.3 : Math.max(.4, 1 - .15 * (n - 1));   // hoe vaak al perfect gedaan (zelfde machine/niveau/moeilijkheid)
 const HINT_F = h => Math.max(.6, 1 - .12 * h);
 const KLUIS = [1500, 3000, 6000, 12000];
@@ -653,7 +675,7 @@ const HIDDEN_AGAIN = 3;                    // na zoveel speeldagen kan er weer e
 /* Opslag (localStorage) met versienummer + migratie. Verhoog SAVE_V en voeg een stap toe in migrate() bij elke vormverandering.
    v1 = fase 1 (hallen met niveaus en sterren), v2 = de fabriek (fase A), v3 = real-time productie, moeilijkheid, financiën (fase B). */
 const LS_KEY = 'robofabriek_save';
-const SAVE_V = 4;
+const SAVE_V = 5;
 function freshMachines() { const m = {}; for (const id in MACHINES) m[id] = { owned: MACHINES[id].buy === 0, lv: 1, idle: 0, q: 2, jobs: 0, tuned: 0 }; return m; }
 function freshSave() {
   return {
@@ -692,6 +714,7 @@ function migrate(o) {
   if (o.v === 1) o = migrateV1(o);
   if (o.v === 2) { for (const id in (o.machines || {})) { const m = o.machines[id]; m.tuned = m.jobs > 0 ? m.lv : 0; } o.v = 3; }
   if (o.v === 3) o.v = 4;   // v4: voetbalteam (wordt hieronder aangevuld door fbInit)
+  if (o.v === 4) o.v = 5;   // v5: nieuwe hallen (Montagehal, Sorteerhal): machines worden hieronder aangevuld
   const f = freshSave();
   for (const k in f) if (!(k in o)) o[k] = f[k];
   for (const k in f.settings) if (!(k in o.settings)) o.settings[k] = f.settings[k];
@@ -963,6 +986,8 @@ function roomScene(id, m) {
   if (id === 'kern') g = lamp(250) + `<g filter="url(#f-sh)"><rect x="150" y="60" width="200" height="110" rx="20" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/><path d="M215 115 a35 35 0 1 1 10 25" fill="none" stroke="#1f8a4c" stroke-width="10" stroke-linecap="round"/><path d="M220 148 l-14 -2 8 -12z" fill="#1f8a4c"/><text x="300" y="128" font-size="34" font-weight="700" font-family="'Exo 2'" fill="${INK}">×${lv + 1}</text></g>` + belt(20, 480, 176) + tk('rond', 60, 164, .26) + tk('drie', 92, 164, .26) + tk('rond', 420, 164, .26) + tk('drie', 452, 164, .26);
   if (id === 'test') g = lamp(150) + lamp(350) + `<g filter="url(#f-sh)"><rect x="50" y="90" width="140" height="84" rx="14" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/><circle cx="90" cy="132" r="26" fill="#2c3550" stroke="${INK}" stroke-width="4"/><circle cx="90" cy="132" r="10" fill="#6b7a99"/><rect x="128" y="110" width="44" height="12" rx="6" fill="#3fdc7f"/><rect x="128" y="128" width="30" height="12" rx="6" fill="#ffd23f"/><rect x="128" y="146" width="38" height="12" rx="6" fill="#ff6b5a"/></g>` + rb(330, 160, .38, { body: ['#ffd18a', '#e08a3a'] }) + `<text x="390" y="80" font-size="30" fill="#fff">♪</text><text x="420" y="60" font-size="24" fill="#fff">♫</text>`;
   if (id === 'mag') g = lamp(250) + Array.from({ length: 8 }, (_, i) => { const bx = 60 + (i % 5) * 64 + (i >= 5 ? 32 : 0), by = i >= 5 ? 96 : 140; return `<g filter="url(#f-sh)"><rect x="${bx}" y="${by}" width="58" height="44" rx="5" fill="url(#g-box)" stroke="${INK}" stroke-width="3"/><path d="M${bx} ${by + 12} h58 M${bx + 29} ${by} v12" stroke="#a87436" stroke-width="3"/></g>`; }).join('') + `<g transform="translate(420 160)"><rect x="-40" y="-30" width="70" height="44" rx="8" fill="#ffb347" stroke="${INK}" stroke-width="4"/><rect x="30" y="-46" width="8" height="60" fill="#3c4a66"/><circle cx="-24" cy="18" r="10" fill="#2c3550"/><circle cx="16" cy="18" r="10" fill="#2c3550"/></g>`;
+  if (id === 'mont') g = lamp(250) + `<g filter="url(#f-sh)"><rect x="150" y="50" width="200" height="130" rx="14" fill="#18213a" stroke="${INK}" stroke-width="4"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<rect x="${160 + (i % 3) * 62}" y="${60 + Math.floor(i / 3) * 40}" width="56" height="34" rx="6" fill="${['#b0629a', '#3a86d8', '#e08a3a', '#4fc28a'][i % 4]}" stroke="${INK}" stroke-width="3"/>`).join('')}</g>` + rb(70, 120, .32, { armUp: true }) + rb(400, 120, .32, { body: ['#ffd18a', '#e08a3a'] });
+  if (id === 'sort') g = lamp(150) + lamp(350) + `<g filter="url(#f-sh)"><path d="M150 110 L350 110 L330 182 L170 182Z" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/></g>` + [['rond', 190, 100], ['vier', 240, 92], ['drie', 290, 100], ['rond', 215, 76], ['drie', 265, 74]].map(([t, x, y]) => tk(t, x, y, .26)).join('') + rb(60, 120, .3, { armUp: true }) + rb(420, 120, .3, {});
   if (id === 'tik') g = lamp(250) + belt(20, 480, 160) + `<g class="beltmove">${tk('ster', 90, 146, .3)}${tk('rond', 170, 146, .3)}${tk('vier', 250, 146, .3)}${tk('rond', 330, 146, .3)}</g><rect x="226" y="110" width="50" height="76" rx="10" fill="#3fdc7f" opacity=".3" stroke="#1f8a4c" stroke-width="3" stroke-dasharray="6 5"/><text x="250" y="96" font-size="44" text-anchor="middle">👆</text>`;
   if (m && m.owned) {
     if (care >= 1) g += `<g class="dust" opacity=".75"><circle cx="60" cy="60" r="10" fill="#d8cbb5"/><circle cx="430" cy="70" r="8" fill="#d8cbb5"/><circle cx="300" cy="50" r="6" fill="#d8cbb5"/></g>`;
@@ -1272,12 +1297,15 @@ function upgradeKluis(st) { if (st.kluis >= KLUIS.length) return false; if (!spe
 function bizCost(st, id) { const lv = st.biz[id] || 0; return lv >= BIZ[id].up.length ? null : BIZ[id].up[lv]; }
 function buyBiz(st, id) { const c = bizCost(st, id); if (c == null || !spend(st, c)) return false; st.biz[id] = (st.biz[id] || 0) + 1; return true; }
 // ---- productie ----
-const testBonus = st => st.machines.test.owned && careOf(st.machines.test) < 2 ? MACHINES.test.qb[st.machines.test.lv - 1] : 0;
+const testBonus = st => (st.machines.test.owned && careOf(st.machines.test) < 2 ? MACHINES.test.qb[st.machines.test.lv - 1] : 0) + (st.machines.sort && st.machines.sort.owned && st.machines.sort.tuned && careOf(st.machines.sort) < 2 ? MACHINES.sort.qb[st.machines.sort.lv - 1] : 0);
+// hoeveel moeilijkheden een machine heeft: snelle patroonmachines krijgen er één bij per gekochte nieuwe hal (Expert, Meester); makkelijk blijft altijd
+const hallsOwned = st => NEW_HALLS.filter(id => st.machines[id] && st.machines[id].owned).length;
+function availDiffs(st, id) { const n = MACHINES[id].big || id === 'tik' ? 3 : 3 + hallsOwned(st); return DIFFS.slice(0, n).map(d => d.id); }
 function autoQ(st) { return clamp(st.machines.band.q + testBonus(st), 1, 5); }
 // robots per minuut van een machine (0 als hij nog niet is afgeregeld)
 function rateOf(st, id) { const m = st.machines[id], d = MACHINES[id]; if (!m.owned || !d.rate || !m.tuned) return 0; return d.rate[Math.min(m.tuned, m.lv) - 1] * CARE[careOf(m)].tempo; }
-const totalRate = st => ['band', 'kern'].reduce((a, id) => a + rateOf(st, id), 0);
-function demand(st) { return 30 + Math.floor(st.rep / 4) + 10 * (st.biz.etalage || 0) + (st.machines.mag.owned ? 12 * st.machines.mag.lv : 0); }
+const totalRate = st => ['band', 'kern', 'mont'].reduce((a, id) => a + (st.machines[id] ? rateOf(st, id) : 0), 0);
+function demand(st) { return 30 + Math.floor(st.rep / 4) + 10 * (st.biz.etalage || 0) + (st.machines.mag.owned ? 12 * st.machines.mag.lv : 0) + (st.machines.mont && st.machines.mont.owned ? 6 + 4 * st.machines.mont.lv : 0) + (st.machines.sort && st.machines.sort.owned ? 6 + 4 * st.machines.sort.lv : 0); }
 // klanten per minuut. Begrensd op ±1,5× het productietempo (+1), zodat de winkel na upgrades niet sneller leegverkoopt dan je kunt maken
 const sellRate = st => Math.min(demand(st) / DAY_MIN, 1 + 1.5 * totalRate(st));
 function addStock(st, n, q) { const room = Math.max(0, stockCap(st) - st.stock.length), k = Math.min(n, room); for (let i = 0; i < k; i++) st.stock.push(clamp(q, 1, 5)); st.stock.sort((a, b) => b - a); st.madeTotal += k; st.today.made += k; if (k < n) st.today.notes.push('voorraadvol'); return k; }
@@ -1329,7 +1357,7 @@ function jobPreview(st, id, diff, stars = 3, hints = 0) {
 }
 function jobResult(st, id, stars, diff = 1, hints = 0) {
   const m = st.machines[id], p = jobPreview(st, id, diff, stars, hints);
-  m.q = clamp(1 + diff + Math.floor((m.lv - 1) / 2) - (stars < 3 ? 1 : 0), 1, 5);
+  m.q = clamp(1 + Math.min(2, diff) + Math.floor((m.lv - 1) / 2) - (stars < 3 ? 1 : 0), 1, 5);
   const firstTune = m.tuned !== m.lv; m.tuned = m.lv;   // afregelen: vanaf nu maakt hij vanzelf robots op dit niveau
   if (stars === 3) { const k = masteryKey(id, m.lv, diff); st.mastery[k] = (st.mastery[k] || 0) + 1; }
   m.idle = 0; m.jobs++; st.today.jobs[id] = (st.today.jobs[id] || 0) + 1;
@@ -1341,9 +1369,9 @@ function sellNow(st) { let sold = 0, coins = 0; for (;;) { const c = sellOne(st)
 function makeOrders(st) {
   const n = st.machines.mag.owned ? 3 : 2, out = [];
   for (let i = 0; i < n; i++) {
-    const c = CUSTOMERS[(st.day * 3 + i * 5) % CUSTOMERS.length], cnt = clamp(3 + Math.floor(st.day / 2) + 2 * i, 3, st.machines.mag.owned ? 20 : 12);
+    const c = CUSTOMERS[(st.day * 3 + i * 5) % CUSTOMERS.length], cnt = clamp(3 + Math.floor(st.day / 2) + 2 * i, 3, st.machines.mag.owned ? 16 : 12);
     const minQ = clamp(2 + Math.floor(st.day / 4) + (i === n - 1 ? 1 : 0), 2, 5);
-    out.push({ id: st.day + '-' + i, who: c.who, icon: c.icon, line: c.line, n: cnt, minQ, reward: Math.round(cnt * priceOf(minQ) * 1.5), rep: 3 + Math.ceil(cnt / 2), until: st.day + 2 });
+    out.push({ id: st.day + '-' + i, who: c.who, icon: c.icon, line: c.line, n: cnt, minQ, reward: Math.round(cnt * priceOf(minQ) * (cnt > 10 ? 1.35 : 1.5)), rep: 3 + Math.ceil(cnt / 2), until: st.day + 2 });
   }
   return out;
 }
@@ -1714,6 +1742,118 @@ function applyMatch(st, res, mode) {
 }
 const divPoints = st => st.football.divRes.reduce((a, b) => a + b, 0);
 
+/* ===== game/mini.js ===== */
+/* Grote puzzels van de nieuwe hallen (fase D). Puur (geen DOM), zodat ze getest kunnen worden.
+   Schuifpuzzel: altijd oplosbaar (we schudden met echte zetten vanaf de oplossing).
+   Sorteerbak: kaartjes met eigenschappen; een set = 3 kaartjes waarbij elke eigenschap óf alles gelijk óf alles anders is. */
+// ---------- schuifpuzzel ----------
+// tiles[i] = stukje dat op plek i ligt (0..n*n-2), n*n-1 = het gat
+function slideNew(n, shuffleMoves, rng = RNG) {
+  const N = n * n, t = Array.from({ length: N }, (_, i) => i); let hole = N - 1, prev = -1, moves = 0;
+  while (moves < shuffleMoves) {
+    const nb = slideNeighbours(n, hole).filter(x => x !== prev); const k = nb[Math.floor(rng() * nb.length)];
+    [t[hole], t[k]] = [t[k], t[hole]]; prev = hole; hole = k; moves++;
+  }
+  if (slideSolved({ n, t })) return slideNew(n, shuffleMoves + 2, rng);
+  return { n, t, moves: 0, par: shuffleMoves };
+}
+function slideNeighbours(n, i) { const r = Math.floor(i / n), c = i % n, o = []; if (r > 0) o.push(i - n); if (r < n - 1) o.push(i + n); if (c > 0) o.push(i - 1); if (c < n - 1) o.push(i + 1); return o; }
+const slideHole = s => s.t.indexOf(s.n * s.n - 1);
+// tik op plek i: schuift als hij naast het gat ligt (of in dezelfde rij/kolom: dan schuift de hele rij, telt als 1 zet per stukje)
+function slideTap(s, i) {
+  const n = s.n, h = slideHole(s); if (i === h) return 0;
+  const ri = Math.floor(i / n), ci = i % n, rh = Math.floor(h / n), ch = h % n;
+  if (ri !== rh && ci !== ch) return 0;
+  const step = ri === rh ? (ci < ch ? -1 : 1) : (ri < rh ? -n : n); let cur = h, k = 0;
+  while (cur !== i) { const nx = cur + step; [s.t[cur], s.t[nx]] = [s.t[nx], s.t[cur]]; cur = nx; k++; }
+  s.moves += k; return k;
+}
+const slideSolved = s => s.t.every((x, i) => x === i);
+// oplosbaarheid (pariteit), voor tests
+function slideSolvable(s) {
+  const n = s.n, a = s.t.filter(x => x !== n * n - 1); let inv = 0; for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) if (a[i] > a[j]) inv++;
+  if (n % 2) return inv % 2 === 0; const rowFromBottom = n - Math.floor(slideHole(s) / n); return (inv + rowFromBottom) % 2 === 1;
+}
+// sterren: hoe dicht bij het aantal schudzetten (een goede oplossing is meestal even lang of korter)
+function slideStars(s) { const r = s.moves / Math.max(1, s.par); return r <= 1.6 ? 3 : r <= 3.2 ? 2 : 1; }
+// hint: een stukje dat het gat 'goed' in beweegt (greedy op manhattan-afstand), nooit vastlopen
+function slideHint(s) {
+  const n = s.n, h = slideHole(s), md = t => t.reduce((a, x, i) => x === n * n - 1 ? a : a + Math.abs(Math.floor(x / n) - Math.floor(i / n)) + Math.abs(x % n - i % n), 0);
+  let best = null, bv = 1e9; for (const k of slideNeighbours(n, h)) { const t = s.t.slice(); [t[h], t[k]] = [t[k], t[h]]; const v = md(t) + (k === s.lastHole ? 3 : 0); if (v < bv) { bv = v; best = k; } }
+  return best;
+}
+const SLIDE_LEVELS = [{ n: 3, mv: 10 }, { n: 3, mv: 24 }, { n: 3, mv: 40 }, { n: 4, mv: 30 }, { n: 4, mv: 50 }];
+function slideFor(lv, diff) { const L = SLIDE_LEVELS[clamp(lv - 2 + diff, 0, SLIDE_LEVELS.length - 1)]; return slideNew(L.n, L.mv); }
+// ---------- sorteerbak (set) ----------
+const SET_ATTR = { vorm: ['rond', 'vier', 'drie'], kleur: ['#E69F00', '#56B4E9', '#CC79A7'], aantal: [1, 2, 3], vulling: ['vol', 'leeg', 'streep'] };
+const SET_NAMES = { vorm: 'vormen', kleur: 'kleuren', aantal: 'aantallen', vulling: 'vullingen' };
+const SET_KLEUR_NL = { '#E69F00': 'oranje', '#56B4E9': 'blauw', '#CC79A7': 'roze' };
+function setAttrs(level) { return level >= 2 ? ['vorm', 'kleur', 'aantal', 'vulling'] : level >= 1 ? ['vorm', 'kleur', 'aantal'] : ['vorm', 'kleur']; }
+function cardKey(c) { return c.join(''); }
+// derde kaart die een set maakt met a en b
+const thirdOf = (a, b) => a.map((x, i) => x === b[i] ? x : 3 - x - b[i]);
+function isSet(a, b, c) { return a.every((x, i) => (x === b[i] && x === c[i]) || (x !== b[i] && x !== c[i] && b[i] !== c[i])); }
+// waarom geen set? lijst van eigenschappen die '2 gelijk, 1 anders' zijn
+function setWhy(attrs, a, b, c) { return attrs.filter((_, i) => !((a[i] === b[i] && a[i] === c[i]) || (a[i] !== b[i] && a[i] !== c[i] && b[i] !== c[i]))); }
+function findSet(cards) { for (let i = 0; i < cards.length; i++) for (let j = i + 1; j < cards.length; j++) for (let k = j + 1; k < cards.length; k++) if (isSet(cards[i], cards[j], cards[k])) return [i, j, k]; return null; }
+// de bak: bestaat uit 'nSets' losse sets (dus helemaal leeg te sorteren als je slim kiest); op tafel liggen er 'table' tegelijk
+function setNew(level, rng = RNG) {
+  const k = setAttrs(level).length, nSets = [3, 5, 6][clamp(level, 0, 2)], table = [6, 9, 9][clamp(level, 0, 2)];
+  const used = new Set(), deck = [];
+  let guard = 0;
+  while (deck.length < nSets * 3 && guard++ < 5000) {
+    const a = Array.from({ length: k }, () => Math.floor(rng() * 3)), b = Array.from({ length: k }, () => Math.floor(rng() * 3)), c = thirdOf(a, b);
+    if (cardKey(a) === cardKey(b) || [a, b, c].some(x => used.has(cardKey(x)))) continue;
+    [a, b, c].forEach(x => { used.add(cardKey(x)); deck.push(x); });
+  }
+  for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [deck[i], deck[j]] = [deck[j], deck[i]]; }
+  const s = { level, attrs: setAttrs(level), deck, table: [], found: 0, mistakes: 0, total: nSets, tableN: table, shuffles: 0 };
+  setFill(s, rng); return s;
+}
+// tafel aanvullen; als er geen set ligt: kaartjes terug in de bak en opnieuw (gegarandeerd een set zolang die bestaat)
+function setFill(s, rng = RNG) {
+  while (s.table.length < s.tableN && s.deck.length) s.table.push(s.deck.pop());
+  let guard = 0;
+  while (s.table.length >= 3 && !findSet(s.table) && guard++ < 50) {
+    const all = s.table.concat(s.deck); if (!findSet(all)) break;
+    for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
+    s.table = all.slice(0, Math.min(s.tableN, all.length)); s.deck = all.slice(s.table.length); s.shuffles++;
+  }
+}
+// kan deze stapel precies in sets verdeeld worden? (backtracking; max 18 kaartjes)
+function setPartition(cards) {
+  if (!cards.length) return [];
+  const [a, ...rest] = cards;
+  for (let j = 0; j < rest.length; j++) { const want = cardKey(thirdOf(a, rest[j])); const k = rest.findIndex((x, i) => i !== j && cardKey(x) === want); if (k < 0) return null; }
+  for (let j = 0; j < rest.length; j++) { const want = cardKey(thirdOf(a, rest[j])); const k = rest.findIndex((x, i) => i > j && cardKey(x) === want); if (k < 0) continue;
+    const sub = setPartition(rest.filter((_, i) => i !== j && i !== k)); if (sub) return [[a, rest[j], rest[k]], ...sub]; }
+  return null;
+}
+// na een goede keuze: zorg dat de rest nog steeds helemaal leeg te sorteren is (zo nodig wisselt de bak stiekem een kaartje om, liefst een onzichtbaar kaartje uit de bak)
+function setRepair(s) {
+  const all = s.table.concat(s.deck); if (!all.length || setPartition(all)) return;
+  // grootste greedy-verdeling; de overgebleven kaartjes worden per drie passend gemaakt (bij voorkeur kaartjes die nog in de bak liggen)
+  const loc = all.map((c, i) => ({ c, i })), rest = loc.slice();
+  for (;;) { const f = findSet(rest.map(x => x.c)); if (!f) break; f.sort((x, y) => y - x).forEach(k => rest.splice(k, 1)); }
+  rest.sort((x, y) => (x.i >= s.table.length) - (y.i >= s.table.length));   // tafelkaartjes eerst, bak-kaartjes als laatste (die worden vervangen)
+  const keys = new Set(all.map(cardKey));
+  for (let k = 0; k + 2 < rest.length; k += 3) {
+    const [x, y, z] = rest.slice(k, k + 3); let c = thirdOf(x.c, y.c);
+    if (cardKey(c) === cardKey(x.c) || cardKey(c) === cardKey(y.c)) continue;
+    keys.delete(cardKey(z.c)); keys.add(cardKey(c));
+    if (z.i >= s.table.length) s.deck[z.i - s.table.length] = c; else s.table[z.i] = c; s.repairs = (s.repairs || 0) + 1;
+  }
+}
+// probeer een set (indexen op tafel). Geeft { ok, why }
+function setTry(s, idx, rng = RNG) {
+  const [a, b, c] = idx.map(i => s.table[i]);
+  if (isSet(a, b, c)) { s.table = s.table.filter((_, i) => !idx.includes(i)); s.found++; setRepair(s); setFill(s, rng); return { ok: true }; }
+  s.mistakes++; return { ok: false, why: setWhy(s.attrs, a, b, c) };
+}
+// klaar: bak leeg en geen set meer op tafel
+const setDone = s => !findSet(s.table.concat(s.deck));
+const setLeft = s => s.table.length + s.deck.length;
+
 /* ===== game/play.js ===== */
 /* Het puzzelscherm: speelt een reeks puzzels (niveau, instaptoets of samen-spel). Geen tijdsdruk, geen levens. */
 let RUN = null;   // de lopende reeks
@@ -1939,6 +2079,8 @@ function correct() {
   if (RUN.mode === 'job' || RUN.mode === 'hidden') { popRobot(false); const lv = $('#pzLever'); if (lv) { lv.classList.add('pull'); setTimeout(() => lv.classList.remove('pull'), 500); } SFX.whir(); }
   if (p.t === 'odd') { const s = $(`#pzBand .slot[data-i="${p.answer[0]}"]`); s && s.classList.add('good'); }
   if (p.kind === 'klank' && p.t !== 'echo') { const g = GEN; setTimeout(() => { if (g === GEN) playSeq(p.t === 'odd' ? p.good : p.seq); }, 600); }
+  // snelle machines: meteen door naar de volgende puzzel (Verder-knop mag nog steeds om niet te wachten)
+  if (RUN.mode === 'job' && AUTO_NEXT.includes(RUN.mid)) { const g = GEN, ms = p.kind === 'klank' ? 2000 : 1000; RUN.autoAt = Date.now() + ms; setTimeout(() => { if (g === GEN && P && P.done && CUR_SCREEN === 'scrPuzzle') onAct('aNext'); }, ms); }
 }
 async function hint() {
   if (!P || P.done || P.phase === 'lees' || P.phase === 'maak') return;
@@ -2168,18 +2310,24 @@ function startJob(id, diff) {
   if (S.stock.length >= stockCap(S)) { toast('📦 Het magazijn is vol! Wacht tot de winkel wat verkoopt, of verkoop nu.'); SFX.nope(); return; }
   if (diff == null) return openJob(id);
   S.diffPref[id] = diff; save();
-  const plv = clamp(m.lv + (diff - 1), 1, 6);
-  startRun({ mode: 'job', mid: id, diff, total: JOB_LEN, pool: MACHINES[id].pool(plv), kind: id === 'test' ? 'klank' : 'vorm', d: diff, dmin: Math.max(0, diff - 1), dmax: diff });
+  if (MACHINES[id].big) return startBig(id, diff);
+  // Expert/Meester (na nieuwe hallen): de zwaarste puzzelsoorten van deze machine, altijd op moeilijk, langere reeks
+  const plv = diff >= 3 ? 6 : clamp(m.lv + (diff - 1), 1, 6), pool = MACHINES[id].pool(plv).concat(diff >= 3 ? EXPERT_POOL[id] : []);
+  startRun({ mode: 'job', mid: id, diff, total: JOB_LEN + (diff >= 3 ? diff - 2 : 0), pool, kind: id === 'test' ? 'klank' : 'vorm', d: Math.min(2, diff), dmin: diff >= 3 ? 2 : Math.max(0, diff - 1), dmax: Math.min(2, diff) });
 }
+const EXPERT_POOL = { band: [['h1', 6], ['h1', 7], ['h1', 5]], kern: [['h1', 5], ['h2', 4], ['h1', 7]], test: [['h2', 5], ['h2', 3], ['h2', 4]], mag: [['g', 'numseq'], ['g', 'grow']] };
+const DIFF_TXT = { std: ['Rustig aan, kortere patronen.', 'Patronen van dit niveau.', 'Patronen van het volgende niveau. Pittig!', '🆕 Expert: de lastigste soorten (kern, meerdere gaten, vertalen), altijd moeilijk. Dankzij je nieuwe hal!', '🆕 Meester: nog langer en zwaarder. Voor echte patroonbazen!'],
+  mont: ['3×3, een beetje door elkaar.', 'Flink geschud. Denk vooruit!', 'Grotere puzzel (later 4×4), zonder nummertjes.'],
+  sort: ['2 eigenschappen: vorm en kleur.', '3 eigenschappen: vorm, kleur en aantal.', 'Ook de vulling telt mee (vol, leeg, streepjes). Pittig!'] };
 function openJob(id) {
   const d = MACHINES[id], m = S.machines[id];
   $('#jobTitle').textContent = `${d.icon} ${d.name} · niveau ${m.lv}`;
   $('#jobSub').innerHTML = m.tuned >= m.lv ? `Hoe moeilijker de puzzels, hoe meer en betere robots. Nieuwe uitdagingen betalen extra!` : `<b>Eerst afregelen:</b> na deze werkbeurt maakt de machine vanzelf robots (${fmt1(d.rate ? d.rate[m.lv - 1] : 0)} per minuut).`;
-  const pv = DIFFS.map(x => jobPreview(S, id, x.id)), best = pv.reduce((bi, p, i) => p.coins > pv[bi].coins ? i : bi, 0);
-  $('#jobDiffs').innerHTML = DIFFS.map((x, i) => { const p = pv[i];
+  const DL = availDiffs(S, id).map(i => DIFFS[i]), pv = DL.map(x => jobPreview(S, id, x.id)), best = pv.reduce((bi, p, i) => p.coins > pv[bi].coins ? i : bi, 0);
+  $('#jobDiffs').innerHTML = DL.map((x, i) => { const p = pv[i];
     const tag = p.isNew ? '<span class="tag new">Nieuw +30%</span>' : p.tooEasy ? '<span class="tag easy">Te makkelijk geworden</span>' : i === best ? '<span class="tag tip">Meeste winst</span>' : '';
     return `<button class="dcard" data-diff="${i}">${tag}<b>${x.icon} ${x.name}</b><span class="rw">🤖 ${p.robots} × ${'★'.repeat(p.q)} ≈ 🪙 ${p.coins}</span>
-      <span class="small-note">${['Rustig aan, kortere patronen.', 'Patronen van dit niveau.', 'Patronen van het volgende niveau. Pittig!'][i]}</span>
+      <span class="small-note">${(DIFF_TXT[id] || DIFF_TXT.std)[i]}</span>
       <span class="small-note">Nieuwigheid</span><div class="meter"><i style="width:${Math.round(Math.min(1, p.nov / 1.3) * 100)}%"></i></div></button>`; }).join('');
   $('#jobNote').innerHTML = `💡 Hints mogen altijd! Elke hint kost wel een stukje van de beloning.${pv[0].f < 1 ? ' 😴 Deze machine heeft vandaag al gewerkt: alles levert iets minder op.' : ''}`;
   $('#jobDiffs').onclick = e => { const b = e.target.closest('.dcard'); if (!b) return; closeOv('ovJob'); SFX.click(); startJob(id, +b.dataset.diff); };
@@ -2747,6 +2895,96 @@ function finishFbRun() {
     showResult({ title: lv ? 'Nieuwe spelzet!' : 'Programma opgeslagen', stars, reward: lv ? `<div><p>📋 Je team kent nu: <b>${PLAY_NAMES[f.playLv]}</b>. Druk in de wedstrijd op 📋 Spelzet!</p></div>` : `<div><p>Nog ${3 - f.playProg} goede puzzel(s) tot de volgende spelzet.</p></div>`, art: robotSVG({ armUp: true }), btns: [['🛠️ Team', 'green', () => goTeam('tact')]] }); }
 }
 
+/* ===== screens/halls.js ===== */
+/* Nieuwe hallen (fase D): Montagehal (schuifpuzzel) en Sorteerhal (sorteerbak). Eindigen met een beloningskist (tik om te openen). */
+let BIG = null;   // { id, diff, hints, s (schuif of sorteer-toestand), pic, sel }
+const PARTS = [{ n: 'robotkop', body: ['#9ad0ff', '#3a86d8'] }, { n: 'grijparm-robot', body: ['#ffd18a', '#e08a3a'] }, { n: 'turborobot', body: ['#bdf2d6', '#4fc28a'] }, { n: 'zilveren robot', body: ['#e8eef7', '#7d8aa0'] }, { n: 'roze robot', body: ['#ff9f9f', '#d64545'] }];
+function startBig(id, diff) {
+  GEN++; hush(); const m = S.machines[id];
+  BIG = { id, diff, hints: 0, sel: [], t0: Date.now() };
+  if (id === 'mont') { const part = pick(PARTS); BIG.part = part; BIG.s = slideFor(m.lv, diff); BIG.pic = robotSVG({ armUp: true, body: part.body });
+    show('scrMont'); musicFor('scrPuzzle', 1); renderMont(); }
+  else { BIG.s = setNew(setLevelFor(m.lv, diff)); show('scrSort'); musicFor('scrPuzzle', 1); renderSort(); }
+  const th = MACHINES[id].theme; $('#' + (id === 'mont' ? 'scrMont' : 'scrSort')).style.background = `radial-gradient(120% 80% at 50% 0%, ${th[1]}66, ${th[0]} 45%, #0b0f18 90%)`;
+}
+const setLevelFor = (lv, diff) => diff === 0 ? 0 : diff === 1 ? 1 : lv >= 2 ? 2 : 1;
+function bigHead(id, extra) { const d = MACHINES[id]; return `<div class="bighead"><button class="iconbtn" data-big="back" aria-label="Terug naar de fabriek">✖</button><b>${d.icon} ${d.name} · ${DIFFS[BIG.diff].icon} ${DIFFS[BIG.diff].name}</b><span class="pill">${extra}</span></div>`; }
+/* ---------- schuifpuzzel ---------- */
+function renderMont() {
+  const s = BIG.s, n = s.n, H = n * n - 1, nums = BIG.diff < 2;
+  const tiles = s.t.map((x, i) => { if (x === H) return `<div class="stile hole" data-i="${i}"></div>`; const r = Math.floor(x / n), c = x % n;
+    return `<button class="stile ${BIG.hintAt === i ? 'hint' : ''}" data-i="${i}" aria-label="stukje ${x + 1}"><div class="spic" style="width:${n * 100}%;height:${n * 100}%;left:${-c * 100}%;top:${-r * 100}%">${BIG.pic}</div>${nums ? `<span class="snum">${x + 1}</span>` : ''}</button>`; }).join('');
+  $('#montBody').innerHTML = bigHead('mont', `🔁 ${s.moves} zetten`) +
+    `<p class="small-note bigsub">Schuif de stukjes tot de <b>${BIG.part.n}</b> weer heel is. Tik op een stukje naast het lege vakje. Minder zetten = meer robots! <span class="pill">doel: ±${s.par} zetten</span></p>
+     <div class="sboard" style="grid-template-columns:repeat(${n},1fr)">${tiles}</div>
+     <div class="bigfoot"><div class="spreview">${BIG.pic}<small>zo moet het</small></div><button class="btn white" data-big="hint">💡 Hint</button></div>`;
+}
+function montTap(i) {
+  const s = BIG.s; s.lastHole = slideHole(s); const k = slideTap(s, i); if (!k) { SFX.nope(); return; }
+  BIG.hintAt = null; SFX.place(); renderMont();
+  if (slideSolved(s)) { SFX.fanfare(); const stars = slideStars(s); const g = GEN; setTimeout(() => { if (g === GEN) bigCrate('mont', stars, `🧩 Opgelost in <b>${s.moves}</b> zetten (doel ±${s.par}).`); }, 650); }
+}
+/* ---------- sorteerbak ---------- */
+function cardSVG(attrs, c) {
+  const v = Object.fromEntries(attrs.map((a, i) => [a, SET_ATTR[a][c[i]]])), col = v.kleur, n = v.aantal || 1, sh = v.vorm, fill = v.vulling || 'vol';
+  const id = 'pt' + c.join('');
+  const paint = fill === 'vol' ? col : fill === 'leeg' ? 'none' : `url(#${id})`;
+  const one = (cx) => { const st = `fill="${paint}" stroke="${col}" stroke-width="5"`;
+    return sh === 'rond' ? `<circle cx="${cx}" cy="50" r="15" ${st}/>` : sh === 'vier' ? `<rect x="${cx - 14}" y="36" width="28" height="28" rx="3" ${st}/>` : `<path d="M${cx} 33 L${cx + 17} 64 L${cx - 17} 64Z" ${st} stroke-linejoin="round"/>`; };
+  const xs = n === 1 ? [50] : n === 2 ? [32, 68] : [18, 50, 82];
+  return `<svg viewBox="0 0 100 100"><defs><pattern id="${id}" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="3" height="6" fill="${col}"/></pattern></defs>${xs.map(one).join('')}</svg>`;
+}
+function renderSort() {
+  const s = BIG.s, left = s.deck.length + s.table.length;
+  $('#sortBody').innerHTML = bigHead('sort', `🗃️ nog ${left} in de bak`) +
+    `<p class="small-note bigsub">Kies <b>3 onderdelen</b> die bij elkaar horen: bij elke eigenschap (${s.attrs.map(a => SET_NAMES[a]).join(', ')}) zijn ze <b>allemaal gelijk</b> of <b>allemaal anders</b>.</p>
+     <div class="sgrid">${s.table.map((c, i) => `<button class="scard ${BIG.sel.includes(i) ? 'sel' : ''} ${(BIG.hintSet || []).includes(i) ? 'hint' : ''}" data-c="${i}" aria-label="onderdeel ${i + 1}">${cardSVG(s.attrs, c)}</button>`).join('')}</div>
+     <div class="bigfoot"><span class="pill">✅ ${s.found} sets gevonden</span><button class="btn white" data-big="hint">💡 Hint</button></div><div class="sfb" id="sortFb"></div>`;
+}
+function sortTap(i) {
+  const s = BIG.s; BIG.sel = BIG.sel.includes(i) ? BIG.sel.filter(x => x !== i) : BIG.sel.concat([i]); SFX.click();
+  if (BIG.sel.length < 3) return renderSort();
+  const idx = BIG.sel.slice(); BIG.sel = []; const r = setTry(s, idx); BIG.hintSet = null;
+  if (r.ok) { SFX.ok(); renderSort(); $('#sortFb').innerHTML = `<span class="good">${pick(PRAISE)} Die drie horen bij elkaar!</span>`;
+    if (setDone(s)) { const g = GEN; setTimeout(() => { if (g === GEN) bigCrate('sort', s.mistakes + BIG.hints <= 1 ? 3 : s.mistakes + BIG.hints <= 4 ? 2 : 1, `🗃️ ${s.found} sets gesorteerd${s.deck.length + s.table.length ? ` (${s.table.length} losse onderdelen gaan naar de kringloop)` : ''}.`); }, 700); } }
+  else { SFX.nope(); renderSort(); const a = r.why[0], vals = idx.map(k => SET_ATTR[a][s.table[k][s.attrs.indexOf(a)]]); const show = a === 'kleur' ? vals.map(x => SET_KLEUR_NL[x]) : a === 'vorm' ? vals.map(x => TOKENS[x].name) : vals;
+    $('#sortFb').innerHTML = `<span class="bad">Bijna! Kijk naar de <b>${SET_NAMES[a]}</b>: ${show.join(', ')}. Twee gelijk en één anders mag niet: alles gelijk óf alles anders.</span>`; }
+}
+/* ---------- hints, terug, kist ---------- */
+function bigClick(e) {
+  const b = e.target.closest('[data-big],[data-i],[data-c]'); if (!b || !BIG) return;
+  if (b.dataset.big === 'back') { SFX.click(); BIG = null; return goFactory(); }
+  if (b.dataset.big === 'hint') { BIG.hints++; SFX.click();
+    if (BIG.id === 'mont') { BIG.hintAt = slideHint(BIG.s); renderMont(); }
+    else { const f = findSet(BIG.s.table); BIG.hintSet = f ? f.slice(0, BIG.hints >= 2 ? 2 : 1) : []; renderSort(); $('#sortFb').innerHTML = '💡 Dit onderdeel hoort in een set. Zoek de andere twee!'; }
+    return; }
+  if (b.dataset.i != null) return montTap(+b.dataset.i);
+  if (b.dataset.c != null) return sortTap(+b.dataset.c);
+}
+function bigCrate(id, stars, line) {
+  const r = jobResult(S, id, stars, BIG.diff, BIG.hints), d = MACHINES[id]; save(); const diff = BIG.diff; BIG = null;
+  showResult({ title: 'Klaar! Open de kist 📦', stars: 0, art: robotSVG({ armUp: true }), btns: [],
+    reward: `<p>${line}</p><button class="crate" id="crateBtn" aria-label="Kist openen">${crateSVG(false)}<span>Tik om open te maken!</span></button>` });
+  SFX.whir();
+  $('#crateBtn').onclick = () => {
+    const c = $('#crateBtn'); if (c.classList.contains('open')) return; c.classList.add('open'); c.innerHTML = crateSVG(true); SFX.fanfare(); confetti(50);
+    let rw = `<p class="big">🤖 +<b>${r.robots}</b> robots <span class="q">${'★'.repeat(r.q)}</span> <span class="small-note">(≈ 🪙 ${r.robots * priceOf(r.q)})</span></p><p class="bigstars">${Array.from({ length: 3 }, (_, i) => i < stars ? '⭐' : '☆').join('')}</p>`;
+    if (r.wanted > r.robots) rw += `<p>📦 Het magazijn zat vol: ${r.wanted - r.robots} robot(s) pasten er niet in.</p>`;
+    if (r.tuned) rw += id === 'mont' ? `<p>⚙️ <b>Afgeregeld!</b> De montagerobot maakt nu vanzelf ${fmt1(rateOf(S, id))} robots per minuut.</p>` : `<p>⚙️ <b>Afgeregeld!</b> Alle robots worden nu netter gesorteerd: +★ kwaliteit.</p>`;
+    if (r.isNew) rw += `<p>✨ Nieuwe uitdaging: <b>+30%</b>!</p>`; else if (r.tooEasy && diff < 2) rw += `<p>🥱 Dit wordt te makkelijk. Probeer eens <b>${DIFFS[diff + 1].name}</b>!</p>`;
+    c.insertAdjacentHTML('afterend', `<div class="crateout">${rw}</div>`);
+    $('#resTitle').textContent = stars === 3 ? 'Perfect!' : 'Goed gedaan!';
+    [['🏭 Naar de fabriek', 'green', () => goFactory()], ['▶️ Nog een keer', 'white', () => { goFactory(); openJob(id); }]].forEach(([t, cl, f]) => { const bt = document.createElement('button'); bt.className = 'btn ' + cl; bt.textContent = t; bt.onclick = () => { SFX.click(); f(); }; $('#resBtns').appendChild(bt); });
+  };
+}
+function crateSVG(open) {
+  return `<svg viewBox="0 0 160 130" class="cratesvg"><ellipse cx="80" cy="122" rx="62" ry="7" fill="#000" opacity=".3"/>
+    <rect x="22" y="56" width="116" height="62" rx="6" fill="#b5762f" stroke="#2a1a08" stroke-width="4"/><rect x="22" y="56" width="116" height="14" fill="#8a5420"/>
+    <path d="M30 64 L130 112 M130 64 L30 112" stroke="#8a5420" stroke-width="6"/><rect x="70" y="72" width="20" height="16" rx="3" fill="#ffd34a" stroke="#2a1a08" stroke-width="3"/>
+    ${open ? `<g transform="rotate(-28 22 56)"><rect x="16" y="34" width="128" height="22" rx="5" fill="#c98a3d" stroke="#2a1a08" stroke-width="4"/></g><g class="cratestars"><text x="62" y="46" font-size="26">🤖</text><text x="36" y="36" font-size="18">✨</text><text x="104" y="30" font-size="18">🪙</text></g>`
+      : `<rect x="16" y="38" width="128" height="22" rx="5" fill="#c98a3d" stroke="#2a1a08" stroke-width="4"/><text x="80" y="54" text-anchor="middle" font-size="13" font-weight="800" fill="#2a1a08">ROBO</text>`}</svg>`;
+}
+
 /* ===== screens/samen.js ===== */
 /* Samen spelen op één apparaat: 'Lezer en bouwer' (coöperatief) en 'Maak een patroon' (om de beurt een patroon voor elkaar). */
 const SAMEN = { mode: 'lezer', hall: 1 };
@@ -2827,6 +3065,7 @@ function init() {
   $('#stPlay').onclick = () => { SFX.click(); startMatch('solo'); }; $('#stCoop').onclick = () => { SFX.click(); startMatch('coop'); }; $('#stVs').onclick = () => { SFX.click(); startMatch('versus'); };
   $('#standClose').onclick = () => closeOv('ovStand');
   $('#stBody').addEventListener('click', e => { const sb = e.target.closest('[data-stand]'); if (sb) { SFX.click(); return openStand(sb.dataset.stand); } const b = e.target.closest('[data-fbdiff]'); if (!b) return; SFX.click(); setFbDiff(S, +b.dataset.fbdiff); save(); goStadion(); });
+  $('#scrMont').addEventListener('click', bigClick); $('#scrSort').addEventListener('click', bigClick);
   $('#tmBack').onclick = () => { SFX.click(); goStadion(); }; $('#scrTeam').addEventListener('click', teamClick);
   $('#mPause').onclick = async () => { const M = FB.M; if (!M) return; M.pause = 'pauze'; if (await confirmBox('Pauze. Wil je de wedstrijd stoppen? (Telt niet mee.)')) { FB.M = null; cancelAnimationFrame(FB.raf); goStadion(); } else { M.pause = null; FB.last = performance.now(); FB.raf = requestAnimationFrame(matchFrame); } }; $('#fFin').onclick = openFin; $('#finClose').onclick = () => closeOv('ovFin'); $('#jobClose').onclick = () => closeOv('ovJob');
   $('#fSamen').onclick = () => { SFX.click(); openSamen(); };
@@ -2853,7 +3092,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, showNight, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { slideNew, slideTap, slideSolved, slideSolvable, slideHint, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
