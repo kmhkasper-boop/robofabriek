@@ -470,7 +470,13 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 .rfloat{position:absolute;left:0;right:0;top:42%;text-align:center;font-size:2em;font-weight:800;color:#ffd34a;text-shadow:0 3px 0 #000;opacity:0;pointer-events:none;z-index:3}.rfloat.show{animation:rfl 1.1s ease-out}@keyframes rfl{0%{opacity:0;transform:scale(.6)}20%{opacity:1;transform:scale(1.1)}80%{opacity:1}100%{opacity:0;transform:translateY(-30px)}}
 .rctl{position:absolute;left:0;right:0;bottom:0;padding:0 8px calc(env(safe-area-inset-bottom) + 10px);display:flex;align-items:flex-end;gap:8px;z-index:2}
 .rsteer{width:min(22vw,110px);height:min(22vw,110px);border-radius:22px;border:3px solid #ffffff55;background:#0b0f18aa;color:#ffd34a;font-size:2.2em;touch-action:none;flex:none}.rsteer.down{background:#38d6ff55;border-color:#38d6ff}
-.rsyms{flex:1;min-width:0;display:flex;gap:4px;justify-content:center;align-items:flex-end;min-height:10px}.rsym{width:min(13vw,64px);height:min(13vw,64px);border-radius:14px;border:3px solid #38d6ff;background:linear-gradient(#f4f7fb,#cfd8e6);padding:5px;touch-action:none}.rsym svg{width:100%;height:100%}.rsym.bad{border-color:#ff5a4a}.rsym.good{border-color:#3fdc7f}
+.ruse{flex:1;min-width:0;max-width:150px;margin:0 auto;height:min(24vw,110px);border-radius:24px;border:4px solid #ffd34a;background:linear-gradient(#ffb02e,#e0780f);color:#1b1206;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;touch-action:none;box-shadow:0 5px 0 #7a3d05}.ruse span{font-size:2.3em;line-height:1}.ruse small{font-size:.85em;letter-spacing:.06em}.ruse:disabled{background:#0b0f18aa;border-color:#ffffff33;color:#ffffff66;box-shadow:none}.ruse:disabled span{opacity:.45;filter:grayscale(1)}.ruse.has{animation:usep 1s ease-in-out infinite}@keyframes usep{50%{transform:scale(1.06)}}.ruse.down{transform:translateY(4px);box-shadow:0 1px 0 #7a3d05}
+.rtiles{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}.rtile{position:absolute;left:0;top:0;border-radius:10px;background:linear-gradient(#f4f7fb,#c4cfdf);border:3px solid #0b0f18;box-shadow:0 4px 0 #0b0f1899;padding:3px;will-change:transform}.rtile svg{width:100%;height:100%;display:block}.rtile.ok{border-color:#3fdc7f;box-shadow:0 0 14px 4px #3fdc7f}.rtile.bad{border-color:#ff5a4a;opacity:.55}.rtile.box{background:linear-gradient(#ffd34a,#e09a14);display:flex;align-items:center;justify-content:center;font-weight:900;color:#3a2405;border-color:#3a2405}.rtile.box.gone{opacity:.15}
+.rgate .rprogd{display:flex;gap:5px;justify-content:center;margin-top:4px}.rgate .rprogd i{width:22px;height:8px;border-radius:4px;background:#3c4a66}.rgate .rprogd i.on{background:#3fdc7f;box-shadow:0 0 6px #3fdc7f}
+.rstrip .q.next{animation:qn .8s ease-in-out infinite;background:#ffd34a22}@keyframes qn{50%{transform:scale(1.12);border-color:#fff}}
+.rpop{position:absolute;right:10px;top:calc(env(safe-area-inset-top) + 150px);z-index:3;font-weight:900;font-size:1.3em;padding:4px 12px;border-radius:12px;opacity:0;pointer-events:none;background:#0b0f18dd;color:#3fdc7f;border:2px solid currentColor}.rpop.dn{color:#ff8a6a}.rpop.show{animation:rpp 1.2s ease-out}@keyframes rpp{0%{opacity:0;transform:translateX(40px)}15%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0}}
+.rtut{position:absolute;inset:0;z-index:5;background:#0006;display:flex;align-items:flex-end;justify-content:center;padding:16px 16px calc(env(safe-area-inset-bottom) + 24px)}.rtut[hidden]{display:none}.rtutb{background:#f4f7fb;color:#0b0f18;border:4px solid #ffd34a;border-radius:20px;padding:12px 14px;max-width:340px;text-align:center;position:relative;font-size:1.05em;line-height:1.35}.rtutb p{margin:4px 0 10px}.rtuta{font-size:2em;color:#ffd34a;text-shadow:0 2px 0 #0b0f18;line-height:1;animation:bob .8s ease-in-out infinite}.rtuta.up{position:absolute;top:-44px;left:50%;margin-left:-.5em}.rtuta.down{display:none}@keyframes bob{50%{transform:translateY(-6px)}}
+#scrDrive.shake{animation:shk .3s linear}@keyframes shk{20%{transform:translate(-6px,3px)}40%{transform:translate(5px,-4px)}60%{transform:translate(-4px,2px)}80%{transform:translate(3px,-2px)}}
 @media (orientation:landscape) and (max-height:520px){.rgate{left:auto;width:min(60vw,420px)}}
 .sndbtns{display:inline-flex;gap:3px;flex:none}.sndb{width:34px;height:34px;border-radius:10px;border:1px solid #ffffff33;background:#0b0f18aa;color:#fff;font-size:17px;padding:0;line-height:1;cursor:pointer;touch-action:manipulation}.sndb{position:relative}.sndb[aria-pressed=false]::after{content:'';position:absolute;left:5px;right:5px;top:50%;height:3px;background:#ff5a4a;border-radius:2px;transform:rotate(-40deg);box-shadow:0 0 0 1px #0b0f18}.sndb[aria-pressed=false]{background:#3a1f24aa;border-color:#ff5a4a66}
 @media (max-width:380px){.sndb{width:30px;height:30px;font-size:15px}}
@@ -608,8 +614,10 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 <section class="screen" id="scrDrive" aria-label="Race">
   <canvas id="rCanvas"></canvas>
   <div class="rhud"><button class="iconbtn" id="rQuit" aria-label="Stoppen">✖</button><div class="rpos" id="rPos"></div><div class="rprog"><i id="rProg"></i><span id="rProgDots"></span></div><div class="rspd" id="rSpd"></div><span data-sndslot></span></div>
-  <div class="rgate" id="rGate"></div><div class="rfloat" id="rFloat"></div>
-  <div class="rctl"><button class="rsteer" id="rL" aria-label="Links">◀</button><div class="rsyms" id="rSyms"></div><button class="rsteer" id="rR" aria-label="Rechts">▶</button></div>
+  <div class="rtiles" id="rTiles" aria-hidden="true"></div>
+  <div class="rgate" id="rGate" aria-live="polite"></div><div class="rfloat" id="rFloat"></div><div class="rpop" id="rPop"></div>
+  <div class="rtut" id="rTut" hidden><div class="rtutb"><div class="rtuta up">⬆</div><p id="rTutTxt"></p><button class="btn green" id="rTutOk">Snap ik! ▶</button></div></div>
+  <div class="rctl"><button class="rsteer" id="rL" aria-label="Links">◀</button><button class="ruse" id="rUse" aria-label="Item gebruiken" disabled><span id="rUseIc">❓</span><small>GEBRUIK</small></button><button class="rsteer" id="rR" aria-label="Rechts">▶</button></div>
 </section>
 <section class="screen" id="scrTeam" aria-label="Team">
   <div class="topbar"><button class="iconbtn" id="tmBack" aria-label="Terug naar het stadion">⬅️</button><div class="title">🛠️ Teammanagement</div><span class="hp" id="tmKas"></span></div>
@@ -836,7 +844,7 @@ function musicTick() {
   }
 }
 function driveTick() {
-  const spb = .16;
+  const spb = .16 / (AUD.fast || 1);
   while (AUD.mNext < AUD.ac.currentTime + .25) {
     const s = AUD.mStep, t = Math.max(0, AUD.mNext - AUD.ac.currentTime), root = MUS2.bass[(s >> 3) % 8];
     if (s % 2 === 0) tone(midi(root), spb * 1.6, 'sawtooth', .09, t, 0, AUD.music);
@@ -848,7 +856,7 @@ function driveTick() {
 }
 function musicStart() { if (!AUD.ac || AUD.musicOn) return; AUD.musicOn = true; AUD.mNext = AUD.ac.currentTime + .1; AUD.mTimer = setInterval(musicTick, 80); }
 function musicStop() { AUD.musicOn = false; clearInterval(AUD.mTimer); }
-function musicFor(screen, hall) { if (!AUD.ac) return; AUD.style = ['scrMatch', 'scrDrive'].includes(screen) ? 'drive' : 'calm'; if (screen === 'scrPuzzle' && hall === 2) musicStop(); else musicStart(); }
+function musicFor(screen, hall) { AUD.fast = 1; if (!AUD.ac) return; AUD.style = ['scrMatch', 'scrDrive'].includes(screen) ? 'drive' : 'calm'; if (screen === 'scrPuzzle' && hall === 2) musicStop(); else musicStart(); }
 /* snelle aan/uit-knoppen voor geluid en muziek (in de kop van fabriek, garage, stadion, race en wedstrijd); bewaard in de opslag */
 function soundBtnsHTML() { return `<span class="sndbtns"><button class="sndb" data-snd="sfx" aria-label="Geluid aan/uit" aria-pressed="${!!S.settings.sfx}">${S.settings.sfx ? '🔊' : '🔈'}</button><button class="sndb" data-snd="music" aria-label="Muziek aan/uit" aria-pressed="${!!S.settings.music}">🎵</button></span>`; }
 function mountSoundBtns() { document.querySelectorAll('[data-sndslot]').forEach(el => { el.innerHTML = soundBtnsHTML(); }); }
@@ -1163,9 +1171,9 @@ const RACE_PART_IDS = ['motor', 'banden', 'auto'];
 // divisies: maxLv = hoogste onderdeel-niveau dat hier mag; fuel = brandstof per race; prize = prijzengeld per plek
 const RACE_DIVS = [
   { name: 'Karton Cup', icon: '📦', base: .93, maxLv: 2, fuel: 15, prize: [60, 35, 20, 8], len: 2000, unit: [['AB'], ['AB', 'AAB']] },
-  { name: 'Turbo Trofee', icon: '⚡', base: .98, maxLv: 3, fuel: 30, prize: [100, 60, 30, 12], len: 2300, unit: [['AAB', 'ABB'], ['ABC', 'AAB']] },
-  { name: 'Metaal Masters', icon: '🔩', base: 1.03, maxLv: 4, fuel: 50, prize: [160, 90, 45, 18], len: 2600, unit: [['ABC', 'ABB'], ['AABB', 'ABC']] },
-  { name: 'Robo-X Grand Prix', icon: '🏆', base: 1.06, maxLv: 5, fuel: 75, prize: [240, 140, 70, 28], len: 2900, unit: [['AABB', 'ABC'], ['ABCD', 'AABC']] }
+  { name: 'Turbo Trofee', icon: '⚡', base: .98, maxLv: 3, fuel: 30, prize: [90, 52, 26, 10], len: 2300, unit: [['AAB', 'ABB'], ['ABC', 'AAB']] },
+  { name: 'Metaal Masters', icon: '🔩', base: 1.03, maxLv: 4, fuel: 50, prize: [140, 80, 40, 15], len: 2600, unit: [['ABC', 'ABB'], ['AABB', 'ABC']] },
+  { name: 'Robo-X Grand Prix', icon: '🏆', base: 1.06, maxLv: 5, fuel: 75, prize: [210, 120, 60, 24], len: 2900, unit: [['AABB', 'ABC'], ['ABCD', 'AABC']] }
 ];
 const RACE_DRIVERS = [
   [{ id: 'doos', name: 'Doos-Dirk', icon: '📦', col: '#c9a26b', spd: .92, skill: .3 }, { id: 'plak', name: 'Plakband Pien', icon: '🎞️', col: '#e8d36a', spd: .96, skill: .4 }, { id: 'krak', name: 'Krakkemik', icon: '🪫', col: '#9aa4b2', spd: .88, skill: .25 }],
@@ -1178,6 +1186,14 @@ const RACE_SEASON = 5;                  // races per seizoen; top 2 promoveert
 const RACE_DIFF = [{ name: 'Makkelijk', icon: '🙂', cap: .97, pay: .75 }, { name: 'Normaal', icon: '😎', cap: 1.04, pay: 1 }, { name: 'Pittig', icon: '🔥', cap: 1.1, pay: 1.35 }];
 const REPAIR_PER_DMG = 1;               // munten per schadepunt (0-100)
 const RACE_COL = '#38d6ff';
+// items uit de ❓-kisten (Mario Kart-lite): één grote GEBRUIK-knop
+const RACE_ITEMS = {
+  olie: { icon: '🛢️', name: 'Olievlek', tip: 'valt áchter je: wie erin rijdt, tolt!' },
+  schroot: { icon: '🔩', name: 'Schroot-regen', tip: 'strooit bouten achter je over de hele weg.' },
+  schild: { icon: '🛡️', name: 'Schild', tip: 'houdt één klap tegen.' },
+  raket: { icon: '🚀', name: 'Mini-raket', tip: 'vliegt naar de auto vóór je.' },
+  emp: { icon: '🧲', name: 'EMP-magneet', tip: 'laat auto\'s vlak vóór je even haperen.' }
+};
 
 /* ===== game/gen.js ===== */
 /* Puzzelmaker. Elke puzzel: { t, seq, blanks, answer, choices, unit, ... }. Alles is puur (geen DOM), zodat het getest kan worden.
@@ -2045,7 +2061,7 @@ const setLeft = s => s.table.length + s.deck.length;
 /* Robo-Race: pure logica (geen DOM). Baan, auto's, symboolpoorten, sluiproutes, AI, competitie, kosten. */
 function raceInit(st) {
   const r = st.race = st.race || {};
-  const d = { seen: false, div: 0, parts: { motor: 0, banden: 0, auto: 0 }, dmg: 0, season: null, history: [], titles: 0, diffSet: null, last: null, gates: { ok: 0, n: 0 }, shortcuts: 0, races: 0 };
+  const d = { seen: false, div: 0, parts: { motor: 0, banden: 0, auto: 0 }, dmg: 0, season: null, history: [], titles: 0, diffSet: null, last: null, gates: { ok: 0, n: 0 }, shortcuts: 0, races: 0, tut: false, items: 0, hits: 0 };
   for (const k in d) if (!(k in r)) r[k] = d[k];
   if (!r.season) r.season = raceNewSeason(r.div);
   return r;
@@ -2092,114 +2108,179 @@ function raceApply(st, order, info = {}) {
 function raceTip(st) {
   const R = st.race, p = R.parts, L = R.last, d = raceDiff(st);
   if (R.dmg >= 50) return `Je auto rammelt (${R.dmg}% schade): dan rijdt hij langzamer. Eerst even <b>repareren</b>!`;
-  if (!L) return 'Tik <b>◀ ▶</b> om te sturen. Zie je een <b>symboolpoort</b>? Tik de symbolen in de goede volgorde: TURBO! 🚀';
-  if (L.gatesN && L.gatesOk / L.gatesN < .5) return 'Tip: de poorten geven turbo! Kijk naar het patroon bovenin: wat komt er steeds terug? Rustig tikken mag.';
+  if (!L) return 'Tik <b>◀ ▶</b> om te sturen. Zie je <b>symbolen op de weg</b>? Kijk naar het patroon bovenin en rij óver het volgende symbool: TURBO! 🚀 Pak ook de <b>❓-kisten</b>!';
+  if (L.gatesN && L.gatesOk / L.gatesN < .5) return 'Tip: de symbolen op de weg geven turbo! Kijk naar het patroon bovenin: wat komt er steeds terug? Stuur dan over dát symbool.';
   if (L.pos >= 3 && p.motor < raceMaxLv(st) && p.motor <= p.banden) return 'Die anderen gaan net iets harder. Een betere <b>⚙️ Motor</b> helpt, of zoek een <b>geheime sluiproute</b> langs de rand… 👀';
   if (L.pos >= 3 && p.banden < raceMaxLv(st)) return 'Slip je vaak naast de baan? Betere <b>🛞 Banden</b> sturen veel fijner!';
   if (L.pos >= 3 && d > 0) return 'Te pittig? Je mag de race op <b>Makkelijk</b> zetten. Dan zijn de anderen wat trager (minder prijzengeld).';
   if (L.pos === 1) return 'Wat een race! 🏆 Probeer eens <b>Normaal</b> of <b>Pittig</b> voor meer prijzengeld.';
-  return pick(['Bij een sluiproute staat een klein ⚙️-bordje langs de rand. Rij er dichtbij…', 'Olievlekken en pionnen geven schade. Ontwijken = goedkoper!', 'Turbo stapelt niet, maar een goede poort op tijd scheelt veel!']);
+  return pick(['Bij een sluiproute staat een klein ⚙️-bordje langs de rand. Rij er dichtbij…', 'Olievlekken en pionnen geven schade. Ontwijken = goedkoper!', 'Een 🛢️ olievlek gooi je áchter je: handig als er iemand vlak achter je zit!', 'Een 🛡️ schild houdt één raket of olievlek tegen.']);
 }
 // ---------- de race zelf (simulatie) ----------
 const RACE_V0 = 30;                                // basis-topsnelheid (m/s) zonder upgrades
 function raceCarStats(parts, dmg) { return { top: RACE_V0 * (1 + .07 * parts.motor) * (dmg >= 60 ? .88 : dmg >= 30 ? .95 : 1), steer: .55 * (1 + .14 * parts.banden), off: .55 + .06 * parts.banden, crash: 13 * (1 - .14 * parts.auto) }; }
 // baan: midden (0..1 schermbreedte) als functie van afstand
 function trackCx(M, d) { return .5 + .16 * Math.sin(d / 190 + M.ph1) + .08 * Math.sin(d / 77 + M.ph2); }
-const TRACK_HW = .27;
+const TRACK_HW = .27, LANES = [-.62, 0, .62], ROW_GAP = 38, TILE_R = .075;
+const laneX = (M, d, lane) => trackCx(M, d) + LANES[lane] * TRACK_HW;
 function raceNew(opt) {
   const rng = opt.rng || RNG, div = opt.div || 0, dv = RACE_DIVS[div], diff = opt.diff ?? 0, me = raceCarStats(opt.parts, opt.dmg || 0);
-  const M = { t: 0, div, diff, rng, len: dv.len, ph1: rng() * 6, ph2: rng() * 6, done: false, events: [], count: 1.5, gates: [], shortcuts: [], obst: [], cars: [], gateRes: { ok: 0, n: 0 }, shortcut: 0, dmg: 0, kidSkill: opt.kidSkill ?? 0 };
-  M.me = { id: 'me', d: 0, x: .5, v: 0, turbo: 0, crash: 0, stats: me, steer: 0, me: true, fin: null };
+  const M = { t: 0, div, diff, rng, len: dv.len, ph1: rng() * 6, ph2: rng() * 6, done: false, events: [], count: 1.5, gates: [], shortcuts: [], obst: [], boxes: [], rockets: [], cars: [], gateRes: { ok: 0, n: 0 }, shortcut: 0, dmg: 0, hitsOnMe: 0, itemsUsed: 0, aiHits: 0, final: false, kidSkill: opt.kidSkill ?? 0 };
+  M.me = { id: 'me', d: 0, x: .5, v: 0, turbo: 0, crash: 0, stats: me, steer: 0, me: true, fin: null, item: null, shield: 0 };
   const cap = me.top * RACE_DIFF[diff].cap;
-  RACE_DRIVERS[div].forEach((dr, i) => M.cars.push({ id: dr.id, dr, d: 0, x: .5 + (i - 1) * .12, lane: (i - 1) * .1, v: 0, turbo: 0, crash: 0, top: Math.min(RACE_V0 * dv.base * dr.spd * 1.12, cap * (.96 + .03 * i)), fin: null }));
+  RACE_DRIVERS[div].forEach((dr, i) => M.cars.push({ id: dr.id, dr, d: 0, x: .5 + (i - 1) * .12, lane: (i - 1) * .1, v: 0, turbo: 0, crash: 0, top: Math.min(RACE_V0 * dv.base * dr.spd * 1.16, cap * (.96 + .03 * i)), fin: null, item: null, shield: 0 }));
   M.cars.unshift(M.me); M.me.x = .5; M.cars.forEach((c, i) => { c.d = -i * 6; });
-  // poorten elke ~420 m, obstakels, 1-2 verborgen sluiproutes
-  for (let d = 300; d < M.len - 200; d += 380 + Math.floor(rng() * 120)) M.gates.push({ d, st: 'wait', seq: null, need: [], got: 0 });
-  for (let d = 180; d < M.len - 80; d += 130 + Math.floor(rng() * 130)) M.obst.push({ d, off: (rng() * 2 - 1) * .7, k: rng() < .5 ? 'olie' : 'pion', hit: false });
-  const nS = div === 0 ? 1 : 2; for (let i = 0; i < nS; i++) { const d = Math.round(M.len * (.35 + .35 * i) + rng() * 80); M.shortcuts.push({ d, side: rng() < .5 ? -1 : 1, st: 'hidden', skip: 150 }); }
-  M.gates.forEach(g => makeGatePuzzle(M, g));
+  // patroonstroken op de weg elke ~420 m; daartussen ❓-kisten; obstakels; 1-2 verborgen sluiproutes
+  for (let d = 300; d < M.len - 260; d += 400 + Math.floor(rng() * 120)) { const g = { kind: 'gate', d, st: 'wait', got: 0, retry: 1, rows: [] }; makeGatePuzzle(M, g); layRows(M, g, d); M.gates.push(g); }
+  for (let d = 150; d < M.len - 120; d += 230 + Math.floor(rng() * 100)) { if (M.gates.some(g => d > g.d - 30 && d < g.d + ROW_GAP * 3 + 30)) continue; M.boxes.push({ d, lanes: [0, 1, 2].filter(() => rng() < .8).concat([Math.floor(rng() * 3)]), taken: {} }); }
+  for (let d = 180; d < M.len - 80; d += 130 + Math.floor(rng() * 130)) { if (M.gates.some(g => d > g.d - 25 && d < g.d + ROW_GAP * 3 + 25) || M.boxes.some(b => Math.abs(b.d - d) < 25)) continue; M.obst.push({ d, off: (rng() * 2 - 1) * .7, k: rng() < .5 ? 'olie' : 'pion', hitBy: {} }); }
+  const nS = div === 0 ? 1 : 2; for (let i = 0; i < nS; i++) { const d = Math.round(M.len * (.35 + .35 * i) + rng() * 80); M.shortcuts.push({ kind: 'lock', d, side: rng() < .5 ? -1 : 1, st: 'hidden', skip: 150, rows: [], got: 0 }); }
+  M.lastPos = 4;
   return M;
 }
-// patroon voor een poort: kern zichtbaar, de volgende 2 tikken; keuze uit 3 symbolen
+// patroon: kern zichtbaar bovenin, de volgende 2-3 liggen als tegels op de weg (per rij 3 rijstroken, 1 goed)
 function makeGatePuzzle(M, g) {
-  const dv = RACE_DIVS[M.div], st = pick(dv.unit[M.diff >= 2 ? 1 : 0]), unit = makeUnit(st, SHAPES), L = unit.length;
-  const shown = Math.min(Math.max(2 * L, 4), 7), seq = repeatTo(unit, shown + 2);
-  g.seq = seq.slice(0, shown); g.need = seq.slice(shown, shown + 2); g.got = 0;
-  g.choices = shuffle([...new Set(unit.concat(shuffle(SHAPES.filter(x => !unit.includes(x))).slice(0, Math.max(0, 3 - new Set(unit).size))))]).slice(0, Math.max(3, new Set(unit).size));
+  const dv = RACE_DIVS[M.div], st = pick(dv.unit[M.diff >= 2 ? 1 : 0]), unit = makeUnit(st, SHAPES), L = unit.length, n = M.div >= 2 || M.diff >= 2 ? 3 : 2;
+  const shown = Math.min(Math.max(2 * L, 4), 7), seq = repeatTo(unit, shown + n);
+  g.seq = seq.slice(0, shown); g.need = seq.slice(shown, shown + n); g.got = 0;
+  g.pool = [...new Set(unit.concat(shuffle(SHAPES.filter(x => !unit.includes(x))).slice(0, 2)))];
 }
-function makeLock(M, s) { const unit = makeUnit(pick(['AB', 'ABB', 'ABC']), SHAPES), seq = repeatTo(unit, 6), b = 2 + Math.floor(M.rng() * 3); s.seq = seq; s.b = b; s.ans = seq[b]; s.choices = shuffle([...new Set(unit.concat(shuffle(SHAPES.filter(x => !unit.includes(x))).slice(0, 1)))]); }
+function makeLock(M, s) { const unit = makeUnit(pick(['AB', 'ABB', 'ABC']), SHAPES), seq = repeatTo(unit, 6), b = 2 + Math.floor(M.rng() * 3); s.seq = seq; s.b = b; s.need = [seq[b]]; s.got = 0; s.pool = [...new Set(unit.concat(shuffle(SHAPES.filter(x => !unit.includes(x))).slice(0, 1)))]; }
+// leg de nog te rijden tegelrijen neer vanaf afstand d0
+function layRows(M, g, d0) {
+  g.rows = g.need.map((sym, k) => { const lane = Math.floor(M.rng() * 3), others = shuffle(g.pool.filter(x => x !== sym));
+    return { d: d0 + k * ROW_GAP, k, tiles: [0, 1, 2].map(l => ({ lane: l, sym: l === lane ? sym : others[(l + (l > lane ? -1 : 0)) % others.length], hit: 0 })), done: false }; });
+}
 const activeGate = M => M.gates.find(g => g.st === 'open');
 const activeLock = M => M.shortcuts.find(s => s.st === 'open');
-// speler tikt een symbool (poort of slot). Geeft 'ok' | 'fout' | 'klaar' | null
-function raceTap(M, sym) {
-  const s = activeLock(M);
-  if (s) { if (sym === s.ans) { s.st = 'solved'; M.events.push({ k: 'slot' }); return 'klaar'; } M.events.push({ k: 'fout' }); return 'fout'; }
-  const g = activeGate(M); if (!g) return null;
-  if (sym === g.need[g.got]) { g.got++; if (g.got >= g.need.length) { g.st = 'ok'; M.me.turbo = 3; M.gateRes.ok++; M.gateRes.n++; M.events.push({ k: 'turbo' }); return 'klaar'; } return 'ok'; }
-  g.got = 0; M.events.push({ k: 'fout' }); return 'fout';
+const activePuzzle = M => activeLock(M) || activeGate(M);
+function puzzleRowCross(M, g, row, x) {
+  row.done = true; const t = row.tiles.find(t => Math.abs(x - laneX(M, row.d, t.lane)) < TILE_R);
+  if (t && t.sym === g.need[g.got]) { t.hit = 1; t.ok = 1; g.got++; M.events.push({ k: 'pick', n: g.got, of: g.need.length });
+    if (g.got >= g.need.length) { g.st = g.kind === 'lock' ? 'solved' : 'ok';
+      if (g.kind === 'gate') { M.me.turbo = 2.5; M.gateRes.ok++; M.gateRes.n++; M.events.push({ k: 'turbo' }); }
+      else { g.d = M.me.d + 25; if (!M.me.item) M.me.item = 'raket'; M.events.push({ k: 'slot' }); } }
+    return; }
+  if (t) t.hit = 1, t.bad = 1;
+  // fout of gemist: geen straf, het rijtje begint opnieuw (één herkansing)
+  if (g.kind === 'gate' && g.retry > 0) { g.retry--; g.got = 0; layRows(M, g, M.me.d + 60); M.events.push({ k: t ? 'oeps' : 'gemist' }); }
+  else { g.st = g.kind === 'lock' ? 'gone' : 'mis'; if (g.kind === 'gate') M.gateRes.n++; M.events.push({ k: g.kind === 'gate' ? 'gatemis' : 'slotmis' }); }
+}
+// ---------- items ----------
+function raceRollItem(M, pos, rng = M.rng) {
+  const tbl = pos === 1 ? ['olie', 'olie', 'schroot', 'schild'] : pos === 2 ? ['olie', 'schild', 'raket', 'emp', 'schroot'] : ['raket', 'raket', 'emp', 'schild', 'olie'];
+  return tbl[Math.floor(rng() * tbl.length)];
+}
+const carPos = (M, c) => 1 + M.cars.filter(o => o !== c && o.d > c.d).length;
+function raceHit(M, c, kind, by) {
+  if (c.shield > 0) { c.shield = 0; if (c.me || by === 'me') M.events.push({ k: 'blok', who: c.id }); return false; }
+  const soft = c.me && by !== 'me' ? [.45, .7, .85][M.diff] : 1;
+  c.crash = (kind === 'emp' ? .9 : 1.1) * soft; c.spin = 1; c.v *= c.me ? .75 : .6;
+  if (c.me) { M.hitsOnMe++; if (M.diff > 0 && kind !== 'emp') M.dmg += Math.round(c.stats.crash * .4); M.events.push({ k: 'geraakt', kind }); }
+  else if (by === 'me') { M.aiHits++; M.events.push({ k: 'raak', who: c.id, kind }); }
+  return true;
+}
+function raceUse(M, c) {
+  const it = c.item; if (!it || M.count > 0) return null; c.item = null; if (c.me) M.itemsUsed++;
+  const cx = trackCx(M, c.d), off = (c.x - cx) / TRACK_HW;
+  if (it === 'olie') M.obst.push({ d: c.d - 6, off: clamp(off, -.8, .8), k: 'olie', by: c.id, hitBy: { [c.id]: 1 } });
+  if (it === 'schroot') LANES.forEach((o, i) => M.obst.push({ d: c.d - 7 - i * 2, off: o, k: 'schroot', by: c.id, hitBy: { [c.id]: 1 } }));
+  if (it === 'schild') c.shield = 6;
+  if (it === 'raket') { const tg = M.cars.filter(o => o !== c && o.d > c.d && o.d - c.d < 160 && o.fin == null).sort((a, b) => a.d - b.d)[0]; M.rockets.push({ d: c.d + 4, x: c.x, tgt: tg ? tg.id : null, by: c.id, life: 2.5 }); }
+  if (it === 'emp') M.cars.filter(o => o !== c && o.d > c.d && o.d - c.d < 70 && o.fin == null).forEach(o => raceHit(M, o, 'emp', c.id));
+  M.events.push({ k: 'use', it, who: c.id }); return it;
+}
+// AI-items: op Makkelijk alleen iets áchter zich laten vallen (en lang niet altijd), nooit raketten op jou
+function aiItem(M, c, dt) {
+  if (!c.item) return; c.useT -= dt; if (c.useT > 0) return;
+  const me = M.me, behindMe = me.d < c.d && c.d - me.d < 30, aheadMe = me.d > c.d && me.d - c.d < 140;
+  if (M.diff === 0 && (c.item === 'raket' || c.item === 'emp')) c.item = M.rng() < .5 ? 'schild' : 'olie';
+  if ((c.item === 'olie' || c.item === 'schroot') && behindMe && M.diff === 0 && M.rng() < .6) { c.item = null; return; }
+  if ((c.item === 'raket' || c.item === 'emp') && aheadMe && M.diff === 1 && M.rng() < .35) { c.item = null; return; }
+  raceUse(M, c);
 }
 function raceStep(M, dt) {
   M.events.length = 0; if (M.done) return;
   if (M.count > 0) { M.count -= dt; if (M.count <= 0) M.events.push({ k: 'go' }); return; }
-  M.t += dt; const me = M.me;
-  // poorten en sloten openen/sluiten op afstand
-  for (const g of M.gates) { if (g.st === 'wait' && g.d - me.d < 170) g.st = 'open'; if (g.st === 'open' && me.d >= g.d) { g.st = 'mis'; M.gateRes.n++; M.events.push({ k: 'gatemis' }); } }
+  M.t += dt; const me = M.me, prevD = me.d;
+  // patroonstroken openen op afstand (balk bovenin)
+  for (const g of M.gates) if (g.st === 'wait' && g.rows[0].d - me.d < 150) { g.st = 'open'; M.events.push({ k: 'gateopen' }); }
   for (const s of M.shortcuts) {
     const edge = trackCx(M, me.d) + s.side * TRACK_HW, near = Math.abs(me.x - edge) < .1;
-    if (s.st === 'hidden' && s.d - me.d < 140 && s.d - me.d > 20 && near) { s.st = 'open'; makeLock(M, s); M.events.push({ k: 'slotopen' }); }
-    if (s.st === 'open' && me.d >= s.d) { s.st = 'gone'; }
+    if (s.st === 'hidden' && s.d - me.d < 140 && s.d - me.d > 20 && near && !activeGate(M)) { s.st = 'open'; makeLock(M, s); layRows(M, s, me.d + 55); M.events.push({ k: 'slotopen' }); }
     if (s.st === 'solved' && me.d >= s.d) { s.st = 'used'; me.d += s.skip; M.shortcut++; M.events.push({ k: 'sluip' }); }
   }
   // auto's
-  const leaderD = Math.max(...M.cars.filter(c => !c.me).map(c => c.d));
   for (const c of M.cars) {
     if (c.fin != null) { c.d += c.v * dt; continue; }
-    const cx = trackCx(M, c.d), off = Math.abs(c.x - cx) > TRACK_HW;
+    const cx = trackCx(M, c.d), off = Math.abs(c.x - cx) > TRACK_HW, d0 = c.d;
     let top;
     if (c.me) {
-      c.x = clamp(c.x + c.steer * c.stats.steer * dt, .03, .97);
-      top = c.stats.top * (off ? c.stats.off : 1) * (c.turbo > 0 ? 1.4 : 1);
+      c.x = clamp(c.x + c.steer * c.stats.steer * dt * (c.crash > 0 ? .4 : 1), .03, .97);
+      top = c.stats.top * (off ? c.stats.off : 1) * (c.turbo > 0 ? 1.35 : 1);
     } else {
-      // AI: volgt de baan met een eigen rijstrook, ontwijkt soms obstakels; rubberband: nooit ver weg, niet sneller dan de cap
-      const ob = M.obst.find(o => !o.hitBy?.[c.id] && o.d - c.d > 0 && o.d - c.d < 40);
-      let tx = cx + c.lane; if (ob && M.rng() < c.dr.skill * dt * 8) c.dodge = (cx + ob.off * TRACK_HW) > tx ? -.14 : .14;
+      // AI: eigen rijstrook, ontwijkt soms obstakels; rubberband: nooit ver weg, niet sneller dan de cap
+      const ob = M.obst.find(o => !o.hitBy[c.id] && o.d - c.d > 0 && o.d - c.d < 40);
+      let tx = cx + c.lane; if (ob && M.rng() < c.dr.skill * dt * (ob.by === 'me' ? 4 : 8)) c.dodge = (cx + ob.off * TRACK_HW) > tx ? -.14 : .14;
       if (c.dodge) { tx += c.dodge; if (!ob) c.dodge = 0; }
       c.x += clamp(tx - c.x, -.5 * dt, .5 * dt);
-      const gap = c.d - me.d, behind2 = false;
+      const gap = c.d - me.d;
       let rb = gap > 60 ? (M.diff === 2 ? .94 : .84) : gap < -80 ? 1.06 : 1;
       if (M.diff === 0 && gap > 25) rb = Math.min(rb, .93);
       top = c.top * rb * (c.turbo > 0 ? 1.25 : 1) * (Math.abs(c.x - cx) > TRACK_HW ? .6 : 1);
-      // AI pakt soms turbo bij een poort (kans hoger met skill/moeilijkheid)
-      if (M.gates.some(g => Math.abs(g.d - c.d) < c.v * dt + .01 && c.d < g.d) && M.rng() < c.dr.skill * [.5, .75, 1][M.diff]) c.turbo = 2.5;
+      if (M.gates.some(g => d0 < g.d && d0 + c.v * dt >= g.d) && M.rng() < c.dr.skill * [.5, .75, 1][M.diff]) c.turbo = 2.5;
+      aiItem(M, c, dt);
     }
     if (c.crash > 0) { c.crash -= dt; top *= .35; }
+    c.spin = Math.max(0, (c.spin || 0) - dt); c.shield = Math.max(0, c.shield - dt);
     c.turbo = Math.max(0, c.turbo - dt);
     c.v += clamp(top - c.v, -18 * dt, (c.me ? 9 : 8) * dt);
     c.d += c.v * dt;
-    // obstakels
+    // ❓-kisten
+    for (const b of M.boxes) if (d0 < b.d && c.d >= b.d && !b.taken[c.id] && !c.item && b.lanes.some(l => Math.abs(c.x - laneX(M, b.d, l)) < TILE_R + .02)) {
+      b.taken[c.id] = 1; c.item = raceRollItem(M, carPos(M, c)); c.useT = 1.2 + M.rng() * 3;
+      if (c.me) M.events.push({ k: 'item', it: c.item });
+    }
+    // obstakels (incl. gedropte olie/schroot)
     for (const o of M.obst) {
       if (Math.abs(o.d - c.d) < 3 && Math.abs(c.x - (trackCx(M, o.d) + o.off * TRACK_HW)) < .07) {
-        o.hitBy = o.hitBy || {}; if (o.hitBy[c.id]) continue; o.hitBy[c.id] = 1;
-        c.crash = o.k === 'olie' ? .9 : 1.2; c.v *= .55;
+        if (o.hitBy[c.id]) continue; o.hitBy[c.id] = 1;
+        if (o.by) { raceHit(M, c, o.k, o.by); continue; }
+        if (c.shield > 0) { c.shield = 0; if (c.me) M.events.push({ k: 'blok', who: 'me' }); continue; }
+        c.crash = o.k === 'olie' ? .9 : 1.2; c.v *= .55; c.spin = o.k === 'olie' ? 1 : 0;
         if (c.me) { M.dmg += Math.round(c.stats.crash * (o.k === 'pion' ? 1 : .6)); M.events.push({ k: o.k === 'olie' ? 'slip' : 'boem' }); }
       }
     }
     if (c.d >= M.len && c.fin == null) { c.fin = M.t; if (c.me) M.events.push({ k: 'finish' }); }
   }
+  // tegelrijen die de speler net passeerde
+  for (const g of [...M.gates, ...M.shortcuts]) if (g.st === 'open') for (const row of g.rows) if (!row.done && prevD < row.d && me.d >= row.d && g.st === 'open') puzzleRowCross(M, g, row, me.x);
+  for (const s of M.shortcuts) if (s.st === 'open' && me.d > s.d + 120) s.st = 'gone';
+  // raketten
+  for (const r of M.rockets) { if (r.done) continue; r.life -= dt; const tg = M.cars.find(c => c.id === r.tgt);
+    r.d += ((tg ? tg.v : 30) + 28) * dt; if (tg) r.x += clamp(tg.x - r.x, -1.2 * dt, 1.2 * dt);
+    if (tg && r.d >= tg.d - 2) { r.done = true; raceHit(M, tg, 'raket', r.by); } else if (r.life <= 0) r.done = true; }
+  M.rockets = M.rockets.filter(r => !r.done);
+  // positie-wissel, laatste stuk
+  const pos = racePos(M); if (pos !== M.lastPos) { M.events.push({ k: 'pos', from: M.lastPos, to: pos }); M.lastPos = pos; }
+  if (!M.final && me.d > M.len * .8) { M.final = true; M.events.push({ k: 'final' }); }
   if (me.fin != null) {   // klaar: rest krijgt een geschatte eindtijd
     for (const c of M.cars) if (c.fin == null) c.fin = M.t + (M.len - c.d) / Math.max(5, c.v || c.top);
     M.done = true; M.order = M.cars.slice().sort((a, b) => a.fin - b.fin).map(c => c.id);
   }
 }
 const racePos = M => 1 + M.cars.filter(c => !c.me && c.d > M.me.d).length;
-// simpele 'kind-bestuurder' voor de simulatie en tests: stuurt naar het midden, met reactietijd/fouten; tikt poorten met kans
+// 'kind-bestuurder' voor simulatie en tests: stuurt naar het goede symbool (met kans), pakt kisten, gebruikt items
 function raceBot(M, skill = 0) {
-  const me = M.me, look = trackCx(M, me.d + 25 + me.v * .3);
-  const ob = M.obst.find(o => o.d - me.d > 0 && o.d - me.d < 30);
-  let tx = look; if (ob && M.rng() < .5 + .1 * skill) { const ox = trackCx(M, ob.d) + ob.off * TRACK_HW; tx = ox > look ? look - .12 : look + .12; }
+  const me = M.me; let tx = trackCx(M, me.d + 25 + me.v * .3);
+  const g = activePuzzle(M), row = g && g.rows.find(r => !r.done && r.d - me.d > 0 && r.d - me.d < 55);
+  if (row) { if (row.aim == null) { const good = row.tiles.find(t => t.sym === g.need[row.k]) || row.tiles[0]; row.aim = M.rng() < [.5, .65, .8, .9][clamp(skill + 3, 0, 3)] ? good.lane : Math.floor(M.rng() * 3); }
+    tx = laneX(M, row.d, row.aim); }
+  else { const bx = M.boxes.find(b => !b.taken.me && b.d - me.d > 0 && b.d - me.d < 50); if (bx && !me.item) tx = laneX(M, bx.d, bx.lanes[0]);
+    const ob = M.obst.find(o => o.d - me.d > 0 && o.d - me.d < 30 && !o.hitBy.me); if (ob && M.rng() < .5 + .1 * skill) { const ox = trackCx(M, ob.d) + ob.off * TRACK_HW; tx = ox > tx ? tx - .12 : tx + .12; } }
   if (skill <= -2 && M.rng() < .02) me.wob = (M.rng() * 2 - 1) * .2; tx += me.wob || 0; if (M.rng() < .01) me.wob = 0;
   me.steer = Math.abs(tx - me.x) < .02 ? 0 : tx > me.x ? 1 : -1;
-  const g = activeGate(M); if (g && g.d - me.d < 90 && M.rng() < .08) raceTap(M, M.rng() < [.45, .6, .75, .85][clamp(skill + 3, 0, 3)] ? g.need[g.got] : pick(g.choices));
+  if (me.item && M.rng() < .015) raceUse(M, me);
 }
 function raceSimFull(opt, skill) { const M = raceNew(opt); let n = 0; while (!M.done && n++ < 20000) { raceBot(M, skill); raceStep(M, .05); } return M; }
 
@@ -3379,6 +3460,7 @@ function renderGarage() {
       ${R.dmg ? `<button class="btn small orange" id="rcRepair">🔧 Repareren · 🪙 ${rc}</button>` : ''}
       <button class="btn small white" id="rcStand">📊 Stand</button></div></div>
     <p class="coach">🧑‍🔧 <b>Coach Bout:</b> ${raceTip(S)}</p>
+    <p class="small-note">❓ Kisten op de weg geven een item: ${Object.values(RACE_ITEMS).map(i => `${i.icon} ${i.name}`).join(' · ')}. Tik de grote <b>GEBRUIK</b>-knop!</p>
     <div class="card"><b>Moeilijkheid</b> <small>(prijzengeld ×${RACE_DIFF[d].pay})</small><div class="fbdiff">${RACE_DIFF.map((x, i) => `<button class="btn ${i === d ? 'green' : 'white'}" data-rdiff="${i}">${x.icon} ${x.name}</button>`).join('')}</div></div>
     <div class="rparts">${parts}</div>
     <p class="small-note">⛽ Brandstof per race: 🪙 ${fuel} · Prijzengeld: ${dv.prize.map((p, i) => `${i + 1}e 🪙${Math.round(p * RACE_DIFF[d].pay)}`).join(' · ')}. Munten voor racen, voetbal en hallen komen uit dezelfde kluis: kies slim!</p>`;
@@ -3401,92 +3483,132 @@ function openRaceStand(which) {
 function startRace() {
   if (!raceCanStart(S)) { SFX.nope(); toast(`Je hebt 🪙 ${raceFuel(S)} nodig voor brandstof.`); return; }
   S.coins -= raceFuel(S); S.today.fin && (S.today.fin.upkeep += raceFuel(S)); save();
-  RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = '';
-  show('scrDrive'); musicFor('scrMatch'); sizeRace(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
+  RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = ''; RC.fx = []; RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
+  show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
 }
 function sizeRace() { const c = $('#rCanvas'), dpr = Math.min(2, devicePixelRatio || 1); c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr; }
 function raceLoop(now) {
   const M = RC.M; if (!M || CUR_SCREEN !== 'scrDrive') return;
   const dt = Math.min(.05, (now - RC.last) / 1000); RC.last = now;
   M.me.steer = (RC.keys.L ? -1 : 0) + (RC.keys.R ? 1 : 0);
-  if (!RC.paused) { raceStep(M, dt); for (const e of M.events) raceEvent(e); }
-  drawRace(M); renderRaceHud(M);
+  if (!RC.paused) { raceStep(M, dt); for (const e of M.events) raceEvent(e); fxStep(M, dt); }
+  if (RC.tutPending && !RC.paused) { const g = activeGate(M); if (g && g.rows[0].d - M.me.d < 48) { RC.tutPending = false; raceTutorial(); } }
+  drawRace(M); drawTiles(M); renderRaceHud(M);
   if (M.done) return finishRace();
   RC.raf = requestAnimationFrame(raceLoop);
 }
+function shake() { const s = $('#scrDrive'); s.classList.remove('shake'); void s.offsetWidth; s.classList.add('shake'); try { navigator.vibrate && navigator.vibrate(40); } catch (e) { } }
+function popPos(t, up) { const el = $('#rPop'); el.textContent = t; el.classList.toggle('dn', !up); el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); }
+const carName = id => id === 'me' ? 'Jij' : (RACE_DRIVERS[RC.M.div].find(d => d.id === id) || {}).name || id;
 function raceEvent(e) {
-  if (e.k === 'turbo') { SFX.fanfare(); floatTxt('🚀 TURBO!'); }
-  if (e.k === 'fout') SFX.nope();
-  if (e.k === 'gatemis') floatTxt('Poort gemist…');
-  if (e.k === 'boem') { SFX.nope(); floatTxt(pick(['BOEM! 💥', 'Au, een pion!', 'KLONK!'])); }
-  if (e.k === 'slip') { SFX.whir(); floatTxt('Sliiip! 🛢️'); }
-  if (e.k === 'slotopen') { SFX.whir(); floatTxt('⚙️ Geheime sluiproute!'); }
-  if (e.k === 'slot') { SFX.ok(); floatTxt('🔓 Open!'); }
+  const M = RC.M;
+  if (e.k === 'gateopen' && !S.race.tut) RC.tutPending = true;
+  if (e.k === 'pick') { SFX.place(); if (e.n < e.of) floatTxt(`✔ ${e.n}/${e.of}`); }
+  if (e.k === 'turbo') { SFX.fanfare(); floatTxt('🚀 TURBO!'); for (let i = 0; i < 18; i++) burst(M.me, '#ffd34a'); }
+  if (e.k === 'oeps') { SFX.nope(); floatTxt('Oeps! Nog een keer 🔁'); }
+  if (e.k === 'gemist') floatTxt('Gemist! Nog een kans 🔁');
+  if (e.k === 'gatemis') floatTxt('Volgende keer beter!');
+  if (e.k === 'boem') { SFX.nope(); shake(); floatTxt(pick(['BOEM! 💥', 'Au, een pion!', 'KLONK!'])); }
+  if (e.k === 'slip') { SFX.whir(); shake(); floatTxt('Sliiip! 🛢️'); }
+  if (e.k === 'slotopen') { SFX.whir(); floatTxt('⚙️ Geheim patroon!'); }
+  if (e.k === 'slot') { SFX.fanfare(); floatTxt('🔓 Sluiproute + 🚀 raket!'); }
+  if (e.k === 'slotmis') floatTxt('Geheim gemist…');
   if (e.k === 'sluip') { SFX.fanfare(); floatTxt('🕳️ Sluiproute! +150 m'); }
   if (e.k === 'go') { SFX.ok(); floatTxt('GO!'); }
+  if (e.k === 'item') { SFX.star(); const I = RACE_ITEMS[e.it]; floatTxt(`${I.icon} ${I.name}!`); if (!S.race.tutItem) { S.race.tutItem = true; save(); setTimeout(() => toast(`${I.icon} ${I.name}: ${I.tip} Tik de grote GEBRUIK-knop!`), 700); } }
+  if (e.k === 'use' && e.who === 'me') { SFX.whir(); if (e.it === 'schild') floatTxt('🛡️ Schild aan!'); }
+  if (e.k === 'use' && e.who !== 'me' && (e.it === 'raket' || e.it === 'emp')) toast(`${carName(e.who)} gebruikt ${RACE_ITEMS[e.it].icon}!`);
+  if (e.k === 'raak') { SFX.ok(); const c = M.cars.find(x => x.id === e.who); for (let i = 0; i < 14; i++) burst(c, e.kind === 'olie' ? '#9aa0ff' : '#ff8a3a'); popPos(`💥 Raak! ${carName(e.who)} tolt`, true); }
+  if (e.k === 'geraakt') { SFX.nope(); shake(); floatTxt(e.kind === 'raket' ? 'Raket! 💫' : e.kind === 'emp' ? 'Bzzzt! ⚡' : 'Sliiip! 💫'); }
+  if (e.k === 'blok') { SFX.place(); floatTxt('🛡️ Tegengehouden!'); }
+  if (e.k === 'pos' && M.t > 2) { if (e.to < e.from) { SFX.ok(); popPos(`⬆️ Ingehaald! ${e.to}e`, true); } else popPos(`⬇️ ${e.to}e`, false); }
+  if (e.k === 'final') { AUD.fast = 1.25; floatTxt('🏁 Laatste stuk!'); }
+}
+function raceTutorial() {
+  RC.paused = true; S.race.tut = true; save();
+  $('#rTutTxt').innerHTML = '<b>Kijk naar het patroon bovenin!</b> Welk symbool komt er bij het <b>?</b>-vakje?<br>⬆ Daar liggen de symbolen <b>op de weg</b>. Stuur met ◀ ▶ je auto <b>óver het goede symbool</b>. Alles goed = <b>🚀 TURBO!</b><br><small>Fout? Geen probleem, je krijgt nog een kans.</small>';
+  $('#rTut').hidden = false;
 }
 function floatTxt(t) { const el = $('#rFloat'); el.textContent = t; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); }
+// vonken, knallen
+function burst(c, col) { if (!c) return; RC.fx.push({ d: c.d, x: c.x, vx: (Math.random() - .5) * .5, vd: (Math.random() - .3) * 30, t: .6 + Math.random() * .3, col }); }
+function fxStep(M, dt) {
+  const me = M.me;
+  if (me.steer && me.v > 18 && Math.random() < .7) RC.fx.push({ d: me.d - 2.5, x: me.x - me.steer * .03, vx: -me.steer * (.1 + Math.random() * .2), vd: -10 - Math.random() * 10, t: .35, col: Math.random() < .5 ? '#ffd34a' : '#ff8a1a', sp: 1 });
+  for (const c of M.cars) if (c.spin > 0 && Math.random() < .5) RC.fx.push({ d: c.d, x: c.x, vx: (Math.random() - .5) * .3, vd: -5, t: .4, col: '#cfd8e8' });
+  RC.fx.forEach(p => { p.t -= dt; p.x += p.vx * dt; p.d += p.vd * dt; }); RC.fx = RC.fx.filter(p => p.t > 0).slice(-160);
+}
 function renderRaceHud(M) {
   const me = M.me, pos = racePos(M);
   $('#rPos').innerHTML = `<b>${pos}</b><small>/4</small>`;
   $('#rProg').style.width = `${clamp(me.d / M.len, 0, 1) * 100}%`;
   $('#rSpd').innerHTML = `${Math.round(me.v * 3.6)}<small> km/u</small>${me.turbo > 0 ? ' 🚀' : ''}`;
   $('#rProgDots').innerHTML = M.cars.filter(c => !c.me).map(c => `<i style="left:${clamp(c.d / M.len, 0, 1) * 100}%;background:${c.dr.col}"></i>`).join('');
-  const s = activeLock(M), g = activeGate(M), key = s ? 's' + s.d : g ? 'g' + g.d + ':' + g.got : '';
+  const ik = (me.item || '') + (me.shield > 0 ? 's' : ''); if (ik !== RC.itemKey) { RC.itemKey = ik; const u = $('#rUse'); u.disabled = !me.item; u.classList.toggle('has', !!me.item); $('#rUseIc').textContent = me.item ? RACE_ITEMS[me.item].icon : me.shield > 0 ? '🛡️' : '❓'; u.setAttribute('aria-label', me.item ? `Gebruik ${RACE_ITEMS[me.item].name}` : 'Geen item'); }
+  const g = activePuzzle(M), key = g ? g.kind + g.d + ':' + g.got + ':' + g.retry : '';
   if (key !== RC.gateKey) { RC.gateKey = key;
     const box = $('#rGate');
-    if (!s && !g) { box.classList.remove('on', 'lock'); $('#rSyms').innerHTML = ''; }
-    else { box.classList.add('on'); box.classList.toggle('lock', !!s);
-      const strip = s ? s.seq.map((x, i) => i === s.b ? '<span class="q">?</span>' : tokenSVG(x)).join('') : g.seq.map(x => tokenSVG(x)).join('') + g.need.map((x, i) => i < g.got ? `<span class="got">${tokenSVG(x)}</span>` : '<span class="q">?</span>').join('');
-      box.innerHTML = `<small>${s ? '🔒 Sluiproute: welk stukje mist?' : `🚀 Turbo-poort: tik de volgende ${g.need.length} in de goede volgorde`}</small><div class="rstrip">${strip}</div>`;
-      $('#rSyms').innerHTML = (s ? s.choices : g.choices).map(x => `<button class="rsym" data-sym="${x}" aria-label="${tName(x)}">${tokenSVG(x)}</button>`).join(''); } }
+    if (!g) box.classList.remove('on', 'lock');
+    else { box.classList.add('on'); box.classList.toggle('lock', g.kind === 'lock');
+      const strip = g.kind === 'lock' ? g.seq.map((x, i) => i === g.b ? '<span class="q next">?</span>' : tokenSVG(x)).join('')
+        : g.seq.map(x => tokenSVG(x)).join('') + g.need.map((x, i) => i < g.got ? `<span class="got">${tokenSVG(x)}</span>` : `<span class="q${i === g.got ? ' next' : ''}">?</span>`).join('');
+      box.innerHTML = `<small>${g.kind === 'lock' ? '🔒 Geheim patroon: rij over het stukje dat mist → sluiproute!' : '🚀 Rij óver het volgende symbool op de weg'}</small><div class="rstrip">${strip}</div>${g.kind === 'gate' ? `<div class="rprogd">${g.need.map((_, i) => `<i class="${i < g.got ? 'on' : ''}"></i>`).join('')}</div>` : ''}`; } }
+}
+// symbool-tegels en ❓-kisten als DOM-laag over het canvas (dezelfde SVG-symbolen als bovenin)
+function drawTiles(M) {
+  const c = $('#rCanvas'), cw = c.clientWidth, ch = c.clientHeight, me = M.me, ppm = ch / 120, baseY = ch * .74, sz = Math.round(Math.min(64, TRACK_HW * 2 * cw / 3 * .78));
+  const Y = d => baseY - (d - me.d) * ppm, want = {};
+  const put = (key, d, lane, html, cls) => { const y = Y(d); if (y < -sz || y > ch + sz) return; want[key] = 1; let el = RC.tiles[key];
+    if (!el) { el = document.createElement('div'); el.innerHTML = html; $('#rTiles').appendChild(el); RC.tiles[key] = el; }
+    el.className = 'rtile ' + cls; el.style.width = el.style.height = sz + 'px'; el.style.transform = `translate(${Math.round(laneX(M, d, lane) * cw - sz / 2)}px,${Math.round(y - sz / 2)}px)`; };
+  for (const g of [...M.gates, ...M.shortcuts]) if (g.st === 'open' || g.st === 'ok' || g.st === 'solved') g.rows.forEach((r, ri) => r.tiles.forEach(t => put(`${g.kind}${g.d}:${r.d}:${t.lane}`, r.d, t.lane, tokenSVG(t.sym), (t.ok ? 'ok' : t.bad ? 'bad' : '') + ' sym')));
+  for (const b of M.boxes) b.lanes.forEach(l => put(`b${b.d}:${l}`, b.d, l, '❓', 'box' + (b.taken.me ? ' gone' : '')));
+  for (const k in RC.tiles) if (!want[k]) { RC.tiles[k].remove(); delete RC.tiles[k]; }
 }
 function drawRace(M) {
   const c = $('#rCanvas'), g = c.getContext('2d'), W = c.width, H = c.height, me = M.me, ppm = H / 120, baseY = H * .74;
   const Y = d => baseY - (d - me.d) * ppm, X = x => x * W;
   g.fillStyle = '#2b3140'; g.fillRect(0, 0, W, H);
-  // fabrieksvloer-tegels
   g.strokeStyle = '#353c4d'; g.lineWidth = 2; const off = (me.d * ppm) % 60; for (let y = -60; y < H + 60; y += 60) { g.beginPath(); g.moveTo(0, y + off); g.lineTo(W, y + off); g.stroke(); }
-  // baan
   const step = 8;
   for (let y = H; y > -step; y -= step) {
     const d = me.d + (baseY - y) / ppm, cx = trackCx(M, d), hw = TRACK_HW * W, x0 = X(cx) - hw;
     const stripe = Math.floor(d / 6) % 2;
     g.fillStyle = stripe ? '#e04848' : '#f2f2f2'; g.fillRect(x0 - W * .025, y - step, W * .025, step + 1); g.fillRect(x0 + 2 * hw, y - step, W * .025, step + 1);
     g.fillStyle = '#3a3f4a'; g.fillRect(x0, y - step, 2 * hw, step + 1);
-    if (Math.floor(d / 8) % 2) { g.fillStyle = '#ffd34a88'; g.fillRect(X(cx) - 2, y - step, 4, step + 1); }
+    if (Math.floor(d / 8) % 2) { g.fillStyle = '#ffffff22'; g.fillRect(X(cx) - hw / 3 - 1, y - step, 2, step + 1); g.fillRect(X(cx) + hw / 3 - 1, y - step, 2, step + 1); }
     if (Math.abs(d - M.len) < 2) { for (let k = 0; k < 10; k++) { g.fillStyle = k % 2 ? '#fff' : '#111'; g.fillRect(x0 + k * hw / 5, y - step, hw / 5, step + 1); } }
   }
-  // sluiproute-bordjes (klein, aan de rand)
-  for (const s of M.shortcuts) { if (s.st === 'used' || s.st === 'gone') continue; const d = s.d - 70, y = Y(d); if (y < -40 || y > H + 40) continue;
-    const x = X(trackCx(M, d) + s.side * (TRACK_HW + .05)); g.font = `${Math.round(W * .06)}px sans-serif`; g.textAlign = 'center'; g.fillText(s.st === 'solved' ? '🕳️' : '⚙️', x, y); }
-  // obstakels
+  // patroonstrook-markering op de weg (gele band met pijlen) vóór de eerste rij
+  for (const gt of [...M.gates, ...M.shortcuts]) { if (gt.st !== 'open' || !gt.rows[0]) continue; const d = gt.rows[0].d - 14, y = Y(d); if (y < -20 || y > H + 20) continue; const cx = X(trackCx(M, d)), hw = TRACK_HW * W;
+    for (let k = 0; k < 8; k++) { g.fillStyle = k % 2 ? '#ffd34a' : '#0b0f18'; g.fillRect(cx - hw + k * hw / 4, y - 5, hw / 4, 10); } }
+  for (const s of M.shortcuts) { if (s.st !== 'hidden') continue; const d = s.d - 70, y = Y(d); if (y < -40 || y > H + 40) continue;
+    const x = X(trackCx(M, d) + s.side * (TRACK_HW + .05)); g.font = `${Math.round(W * .06)}px sans-serif`; g.textAlign = 'center'; g.fillText('⚙️', x, y); }
   for (const o of M.obst) { const y = Y(o.d); if (y < -30 || y > H + 30) continue; const x = X(trackCx(M, o.d) + o.off * TRACK_HW);
-    if (o.k === 'olie') { g.fillStyle = '#0b0b0f'; g.beginPath(); g.ellipse(x, y, W * .055, W * .03, 0, 0, 7); g.fill(); g.fillStyle = '#5a5aa0aa'; g.beginPath(); g.ellipse(x - W * .015, y - 3, W * .02, W * .008, 0, 0, 7); g.fill(); }
+    if (o.k === 'olie') { g.fillStyle = '#0b0b0f'; g.beginPath(); g.ellipse(x, y, W * .055, W * .03, 0, 0, 7); g.fill(); g.fillStyle = o.by ? '#9a7cffaa' : '#5a5aa0aa'; g.beginPath(); g.ellipse(x - W * .015, y - 3, W * .02, W * .008, 0, 0, 7); g.fill(); }
+    else if (o.k === 'schroot') { g.fillStyle = '#9aa4b2'; g.strokeStyle = '#0b0f18'; g.lineWidth = 2; for (let i = 0; i < 3; i++) { g.beginPath(); g.arc(x + (i - 1) * W * .02, y + (i % 2) * 4, W * .012, 0, 7); g.fill(); g.stroke(); } }
     else { g.fillStyle = '#ff8a1a'; g.beginPath(); g.moveTo(x, y - W * .05); g.lineTo(x + W * .03, y + W * .02); g.lineTo(x - W * .03, y + W * .02); g.fill(); g.fillStyle = '#fff'; g.fillRect(x - W * .018, y - W * .012, W * .036, W * .01); } }
-  // poorten
-  for (const gt of M.gates) { const y = Y(gt.d); if (y < -40 || y > H + 40) continue; const cx = X(trackCx(M, gt.d)), hw = TRACK_HW * W;
-    g.fillStyle = gt.st === 'ok' ? '#3fdc7f' : gt.st === 'mis' ? '#6b7280' : '#38d6ff'; g.fillRect(cx - hw - 8, y - 6, 2 * hw + 16, 12); g.fillRect(cx - hw - 12, y - 18, 8, 30); g.fillRect(cx + hw + 4, y - 18, 8, 30);
-    g.font = `bold ${Math.round(W * .04)}px sans-serif`; g.textAlign = 'center'; g.fillStyle = '#0b0f18'; g.fillText(gt.st === 'ok' ? 'TURBO!' : '◆ ◆ ◆', cx, y + 5); }
-  // auto's (verste eerst)
-  const car = (c, x, y, col) => { const w = W * .085, h = w * 1.5; g.save(); g.translate(x, y); g.rotate((c.me ? c.steer : 0) * .12);
+  for (const r of M.rockets) { const y = Y(r.d), x = X(r.x); g.fillStyle = '#e8eef7'; g.fillRect(x - 4, y - 12, 8, 18); g.fillStyle = '#ff5a4a'; g.beginPath(); g.moveTo(x - 4, y - 12); g.lineTo(x, y - 20); g.lineTo(x + 4, y - 12); g.fill(); g.fillStyle = '#ffb02e'; g.fillRect(x - 3, y + 6, 6, 6 + Math.random() * 8); }
+  const car = (c, x, y, col) => { const w = W * .085, h = w * 1.5; g.save(); g.translate(x, y); g.rotate(c.spin > 0 ? c.spin * 9 : (c.me ? c.steer : 0) * .12);
     g.fillStyle = '#000a'; g.fillRect(-w / 2 + 4, -h / 2 + 6, w, h);
     g.fillStyle = '#111'; [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => g.fillRect(a * w * .55 - w * .12, b * h * .3 - h * .1, w * .24, h * .2));
     g.fillStyle = col; g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, w * .3); g.fill(); g.strokeStyle = '#0b0f18'; g.lineWidth = 3; g.stroke();
     g.fillStyle = '#0b0f18bb'; g.fillRect(-w * .32, -h * .22, w * .64, h * .18); g.fillStyle = '#e8eef7'; g.beginPath(); g.arc(0, h * .14, w * .2, 0, 7); g.fill();
     if (c.turbo > 0) { g.fillStyle = '#ffb02e'; g.beginPath(); g.moveTo(-w * .25, h / 2); g.lineTo(0, h / 2 + h * .45 * (1 + Math.random() * .3)); g.lineTo(w * .25, h / 2); g.fill(); }
-    if (c.crash > 0) { g.font = `${Math.round(w * .7)}px sans-serif`; g.textAlign = 'center'; g.fillText('💫', 0, -h * .6); }
-    g.restore(); };
+    if (c.shield > 0) { g.strokeStyle = '#38d6ffcc'; g.lineWidth = 4; g.beginPath(); g.arc(0, 0, h * .7, 0, 7); g.stroke(); }
+    g.restore();
+    if (c.crash > 0) { g.font = `${Math.round(w * .7)}px sans-serif`; g.textAlign = 'center'; g.fillText('💫', x, y - h * .7); } };
   M.cars.filter(c => !c.me).sort((a, b) => b.d - a.d).forEach(c => { const y = Y(c.d); if (y > -60 && y < H + 60) car(c, X(c.x), y, c.dr.col); });
   car(me, X(me.x), baseY, RACE_COL);
+  for (const p of RC.fx || []) { g.globalAlpha = clamp(p.t * 2, 0, 1); g.fillStyle = p.col; const s = p.sp ? W * .008 : W * .012; g.fillRect(X(p.x) - s / 2, Y(p.d) - s / 2, s, s); } g.globalAlpha = 1;
   if (M.count > 0) { g.fillStyle = '#0008'; g.fillRect(0, 0, W, H); g.font = `bold ${Math.round(W * .2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = '#ffd34a'; g.fillText(M.count > .75 ? 'Klaar?' : 'GO!', W / 2, H * .45); }
 }
 function finishRace() {
-  const M = RC.M; cancelAnimationFrame(RC.raf);
-  const L = raceApply(S, M.order, { dmg: M.dmg, gates: M.gateRes, shortcut: M.shortcut }); save(); RC.M = null;
+  const M = RC.M; cancelAnimationFrame(RC.raf); AUD.fast = 1;
+  const L = raceApply(S, M.order, { dmg: M.dmg, gates: M.gateRes, shortcut: M.shortcut }); S.race.items += M.itemsUsed; S.race.hits += M.aiHits; save(); RC.M = null;
   const pos = L.pos, medal = ['🥇', '🥈', '🥉', '4️⃣'][pos - 1];
   let rw = `<p class="big">${medal} <b>${pos}e plek</b></p><p>🪙 +<b class="count" data-to="${L.prize}">0</b> prijzengeld</p>`;
-  rw += `<p class="small-note">🚀 Poorten goed: ${L.gatesOk}/${L.gatesN}${M.shortcut ? ` · 🕳️ sluiproute gevonden!` : ''} · 🔧 schade +${L.dmg}% (nu ${S.race.dmg}%)</p>`;
+  rw += `<p class="small-note">🚀 Patronen goed: ${L.gatesOk}/${L.gatesN}${M.aiHits ? ` · 💥 ${M.aiHits}× raak` : ''}${M.shortcut ? ` · 🕳️ sluiproute gevonden!` : ''} · 🔧 schade +${L.dmg}% (nu ${S.race.dmg}%)</p>`;
   if (L.promo === 'up') rw += `<p>🎉 <b>Promotie!</b> Je rijdt nu in de <b>${RACE_DIVS[S.race.div].name}</b>.</p>`;
   else if (L.promo === 'title') rw += `<p>🏆 <b>Kampioen</b> van de Robo-X Grand Prix!</p>`;
   else if (L.promo === 'stay') rw += `<p>Seizoen klaar: ${L.place}e plek. Nieuw seizoen, nieuwe kans!</p>`;
@@ -3494,6 +3616,7 @@ function finishRace() {
   showResult({ title: pos === 1 ? 'Gewonnen!' : pos === 2 ? 'Tweede!' : 'Gefinisht!', stars: pos === 1 ? 3 : pos === 2 ? 2 : pos === 3 ? 1 : 0, art: carSVG(RACE_COL, S.race.parts, S.race.dmg), reward: rw,
     btns: [['🏁 Naar de garage', 'green', () => goRace()], ['📊 Stand', 'white', () => { goRace(); openRaceStand(L.promo ? 'last' : null); }]] });
 }
+function useItem() { if (!RC.M || RC.paused) return; const u = $('#rUse'); u.classList.add('down'); setTimeout(() => u.classList.remove('down'), 120); raceUse(RC.M, RC.M.me); for (const e of RC.M.events.splice(0)) raceEvent(e); }
 function initRace() {
   $('#rcBack').onclick = () => { SFX.click(); goFactory(); };
   $('#rcBody').addEventListener('click', garageClick);
@@ -3501,10 +3624,10 @@ function initRace() {
   const hold = (id, k) => { const b = $(id); const on = e => { e.preventDefault(); RC.keys[k] = true; b.classList.add('down'); }, off = () => { RC.keys[k] = false; b.classList.remove('down'); };
     b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointerleave', off); b.addEventListener('pointercancel', off); };
   hold('#rL', 'L'); hold('#rR', 'R');
-  $('#rSyms').addEventListener('pointerdown', e => { const b = e.target.closest('[data-sym]'); if (!b || !RC.M) return; e.preventDefault(); const r = raceTap(RC.M, b.dataset.sym); b.classList.add(r === 'fout' ? 'bad' : 'good'); if (r === 'ok') SFX.place(); RC.gateKey = 'x'; });
-  $('#rQuit').onclick = () => { SFX.click(); RC.paused = true; if (confirm('Stoppen met deze race? De brandstof is op, je krijgt geen punten.')) { RC.M = null; RC.paused = false; goRace(); } else RC.paused = false; };
-  addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrDrive') return; if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = true; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = true;
-    if (/^[1-4]$/.test(e.key)) { const b = $$('#rSyms .rsym')[+e.key - 1]; if (b && RC.M) { raceTap(RC.M, b.dataset.sym); RC.gateKey = 'x'; } } });
+  $('#rUse').addEventListener('pointerdown', e => { e.preventDefault(); useItem(); });
+  $('#rTutOk').onclick = () => { SFX.click(); $('#rTut').hidden = true; RC.paused = false; RC.last = performance.now(); };
+  $('#rQuit').onclick = () => { SFX.click(); RC.paused = true; if (confirm('Stoppen met deze race? De brandstof is op, je krijgt geen punten.')) { RC.M = null; RC.paused = false; AUD.fast = 1; goRace(); } else RC.paused = false; };
+  addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrDrive') return; if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = true; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = true; if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); useItem(); } });
   addEventListener('keyup', e => { if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = false; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = false; });
   addEventListener('resize', () => { if (CUR_SCREEN === 'scrDrive') sizeRace(); });
 }
@@ -3618,7 +3741,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, race: { raceNew, raceStep, raceTap, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, race: { raceNew, raceStep, raceUse, raceHit, laneX, activePuzzle, raceRollItem, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
