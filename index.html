@@ -498,6 +498,25 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 .sks{display:flex;flex-wrap:wrap;gap:5px}.sk{width:42px;height:42px;border-radius:10px;border:2px solid #3c4a66;background:#f4f7fb;font-size:22px;padding:0}.sk.sel{outline:4px solid #ffd34a}.sk.lock{background:#1b2232;color:#6b7a95}
 #carBody h4{margin:8px 0 4px;color:#fff}
 @media (max-width:380px){.stk span{font-size:22px}.sw{width:40px;height:40px}.sk{width:38px;height:38px}.cabgrid{grid-template-columns:1fr 1fr}}
+
+/* ===== zoom-bescherming + detailweergave ===== */
+button,.btn,[role=button]{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+#rCanvas,.rctl,.rctl *,.ruse,.rhud,#mCanvas,.joy,.abtn{touch-action:none}
+.rzoom{position:absolute;left:10px;right:10px;top:calc(env(safe-area-inset-top) + 64px);z-index:6;background:#ffd34a;color:#1b1206;border:3px solid #0b0f18;border-radius:14px;padding:8px 12px;font-weight:800;text-align:center;opacity:0;pointer-events:none}.rzoom.show{animation:rzh 5s ease forwards}@keyframes rzh{0%{opacity:0}8%,85%{opacity:1}100%{opacity:0}}
+.overlay.detail{z-index:60;background:rgba(5,8,14,.82)}
+.dcardbig{position:relative;width:min(360px,100%);max-height:100%;overflow:auto;background:linear-gradient(#26314a,#121826);border:3px solid #8fa3bf;border-radius:22px;padding:18px 16px 16px;text-align:center;color:#fff;box-shadow:0 12px 0 #0007}
+.dcardbig.blue{border-color:#38d6ff}.dcardbig.gold{border-color:#ffd34a;box-shadow:0 0 30px #ffd34a55,0 12px 0 #0007}
+.dcardbig.in{animation:detin .45s cubic-bezier(.2,1.5,.4,1)}@keyframes detin{0%{transform:scale(.4) rotate(-8deg);opacity:0}100%{transform:none;opacity:1}}
+.dcardbig h2{margin:6px 0 4px;color:#fff}.dcardbig p{margin:6px 0}.detx{position:absolute;right:8px;top:8px;width:40px;height:40px}
+.detmeta{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}.pill.rare1{background:#3c4a66}.pill.rare2{background:#1f6f99;color:#fff}.pill.rare3{background:#c99a14;color:#1b1206}
+.detbig{position:relative;overflow:hidden;margin:6px auto 4px;width:min(52vw,190px);height:min(52vw,190px);border-radius:26px;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#f4f7fb;border:5px solid #8fa3bf}
+.detbig span{font-size:min(30vw,110px);line-height:1;animation:detbob 2.4s ease-in-out infinite}@keyframes detbob{50%{transform:translateY(-6px) rotate(3deg)}}
+.stkbig.r2{border-color:#38d6ff;box-shadow:0 0 18px #38d6ff99}.stkbig.r3{border-color:#ffd34a;background:linear-gradient(#fff6cf,#ffd96a);box-shadow:0 0 26px #ffd34acc}
+.detbig.sil{background:#1b2232;border:4px dashed #3c4a66;box-shadow:none}.detbig.sil span{filter:brightness(0) opacity(.55);animation:none}
+.detbig.trophy{background:radial-gradient(circle at 50% 35%,#4a3a12,#1a1408);border-color:#ffd34a}.detbig.trophy .plinth{position:absolute;bottom:10px;left:12%;right:12%;background:linear-gradient(#8a5a1c,#4a2e0c);color:#ffe28a;border-radius:6px;font-size:.72em;padding:3px;border:2px solid #24170a}.detbig.trophy.sil{border-color:#3c4a66}.detbig.trophy.sil .plinth{color:#6b7a95;background:#2c3850}
+.shine{position:absolute;top:-20%;left:-60%;width:40%;height:140%;background:linear-gradient(90deg,transparent,#ffffffaa,transparent);transform:rotate(20deg);animation:shn 2.6s ease-in-out infinite}@keyframes shn{0%{left:-60%}60%,100%{left:130%}}
+.meter.big{height:14px}.stk,.cab,.cabshelf i{cursor:pointer}.stk:active,.cab:active{transform:scale(.95)}
+@media (prefers-reduced-motion:reduce){.dcardbig.in,.detbig span,.shine{animation:none}}
 </style>
 </head>
 <body>
@@ -618,6 +637,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 <div id="ovBook" class="overlay"><div class="ocard"><h2>📒 Verzamelboek</h2><div class="scroll" id="bookBody"></div><div style="text-align:right"><button class="btn green" id="bookClose">Sluiten</button></div></div></div>
 <div id="ovCab" class="overlay"><div class="ocard"><h2>🏆 Bekerkast</h2><div class="scroll" id="cabBody"></div><div style="text-align:right"><button class="btn green" id="cabClose">Sluiten</button></div></div></div>
 <div id="ovCar" class="overlay"><div class="ocard"><h2>🎨 Racewagen ontwerpen</h2><div class="scroll" id="carBody"></div><div style="text-align:right"><button class="btn green" id="carClose">Klaar</button></div></div></div>
+<div id="ovDetail" class="overlay detail" role="dialog" aria-modal="true" aria-label="Detail"><div class="dcardbig" id="detCard"><button class="iconbtn detx" id="detClose" aria-label="Sluiten">✖</button><div id="detBody"></div></div></div>
 <div id="rivBub" class="rivbub" role="status" aria-live="polite"><div class="rivav">🎩</div><p id="rivTxt"></p><small class="rivx">tik om te sluiten</small></div>
 <div id="ovStand" class="overlay"><div class="ocard"><h2 id="standTitle">📊 Stand</h2><div class="scroll" id="standBody"></div><div style="text-align:right"><button class="btn green" id="standClose">Sluiten</button></div></div></div>
 <div id="ovShop" class="overlay"><div class="ocard"><h2>🛒 Winkel</h2><div class="scroll" id="shopBody"></div><div style="text-align:right"><button class="btn green" id="shopClose">Sluiten</button></div></div></div>
@@ -640,7 +660,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
   <canvas id="rCanvas"></canvas>
   <div class="rhud"><button class="iconbtn" id="rQuit" aria-label="Stoppen">✖</button><div class="rpos" id="rPos"></div><div class="rprog"><i id="rProg"></i><span id="rProgDots"></span></div><div class="rspd" id="rSpd"></div><span data-sndslot></span></div>
   <div class="rtiles" id="rTiles" aria-hidden="true"></div>
-  <div class="rgate" id="rGate" aria-live="polite"></div><div class="rfloat" id="rFloat"></div><div class="rpop" id="rPop"></div>
+  <div class="rgate" id="rGate" aria-live="polite"></div><div class="rfloat" id="rFloat"></div><div class="rpop" id="rPop"></div><div class="rzoom" id="rZoom" role="status">🔍 Je bent ingezoomd. Knijp met twee vingers om uit te zoomen. De knoppen blijven in beeld!</div>
   <div class="rtut" id="rTut" hidden><div class="rtutb"><div class="rtuta up">⬆</div><p id="rTutTxt"></p><button class="btn green" id="rTutOk">Snap ik! ▶</button></div></div>
   <div class="rctl"><button class="rsteer" id="rL" aria-label="Links">◀</button><button class="ruse" id="rUse" aria-label="Item gebruiken" disabled><span id="rUseIc">❓</span><small>GEBRUIK</small></button><button class="rsteer" id="rR" aria-label="Rechts">▶</button></div>
 </section>
@@ -689,6 +709,27 @@ function holdButton(btn, ms, cb) {
   const stop = () => { clearTimeout(t); btn.classList.remove('holding'); };
   btn.addEventListener('pointerdown', start); ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => btn.addEventListener(ev, stop));
   btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') cb(); });
+}
+/* ---------- niet per ongeluk zoomen (iOS negeert user-scalable=no) + race-knoppen altijd in beeld ---------- */
+const zoomed = () => ((window.visualViewport && visualViewport.scale) || 1) > 1.01;
+function initNoZoom() {
+  const stop = e => { if (e.cancelable) e.preventDefault(); };
+  ['gesturestart', 'gesturechange', 'gestureend'].forEach(t => document.addEventListener(t, e => { if (!zoomed()) stop(e); }, { passive: false }));
+  // knijpen met 2 vingers blokkeren, behalve als je al ingezoomd bent (dan mag je terug uitzoomen)
+  document.addEventListener('touchmove', e => { if (e.touches && e.touches.length > 1 && !zoomed()) stop(e); }, { passive: false, capture: true });
+  document.addEventListener('dblclick', stop, { passive: false });
+  if (window.visualViewport) { visualViewport.addEventListener('resize', vvApply); visualViewport.addEventListener('scroll', vvApply); }
+}
+// race-HUD en stuurknoppen meeschuiven/terugschalen met de visual viewport, zodat ◀ ▶ nooit buiten beeld vallen
+function vvApply(ev, vv) {
+  vv = vv && vv.scale ? vv : window.visualViewport; if (!vv) return;
+  const s = vv.scale || 1, H = innerHeight, on = s > 1.01;
+  const set = (sel, tf, org) => { const el = document.querySelector(sel); if (el) { el.style.transform = on ? tf : ''; el.style.transformOrigin = org; } };
+  set('#scrDrive .rctl', `translate(${vv.offsetLeft}px,${vv.offsetTop + vv.height - H}px) scale(${1 / s})`, '0 100%');
+  set('#scrDrive .rhud', `translate(${vv.offsetLeft}px,${vv.offsetTop}px) scale(${1 / s})`, '0 0');
+  set('#scrDrive .rgate', `translate(${vv.offsetLeft}px,${vv.offsetTop}px) scale(${1 / s})`, '0 0');
+  const h = document.querySelector('#rZoom'); if (h) { h.style.transform = on ? `translate(${vv.offsetLeft}px,${vv.offsetTop}px) scale(${1 / s})` : ''; h.style.transformOrigin = '0 0'; if (!on) h.classList.remove('show'); }
+  return on;
 }
 
 /* ===== data/machines.js ===== */
@@ -3680,15 +3721,16 @@ function startRace() {
   if (!raceCanStart(S)) { SFX.nope(); toast(`Je hebt 🪙 ${raceFuel(S)} nodig voor brandstof.`); return; }
   S.coins -= raceFuel(S); S.today.fin && (S.today.fin.upkeep += raceFuel(S)); save();
   RC.daily = null; RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = ''; RC.fx = []; RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
-  show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
+  show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); zoomHint(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
 }
 // race van de dag: vaste baan en vaste patronen (zaad = datum), gratis brandstof, telt niet mee voor de competitie
 function startDailyRace() {
   closeOv('ovDaily'); raceInit(S); const key = dayKey(), seed = dailySeed(key), keep = RNG; RNG = mkRng(seed ^ 0x5bd1);
   try { RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg, rng: mkRng(seed) }); } finally { RNG = keep; }
   RC.daily = key; RC.gateKey = ''; RC.fx = []; RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
-  show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
+  show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); zoomHint(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
 }
+function zoomHint() { if (vvApply()) { const h = $('#rZoom'); h.classList.remove('show'); void h.offsetWidth; h.classList.add('show'); } }
 function sizeRace() { const c = $('#rCanvas'), dpr = Math.min(2, devicePixelRatio || 1); c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr; }
 function raceLoop(now) {
   const M = RC.M; if (!M || CUR_SCREEN !== 'scrDrive') return;
@@ -3847,7 +3889,7 @@ function initRace() {
 
 /* ===== screens/extra.js ===== */
 /* Fase C schermen: dagelijkse uitdaging, verzamelboek, bekerkast/mijlpalen, rivaal-berichten, racewagen-ontwerper. */
-const stkHTML = (id, own = true) => { const s = STICKERS[id]; return `<div class="stk r${s.r} ${own ? 'own' : 'no'}" title="${own ? s.name : '???'}"><span>${own ? s.icon : '❔'}</span><small>${own ? s.name : '???'}</small></div>`; };
+const stkHTML = (id, own = true) => { const s = STICKERS[id]; return `<div class="stk r${s.r} ${own ? 'own' : 'no'}" data-stk="${id}" role="button" tabindex="0" aria-label="${own ? s.name : 'onbekende sticker'}: details" title="${own ? s.name : '???'}"><span>${own ? s.icon : '❔'}</span><small>${own ? s.name : '???'}</small></div>`; };
 // ---------- fabriekskaarten ----------
 function renderExtraCards() {
   extraInit(S); const D = dailyState(S, dayKey()), nd = (D.done.p ? 1 : 0) + (D.done.r ? 1 : 0), tot = raceUnlocked(S) ? 2 : 1;
@@ -3855,7 +3897,7 @@ function renderExtraCards() {
   $('#fDaily').innerHTML = `<b>📅 Dagelijkse uitdaging</b><small>${nd >= tot ? '✅ Klaar voor vandaag! Morgen weer een nieuwe.' : `Elke dag een nieuwe puzzel${tot > 1 ? ' + race' : ''}. ${nd}/${tot} gedaan.`}</small>
     <div class="streak">${st ? `🔥 <b>${st} ${st === 1 ? 'dag' : 'dagen op rij'}!</b>` : '🔥 Begin een reeks!'} <span class="small-note">🧊 ×${D.freeze}</span></div><button class="btn small ${nd >= tot ? 'white' : 'green'}" id="fGoDaily">📅 Uitdaging</button>`;
   const earned = ACHIEVEMENTS.filter(a => S.extra.ach[a.id]);
-  $('#fCab').innerHTML = `<b>🏆 Bekerkast</b><div class="cabshelf" id="fCabShelf" role="button" aria-label="Bekerkast openen">${ACHIEVEMENTS.map(a => `<i class="${S.extra.ach[a.id] ? 'on' : ''}" title="${a.name}">${S.extra.ach[a.id] ? a.icon : '🔒'}</i>`).join('')}</div>
+  $('#fCab').innerHTML = `<b>🏆 Bekerkast</b><div class="cabshelf" id="fCabShelf" role="button" aria-label="Bekerkast openen">${ACHIEVEMENTS.map(a => `<i class="${S.extra.ach[a.id] ? 'on' : ''}" title="${a.name}" data-ach="${a.id}">${S.extra.ach[a.id] ? a.icon : '🔒'}</i>`).join('')}</div>
     <small>${earned.length}/${ACHIEVEMENTS.length} mijlpalen · 📒 ${bookCount(S)}/${Object.keys(STICKERS).length} stickers</small><div class="orow"><button class="btn small purple" id="fGoCab">🏆 Bekijken</button><button class="btn small orange" id="fGoBook">📒 Verzamelboek</button></div>`;
 }
 // na terugkomst in fabriek/garage/stadion: mijlpalen uitdelen, rivaal laten praten
@@ -3919,7 +3961,7 @@ function openBook() {
 function openCab() {
   extraInit(S);
   $('#cabBody').innerHTML = `<div class="cabgrid">${ACHIEVEMENTS.map(a => { const on = S.extra.ach[a.id], p = achProgress(S, a);
-    return `<div class="cab ${on ? 'on' : ''}"><span class="ci">${on ? a.icon : '🔒'}</span><b>${a.name}</b><small>${a.desc}</small>${on ? `<small class="ok">✅ Gehaald${a.coins ? ` · 🪙 ${a.coins}` : ''}</small>` : `<div class="meter"><i style="width:${Math.round(p * 100)}%"></i></div><small>${a.coins ? `Beloning 🪙 ${a.coins}` : 'Eer en glorie!'}</small>`}</div>`; }).join('')}</div>`;
+    return `<div class="cab ${on ? 'on' : ''}" data-ach="${a.id}" role="button" tabindex="0" aria-label="${a.name}: details"><span class="ci">${on ? a.icon : '🔒'}</span><b>${a.name}</b><small>${a.desc}</small>${on ? `<small class="ok">✅ Gehaald${a.coins ? ` · 🪙 ${a.coins}` : ''}</small>` : `<div class="meter"><i style="width:${Math.round(p * 100)}%"></i></div><small>${a.coins ? `Beloning 🪙 ${a.coins}` : 'Eer en glorie!'}</small>`}</div>`; }).join('')}</div>`;
   openOv('ovCab');
 }
 // ---------- racewagen-ontwerper ----------
@@ -3950,9 +3992,36 @@ function initExtra() {
   $('#carClose').onclick = () => { SFX.click(); closeOv('ovCar'); };
   $('#carBody').addEventListener('click', carClick);
   $('#rivBub').onclick = () => { SFX.click(); clearTimeout(RC_RIVT); hideRival(); };
-  document.addEventListener('click', e => { const b = e.target.closest('#fGoDaily,#fGoCab,#fGoBook,#fCabShelf,#rcDesign'); if (!b) return; SFX.click();
+  document.addEventListener('click', e => { const b = e.target.closest('#fGoDaily,#fGoCab,#fGoBook,#fCabShelf,#rcDesign'); if (e.target.closest('[data-ach]')) return; if (!b) return; SFX.click();
     if (b.id === 'fGoDaily') openDaily(); else if (b.id === 'fGoBook') openBook(); else if (b.id === 'rcDesign') openCar(); else openCab(); });
 }
+
+// ---------- grote detailweergave (sticker / trofee) ----------
+const RARE = ['', 'Gewoon', 'Zeldzaam', 'Superzeldzaam ✨'];
+const STK_HOW = ['Vaak te vinden: dagelijkse uitdaging, geheime puzzels, ❓-kisten.', 'Zeldzaam: vooral in de dagelijkse uitdaging, geheime puzzels en sluiproutes.', 'Superzeldzaam! De beste kans: sluiproutes en geheime puzzels. Blijf zoeken!'];
+function openStkDetail(id) {
+  const s = STICKERS[id], x = extraInit(S), n = x.book[id] || 0, set = STICKER_SETS.find(z => z.id === s.set), got = set.items.filter(([i]) => x.book[i]).length;
+  const how = id === 'g1' || id === 'g5' ? `Krijg je van <b>Baron Bout</b> als je hem vaak genoeg verslaat (verhaal hoofdstuk ${id === 'g1' ? 3 : 6}).` : STK_HOW[s.r - 1];
+  $('#detBody').innerHTML = `<div class="detbig stkbig r${s.r} ${n ? '' : 'sil'}"><span>${s.icon}</span>${s.r === 3 && n ? '<i class="shine"></i>' : ''}</div>
+    <h2>${n ? s.name : '???'}</h2><p class="detmeta"><span class="pill rare${s.r}">${RARE[s.r]}</span> <span class="pill">${set.icon} ${set.name} · ${got}/5</span></p>
+    ${n ? `<p>✅ In je verzamelboek${n > 1 ? ` (×${n}, dubbele = 🪙 ${DUP_COINS} per stuk)` : ''}.</p>${set.id === 'race' || true ? '<p class="small-note">🎨 Je kunt hem op je racewagen plakken!</p>' : ''}` : `<p>🔒 Nog niet gevonden.</p><p class="small-note">${how}</p>`}
+    <p class="small-note">Set compleet = 🪙 ${set.bonus} + iets nieuws voor je racewagen.${x.sets.includes(set.id) ? ' ✅ Al compleet!' : ''}</p>`;
+  openDetail(s.r === 3 ? 'gold' : s.r === 2 ? 'blue' : '');
+}
+function openAchDetail(id) {
+  const a = ACHIEVEMENTS.find(z => z.id === id), on = extraInit(S).ach[id], p = achProgress(S, a);
+  $('#detBody').innerHTML = `<div class="detbig trophy ${on ? '' : 'sil'}"><span>${a.icon}</span><b class="plinth">${on ? a.name : '???'}</b>${on ? '<i class="shine"></i>' : ''}</div>
+    <h2>${a.name}</h2><p>${a.desc}</p>
+    ${on ? `<p>🏆 Gehaald op <b>dag ${on}</b>!${a.coins ? ` Beloning: 🪙 ${a.coins}.` : ''}</p>` : `<div class="meter big"><i style="width:${Math.round(p * 100)}%"></i></div><p><b>${Math.round(p * 100)}%</b> klaar. ${a.coins ? `Beloning: 🪙 ${a.coins}.` : 'Eer en glorie!'}</p>`}`;
+  openDetail(on ? 'gold' : '');
+}
+function openDetail(kind) { const c = $('#detCard'); c.className = 'dcardbig ' + kind; openOv('ovDetail'); c.classList.remove('in'); void c.offsetWidth; c.classList.add('in'); SFX.place(); }
+function closeDetail() { closeOv('ovDetail'); }
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-stk],[data-ach]'); if (t && t.closest('#bookBody,#cabBody,.stkwin,#fCabShelf')) { e.stopPropagation(); if (t.dataset.stk) openStkDetail(t.dataset.stk); else openAchDetail(t.dataset.ach); return; }
+  if (e.target.id === 'ovDetail' || e.target.closest('#detClose') || e.target.closest('#detCard')) { if ($('#ovDetail').classList.contains('show')) { SFX.click(); closeDetail(); } }
+}, true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('#ovDetail').classList.contains('show')) closeDetail(); if ((e.key === 'Enter' || e.key === ' ') && e.target.closest && e.target.closest('[data-stk],[data-ach]')) { e.preventDefault(); e.target.click(); } });
 
 /* ===== screens/samen.js ===== */
 /* Samen spelen op één apparaat: 'Lezer en bouwer' (coöperatief) en 'Maak een patroon' (om de beurt een patroon voor elkaar). */
@@ -4030,7 +4099,7 @@ function init() {
   $('#fShop').onclick = openShop; $('#fShop2').onclick = openShop;
   $('#fBuild').onclick = openBuild;
   mountSoundBtns(); document.addEventListener('click', e => { const b = e.target.closest('[data-snd]'); if (b) { e.stopPropagation(); toggleSound(b.dataset.snd); } }, true);
-  $('#fRace').addEventListener('click', e => { if (e.target.closest('#fGoRace')) { SFX.click(); goRace(); } }); initRace(); initExtra();
+  $('#fRace').addEventListener('click', e => { if (e.target.closest('#fGoRace')) { SFX.click(); goRace(); } }); initRace(); initExtra(); initNoZoom();
   $('#fFoot').addEventListener('click', e => { if (e.target.closest('#fGoStadion')) { SFX.click(); goStadion(); } });
   $('#stBack').onclick = () => { SFX.click(); goFactory(); }; $('#stTeam').onclick = () => { SFX.click(); goTeam(); };
   $('#stPlay').onclick = () => { SFX.click(); startMatch('solo'); }; $('#stCoop').onclick = () => { SFX.click(); startMatch('coop'); }; $('#stVs').onclick = () => { SFX.click(); startMatch('versus'); };
@@ -4063,7 +4132,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  RACE_DRIVERS, LEAGUE_EXTRA, RIVAL_RACE_ID, goRace, load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, extra: { extraInit, dailyClaim, dailyState, dailyStreak, bookAdd, bookRoll, rivalResult, rivalDaily, carSet, carLook, achCheck, dailyPuzzle, openDaily, openBook, openCab, openCar, showRivalQ, hideRival, startDailyRace, dayDiff, dailySeed }, race: { raceNew, raceStep, raceUse, raceHit, laneX, activePuzzle, raceRollItem, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  RACE_DRIVERS, LEAGUE_EXTRA, RIVAL_RACE_ID, goRace, load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, extra: { openStkDetail, openAchDetail, closeDetail, vvApply, extraInit, dailyClaim, dailyState, dailyStreak, bookAdd, bookRoll, rivalResult, rivalDaily, carSet, carLook, achCheck, dailyPuzzle, openDaily, openBook, openCab, openCar, showRivalQ, hideRival, startDailyRace, dayDiff, dailySeed }, race: { raceNew, raceStep, raceUse, raceHit, laneX, activePuzzle, raceRollItem, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
