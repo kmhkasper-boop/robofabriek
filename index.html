@@ -472,6 +472,8 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 .rsteer{width:min(22vw,110px);height:min(22vw,110px);border-radius:22px;border:3px solid #ffffff55;background:#0b0f18aa;color:#ffd34a;font-size:2.2em;touch-action:none;flex:none}.rsteer.down{background:#38d6ff55;border-color:#38d6ff}
 .rsyms{flex:1;min-width:0;display:flex;gap:4px;justify-content:center;align-items:flex-end;min-height:10px}.rsym{width:min(13vw,64px);height:min(13vw,64px);border-radius:14px;border:3px solid #38d6ff;background:linear-gradient(#f4f7fb,#cfd8e6);padding:5px;touch-action:none}.rsym svg{width:100%;height:100%}.rsym.bad{border-color:#ff5a4a}.rsym.good{border-color:#3fdc7f}
 @media (orientation:landscape) and (max-height:520px){.rgate{left:auto;width:min(60vw,420px)}}
+.sndbtns{display:inline-flex;gap:3px;flex:none}.sndb{width:34px;height:34px;border-radius:10px;border:1px solid #ffffff33;background:#0b0f18aa;color:#fff;font-size:17px;padding:0;line-height:1;cursor:pointer;touch-action:manipulation}.sndb{position:relative}.sndb[aria-pressed=false]::after{content:'';position:absolute;left:5px;right:5px;top:50%;height:3px;background:#ff5a4a;border-radius:2px;transform:rotate(-40deg);box-shadow:0 0 0 1px #0b0f18}.sndb[aria-pressed=false]{background:#3a1f24aa;border-color:#ff5a4a66}
+@media (max-width:380px){.sndb{width:30px;height:30px;font-size:15px}}
 </style>
 </head>
 <body>
@@ -494,7 +496,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 </section>
 <!-- ===== FABRIEK ===== -->
 <section id="scrFactory" class="screen">
-  <div class="hud"><button class="iconbtn" id="fHome" aria-label="Naar het begin">🏠</button><span class="hp" id="hCoins"></span><span class="hp" id="hRep"></span><span class="hp" id="hStock"></span><span class="hp rate" id="hRate"></span><span class="hp day" id="hDay"></span><button class="iconbtn" id="fFin" aria-label="Financiën">📊</button><button class="iconbtn" id="fEnd" aria-label="Dag afsluiten">🌙</button></div>
+  <div class="hud"><button class="iconbtn" id="fHome" aria-label="Naar het begin">🏠</button><span class="hp" id="hCoins"></span><span class="hp" id="hRep"></span><span class="hp" id="hStock"></span><span class="hp rate" id="hRate"></span><span data-sndslot></span><span class="hp day" id="hDay"></span><button class="iconbtn" id="fFin" aria-label="Financiën">📊</button><button class="iconbtn" id="fEnd" aria-label="Dag afsluiten">🌙</button></div>
   <div class="fscroll"><div class="fab">
     <div class="roof" id="fRoof"></div>
     <div class="wall"><div class="rooms" id="fRooms"></div>
@@ -594,18 +596,18 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 
 <!-- ===== Robotvoetbal (fase C) ===== -->
 <section class="screen" id="scrStadion" aria-label="Stadion">
-  <div class="topbar"><button class="iconbtn" id="stBack" aria-label="Terug naar de fabriek">🏭</button><div class="title" id="stTitle">⚽ Stadion</div><span class="hp" id="stKas"></span></div>
+  <div class="topbar"><button class="iconbtn" id="stBack" aria-label="Terug naar de fabriek">🏭</button><div class="title" id="stTitle">⚽ Stadion</div><span data-sndslot></span><span class="hp" id="stKas"></span></div>
   <div class="scroll stbody" id="stBody"></div>
   <div class="fbottom stbtns"><button class="btn white" id="stTeam">🛠️ Team</button><button class="btn purple" id="stCoop">👫 Samen</button><button class="btn white" id="stVs">⚔️ Tegen elkaar</button><button class="btn green big" id="stPlay">⚽ Spelen</button></div>
 </section>
 <section class="screen" id="scrRace" aria-label="Racegarage">
-  <div class="topbar"><button class="iconbtn" id="rcBack" aria-label="Terug naar de fabriek">🏭</button><div class="title" id="rcTitle">🏁 Robo-Race</div><span class="hp" id="rcCoins"></span></div>
+  <div class="topbar"><button class="iconbtn" id="rcBack" aria-label="Terug naar de fabriek">🏭</button><div class="title" id="rcTitle">🏁 Robo-Race</div><span data-sndslot></span><span class="hp" id="rcCoins"></span></div>
   <div class="scroll stbody" id="rcBody"></div>
   <div class="fbottom"><button class="btn green big" id="rcGo">🏁 Race!</button></div>
 </section>
 <section class="screen" id="scrDrive" aria-label="Race">
   <canvas id="rCanvas"></canvas>
-  <div class="rhud"><button class="iconbtn" id="rQuit" aria-label="Stoppen">✖</button><div class="rpos" id="rPos"></div><div class="rprog"><i id="rProg"></i><span id="rProgDots"></span></div><div class="rspd" id="rSpd"></div></div>
+  <div class="rhud"><button class="iconbtn" id="rQuit" aria-label="Stoppen">✖</button><div class="rpos" id="rPos"></div><div class="rprog"><i id="rProg"></i><span id="rProgDots"></span></div><div class="rspd" id="rSpd"></div><span data-sndslot></span></div>
   <div class="rgate" id="rGate"></div><div class="rfloat" id="rFloat"></div>
   <div class="rctl"><button class="rsteer" id="rL" aria-label="Links">◀</button><div class="rsyms" id="rSyms"></div><button class="rsteer" id="rR" aria-label="Rechts">▶</button></div>
 </section>
@@ -617,7 +619,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 </section>
 <section class="screen" id="scrMatch" aria-label="Wedstrijd">
   <canvas id="mCanvas"></canvas>
-  <div class="mhud"><button class="iconbtn" id="mPause" aria-label="Pauze">⏸️</button><div class="mscore" id="mScore"></div><div class="mkeep" id="mKeep"></div></div>
+  <div class="mhud"><button class="iconbtn" id="mPause" aria-label="Pauze">⏸️</button><div class="mscore" id="mScore"></div><div class="mkeep" id="mKeep"></div><span data-sndslot></span></div>
   <div class="mctl" id="mCtl"></div>
 </section>
 <div id="ovHalf" class="overlay"><div class="ocard"><h2 id="halfTitle">Rust!</h2><div class="scroll" id="halfBody"></div><div class="obtns" id="halfBtns"></div></div></div>
@@ -819,8 +821,11 @@ const SFX = {
 // achtergrondmuziek: korte vrolijke loop (C – Am – F – G), zacht en rustig; uit tijdens de geluidspuzzels
 const MUS = { bass: [48, 48, 45, 45, 41, 41, 43, 43], mel: [72, 0, 76, 79, 76, 0, 74, 72, 69, 0, 72, 76, 77, 76, 74, 0, 72, 0, 77, 81, 79, 77, 76, 74, 74, 0, 71, 74, 79, 0, 0, 0] };
 const midi = n => 440 * Math.pow(2, (n - 69) / 12);
+// 'drive'-muziek voor race en voetbal: sneller, industrieel/chiptune (pulserende bas, arpeggio, metalen hihat + 'stamp')
+const MUS2 = { bass: [40, 40, 43, 43, 38, 38, 45, 43], arp: [0, 7, 12, 7, 3, 7, 12, 15] };
 function musicTick() {
   if (!AUD.ac || !AUD.musicOn) return;
+  if (AUD.style === 'drive') return driveTick();
   const spb = .3;
   while (AUD.mNext < AUD.ac.currentTime + .25) {
     const s = AUD.mStep, t = AUD.mNext - AUD.ac.currentTime;
@@ -830,9 +835,24 @@ function musicTick() {
     AUD.mStep++; AUD.mNext += spb;
   }
 }
+function driveTick() {
+  const spb = .16;
+  while (AUD.mNext < AUD.ac.currentTime + .25) {
+    const s = AUD.mStep, t = Math.max(0, AUD.mNext - AUD.ac.currentTime), root = MUS2.bass[(s >> 3) % 8];
+    if (s % 2 === 0) tone(midi(root), spb * 1.6, 'sawtooth', .09, t, 0, AUD.music);
+    if (s % 4 === 0) { tone(90, .18, 'sine', .3, t, 40, AUD.music); }          // stamp (zoals een pers)
+    if (s % 4 === 2) tone(3200, .025, 'square', .02, t, 0, AUD.music);         // metalen tik
+    tone(midi(root + 24 + MUS2.arp[s % 8]), spb * .8, 'square', .03, t, 0, AUD.music);
+    AUD.mStep++; AUD.mNext += spb;
+  }
+}
 function musicStart() { if (!AUD.ac || AUD.musicOn) return; AUD.musicOn = true; AUD.mNext = AUD.ac.currentTime + .1; AUD.mTimer = setInterval(musicTick, 80); }
 function musicStop() { AUD.musicOn = false; clearInterval(AUD.mTimer); }
-function musicFor(screen, hall) { if (!AUD.ac) return; if (screen === 'scrPuzzle' && hall === 2) musicStop(); else musicStart(); }
+function musicFor(screen, hall) { if (!AUD.ac) return; AUD.style = ['scrMatch', 'scrDrive'].includes(screen) ? 'drive' : 'calm'; if (screen === 'scrPuzzle' && hall === 2) musicStop(); else musicStart(); }
+/* snelle aan/uit-knoppen voor geluid en muziek (in de kop van fabriek, garage, stadion, race en wedstrijd); bewaard in de opslag */
+function soundBtnsHTML() { return `<span class="sndbtns"><button class="sndb" data-snd="sfx" aria-label="Geluid aan/uit" aria-pressed="${!!S.settings.sfx}">${S.settings.sfx ? '🔊' : '🔈'}</button><button class="sndb" data-snd="music" aria-label="Muziek aan/uit" aria-pressed="${!!S.settings.music}">🎵</button></span>`; }
+function mountSoundBtns() { document.querySelectorAll('[data-sndslot]').forEach(el => { el.innerHTML = soundBtnsHTML(); }); }
+function toggleSound(k) { S.settings[k] = !S.settings[k]; audioInit(); applyVolumes(); if (k === 'music') { if (S.settings.music) musicStart(); else musicStop(); } save(); mountSoundBtns(); const cb = document.querySelector(k === 'sfx' ? '#setSfx' : '#setMusic'); if (cb) cb.checked = S.settings[k]; if (S.settings.sfx && k === 'sfx') SFX.click(); }
 
 /* ===== core/blip.js ===== */
 /* Geen voorleesstem meer: personages 'praten' met korte robotbrabbel-geluidjes (gesynthetiseerd), de tekst staat in een ballon.
@@ -3532,7 +3552,7 @@ function openOuders() {
   openOv('ovOuders');
 }
 function initOuders() {
-  const st = () => S.settings, upd = () => { applyVolumes(); document.body.classList.toggle('bigtext', S.settings.big); save(); if (!S.settings.music) musicStop(); else if (AUD.ac && CUR_SCREEN !== 'scrPuzzle') musicStart(); };
+  const st = () => S.settings, upd = () => { applyVolumes(); document.body.classList.toggle('bigtext', S.settings.big); save(); mountSoundBtns(); if (!S.settings.music) musicStop(); else if (AUD.ac && CUR_SCREEN !== 'scrPuzzle') musicStart(); };
   $('#setMusic').onchange = e => { st().music = e.target.checked; upd(); };
   $('#setMusicVol').oninput = e => { st().musicVol = +e.target.value; upd(); };
   $('#setSfx').onchange = e => { st().sfx = e.target.checked; upd(); };
@@ -3564,6 +3584,7 @@ function init() {
   $('#fEnd').onclick = () => { SFX.click(); endDay(); };
   $('#fShop').onclick = openShop; $('#fShop2').onclick = openShop;
   $('#fBuild').onclick = openBuild;
+  mountSoundBtns(); document.addEventListener('click', e => { const b = e.target.closest('[data-snd]'); if (b) { e.stopPropagation(); toggleSound(b.dataset.snd); } }, true);
   $('#fRace').addEventListener('click', e => { if (e.target.closest('#fGoRace')) { SFX.click(); goRace(); } }); initRace();
   $('#fFoot').addEventListener('click', e => { if (e.target.closest('#fGoStadion')) { SFX.click(); goStadion(); } });
   $('#stBack').onclick = () => { SFX.click(); goFactory(); }; $('#stTeam').onclick = () => { SFX.click(); goTeam(); };
@@ -3597,7 +3618,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, race: { raceNew, raceStep, raceTap, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, race: { raceNew, raceStep, raceTap, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
