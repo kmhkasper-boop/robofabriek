@@ -480,6 +480,24 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 @media (orientation:landscape) and (max-height:520px){.rgate{left:auto;width:min(60vw,420px)}}
 .sndbtns{display:inline-flex;gap:3px;flex:none}.sndb{width:34px;height:34px;border-radius:10px;border:1px solid #ffffff33;background:#0b0f18aa;color:#fff;font-size:17px;padding:0;line-height:1;cursor:pointer;touch-action:manipulation}.sndb{position:relative}.sndb[aria-pressed=false]::after{content:'';position:absolute;left:5px;right:5px;top:50%;height:3px;background:#ff5a4a;border-radius:2px;transform:rotate(-40deg);box-shadow:0 0 0 1px #0b0f18}.sndb[aria-pressed=false]{background:#3a1f24aa;border-color:#ff5a4a66}
 @media (max-width:380px){.sndb{width:30px;height:30px;font-size:15px}}
+
+/* ===== fase C ===== */
+.dailycard{background:linear-gradient(#3a2a12,#1f170b)!important;border-color:#c98a1d!important}.cabcard{background:linear-gradient(#2a2140,#171225)!important;border-color:#7a5fd0!important}
+.streak{font-size:1.05em;color:#ffd34a}.streak .small-note{color:#cfeeff}
+.cabshelf{display:flex;flex-wrap:wrap;gap:3px;padding:6px;border-radius:10px;background:linear-gradient(#5a3b1c,#3b250f);border:3px solid #24170a;box-shadow:inset 0 -6px 0 #24170a;cursor:pointer}.cabshelf i{font-style:normal;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:18px;filter:grayscale(1) brightness(.5);opacity:.6}.cabshelf i.on{filter:drop-shadow(0 0 4px #ffd34a);opacity:1}
+.streakbig{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;justify-content:center;text-align:center;font-size:1.8em;color:#ffd34a;background:#0b0f18;border:2px solid #c98a1d;border-radius:14px;padding:8px}.streakbig small{flex-basis:100%;font-size:.45em;color:#cfd8e8}
+.dcard.daily{cursor:default}.dcard.daily.done{opacity:.75;border-color:#3fdc7f}.pill.ok{background:#1d4a30;color:#bff5d0}
+.stks{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.stk{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:12px;background:#f4f7fb;border:3px solid #8fa3bf;color:#0b0f18;text-align:center;min-width:0}.stk span{font-size:28px;line-height:1.1}.stk small{font-size:.62em;line-height:1.1;overflow-wrap:anywhere}.stk.r2{border-color:#38d6ff;box-shadow:0 0 6px #38d6ff88}.stk.r3{border-color:#ffd34a;background:linear-gradient(#fff6cf,#ffe28a);box-shadow:0 0 10px #ffd34aaa}.stk.no{background:#1b2232;border:3px dashed #3c4a66;color:#6b7a95;box-shadow:none}
+.bookset{background:#121826;border:2px solid #2c3850;border-radius:14px;padding:8px;margin-bottom:8px}.bookset.done{border-color:#3fdc7f}.bsh{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.stkwin{display:flex;align-items:center;gap:10px;justify-content:center}.stkwin .stk{width:84px;animation:pop .4s ease-out}
+.cabgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}.cab{background:#121826;border:2px solid #2c3850;border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:3px;text-align:center}.cab .ci{font-size:30px;filter:grayscale(1);opacity:.5}.cab.on{border-color:#ffd34a;background:linear-gradient(#2a2410,#151208)}.cab.on .ci{filter:drop-shadow(0 0 6px #ffd34a);opacity:1}.cab small{font-size:.75em;color:#cfd8e8}.cab small.ok{color:#8ff0b0}
+.rivbub{position:absolute;left:10px;right:10px;bottom:calc(var(--safe-b) + 96px);z-index:70;display:flex;gap:10px;align-items:flex-start;background:#f7f1ff;color:#24123f;border:4px solid #8a4aff;border-radius:18px;padding:10px 12px;box-shadow:0 8px 0 #0006;transform:translateY(160%);opacity:0;transition:transform .35s cubic-bezier(.2,1.4,.5,1),opacity .2s;pointer-events:none;max-width:520px;margin:0 auto}
+.rivbub.show{transform:none;opacity:1;pointer-events:auto;cursor:pointer}.rivbub p{margin:0;flex:1;line-height:1.3}.rivbub p small{color:#7a5fd0}.rivav{font-size:40px;line-height:1;background:#8a4aff;border-radius:50%;width:54px;height:54px;flex:none;display:flex;align-items:center;justify-content:center;border:3px solid #24123f}.rivbub.story{border-color:#ffd34a}.rivx{position:absolute;right:12px;top:4px;color:#8a7aa8;font-size:.65em}
+.carprev{display:flex;justify-content:center;background:repeating-linear-gradient(90deg,#3a3f4a 0 30px,#343944 30px 60px);border-radius:14px;padding:8px}.carprev .carsvg{width:96px;height:125px}
+.sws{display:flex;flex-wrap:wrap;gap:6px}.sw{position:relative;width:46px;height:46px;border-radius:12px;border:3px solid #0b0f18;background:var(--c);padding:0}.sw.sel{outline:4px solid #ffd34a;outline-offset:1px}.sw.lock{filter:grayscale(.7) brightness(.6)}.sw em{position:absolute;inset:auto 0 -2px 0;font-style:normal;font-size:.62em;font-weight:800;background:#0b0f18cc;color:#fff;border-radius:0 0 8px 8px}
+.sks{display:flex;flex-wrap:wrap;gap:5px}.sk{width:42px;height:42px;border-radius:10px;border:2px solid #3c4a66;background:#f4f7fb;font-size:22px;padding:0}.sk.sel{outline:4px solid #ffd34a}.sk.lock{background:#1b2232;color:#6b7a95}
+#carBody h4{margin:8px 0 4px;color:#fff}
+@media (max-width:380px){.stk span{font-size:22px}.sw{width:40px;height:40px}.sk{width:38px;height:38px}.cabgrid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -510,6 +528,8 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
         <div class="shopcard" id="fShopCard"><button class="hidden-spot poster" id="fPoster" data-spot="poster" aria-label="rare poster">🖼️</button><b>🛒 Winkel</b><small>Verkoop robots en lever bestellingen.</small><button class="btn small orange" id="fShop2">Openen</button></div>
         <div class="footcard" id="fFoot"></div>
         <div class="footcard racecard" id="fRace"></div>
+        <div class="footcard dailycard" id="fDaily"></div>
+        <div class="footcard cabcard" id="fCab"></div>
       </div>
     </div>
   </div></div>
@@ -594,6 +614,11 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
     <div style="text-align:right"><button class="btn green" id="oudClose">Sluiten</button></div>
   </div>
 </div>
+<div id="ovDaily" class="overlay"><div class="ocard"><h2>📅 Dagelijkse uitdaging</h2><div class="scroll" id="dailyBody"></div><div style="text-align:right"><button class="btn green" id="dailyClose">Sluiten</button></div></div></div>
+<div id="ovBook" class="overlay"><div class="ocard"><h2>📒 Verzamelboek</h2><div class="scroll" id="bookBody"></div><div style="text-align:right"><button class="btn green" id="bookClose">Sluiten</button></div></div></div>
+<div id="ovCab" class="overlay"><div class="ocard"><h2>🏆 Bekerkast</h2><div class="scroll" id="cabBody"></div><div style="text-align:right"><button class="btn green" id="cabClose">Sluiten</button></div></div></div>
+<div id="ovCar" class="overlay"><div class="ocard"><h2>🎨 Racewagen ontwerpen</h2><div class="scroll" id="carBody"></div><div style="text-align:right"><button class="btn green" id="carClose">Klaar</button></div></div></div>
+<div id="rivBub" class="rivbub" role="status" aria-live="polite"><div class="rivav">🎩</div><p id="rivTxt"></p><small class="rivx">tik om te sluiten</small></div>
 <div id="ovStand" class="overlay"><div class="ocard"><h2 id="standTitle">📊 Stand</h2><div class="scroll" id="standBody"></div><div style="text-align:right"><button class="btn green" id="standClose">Sluiten</button></div></div></div>
 <div id="ovShop" class="overlay"><div class="ocard"><h2>🛒 Winkel</h2><div class="scroll" id="shopBody"></div><div style="text-align:right"><button class="btn green" id="shopClose">Sluiten</button></div></div></div>
 <div id="ovBuild" class="overlay"><div class="ocard"><h2>📈 Investeren</h2><div class="scroll" id="buildBody"></div><div style="text-align:right"><button class="btn green" id="buildClose">Sluiten</button></div></div></div>
@@ -647,9 +672,9 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const dayKey = () => { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); };
-function show(id) { $$('.screen').forEach(s => s.classList.toggle('show', s.id === id)); CUR_SCREEN = id; }
+function show(id) { $$('.screen').forEach(s => s.classList.toggle('show', s.id === id)); CUR_SCREEN = id; const s0 = $('#' + id); if (s0 && s0.parentElement) s0.parentElement.scrollTop = 0; if (window.scrollY) window.scrollTo(0, 0); }
 let CUR_SCREEN = 'scrTitle';
-function openOv(id) { $('#' + id).classList.add('show'); }
+function openOv(id) { const o = $('#' + id); o.classList.add('show'); if (o.parentElement) o.parentElement.scrollTop = 0; if (window.scrollY) window.scrollTo(0, 0); }
 function closeOv(id) { $('#' + id).classList.remove('show'); }
 let toastT = 0;
 function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => e.classList.remove('show'), 2200); }
@@ -726,7 +751,7 @@ const HIDDEN_AGAIN = 3;                    // na zoveel speeldagen kan er weer e
 /* Opslag (localStorage) met versienummer + migratie. Verhoog SAVE_V en voeg een stap toe in migrate() bij elke vormverandering.
    v1 = fase 1 (hallen met niveaus en sterren), v2 = de fabriek (fase A), v3 = real-time productie, moeilijkheid, financiën (fase B). */
 const LS_KEY = 'robofabriek_save';
-const SAVE_V = 6;
+const SAVE_V = 7;
 function freshMachines() { const m = {}; for (const id in MACHINES) m[id] = { owned: MACHINES[id].buy === 0, lv: 1, idle: 0, q: 2, jobs: 0, tuned: 0 }; return m; }
 function freshSave() {
   return {
@@ -767,6 +792,7 @@ function migrate(o) {
   if (o.v === 3) o.v = 4;   // v4: voetbalteam (wordt hieronder aangevuld door fbInit)
   if (o.v === 4) o.v = 5;   // v5: nieuwe hallen (Montagehal, Sorteerhal): machines worden hieronder aangevuld
   if (o.v === 5) o.v = 6;   // v6: Robo-Race (wordt hieronder aangevuld door raceInit)
+  if (o.v === 6) o.v = 7;   // v7: fase C (dagelijkse uitdaging, verzamelboek, rivaal, autolook, mijlpalen) via extraInit
   const f = freshSave();
   for (const k in f) if (!(k in o)) o[k] = f[k];
   for (const k in f.settings) if (!(k in o.settings)) o.settings[k] = f.settings[k];
@@ -776,12 +802,13 @@ function migrate(o) {
   o.v = SAVE_V;
   if (typeof fbInit === 'function') fbInit(o);
   if (typeof raceInit === 'function') raceInit(o);
+  if (typeof extraInit === 'function') extraInit(o);
   return o;
 }
 let S = freshSave();
-function load() { try { const raw = localStorage.getItem(LS_KEY); S = raw ? migrate(JSON.parse(raw)) : freshSave(); } catch (e) { S = freshSave(); } }
+function load() { try { const raw = localStorage.getItem(LS_KEY); S = raw ? migrate(JSON.parse(raw)) : freshSave(); if (typeof extraInit === 'function') extraInit(S); } catch (e) { S = freshSave(); } }
 function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) { } }
-function resetSave() { const keep = S.settings; S = freshSave(); S.settings = keep; save(); }
+function resetSave() { const keep = S.settings; S = freshSave(); S.settings = keep; if (typeof extraInit === 'function') extraInit(S); save(); }
 function hallState(h) { if (!S.halls[h]) S.halls[h] = { lv: {}, open: h === 1 ? 1 : 0 }; return S.halls[h]; }
 function stat(type) { if (!S.stats[type]) S.stats[type] = { ok: 0, bad: 0, hints: 0 }; return S.stats[type]; }
 
@@ -1121,17 +1148,17 @@ const DIVS = [
 const MATCHES_PER_DIV = 3, PROMOTE_PTS = 4;      // 3 wedstrijden, 4 punten (winst 3, gelijk 1) = promotie
 // extra teams in elke competitie (alleen in de stand; hun wedstrijden worden gesimuleerd). str = sterkte 0-1
 const LEAGUE_EXTRA = [
-  [{ id: 'dozen', name: 'De Dozenschuivers', icon: '🧃', str: .35 }, { id: 'bliksem', name: 'Blikkie Bliksem', icon: '🥫', str: .45 }],
-  [{ id: 'roltrap', name: 'FC Roltrap', icon: '🛴', str: .5 }, { id: 'stofzuig', name: 'Stofzuigers United', icon: '🧹', str: .55 }],
-  [{ id: 'kraan', name: 'Kraanwagen Kickers', icon: '🏗️', str: .6 }, { id: 'tandwiel', name: 'Tandwiel Twente', icon: '⚙️', str: .62 }],
-  [{ id: 'quantum', name: 'Quantum Kluns', icon: '🌀', str: .7 }, { id: 'laser', name: 'Laserlama’s', icon: '🦙', str: .72 }]
+  [{ id: 'dozen', name: 'De Dozenschuivers', icon: '🧃', str: .35 }, { id: 'bliksem', name: 'Blikfabriek NV', icon: '🎩', str: .45 }],
+  [{ id: 'roltrap', name: 'FC Roltrap', icon: '🛴', str: .5 }, { id: 'stofzuig', name: 'Blikfabriek NV', icon: '🎩', str: .55 }],
+  [{ id: 'kraan', name: 'Kraanwagen Kickers', icon: '🏗️', str: .6 }, { id: 'tandwiel', name: 'Blikfabriek NV', icon: '🎩', str: .62 }],
+  [{ id: 'quantum', name: 'Quantum Kluns', icon: '🌀', str: .7 }, { id: 'laser', name: 'Blikfabriek NV', icon: '🎩', str: .72 }]
 ];
 const RIVALS = {
   kartonco: { name: 'Kartonco', icon: '📦', col: ['#d9b07a', '#9a6a35'], boss: 'Meneer Plakband', st: { snel: 0, slim: 0, sterk: 0, verd: 0, stevig: 0 }, keeper: ['L', 'R'],
     lines: ['Onze robots zijn van 100% gerecycled karton!', 'Niet duwen! Dan scheur ik!', 'Wie heeft mijn plakband gezien?'] },
   turbotech: { name: 'TurboTech', icon: '🏎️', col: ['#7ce3ff', '#1f7fb0'], boss: 'Juffrouw Vroem', st: { snel: 4, slim: 2, sterk: 1, verd: 1, stevig: 1 }, keeper: ['L', 'L', 'R'],
     lines: ['Snelheid is alles! …Waar is de bal?', 'Vroem vroem! Oeps, verkeerde goal.', 'Wij remmen voor niemand. Ook niet voor muren.'] },
-  megametaal: { name: 'MegaMetaal', icon: '🏋️', col: ['#c9ced8', '#5a6372'], boss: 'Baron Bout', st: { snel: 2, slim: 3, sterk: 4, verd: 4, stevig: 4 }, keeper: ['R', 'L', 'L', 'R'],
+  megametaal: { name: 'MegaMetaal', icon: '🏋️', col: ['#c9ced8', '#5a6372'], boss: 'Generaal Gewicht', st: { snel: 2, slim: 3, sterk: 4, verd: 4, stevig: 4 }, keeper: ['R', 'L', 'L', 'R'],
     lines: ['Wij wegen 300 kilo. Per teen.', 'Jullie duwen? Schattig!', 'Mijn robots ontbijten met moeren.'] },
   robox: { name: 'Robo-X', icon: '🤖', col: ['#ff6bd1', '#7a1f8a'], boss: 'Dr. Byte', st: { snel: 4, slim: 4, sterk: 3, verd: 3, stevig: 4 }, keeper: ['L', 'R', 'R', 'L', 'R'],
     lines: ['Berekening: kans op jullie winst is 0,0001%.', 'Mijn robots hebben nog nooit gelachen. Probeer maar.', 'Patronen? Ik ben een patroon.'] }
@@ -1176,10 +1203,10 @@ const RACE_DIVS = [
   { name: 'Robo-X Grand Prix', icon: '🏆', base: 1.06, maxLv: 5, fuel: 75, prize: [210, 120, 60, 24], len: 2900, unit: [['AABB', 'ABC'], ['ABCD', 'AABC']] }
 ];
 const RACE_DRIVERS = [
-  [{ id: 'doos', name: 'Doos-Dirk', icon: '📦', col: '#c9a26b', spd: .92, skill: .3 }, { id: 'plak', name: 'Plakband Pien', icon: '🎞️', col: '#e8d36a', spd: .96, skill: .4 }, { id: 'krak', name: 'Krakkemik', icon: '🪫', col: '#9aa4b2', spd: .88, skill: .25 }],
-  [{ id: 'flits', name: 'Flits Turbo', icon: '⚡', col: '#ffd34a', spd: 1, skill: .5 }, { id: 'vonk', name: 'Vonkie', icon: '✨', col: '#ff8a3a', spd: .97, skill: .45 }, { id: 'doos', name: 'Doos-Dirk', icon: '📦', col: '#c9a26b', spd: .93, skill: .35 }],
-  [{ id: 'bout', name: 'Bout Bonkie', icon: '🔩', col: '#8fa3bf', spd: 1.02, skill: .6 }, { id: 'staal', name: 'Staal-Stan', icon: '🛡️', col: '#6b7f99', spd: 1, skill: .55 }, { id: 'flits', name: 'Flits Turbo', icon: '⚡', col: '#ffd34a', spd: .98, skill: .5 }],
-  [{ id: 'rx', name: 'Robo-X 9000', icon: '🤖', col: '#d94a6a', spd: 1.04, skill: .7 }, { id: 'bout', name: 'Bout Bonkie', icon: '🔩', col: '#8fa3bf', spd: 1.02, skill: .6 }, { id: 'staal', name: 'Staal-Stan', icon: '🛡️', col: '#6b7f99', spd: 1, skill: .6 }]
+  [{ id: 'doos', name: 'Doos-Dirk', icon: '📦', col: '#c9a26b', spd: .92, skill: .3 }, { id: 'plak', name: 'Baron Bout', icon: '🎩', col: '#b07cff', spd: .96, skill: .4 }, { id: 'krak', name: 'Krakkemik', icon: '🪫', col: '#9aa4b2', spd: .88, skill: .25 }],
+  [{ id: 'flits', name: 'Baron Bout', icon: '🎩', col: '#b07cff', spd: 1, skill: .5 }, { id: 'vonk', name: 'Vonkie', icon: '✨', col: '#ff8a3a', spd: .97, skill: .45 }, { id: 'doos', name: 'Doos-Dirk', icon: '📦', col: '#c9a26b', spd: .93, skill: .35 }],
+  [{ id: 'bout', name: 'Baron Bout', icon: '🎩', col: '#b07cff', spd: 1.02, skill: .6 }, { id: 'staal', name: 'Staal-Stan', icon: '🛡️', col: '#6b7f99', spd: 1, skill: .55 }, { id: 'flits', name: 'Flits Turbo', icon: '⚡', col: '#ffd34a', spd: .98, skill: .5 }],
+  [{ id: 'rx', name: 'Robo-X 9000', icon: '🤖', col: '#d94a6a', spd: 1.04, skill: .7 }, { id: 'bout', name: 'Baron Bout', icon: '🎩', col: '#b07cff', spd: 1.02, skill: .6 }, { id: 'staal', name: 'Staal-Stan', icon: '🛡️', col: '#6b7f99', spd: 1, skill: .6 }]
 ];
 const RACE_POINTS = [10, 6, 4, 2];
 const RACE_SEASON = 5;                  // races per seizoen; top 2 promoveert
@@ -1194,6 +1221,64 @@ const RACE_ITEMS = {
   raket: { icon: '🚀', name: 'Mini-raket', tip: 'vliegt naar de auto vóór je.' },
   emp: { icon: '🧲', name: 'EMP-magneet', tip: 'laat auto\'s vlak vóór je even haperen.' }
 };
+
+/* ===== data/extra.js ===== */
+/* Fase C: data voor dagelijkse uitdaging, verzamelboek, rivaal, racewagen-ontwerp en mijlpalen. */
+// Verzamelboek: 4 sets van 5. r = zeldzaamheid (1 gewoon, 2 zeldzaam, 3 superzeldzaam)
+const STICKER_SETS = [
+  { id: 'retro', name: 'Retro-robots', icon: '📺', bonus: 120, unlock: 'paint:koper', items: [['r1', 'Stoomrobot', '🚂', 1], ['r2', 'Blikken Bert', '🥫', 1], ['r3', 'Wekkerkop', '⏰', 1], ['r4', 'Opa’s eerste robot', '👴', 2], ['r5', 'Gouden Ponsband', '🎞️', 3]] },
+  { id: 'race', name: 'Racestickers', icon: '🏁', bonus: 150, unlock: 'spoiler:2', items: [['s1', 'Bliksemschicht', '⚡', 1], ['s2', 'Vlammen', '🔥', 1], ['s3', 'Geblokte vlag', '🏁', 1], ['s4', 'Turbo-raket', '🚀', 2], ['s5', 'Gouden Stuur', '🛞', 3]] },
+  { id: 'bout', name: 'Gouden bouten', icon: '🔩', bonus: 150, unlock: 'paint:goud', items: [['b1', 'Roestige moer', '🔩', 1], ['b2', 'Tandwiel', '⚙️', 1], ['b3', 'Magneet', '🧲', 1], ['b4', 'Diamanten schroef', '💎', 2], ['b5', 'Gouden Bout', '🏅', 3]] },
+  { id: 'baron', name: 'Geheimen van de Baron', icon: '🎩', bonus: 200, unlock: 'paint:baron', items: [['g1', 'Hoge hoed', '🎩', 1], ['g2', 'Monocle', '🧐', 2], ['g3', 'Snorkam', '🪮', 2], ['g4', 'Badeendje', '🦆', 2], ['g5', 'Geheim dagboek', '📔', 3]] }
+];
+const STICKERS = {}; STICKER_SETS.forEach(s => s.items.forEach(([id, name, icon, r]) => STICKERS[id] = { id, name, icon, r, set: s.id }));
+const DUP_COINS = 10;                      // dubbele sticker = een paar muntjes
+// Dagelijkse uitdaging
+const DAILY = { puzzles: 5, base: { p: 30, r: 20 }, perStreak: .1, maxStreakBonus: 5, maxFreeze: 2 };
+// Rivaal: Baron Bout van Blikfabriek NV
+const RIVAL = { name: 'Baron Bout', firm: 'Blikfabriek NV', icon: '🎩', col: '#b07cff',
+  boast: ['Mijn fabriek is zo groot, de wc heeft een eigen postcode!', 'Ik poets mijn robots met kaviaar. Elke ochtend.', 'Jouw fabriek? Schattig. Mijn kapstok is groter.', 'Mijn robots kunnen al tot tien tellen. Soms tot elf!', 'Ik heb een gouden schroevendraaier. Hij werkt niet, maar hij glimt.', 'Wist je dat ik ooit een patroon heb gezien? Heel indrukwekkend.', 'Mijn racewagen heeft zeven spiegels. Om mezelf te bewonderen.'],
+  lose: ['Hmpf! Mijn monocle was beslagen.', 'Dat telt niet, ik zat te niezen!', 'Gelukje. Puur gelukje. Ik ga mijn snor kammen.', 'WAT?! Butler! Breng me een troostkoekje!'],
+  win: ['Hahaa! Blikfabriek wint altijd! …Bijna altijd.', 'Zag je dat? Pure klasse, mijn beste.', 'Volgende keer mag je mijn uitlaat zien. Van dichtbij!'],
+  story: [
+    'Ahem! Ik ben <b>Baron Bout</b> van <b>Blikfabriek NV</b>. Mijn fabriek is de beste. Die van jou… bestaat. Ik zie je op de baan en in de competitie!',
+    'Je hebt me verslagen?! Dat was mijn opwarmrondje. Ik ga een nieuwe hoed kopen. Een hógere.',
+    'Alwéér?! Mijn butler zegt dat ik moet oefenen. Ik heb mijn butler ontslagen. En weer aangenomen. Hij maakt lekkere thee.',
+    'Oké, oké. Je bent… niet slecht. Maar mijn robots hebben glitter! Hebben die van jou glitter? Dacht ik al.',
+    'Ik heb je geheim ontdekt: jij kijkt naar het PATROON. Slim! Ik keek altijd naar mijn spiegelbeeld…',
+    'Goed dan. Ik geef het toe. Jij bent een echte fabrieksbaas. Mag ik… mag ik een rondleiding? Ik neem koekjes mee!',
+    'Vrienden? Rivalen-vrienden! Ik blijf je uitdagen hoor. Maar nu met koekjes. 🍪'
+  ] };
+const RIVAL_RACE_ID = ['plak', 'flits', 'bout', 'bout'];   // welke coureur de Baron is per race-divisie
+const RIVAL_FB_ID = ['bliksem', 'stofzuig', 'tandwiel', 'laser'];   // zijn voetbalteam per competitie
+// Racewagen ontwerpen
+const CAR_PAINTS = [
+  { id: 'blauw', name: 'Turboblauw', col: '#38d6ff', cost: 0 }, { id: 'rood', name: 'Raketrood', col: '#ff5a4a', cost: 0 }, { id: 'groen', name: 'Gifgroen', col: '#5ee36a', cost: 0 }, { id: 'geel', name: 'Taxigeel', col: '#ffd34a', cost: 0 },
+  { id: 'paars', name: 'Prinsespaars', col: '#b07cff', cost: 40 }, { id: 'roze', name: 'Kauwgomroze', col: '#ff8ad8', cost: 40 }, { id: 'zwart', name: 'Nachtzwart', col: '#3a3f4a', cost: 60 },
+  { id: 'koper', name: 'Retro-koper', col: '#d98a4a', cost: null }, { id: 'goud', name: 'Puur goud', col: '#ffcf33', cost: null, shine: true }, { id: 'baron', name: 'Baron-paars met glitter', col: '#8a4aff', cost: null, shine: true }
+];
+const CAR_SPOILERS = [{ name: 'Geen', cost: 0 }, { name: 'Klein', cost: 50 }, { name: 'Mega', cost: null }];
+const CAR_STRIPES = [{ name: 'Geen' }, { name: 'Racestreep' }, { name: 'Dubbel' }];
+// Mijlpalen: f(st) → voortgang 0..1 (gehaald bij 1). coins = beloning
+const ACHIEVEMENTS = [
+  { id: 'puz10', icon: '🧩', name: 'Puzzelaar', desc: 'Los 10 puzzels op.', coins: 20, f: st => st.extra.puz / 10 },
+  { id: 'puz100', icon: '🧠', name: 'Patroonbaas', desc: 'Los 100 puzzels op.', coins: 50, f: st => st.extra.puz / 100 },
+  { id: 'puz500', icon: '🎓', name: 'Professor Patroon', desc: 'Los 500 puzzels op.', coins: 120, f: st => st.extra.puz / 500 },
+  { id: 'sold100', icon: '🤖', name: 'Robotverkoper', desc: 'Verkoop 100 robots.', coins: 30, f: st => st.soldTotal / 100 },
+  { id: 'sold1000', icon: '🏭', name: 'Robotfabrikant', desc: 'Verkoop 1000 robots.', coins: 100, f: st => st.soldTotal / 1000 },
+  { id: 'streak3', icon: '📅', name: '3 dagen op rij', desc: 'Doe 3 dagen op rij de dagelijkse uitdaging.', coins: 30, f: st => st.extra.daily.best / 3 },
+  { id: 'streak7', icon: '🔥', name: 'Weekkampioen', desc: 'Doe 7 dagen op rij de dagelijkse uitdaging.', coins: 60, f: st => st.extra.daily.best / 7 },
+  { id: 'book10', icon: '📒', name: 'Verzamelaar', desc: 'Verzamel 10 verschillende stickers.', coins: 30, f: st => Object.keys(st.extra.book).length / 10 },
+  { id: 'set1', icon: '🗂️', name: 'Set compleet', desc: 'Maak een sticker-set compleet.', coins: 0, f: st => st.extra.sets.length ? 1 : 0 },
+  { id: 'racewin', icon: '🥇', name: 'Eerste racewinst', desc: 'Win een race.', coins: 20, f: st => (st.race && st.race.history || []).some(h => h.pos === 1) ? 1 : 0 },
+  { id: 'racepromo', icon: '⬆️', name: 'Racepromotie', desc: 'Promoveer in de race-competitie.', coins: 40, f: st => st.race ? st.race.div / 1 : 0 },
+  { id: 'racetitle', icon: '🏆', name: 'Racekampioen', desc: 'Word kampioen van de Robo-X Grand Prix.', coins: 150, f: st => st.race && st.race.titles ? 1 : 0 },
+  { id: 'fbpromo', icon: '⚽', name: 'Voetbalpromotie', desc: 'Promoveer met je voetbalteam.', coins: 40, f: st => st.football && st.football.div ? 1 : 0 },
+  { id: 'fbtitle', icon: '🏆', name: 'Voetbalkampioen', desc: 'Win de Robo-Bokaal.', coins: 150, f: st => st.football && st.football.titles ? 1 : 0 },
+  { id: 'rival3', icon: '🎩', name: 'Baron-temmer', desc: 'Versla Baron Bout 3 keer.', coins: 40, f: st => st.extra.rival.wins / 3 },
+  { id: 'rivalend', icon: '🍪', name: 'Rivalen-vrienden', desc: 'Speel het hele verhaal met de Baron uit.', coins: 80, f: st => st.extra.rival.ch / (RIVAL.story.length - 1) },
+  { id: 'cardesign', icon: '🎨', name: 'Autodesigner', desc: 'Geef je racewagen een eigen look.', coins: 15, f: st => st.race && st.race.look && st.race.look.custom ? 1 : 0 }
+];
 
 /* ===== game/gen.js ===== */
 /* Puzzelmaker. Elke puzzel: { t, seq, blanks, answer, choices, unit, ... }. Alles is puur (geen DOM), zodat het getest kan worden.
@@ -1900,6 +1985,8 @@ function applyMatch(st, res, mode) {
   out.pts = f.divRes.reduce((a, b) => a + b, 0); leagueRound(st, res.score);
   if (f.divRes.length >= MATCHES_PER_DIV || out.pts >= PROMOTE_PTS + 2) {
     if (out.pts >= PROMOTE_PTS) { if (f.div < DIVS.length - 1) { f.div++; out.promoted = true; } else { f.titles++; out.champion = true; } } else out.stay = true;
+    const tb = leagueTable(st), me = tb.findIndex(t => t.me), bar = tb.findIndex(t => t.id === RIVAL_FB_ID[DIVS.indexOf(D)]);
+    if (typeof rivalResult === 'function' && bar >= 0) { out.rival = me < bar ? 'won' : 'lost'; rivalResult(st, me < bar, dayKey()); }
     f.divRes = []; f.lastLeague = f.league; f.league = newLeague(f.div);
   }
   return out;
@@ -2284,6 +2371,106 @@ function raceBot(M, skill = 0) {
 }
 function raceSimFull(opt, skill) { const M = raceNew(opt); let n = 0; while (!M.done && n++ < 20000) { raceBot(M, skill); raceStep(M, .05); } return M; }
 
+/* ===== game/extra.js ===== */
+/* Fase C: pure logica (geen DOM) voor dagelijkse uitdaging, verzamelboek, rivaal, racewagen-look en mijlpalen. */
+function extraInit(st) {
+  const x = st.extra = st.extra || {};
+  const d = { puz: 0, daily: { key: null, last: null, streak: 0, best: 0, freeze: 1, done: {}, total: 0 }, book: {}, sets: [], unlocks: [], rival: { ch: 0, wins: 0, losses: 0, q: [], lastMsg: null, met: false }, ach: {}, cab: [] };
+  for (const k in d) if (!(k in x)) x[k] = d[k];
+  for (const k in d.daily) if (!(k in x.daily)) x.daily[k] = d.daily[k];
+  for (const k in d.rival) if (!(k in x.rival)) x.rival[k] = d.rival[k];
+  return x;
+}
+const capAdd = (st, n) => { st.coins = Math.min(typeof kluisCap === 'function' ? kluisCap(st) : 1e9, st.coins + n); st.today && st.today.fin && (st.today.fin.other += n); };
+// ---------- datum-helpers (sleutels 'J-M-D' zoals dayKey) ----------
+const keyDate = k => { const [y, m, d] = k.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+const dayDiff = (a, b) => Math.round((keyDate(b) - keyDate(a)) / 864e5);
+function hashStr(s) { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+const dailySeed = key => hashStr('robofabriek:' + key);
+// ---------- dagelijkse uitdaging ----------
+function dailyState(st, key) { const D = extraInit(st).daily; if (D.key !== key) { D.key = key; D.done = {}; } return D; }
+const dailyMult = st => 1 + DAILY.perStreak * Math.min(st.extra.daily.streak, DAILY.maxStreakBonus);
+// reeks bijwerken bij de eerste voltooiing van een dag. Geeft { streak, freezeUsed, reset, prevBest }
+function dailyStreak(st, key) {
+  const D = st.extra.daily, out = { prev: D.streak };
+  if (D.last === key) return out;
+  const gap = D.last ? dayDiff(D.last, key) : 99;
+  if (gap === 1) D.streak++;
+  else if (gap === 2 && D.freeze > 0) { D.freeze--; D.streak++; out.freezeUsed = true; }
+  else { out.reset = D.streak > 1; out.prevBest = D.best; D.streak = 1; }
+  D.last = key; D.best = Math.max(D.best, D.streak); D.total++;
+  if (D.streak % 7 === 0 && D.freeze < DAILY.maxFreeze) { D.freeze++; out.freezeGot = true; }
+  out.streak = D.streak; return out;
+}
+// part: 'p' (puzzel) of 'r' (race). info: { stars (1-3) } of { pos (1-4) }
+function dailyClaim(st, part, key, info = {}, rng = RNG) {
+  const D = dailyState(st, key); if (D.done[part]) return null;
+  const first = !Object.keys(D.done).length; D.done[part] = true;
+  const s = first ? dailyStreak(st, key) : { streak: D.streak };
+  const q = part === 'p' ? (info.stars || 2) / 3 : [1, .8, .6, .5][(info.pos || 4) - 1];
+  const coins = Math.round(DAILY.base[part] * q * dailyMult(st));
+  capAdd(st, coins);
+  const stk = part === 'p' || (info.pos || 4) <= 2 ? bookRoll(st, 'daily', rng) : null;
+  return Object.assign({ coins, stk, mult: dailyMult(st), both: !!(D.done.p && D.done.r) }, s);
+}
+// ---------- verzamelboek ----------
+// bron bepaalt kans op zeldzaam; niet-bezitten krijgt voorrang (zo blijft het spannend maar haalbaar)
+function bookRoll(st, src, rng = RNG) {
+  const x = extraInit(st), ids = Object.keys(STICKERS), rare = { daily: [1, .9, .35], hidden: [1, .8, .4], race: [1, .5, .12], shortcut: [1, 1, .6] }[src] || [1, .5, .1];
+  const w = ids.map(id => rare[STICKERS[id].r - 1] * (x.book[id] ? .35 : 1)), tot = w.reduce((a, b) => a + b, 0);
+  let r = rng() * tot, id = ids[0]; for (let i = 0; i < ids.length; i++) { r -= w[i]; if (r <= 0) { id = ids[i]; break; } }
+  return bookAdd(st, id);
+}
+function bookAdd(st, id) {
+  const x = extraInit(st), dup = !!x.book[id]; x.book[id] = (x.book[id] || 0) + 1;
+  const out = { id, dup, coins: 0, set: null };
+  if (dup) { out.coins = DUP_COINS; capAdd(st, DUP_COINS); return out; }
+  const S2 = STICKER_SETS.find(s => s.id === STICKERS[id].set);
+  if (!x.sets.includes(S2.id) && S2.items.every(([i]) => x.book[i])) { x.sets.push(S2.id); x.unlocks.push(S2.unlock); capAdd(st, S2.bonus); out.set = S2; out.coins = S2.bonus; }
+  return out;
+}
+const bookCount = st => Object.keys(extraInit(st).book).length;
+const hasUnlock = (st, u) => extraInit(st).unlocks.includes(u);
+// ---------- rivaal ----------
+function rivalSay(st, text, kind = 'boast') { const R = extraInit(st).rival; R.q.push({ text, kind }); R.q = R.q.slice(-3); }
+// dagelijks hooguit één opschepperij, en zijn eerste kennismaking zodra er een competitie is
+function rivalDaily(st, key, rng = RNG) {
+  const R = extraInit(st).rival;
+  if (!R.met && ((st.race && st.race.seen) || (st.football && st.football.seen))) { R.met = true; R.lastMsg = key; rivalSay(st, RIVAL.story[0], 'story'); return true; }
+  if (R.met && R.lastMsg !== key && rng() < .6) { R.lastMsg = key; rivalSay(st, RIVAL.boast[Math.floor(rng() * RIVAL.boast.length)]); return true; }
+  return false;
+}
+// uitslag tegen de Baron: won = speler eindigde vóór hem. Verhaal gaat een hoofdstuk verder bij winst (max 1 per dag)
+function rivalResult(st, won, key, rng = RNG) {
+  const R = extraInit(st).rival; R.met = true;
+  if (!won) { R.losses++; if (rng() < .5) rivalSay(st, RIVAL.win[Math.floor(rng() * RIVAL.win.length)], 'win'); return null; }
+  R.wins++;
+  if (R.ch < RIVAL.story.length - 1 && R.storyDay !== key) { R.ch++; R.storyDay = key; rivalSay(st, RIVAL.story[R.ch], 'story'); if (R.ch === 3 || R.ch === RIVAL.story.length - 1) bookAdd(st, R.ch === 3 ? 'g1' : 'g5'); return R.ch; }
+  rivalSay(st, RIVAL.lose[Math.floor(rng() * RIVAL.lose.length)], 'lose'); return null;
+}
+const rivalRaceId = div => RIVAL_RACE_ID[div];
+// ---------- racewagen-look ----------
+function carLook(st) { const R = st.race; R.look = R.look || { paint: 'blauw', spoiler: 0, stripe: 0, stk: null, owned: ['blauw', 'rood', 'groen', 'geel'], sp: [0], custom: false }; return R.look; }
+const carCol = st => (CAR_PAINTS.find(p => p.id === carLook(st).paint) || CAR_PAINTS[0]).col;
+function paintAvail(st, p) { const L = carLook(st); return L.owned.includes(p.id) ? 'own' : p.cost == null ? (hasUnlock(st, 'paint:' + p.id) ? 'own' : 'lock') : 'buy'; }
+function spoilerAvail(st, i) { const L = carLook(st); return L.sp.includes(i) ? 'own' : CAR_SPOILERS[i].cost == null ? (hasUnlock(st, 'spoiler:' + i) ? 'own' : 'lock') : 'buy'; }
+// k: 'paint' | 'spoiler' | 'stripe' | 'stk'. Koopt indien nodig. Geeft true/false/'lock'/'geld'
+function carSet(st, k, v) {
+  const L = carLook(st);
+  if (k === 'paint') { const p = CAR_PAINTS.find(p => p.id === v), a = paintAvail(st, p); if (a === 'lock') return 'lock'; if (a === 'buy') { if (st.coins < p.cost) return 'geld'; st.coins -= p.cost; st.today && st.today.fin && (st.today.fin.invest += p.cost); L.owned.push(v); } L.paint = v; }
+  else if (k === 'spoiler') { const a = spoilerAvail(st, v); if (a === 'lock') return 'lock'; if (a === 'buy') { const c = CAR_SPOILERS[v].cost; if (st.coins < c) return 'geld'; st.coins -= c; st.today && st.today.fin && (st.today.fin.invest += c); L.sp.push(v); } L.spoiler = v; }
+  else if (k === 'stripe') L.stripe = clamp(v, 0, CAR_STRIPES.length - 1);
+  else if (k === 'stk') { if (v && !extraInit(st).book[v]) return 'lock'; L.stk = v || null; }
+  L.custom = true; return true;
+}
+// ---------- mijlpalen ----------
+function achCheck(st) {
+  const x = extraInit(st), got = [];
+  for (const a of ACHIEVEMENTS) { if (x.ach[a.id]) continue; let p = 0; try { p = a.f(st); } catch (e) { } if (p >= 1) { x.ach[a.id] = st.day || 1; if (a.coins) st.coins = Math.min(typeof kluisCap === 'function' ? kluisCap(st) : 1e9, st.coins + a.coins); got.push(a); } }
+  return got;
+}
+const achProgress = (st, a) => { try { return clamp(a.f(st), 0, 1); } catch (e) { return 0; } };
+
 /* ===== game/play.js ===== */
 /* Het puzzelscherm: speelt een reeks puzzels (niveau, instaptoets of samen-spel). Geen tijdsdruk, geen levens. */
 let RUN = null;   // de lopende reeks
@@ -2307,6 +2494,7 @@ function runTitle() {
   if (RUN.mode === 'job') { const d = MACHINES[RUN.mid]; return `${d.icon} ${d.name} · niveau ${S.machines[RUN.mid].lv}`; }
   if (RUN.mode === 'smeer') return `🔧 Smeerbeurt: ${MACHINES[RUN.mid].room}`;
   if (RUN.mode === 'hidden') return `✨ Geheime puzzel: ${HIDDEN[RUN.spot].name}`;
+  if (RUN.mode === 'daily') return `📅 Puzzel van de dag · ${RUN.i + 1}/${RUN.total}`;
   return '';
 }
 function playerName(k) { return (S.names[k] || '').trim() || ('Speler ' + (k + 1)); }
@@ -2317,6 +2505,7 @@ function nextPuzzle() {
   if (RUN.mode === 'placement') { const c = PLACEMENT[RUN.i]; p = genPuzzle(c.lv, c.d, c.kind); }
   else if (RUN.mode === 'lezer') p = genPuzzle({ t: RUN.i % 3 === 2 ? 'mid' : 'next', st: [['AB', 'ABB'], ['ABB', 'AAB', 'ABC'], ['ABC', 'AABB']] }, RUN.d, RUN.kind);
   else if (RUN.mode === 'maker') p = null;
+  else if (RUN.mode === 'daily') p = dailyPuzzle(RUN);
   else if (RUN.mode === 'job' && RUN.combi) p = RUN.mid === 'test' ? genPuzzle(pick(TEST_EXPERT[RUN.combi]), 2, 'klank') : genCombi(RUN.combi, RUN.mid === 'mag' ? 'aantal' : null);
   else if (RUN.mode === 'job' || RUN.mode.startsWith('fb')) { const [src, x] = pick(RUN.pool); p = src === 'g' ? genPuzzle({ t: x }, RUN.d, 'vorm') : genPuzzle(HALLS[src === 'h1' ? 0 : 1].levels[x], RUN.d, src === 'h1' ? 'vorm' : 'klank'); }
   else if (RUN.mode === 'smeer') p = genPuzzle({ t: 'odd', st: [['AB'], ['AB', 'ABB'], ['ABC']] }, 0, RUN.kind);
@@ -2554,7 +2743,9 @@ function onAct(id) {
 }
 function finishRun() {
   hush();
+  if (!['placement', 'lezer', 'maker'].includes(RUN.mode)) extraInit(S).puz += RUN.results.length;
   if (RUN.mode === 'placement') return finishPlacement(RUN.results.filter(Boolean).length);
+  if (RUN.mode === 'daily') return finishDaily();
   if (RUN.mode === 'lezer' || RUN.mode === 'maker') return finishSamen();
   if (RUN.mode === 'smeer') return finishSmeer();
   if (RUN.mode === 'hidden') return finishHidden();
@@ -2669,7 +2860,7 @@ function goFactory() {
   if (S.dayDate !== dayKey() && Object.keys(S.today.jobs).length) { PENDING_REPORT = closeDay(S); save(); return showReport(PENDING_REPORT); }
   if (S.dayDate !== dayKey()) { S.dayDate = dayKey(); save(); }
   if (!S.orders.length) { S.orders = makeOrders(S); save(); }
-  show('scrFactory'); musicFor('scrFactory'); renderFactory();
+  show('scrFactory'); musicFor('scrFactory'); renderFactory(); extraTick('factory');
 }
 function machineDone(id) { return S.machines[id].owned; }
 const fmt1 = x => (Math.round(x * 10) / 10).toString().replace('.', ',');
@@ -2711,7 +2902,7 @@ function renderFactory() {
   $('#fRace').innerHTML = !ru ? `<b>🏁 Robo-Race</b><small>Bouw eerst een nieuwe hal (de <b>Montagehal</b>), dan komt er een racebaan achter de fabriek!</small>`
     : `<b>🏁 Racebaan · ${RACE_DIVS[R.div].icon} ${RACE_DIVS[R.div].name}</b><small>Race ${R.season.n + 1} van ${RACE_SEASON}${R.dmg ? ` · 🔧 schade ${R.dmg}%` : ''} · ⛽ 🪙 ${raceFuel(S)} per race</small><button class="btn orange small" id="fGoRace">🏁 Naar de garage</button>`;
   $('#fPoster').classList.toggle('ready', hiddenReady(S, 'poster'));
-  advise();
+  renderExtraCards(); advise();
 }
 const itemName = k => (Object.values(HIDDEN).find(h => h.item === k) || { itemName: k }).itemName;
 function advise(force) {
@@ -2800,9 +2991,9 @@ function hiddenClick(spot) {
 }
 function finishHidden() {
   const spot = RUN.spot, ok = RUN.results[0] !== undefined;
-  const r = hiddenFound(S, spot); save();
+  const r = hiddenFound(S, spot), stk = bookRoll(S, 'hidden'); save();
   showResult({ title: 'Geheime puzzel opgelost!', stars: 0, art: robotSVG({ armUp: true, body: ['#ffe58a', '#f5a524'] }),
-    reward: `<p class="big">🎁 <b>${r.item}</b></p><p>Bewaar het goed: dit onderdeel helpt straks bij het <b>robotvoetbal</b>!</p><p class="big">🪙 +<b class="count" data-to="${r.coins}">0</b></p>`, btns: [['🏭 Naar de fabriek', 'green', () => goFactory()]] });
+    reward: `<p class="big">🎁 <b>${r.item}</b></p><p>Bewaar het goed: dit onderdeel helpt straks bij het <b>robotvoetbal</b>!</p><p class="big">🪙 +<b class="count" data-to="${r.coins}">0</b></p>${stkReward(stk)}`, btns: [['🏭 Naar de fabriek', 'green', () => goFactory()]] });
   confetti(60); SFX.fanfare();
 }
 /* ---------- winkel ---------- */
@@ -3003,7 +3194,7 @@ function endTik() {
 /* Stadion, wedstrijd (canvas + touch), rust, uitslag (fase C). */
 const FB = { hold: [null, null], M: null, mode: 'solo', raf: 0, acc: 0, last: 0, inp: [{}, {}], keys: {}, view: null, sel: 0, tab: 'opst', boost: 1, ended: false };
 function goStadion() {
-  fbInit(S); S.football.seen = true; save(); show('scrStadion'); musicFor('scrStadion');
+  fbInit(S); S.football.seen = true; save(); show('scrStadion'); musicFor('scrStadion'); setTimeout(() => extraTick('stadion'), 0);
   const f = S.football, D = DIVS[f.div], R = RIVALS[D.rival];
   $('#stTitle').textContent = `⚽ ${D.name}`; $('#stKas').innerHTML = `🏦 <b>${f.kas}</b><small>/${kasCap(S)}</small>`;
   const dots = Array.from({ length: MATCHES_PER_DIV }, (_, i) => { const r = f.divRes[i]; return `<span class="${r === 3 ? 'w' : r === 1 ? 'd' : r === 0 ? 'l' : ''}">${r === 3 ? 'W' : r === 1 ? 'G' : r === 0 ? 'V' : i + 1}</span>`; }).join('');
@@ -3214,6 +3405,7 @@ function endMatch() {
   if (FB.mode !== 'versus') rw += `<p>${out.won ? `${R.boss}: “Dit… dit was niet berekend!”` : out.draw ? `${R.boss}: “Gelijk? Ik wil een herkansing!”` : `${R.boss}: “Hahaha! …Ahum. Goed gespeeld, hoor.”`}</p>`;
   rw += `<p>🏦 +🪙 ${out.prize} in de clubkas${out.won ? ' (prijzengeld)' : ' (troostprijs)'}</p>`;
   if (out.dmg.length) rw += `<p>🩹 Schade: ${out.dmg.map(([ri, n]) => `${f.robots[ri].name} (+${n})`).join(', ')}. Even naar de werkplaats!</p>`;
+  if (out.rival) rw += `<p class="rivline">${RIVAL.icon} ${out.rival === 'won' ? `Je eindigde boven <b>${RIVAL.firm}</b>! Baron Bout is woest. 😤` : `<b>${RIVAL.firm}</b> eindigde boven je. Baron Bout poetst zijn monocle…`}</p>`;
   if (out.promoted) rw += `<p>🏆 <b>PROMOTIE!</b> Op naar de ${DIVS[f.div].name}. Upgrades kunnen nu tot niveau ${DIVS[f.div].maxLv}!</p>`;
   if (out.champion) rw += `<p>👑 <b>KAMPIOEN van de Robo-Bokaal!</b> Opa huilt van trots (of is het olie?).</p>`;
   if (out.stay) rw += `<p>Net geen promotie (${out.pts} punten). Upgrade, train en probeer opnieuw!</p>`;
@@ -3436,15 +3628,19 @@ function crateSVG(open) {
 const RC = { M: null, raf: 0, last: 0, keys: {} };
 function goRace() {
   GEN++; hush(); raceInit(S); if (!S.race.seen) { S.race.seen = true; save(); }
-  show('scrRace'); musicFor('scrStadion'); renderGarage();
+  show('scrRace'); musicFor('scrStadion'); renderGarage(); setTimeout(() => extraTick('race'), 0);
 }
-function carSVG(col = RACE_COL, parts = S.race.parts, dmg = 0) {
+function carSVG(col, parts = S.race.parts, dmg = 0) {
+  const L = carLook(S); col = col || carCol(S); const P = CAR_PAINTS.find(p => p.id === L.paint) || {};
+  const stripe = L.stripe === 1 ? `<rect x="45" y="11" width="10" height="106" fill="#fff" opacity=".85"/>` : L.stripe === 2 ? `<rect x="37" y="11" width="7" height="106" fill="#fff" opacity=".85"/><rect x="56" y="11" width="7" height="106" fill="#fff" opacity=".85"/>` : '';
+  const spl = L.spoiler === 2 ? `<rect x="4" y="108" width="92" height="12" rx="4" fill="#1a1a1a" stroke="#ffd34a" stroke-width="3"/>` : L.spoiler === 1 ? `<rect x="20" y="110" width="60" height="9" rx="3" fill="#1a1a1a"/>` : '';
+  const stk = L.stk && STICKERS[L.stk] ? `<text x="50" y="104" font-size="22" text-anchor="middle">${STICKERS[L.stk].icon}</text>` : '', shine = P.shine ? `<path d="M34 14 l8 0 l-10 100 l-6 0z" fill="#fff" opacity=".35"/>` : '';
   const sp = parts.motor >= 3 ? `<path d="M14 92 h72 l-6 10 h-60z" fill="#222"/>` : '', fl = parts.banden >= 2 ? '#ffd34a' : '#444';
   return `<svg viewBox="0 0 100 130" class="carsvg"><ellipse cx="50" cy="122" rx="40" ry="6" fill="#000" opacity=".35"/>
     ${[[14, 22], [70, 22], [14, 86], [70, 86]].map(([x, y]) => `<rect x="${x}" y="${y}" width="16" height="26" rx="5" fill="#1a1a1a" stroke="${fl}" stroke-width="3"/>`).join('')}
-    <path d="M30 10 h40 q10 0 12 14 l4 80 q0 14 -14 14 h-44 q-14 0 -14 -14 l4 -80 q2 -14 12 -14z" fill="${col}" stroke="#0b0f18" stroke-width="4"/>
+    <path d="M30 10 h40 q10 0 12 14 l4 80 q0 14 -14 14 h-44 q-14 0 -14 -14 l4 -80 q2 -14 12 -14z" fill="${col}" stroke="#0b0f18" stroke-width="4"/>${stripe}${shine}
     <rect x="34" y="36" width="32" height="20" rx="6" fill="#0b0f18" opacity=".75"/><circle cx="50" cy="70" r="13" fill="#e8eef7" stroke="#0b0f18" stroke-width="3"/><circle cx="45" cy="68" r="3" fill="#38d6ff"/><circle cx="55" cy="68" r="3" fill="#38d6ff"/>
-    ${parts.auto >= 2 ? `<path d="M22 30 l-6 0 M78 30 l6 0" stroke="#8fa3bf" stroke-width="5"/>` : ''}${sp}${dmg >= 30 ? `<path d="M30 96 l10 -8 l6 6 l8 -9" stroke="#0b0f18" stroke-width="3" fill="none"/>` : ''}</svg>`;
+    ${parts.auto >= 2 ? `<path d="M22 30 l-6 0 M78 30 l6 0" stroke="#8fa3bf" stroke-width="5"/>` : ''}${sp}${spl}${stk}${dmg >= 30 ? `<path d="M30 96 l10 -8 l6 6 l8 -9" stroke="#0b0f18" stroke-width="3" fill="none"/>` : ''}</svg>`;
 }
 function renderGarage() {
   const R = raceInit(S), dv = RACE_DIVS[R.div], d = raceDiff(S), fuel = raceFuel(S);
@@ -3455,10 +3651,10 @@ function renderGarage() {
       ${c != null ? `<button class="btn small ${S.coins >= c ? 'purple' : 'white'}" data-rbuy="${id}">⬆️ 🪙 ${c}</button>` : `<span class="pill">${lv >= 5 ? 'MAX' : `🔒 max niv ${raceMaxLv(S)} in deze klasse`}</span>`}</div>`; }).join('');
   const rc = raceRepairCost(S);
   $('#rcBody').innerHTML = `
-    <div class="card rcar">${carSVG(RACE_COL, R.parts, R.dmg)}<div><b>Jouw racer</b><small>Seizoen: race ${R.season.n + 1} van ${RACE_SEASON} · top 2 promoveert</small>
+    <div class="card rcar">${carSVG(null, R.parts, R.dmg)}<div><b>Jouw racer</b><small>Seizoen: race ${R.season.n + 1} van ${RACE_SEASON} · top 2 promoveert</small>
       <div class="dmgbar"><i style="width:${R.dmg}%"></i></div><small>🔧 Schade ${R.dmg}%${R.dmg >= 30 ? ' (langzamer!)' : ''}</small>
       ${R.dmg ? `<button class="btn small orange" id="rcRepair">🔧 Repareren · 🪙 ${rc}</button>` : ''}
-      <button class="btn small white" id="rcStand">📊 Stand</button></div></div>
+      <div class="orow"><button class="btn small white" id="rcStand">📊 Stand</button><button class="btn small purple" id="rcDesign">🎨 Ontwerpen</button></div></div></div>
     <p class="coach">🧑‍🔧 <b>Coach Bout:</b> ${raceTip(S)}</p>
     <p class="small-note">❓ Kisten op de weg geven een item: ${Object.values(RACE_ITEMS).map(i => `${i.icon} ${i.name}`).join(' · ')}. Tik de grote <b>GEBRUIK</b>-knop!</p>
     <div class="card"><b>Moeilijkheid</b> <small>(prijzengeld ×${RACE_DIFF[d].pay})</small><div class="fbdiff">${RACE_DIFF.map((x, i) => `<button class="btn ${i === d ? 'green' : 'white'}" data-rdiff="${i}">${x.icon} ${x.name}</button>`).join('')}</div></div>
@@ -3483,7 +3679,14 @@ function openRaceStand(which) {
 function startRace() {
   if (!raceCanStart(S)) { SFX.nope(); toast(`Je hebt 🪙 ${raceFuel(S)} nodig voor brandstof.`); return; }
   S.coins -= raceFuel(S); S.today.fin && (S.today.fin.upkeep += raceFuel(S)); save();
-  RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = ''; RC.fx = []; RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
+  RC.daily = null; RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = ''; RC.fx = []; RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
+  show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
+}
+// race van de dag: vaste baan en vaste patronen (zaad = datum), gratis brandstof, telt niet mee voor de competitie
+function startDailyRace() {
+  closeOv('ovDaily'); raceInit(S); const key = dayKey(), seed = dailySeed(key), keep = RNG; RNG = mkRng(seed ^ 0x5bd1);
+  try { RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg, rng: mkRng(seed) }); } finally { RNG = keep; }
+  RC.daily = key; RC.gateKey = ''; RC.fx = []; RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
   show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
 }
 function sizeRace() { const c = $('#rCanvas'), dpr = Math.min(2, devicePixelRatio || 1); c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr; }
@@ -3599,12 +3802,20 @@ function drawRace(M) {
     g.restore();
     if (c.crash > 0) { g.font = `${Math.round(w * .7)}px sans-serif`; g.textAlign = 'center'; g.fillText('💫', x, y - h * .7); } };
   M.cars.filter(c => !c.me).sort((a, b) => b.d - a.d).forEach(c => { const y = Y(c.d); if (y > -60 && y < H + 60) car(c, X(c.x), y, c.dr.col); });
-  car(me, X(me.x), baseY, RACE_COL);
+  car(me, X(me.x), baseY, carCol(S));
+  { const L = carLook(S), w = W * .085, h = w * 1.5, x = X(me.x); g.save(); g.translate(x, baseY); g.rotate(me.spin > 0 ? me.spin * 9 : me.steer * .12);
+    if (L.stripe) { g.fillStyle = '#ffffffcc'; (L.stripe === 1 ? [0] : [-.17, .17]).forEach(o => g.fillRect(o * w - w * .06, -h / 2 + 3, w * .12, h - 6)); }
+    if (L.spoiler) { g.fillStyle = '#1a1a1a'; const sw = L.spoiler === 2 ? w * 1.25 : w * .8; g.fillRect(-sw / 2, h / 2 - h * .06, sw, h * .12); if (L.spoiler === 2) { g.strokeStyle = '#ffd34a'; g.lineWidth = 2; g.strokeRect(-sw / 2, h / 2 - h * .06, sw, h * .12); } }
+    if (L.stk && STICKERS[L.stk]) { g.font = `${Math.round(w * .45)}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(STICKERS[L.stk].icon, 0, h * .32); g.textBaseline = 'alphabetic'; }
+    g.restore(); }
   for (const p of RC.fx || []) { g.globalAlpha = clamp(p.t * 2, 0, 1); g.fillStyle = p.col; const s = p.sp ? W * .008 : W * .012; g.fillRect(X(p.x) - s / 2, Y(p.d) - s / 2, s, s); } g.globalAlpha = 1;
   if (M.count > 0) { g.fillStyle = '#0008'; g.fillRect(0, 0, W, H); g.font = `bold ${Math.round(W * .2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = '#ffd34a'; g.fillText(M.count > .75 ? 'Klaar?' : 'GO!', W / 2, H * .45); }
 }
 function finishRace() {
   const M = RC.M; cancelAnimationFrame(RC.raf); AUD.fast = 1;
+  const crates = M.boxes.filter(b => b.taken.me).length, stks = []; for (let i = 0; i < crates; i++) if (Math.random() < .12) stks.push(bookRoll(S, 'race')); if (M.shortcut) stks.push(bookRoll(S, 'shortcut'));
+  if (RC.daily) { const pos = M.order.indexOf('me') + 1, r = dailyClaim(S, 'r', RC.daily, { pos }); save(); RC.M = null; RC.daily = null; if (r) r.stk = r.stk || stks[0]; return showDailyResult(r, `🏁 Race van de dag (${pos}e)`, pos === 1 ? 3 : pos === 2 ? 2 : pos === 3 ? 1 : 0); }
+  const rid = rivalRaceId(S.race.div), rWon = M.order.indexOf('me') < M.order.indexOf(rid), rch = rivalResult(S, rWon, dayKey());
   const L = raceApply(S, M.order, { dmg: M.dmg, gates: M.gateRes, shortcut: M.shortcut }); S.race.items += M.itemsUsed; S.race.hits += M.aiHits; save(); RC.M = null;
   const pos = L.pos, medal = ['🥇', '🥈', '🥉', '4️⃣'][pos - 1];
   let rw = `<p class="big">${medal} <b>${pos}e plek</b></p><p>🪙 +<b class="count" data-to="${L.prize}">0</b> prijzengeld</p>`;
@@ -3612,8 +3823,10 @@ function finishRace() {
   if (L.promo === 'up') rw += `<p>🎉 <b>Promotie!</b> Je rijdt nu in de <b>${RACE_DIVS[S.race.div].name}</b>.</p>`;
   else if (L.promo === 'title') rw += `<p>🏆 <b>Kampioen</b> van de Robo-X Grand Prix!</p>`;
   else if (L.promo === 'stay') rw += `<p>Seizoen klaar: ${L.place}e plek. Nieuw seizoen, nieuwe kans!</p>`;
+  rw += `<p class="rivline">${RIVAL.icon} <b>${RIVAL.name}</b> ${rWon ? `eindigde áchter je! ${rch ? '📖 Het verhaal gaat verder…' : '“Hmpf!”'}` : 'was sneller. “Hahaa!”'}</p>`;
+  rw += stks.map(stkReward).join('');
   rw += `<p class="coach">🧑‍🔧 ${raceTip(S)}</p>`;
-  showResult({ title: pos === 1 ? 'Gewonnen!' : pos === 2 ? 'Tweede!' : 'Gefinisht!', stars: pos === 1 ? 3 : pos === 2 ? 2 : pos === 3 ? 1 : 0, art: carSVG(RACE_COL, S.race.parts, S.race.dmg), reward: rw,
+  showResult({ title: pos === 1 ? 'Gewonnen!' : pos === 2 ? 'Tweede!' : 'Gefinisht!', stars: pos === 1 ? 3 : pos === 2 ? 2 : pos === 3 ? 1 : 0, art: carSVG(null, S.race.parts, S.race.dmg), reward: rw,
     btns: [['🏁 Naar de garage', 'green', () => goRace()], ['📊 Stand', 'white', () => { goRace(); openRaceStand(L.promo ? 'last' : null); }]] });
 }
 function useItem() { if (!RC.M || RC.paused) return; const u = $('#rUse'); u.classList.add('down'); setTimeout(() => u.classList.remove('down'), 120); raceUse(RC.M, RC.M.me); for (const e of RC.M.events.splice(0)) raceEvent(e); }
@@ -3630,6 +3843,115 @@ function initRace() {
   addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrDrive') return; if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = true; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = true; if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); useItem(); } });
   addEventListener('keyup', e => { if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = false; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = false; });
   addEventListener('resize', () => { if (CUR_SCREEN === 'scrDrive') sizeRace(); });
+}
+
+/* ===== screens/extra.js ===== */
+/* Fase C schermen: dagelijkse uitdaging, verzamelboek, bekerkast/mijlpalen, rivaal-berichten, racewagen-ontwerper. */
+const stkHTML = (id, own = true) => { const s = STICKERS[id]; return `<div class="stk r${s.r} ${own ? 'own' : 'no'}" title="${own ? s.name : '???'}"><span>${own ? s.icon : '❔'}</span><small>${own ? s.name : '???'}</small></div>`; };
+// ---------- fabriekskaarten ----------
+function renderExtraCards() {
+  extraInit(S); const D = dailyState(S, dayKey()), nd = (D.done.p ? 1 : 0) + (D.done.r ? 1 : 0), tot = raceUnlocked(S) ? 2 : 1;
+  const st = D.streak && D.last && dayDiff(D.last, dayKey()) <= 1 ? D.streak : 0;
+  $('#fDaily').innerHTML = `<b>📅 Dagelijkse uitdaging</b><small>${nd >= tot ? '✅ Klaar voor vandaag! Morgen weer een nieuwe.' : `Elke dag een nieuwe puzzel${tot > 1 ? ' + race' : ''}. ${nd}/${tot} gedaan.`}</small>
+    <div class="streak">${st ? `🔥 <b>${st} ${st === 1 ? 'dag' : 'dagen op rij'}!</b>` : '🔥 Begin een reeks!'} <span class="small-note">🧊 ×${D.freeze}</span></div><button class="btn small ${nd >= tot ? 'white' : 'green'}" id="fGoDaily">📅 Uitdaging</button>`;
+  const earned = ACHIEVEMENTS.filter(a => S.extra.ach[a.id]);
+  $('#fCab').innerHTML = `<b>🏆 Bekerkast</b><div class="cabshelf" id="fCabShelf" role="button" aria-label="Bekerkast openen">${ACHIEVEMENTS.map(a => `<i class="${S.extra.ach[a.id] ? 'on' : ''}" title="${a.name}">${S.extra.ach[a.id] ? a.icon : '🔒'}</i>`).join('')}</div>
+    <small>${earned.length}/${ACHIEVEMENTS.length} mijlpalen · 📒 ${bookCount(S)}/${Object.keys(STICKERS).length} stickers</small><div class="orow"><button class="btn small purple" id="fGoCab">🏆 Bekijken</button><button class="btn small orange" id="fGoBook">📒 Verzamelboek</button></div>`;
+}
+// na terugkomst in fabriek/garage/stadion: mijlpalen uitdelen, rivaal laten praten
+function extraTick(where) {
+  extraInit(S); if (where === 'factory') rivalDaily(S, dayKey());
+  const got = achCheck(S); if (got.length) { save(); got.forEach((a, i) => setTimeout(() => { SFX.fanfare(); confetti(30); toast(`🏆 Mijlpaal: ${a.icon} ${a.name}!${a.coins ? ` +🪙 ${a.coins}` : ''}`); }, 400 + i * 2400)); if (where === 'factory') renderExtraCards(); }
+  save(); setTimeout(() => showRivalQ(), got.length ? 2600 * got.length : 500);
+}
+// ---------- rivaal-ballon ----------
+function showRivalQ() {
+  const R = extraInit(S).rival, m = R.q[0], el = $('#rivBub'); if (!m || el.classList.contains('show') || !['scrFactory', 'scrRace', 'scrStadion'].includes(CUR_SCREEN)) return;
+  $('#rivTxt').innerHTML = `<b>${RIVAL.icon} ${RIVAL.name}</b> <small>${RIVAL.firm}</small><br>${m.text}`;
+  el.className = 'rivbub show ' + m.kind; SFX.whir();
+  clearTimeout(RC_RIVT); RC_RIVT = setTimeout(hideRival, m.kind === 'story' ? 14000 : 8000);
+}
+let RC_RIVT = 0;
+function hideRival() { const el = $('#rivBub'); if (!el.classList.contains('show')) return; el.classList.remove('show'); S.extra.rival.q.shift(); save(); setTimeout(showRivalQ, 600); }
+// ---------- dagelijkse uitdaging ----------
+function openDaily() {
+  const key = dayKey(), D = dailyState(S, key), ru = raceUnlocked(S), m = dailyMult(S), next = D.last && dayDiff(D.last, key) <= 1 ? D.streak : 0;
+  const card = (k, icon, name, desc, lock) => `<div class="dcard daily ${D.done[k] ? 'done' : ''}"><b>${icon} ${name}</b><span class="small-note">${desc}</span>
+    ${lock ? `<span class="pill">🔒 ${lock}</span>` : D.done[k] ? '<span class="pill ok">✅ Gedaan!</span>' : `<button class="btn green" data-daily="${k}">▶️ Start</button>`}</div>`;
+  $('#dailyBody').innerHTML = `<div class="streakbig">🔥 <b>${next}</b> <span>${next === 1 ? 'dag' : 'dagen op rij'}</span><small>Record: ${D.best} · 🧊 Vriesblokken: ${D.freeze} <span class="small-note">(mis je één dag? Dan smelt er een blokje en blijft je reeks heel)</span></small></div>
+    <p class="small-note">Vandaag is voor iedereen hetzelfde patroon: <b>${key.split('-').reverse().join('-')}</b>. Beloning ×${fmt1(m)} door je reeks (max ×${fmt1(1 + DAILY.perStreak * DAILY.maxStreakBonus)}), plus een <b>📒 sticker</b>!</p>
+    ${card('p', '🧩', 'Puzzel van de dag', `${DAILY.puzzles} speciale puzzels. Beloning tot 🪙 ${Math.round(DAILY.base.p * m)}.`)}
+    ${card('r', '🏁', 'Race van de dag', `Vaste baan en vaste patronen. Gratis brandstof! Beloning tot 🪙 ${Math.round(DAILY.base.r * m)}.`, ru ? null : 'Eerst de Montagehal bouwen')}`;
+  openOv('ovDaily');
+}
+function startDailyPuzzle() { closeOv('ovDaily'); startRun({ mode: 'daily', key: dayKey(), total: DAILY.puzzles, kind: 'vorm', d: 1 }); }
+const DAILY_TYPES = ['next', 'mid', 'odd', 'next', 'mid'];
+function dailyPuzzle(run) { const keep = RNG; RNG = mkRng(dailySeed(run.key) + run.i * 977); try { return genPuzzle({ t: DAILY_TYPES[run.i % 5], st: [['AB', 'ABB'], ['ABB', 'AAB', 'ABC'], ['ABC', 'AABB', 'ABCD']] }, run.i < 2 ? 1 : 2, 'vorm'); } finally { RNG = keep; } }
+function finishDaily() {
+  const stars = jobStars(), r = dailyClaim(S, 'p', RUN.key, { stars }); save();
+  showDailyResult(r, `🧩 Puzzel van de dag`, stars);
+}
+function showDailyResult(r, what, stars) {
+  if (!r) return goFactory();
+  let rw = `<p class="big">🔥 <b>${r.streak || S.extra.daily.streak} ${(r.streak || S.extra.daily.streak) === 1 ? 'dag' : 'dagen op rij'}!</b></p><p>🪙 +<b class="count" data-to="${r.coins}">0</b> <span class="small-note">(×${fmt1(r.mult)} reeksbonus)</span></p>`;
+  if (r.freezeUsed) rw += `<p>🧊 Je miste een dag, maar een <b>vriesblok</b> hield je reeks heel!</p>`;
+  if (r.reset) rw += `<p>🌱 Een nieuwe reeks! Je record blijft ${r.prevBest} dagen. Morgen weer?</p>`;
+  if (r.freezeGot) rw += `<p>🧊 +1 vriesblok voor 7 dagen op rij!</p>`;
+  rw += stkReward(r.stk);
+  showResult({ title: what + ' klaar!', stars: stars || 0, art: robotSVG({ armUp: true, body: ['#ffd18a', '#e08a3a'] }), reward: rw,
+    btns: [['🏭 Naar de fabriek', 'green', () => goFactory()], ['📅 Uitdaging', 'white', () => { goFactory(); openDaily(); }]] });
+}
+function stkReward(o) {
+  if (!o) return ''; const s = STICKERS[o.id];
+  let h = `<div class="stkwin">${stkHTML(o.id)}<p>${o.dup ? `Dubbel! Ruilt in voor 🪙 ${DUP_COINS}.` : `📒 Nieuwe sticker: <b>${s.name}</b>${s.r === 3 ? ' ✨ SUPERZELDZAAM!' : s.r === 2 ? ' (zeldzaam)' : ''}`}</p></div>`;
+  if (o.set) h += `<p>🗂️ <b>Set “${o.set.name}” compleet!</b> +🪙 ${o.set.bonus} en iets nieuws voor je racewagen!</p>`;
+  return h;
+}
+// ---------- verzamelboek ----------
+function openBook() {
+  const x = extraInit(S);
+  $('#bookBody').innerHTML = `<p class="small-note">Stickers vind je in <b>geheime puzzels</b>, <b>❓-kisten</b> bij het racen, <b>sluiproutes</b> en de <b>dagelijkse uitdaging</b>. Een set compleet = bonus! Racestickers kun je op je racewagen plakken.</p>` +
+    STICKER_SETS.map(s => { const n = s.items.filter(([i]) => x.book[i]).length, done = x.sets.includes(s.id);
+      return `<div class="bookset ${done ? 'done' : ''}"><div class="bsh"><b>${s.icon} ${s.name}</b><span class="pill">${done ? '✅ compleet' : `${n}/5 · bonus 🪙 ${s.bonus}`}</span></div><div class="stks">${s.items.map(([i]) => stkHTML(i, !!x.book[i])).join('')}</div></div>`; }).join('');
+  openOv('ovBook');
+}
+// ---------- bekerkast ----------
+function openCab() {
+  extraInit(S);
+  $('#cabBody').innerHTML = `<div class="cabgrid">${ACHIEVEMENTS.map(a => { const on = S.extra.ach[a.id], p = achProgress(S, a);
+    return `<div class="cab ${on ? 'on' : ''}"><span class="ci">${on ? a.icon : '🔒'}</span><b>${a.name}</b><small>${a.desc}</small>${on ? `<small class="ok">✅ Gehaald${a.coins ? ` · 🪙 ${a.coins}` : ''}</small>` : `<div class="meter"><i style="width:${Math.round(p * 100)}%"></i></div><small>${a.coins ? `Beloning 🪙 ${a.coins}` : 'Eer en glorie!'}</small>`}</div>`; }).join('')}</div>`;
+  openOv('ovCab');
+}
+// ---------- racewagen-ontwerper ----------
+function openCar() { renderCar(); openOv('ovCar'); }
+function renderCar() {
+  const L = carLook(S), own = Object.keys(extraInit(S).book);
+  const sw = CAR_PAINTS.map(p => { const a = paintAvail(S, p); return `<button class="sw ${L.paint === p.id ? 'sel' : ''} ${a}" data-car="paint:${p.id}" style="--c:${p.col}" aria-label="${p.name}${a === 'lock' ? ' (op slot)' : a === 'buy' ? `, 🪙 ${p.cost}` : ''}"><i></i>${a === 'lock' ? '<em>🔒</em>' : a === 'buy' ? `<em>🪙${p.cost}</em>` : ''}</button>`; }).join('');
+  const sp = CAR_SPOILERS.map((s, i) => { const a = spoilerAvail(S, i); return `<button class="btn small ${L.spoiler === i ? 'green' : 'white'}" data-car="spoiler:${i}">${s.name}${a === 'lock' ? ' 🔒' : a === 'buy' ? ` 🪙${s.cost}` : ''}</button>`; }).join('');
+  const stp = CAR_STRIPES.map((s, i) => `<button class="btn small ${L.stripe === i ? 'green' : 'white'}" data-car="stripe:${i}">${s.name}</button>`).join('');
+  const stk = `<button class="sk ${!L.stk ? 'sel' : ''}" data-car="stk:">✖</button>` + Object.keys(STICKERS).map(id => `<button class="sk ${L.stk === id ? 'sel' : ''} ${own.includes(id) ? '' : 'lock'}" data-car="stk:${id}" aria-label="${own.includes(id) ? STICKERS[id].name : 'nog niet gevonden'}">${own.includes(id) ? STICKERS[id].icon : '❔'}</button>`).join('');
+  $('#carBody').innerHTML = `<div class="carprev">${carSVG()}</div>
+    <h4>🎨 Kleur</h4><div class="sws">${sw}</div><p class="small-note">🔒 = verdien je met een complete sticker-set.</p>
+    <h4>🪽 Spoiler</h4><div class="orow">${sp}</div><h4>〰️ Strepen</h4><div class="orow">${stp}</div>
+    <h4>🏷️ Sticker <small>(uit je verzamelboek)</small></h4><div class="sks">${stk}</div>`;
+}
+function carClick(e) {
+  const b = e.target.closest('[data-car]'); if (!b) return; const [k, v] = b.dataset.car.split(':'), val = k === 'paint' ? v : k === 'stk' ? v : +v;
+  const r = carSet(S, k, val);
+  if (r === 'lock') { SFX.nope(); return toast(k === 'stk' ? 'Die sticker heb je nog niet gevonden. 👀' : 'Op slot: maak een sticker-set compleet!'); }
+  if (r === 'geld') { SFX.nope(); return toast('Daar heb je niet genoeg munten voor.'); }
+  SFX.place(); save(); renderCar(); if (CUR_SCREEN === 'scrRace') renderGarage();
+}
+function initExtra() {
+  $('#dailyClose').onclick = () => { SFX.click(); closeOv('ovDaily'); };
+  $('#dailyBody').addEventListener('click', e => { const b = e.target.closest('[data-daily]'); if (!b) return; SFX.click(); if (b.dataset.daily === 'p') startDailyPuzzle(); else startDailyRace(); });
+  $('#bookClose').onclick = () => { SFX.click(); closeOv('ovBook'); };
+  $('#cabClose').onclick = () => { SFX.click(); closeOv('ovCab'); };
+  $('#carClose').onclick = () => { SFX.click(); closeOv('ovCar'); };
+  $('#carBody').addEventListener('click', carClick);
+  $('#rivBub').onclick = () => { SFX.click(); clearTimeout(RC_RIVT); hideRival(); };
+  document.addEventListener('click', e => { const b = e.target.closest('#fGoDaily,#fGoCab,#fGoBook,#fCabShelf,#rcDesign'); if (!b) return; SFX.click();
+    if (b.id === 'fGoDaily') openDaily(); else if (b.id === 'fGoBook') openBook(); else if (b.id === 'rcDesign') openCar(); else openCab(); });
 }
 
 /* ===== screens/samen.js ===== */
@@ -3708,7 +4030,7 @@ function init() {
   $('#fShop').onclick = openShop; $('#fShop2').onclick = openShop;
   $('#fBuild').onclick = openBuild;
   mountSoundBtns(); document.addEventListener('click', e => { const b = e.target.closest('[data-snd]'); if (b) { e.stopPropagation(); toggleSound(b.dataset.snd); } }, true);
-  $('#fRace').addEventListener('click', e => { if (e.target.closest('#fGoRace')) { SFX.click(); goRace(); } }); initRace();
+  $('#fRace').addEventListener('click', e => { if (e.target.closest('#fGoRace')) { SFX.click(); goRace(); } }); initRace(); initExtra();
   $('#fFoot').addEventListener('click', e => { if (e.target.closest('#fGoStadion')) { SFX.click(); goStadion(); } });
   $('#stBack').onclick = () => { SFX.click(); goFactory(); }; $('#stTeam').onclick = () => { SFX.click(); goTeam(); };
   $('#stPlay').onclick = () => { SFX.click(); startMatch('solo'); }; $('#stCoop').onclick = () => { SFX.click(); startMatch('coop'); }; $('#stVs').onclick = () => { SFX.click(); startMatch('versus'); };
@@ -3741,7 +4063,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, race: { raceNew, raceStep, raceUse, raceHit, laneX, activePuzzle, raceRollItem, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  RACE_DRIVERS, LEAGUE_EXTRA, RIVAL_RACE_ID, goRace, load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, extra: { extraInit, dailyClaim, dailyState, dailyStreak, bookAdd, bookRoll, rivalResult, rivalDaily, carSet, carLook, achCheck, dailyPuzzle, openDaily, openBook, openCab, openCar, showRivalQ, hideRival, startDailyRace, dayDiff, dailySeed }, race: { raceNew, raceStep, raceUse, raceHit, laneX, activePuzzle, raceRollItem, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
