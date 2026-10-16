@@ -453,7 +453,26 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 @media (max-height:700px){.bigwrap{gap:6px}.bigsub,.mrule{font-size:.8em}.mrule small{display:none}.sfb{min-height:2.2em;font-size:.8em}.bighead b{font-size:.9em}.bigfoot .btn{padding:6px 12px}.sgrid{gap:6px}}
 @media (orientation:landscape) and (max-height:520px){.bigwrap{width:min(900px,100%)}.sgrid{grid-template-columns:repeat(5,1fr);width:min(72vw,calc((100dvh - 150px) * 3.1))}.scard{aspect-ratio:1.3}.bigsub{font-size:.78em}
  .mboard{width:min(60vw,calc(100dvh - 120px))}#montBody{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto 1fr;column-gap:14px}#montBody .bighead{grid-column:1/3}#montBody .mrule{grid-column:1}#montBody .mboard{grid-column:2;grid-row:2/4}#montBody .bigfoot{grid-column:1;align-self:start}}
-.bigfoot{margin-top:4px;position:relative;z-index:1}.sgrid,.mboard{flex:none}</style>
+.bigfoot{margin-top:4px;position:relative;z-index:1}.sgrid,.mboard{flex:none}/* Robo-Race */
+#scrRace{background:radial-gradient(90% 60% at 50% 0%,rgba(255,138,58,.2),transparent 70%),linear-gradient(#1d1a24,#0b0f18)}
+.racecard{background:linear-gradient(#3a2416,#1f130b)!important;border:2px solid #b8642c!important}
+.rcar{display:flex;gap:12px;align-items:center}.rcar>div{display:flex;flex-direction:column;gap:4px;flex:1}.carsvg{width:84px;flex:none}
+.dmgbar{height:10px;border-radius:6px;background:#0b0f18;border:1px solid #3c4a66;overflow:hidden}.dmgbar i{display:block;height:100%;background:linear-gradient(90deg,#3fdc7f,#ffc94a,#ff5a4a)}
+.rparts{display:grid;gap:8px}.rpart{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:center;background:#ffffff0d;border:1px solid #ffffff22;border-radius:12px;padding:8px 10px}.rpart small{grid-column:1;color:#c9d3e3}.rpart .btn,.rpart .pill{grid-column:2;grid-row:1/4}
+#scrDrive{background:#2b3140;touch-action:none;user-select:none}#rCanvas{position:absolute;inset:0;width:100%;height:100%}
+.rhud{position:absolute;left:0;right:0;top:0;padding:calc(env(safe-area-inset-top) + 6px) 8px 0;display:flex;gap:8px;align-items:center;z-index:2}
+.rpos{background:#0b0f18cc;border:2px solid #ffd34a;border-radius:12px;padding:2px 10px;font-size:1.4em;color:#ffd34a}.rpos small{font-size:.6em;color:#cfd8e8}
+.rprog{flex:1;height:12px;background:#0b0f18cc;border-radius:8px;position:relative;border:1px solid #3c4a66}.rprog>i{display:block;height:100%;border-radius:8px;background:#38d6ff}.rprog span i{position:absolute;top:-3px;width:8px;height:16px;border-radius:4px;margin-left:-4px;border:1px solid #000}
+.rspd{background:#0b0f18cc;border-radius:10px;padding:3px 8px;color:#fff;font-weight:800;min-width:76px;text-align:right}.rspd small{font-size:.65em;color:#cfd8e8}
+.rgate{position:absolute;left:8px;right:8px;top:calc(env(safe-area-inset-top) + 64px);z-index:2;background:#0b0f18e0;border:2px solid #38d6ff;border-radius:14px;padding:6px 8px;color:#fff;text-align:center;display:none}
+.rgate.on{display:block;animation:pop .25s ease-out}.rgate.lock{border-color:#ffc94a}.rgate small{display:block;font-size:.8em;color:#cfeeff}
+.rstrip{display:flex;gap:3px;justify-content:center;margin-top:4px}.rstrip svg,.rstrip span{width:min(10vw,40px);height:min(10vw,40px);flex:none}.rstrip .q{display:flex;align-items:center;justify-content:center;border:2px dashed #ffd34a;border-radius:8px;color:#ffd34a;font-weight:800}.rstrip .got svg{width:100%;height:100%;filter:drop-shadow(0 0 4px #3fdc7f)}
+.rfloat{position:absolute;left:0;right:0;top:42%;text-align:center;font-size:2em;font-weight:800;color:#ffd34a;text-shadow:0 3px 0 #000;opacity:0;pointer-events:none;z-index:3}.rfloat.show{animation:rfl 1.1s ease-out}@keyframes rfl{0%{opacity:0;transform:scale(.6)}20%{opacity:1;transform:scale(1.1)}80%{opacity:1}100%{opacity:0;transform:translateY(-30px)}}
+.rctl{position:absolute;left:0;right:0;bottom:0;padding:0 8px calc(env(safe-area-inset-bottom) + 10px);display:flex;align-items:flex-end;gap:8px;z-index:2}
+.rsteer{width:min(22vw,110px);height:min(22vw,110px);border-radius:22px;border:3px solid #ffffff55;background:#0b0f18aa;color:#ffd34a;font-size:2.2em;touch-action:none;flex:none}.rsteer.down{background:#38d6ff55;border-color:#38d6ff}
+.rsyms{flex:1;min-width:0;display:flex;gap:4px;justify-content:center;align-items:flex-end;min-height:10px}.rsym{width:min(13vw,64px);height:min(13vw,64px);border-radius:14px;border:3px solid #38d6ff;background:linear-gradient(#f4f7fb,#cfd8e6);padding:5px;touch-action:none}.rsym svg{width:100%;height:100%}.rsym.bad{border-color:#ff5a4a}.rsym.good{border-color:#3fdc7f}
+@media (orientation:landscape) and (max-height:520px){.rgate{left:auto;width:min(60vw,420px)}}
+</style>
 </head>
 <body>
 <div id="defs"></div>
@@ -482,6 +501,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
       <div class="extras">
         <div class="shopcard" id="fShopCard"><button class="hidden-spot poster" id="fPoster" data-spot="poster" aria-label="rare poster">🖼️</button><b>🛒 Winkel</b><small>Verkoop robots en lever bestellingen.</small><button class="btn small orange" id="fShop2">Openen</button></div>
         <div class="footcard" id="fFoot"></div>
+        <div class="footcard racecard" id="fRace"></div>
       </div>
     </div>
   </div></div>
@@ -559,7 +579,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
         <p class="small-note">Bij robotvoetbal zijn tegenstanders nooit veel sneller dan de robot van je kind, er is een Turbo-knop en wie 2 doelpunten achter staat krijgt wat hulp. Makkelijk geeft iets minder prijzengeld, Pittig meer.</p>
       </div>
       <div><h3>📊 Voortgang</h3><div id="oudProg"></div></div>
-      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). Met nieuwe hallen komen er grotere puzzels bij: in de <b>Montagehal</b> een schuifpuzzel waarin je rijen en kolommen rondschuift tot het rooster een patroonregel volgt (herhalen, opschuiven, spiegelen, tellen; later twee regels tegelijk; altijd oplosbaar) en in de <b>Sorteerhal</b> een sorteerbak waarin je setjes van 3 zoekt (elke eigenschap alles gelijk of alles anders: logisch redeneren). Na elke nieuwe hal krijgen de oude machines een extra moeilijkheid: Expert (twee regels tegelijk, bv. vorm én kleur met verschillende herhaling) en Meester (drie regels, ook draaien en aantallen, minder hints); makkelijk blijft altijd kiesbaar. Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
+      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). <b>Robo-Race</b> (na de Montagehal) is een actief racespel: sturen met ◀ ▶, en bij symboolpoorten het patroon afmaken voor turbo. Langs de rand zitten geheime sluiproutes met een snelle patroonpuzzel. Eigen competitie met promotie; Makkelijk/Normaal/Pittig met tegenstanders die nooit veel sneller zijn dan je eigen auto (Makkelijk = net iets trager). Brandstof, onderdelen en reparaties kosten munten uit dezelfde kluis: kiezen tussen racen, voetbal en hallen. Met nieuwe hallen komen er grotere puzzels bij: in de <b>Montagehal</b> een schuifpuzzel waarin je rijen en kolommen rondschuift tot het rooster een patroonregel volgt (herhalen, opschuiven, spiegelen, tellen; later twee regels tegelijk; altijd oplosbaar) en in de <b>Sorteerhal</b> een sorteerbak waarin je setjes van 3 zoekt (elke eigenschap alles gelijk of alles anders: logisch redeneren). Na elke nieuwe hal krijgen de oude machines een extra moeilijkheid: Expert (twee regels tegelijk, bv. vorm én kleur met verschillende herhaling) en Meester (drie regels, ook draaien en aantallen, minder hints); makkelijk blijft altijd kiesbaar. Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
       <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles bouwen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
       <p class="small-note">Robo-Fabriek werkt zonder account, zonder reclame en zonder internet (na de eerste keer). De voortgang staat alleen op dit apparaat. Installeren: iPad/iPhone → Safari → Deel → <b>Zet op beginscherm</b>; Android → Chrome → ⋮ → <b>App installeren</b>.</p>
     </div>
@@ -577,6 +597,17 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
   <div class="topbar"><button class="iconbtn" id="stBack" aria-label="Terug naar de fabriek">🏭</button><div class="title" id="stTitle">⚽ Stadion</div><span class="hp" id="stKas"></span></div>
   <div class="scroll stbody" id="stBody"></div>
   <div class="fbottom stbtns"><button class="btn white" id="stTeam">🛠️ Team</button><button class="btn purple" id="stCoop">👫 Samen</button><button class="btn white" id="stVs">⚔️ Tegen elkaar</button><button class="btn green big" id="stPlay">⚽ Spelen</button></div>
+</section>
+<section class="screen" id="scrRace" aria-label="Racegarage">
+  <div class="topbar"><button class="iconbtn" id="rcBack" aria-label="Terug naar de fabriek">🏭</button><div class="title" id="rcTitle">🏁 Robo-Race</div><span class="hp" id="rcCoins"></span></div>
+  <div class="scroll stbody" id="rcBody"></div>
+  <div class="fbottom"><button class="btn green big" id="rcGo">🏁 Race!</button></div>
+</section>
+<section class="screen" id="scrDrive" aria-label="Race">
+  <canvas id="rCanvas"></canvas>
+  <div class="rhud"><button class="iconbtn" id="rQuit" aria-label="Stoppen">✖</button><div class="rpos" id="rPos"></div><div class="rprog"><i id="rProg"></i><span id="rProgDots"></span></div><div class="rspd" id="rSpd"></div></div>
+  <div class="rgate" id="rGate"></div><div class="rfloat" id="rFloat"></div>
+  <div class="rctl"><button class="rsteer" id="rL" aria-label="Links">◀</button><div class="rsyms" id="rSyms"></div><button class="rsteer" id="rR" aria-label="Rechts">▶</button></div>
 </section>
 <section class="screen" id="scrTeam" aria-label="Team">
   <div class="topbar"><button class="iconbtn" id="tmBack" aria-label="Terug naar het stadion">⬅️</button><div class="title">🛠️ Teammanagement</div><span class="hp" id="tmKas"></span></div>
@@ -685,7 +716,7 @@ const HIDDEN_AGAIN = 3;                    // na zoveel speeldagen kan er weer e
 /* Opslag (localStorage) met versienummer + migratie. Verhoog SAVE_V en voeg een stap toe in migrate() bij elke vormverandering.
    v1 = fase 1 (hallen met niveaus en sterren), v2 = de fabriek (fase A), v3 = real-time productie, moeilijkheid, financiën (fase B). */
 const LS_KEY = 'robofabriek_save';
-const SAVE_V = 5;
+const SAVE_V = 6;
 function freshMachines() { const m = {}; for (const id in MACHINES) m[id] = { owned: MACHINES[id].buy === 0, lv: 1, idle: 0, q: 2, jobs: 0, tuned: 0 }; return m; }
 function freshSave() {
   return {
@@ -725,6 +756,7 @@ function migrate(o) {
   if (o.v === 2) { for (const id in (o.machines || {})) { const m = o.machines[id]; m.tuned = m.jobs > 0 ? m.lv : 0; } o.v = 3; }
   if (o.v === 3) o.v = 4;   // v4: voetbalteam (wordt hieronder aangevuld door fbInit)
   if (o.v === 4) o.v = 5;   // v5: nieuwe hallen (Montagehal, Sorteerhal): machines worden hieronder aangevuld
+  if (o.v === 5) o.v = 6;   // v6: Robo-Race (wordt hieronder aangevuld door raceInit)
   const f = freshSave();
   for (const k in f) if (!(k in o)) o[k] = f[k];
   for (const k in f.settings) if (!(k in o.settings)) o.settings[k] = f.settings[k];
@@ -733,6 +765,7 @@ function migrate(o) {
   delete o.settings.speech; delete o.settings.rate;
   o.v = SAVE_V;
   if (typeof fbInit === 'function') fbInit(o);
+  if (typeof raceInit === 'function') raceInit(o);
   return o;
 }
 let S = freshSave();
@@ -1098,6 +1131,33 @@ function freshTeam() {
 const KO_LINES = ['BOING!', 'KLONK!', 'Au, mijn bout!', 'Grrr…', 'Boem! Arm eraf!', 'Waar is mijn hoofd?', 'Piep… piep…', 'Wie deed het licht uit?'];
 const FALL_LINES = ['Oeps, been eraf!', 'Mijn schroefje!', 'Kraak!', 'Even… opnieuw opstarten…', 'Wie heeft mij in elkaar gezet?!'];
 const GOAL_LINES = ['GOOOOAL!', 'Wat een knal!', 'In de kruising!', 'Het net trilt nog!'];
+
+/* ===== data/race.js ===== */
+/* Robo-Race (fase B): data. Onderdelen, divisies (eigen competitie naast voetbal), coureurs. */
+const RACE_PARTS = {
+  motor: { name: 'Motor', icon: '⚙️', cost: [120, 260, 480, 800, 1200], desc: 'Harder rijden (topsnelheid).' },
+  banden: { name: 'Banden', icon: '🛞', cost: [90, 200, 380, 640, 1000], desc: 'Beter sturen en minder slippen naast de baan.' },
+  auto: { name: 'Carrosserie', icon: '🛡️', cost: [150, 320, 600, 950, 1400], desc: 'Minder schade bij een botsing (goedkoper repareren).' }
+};
+const RACE_PART_IDS = ['motor', 'banden', 'auto'];
+// divisies: maxLv = hoogste onderdeel-niveau dat hier mag; fuel = brandstof per race; prize = prijzengeld per plek
+const RACE_DIVS = [
+  { name: 'Karton Cup', icon: '📦', base: .93, maxLv: 2, fuel: 15, prize: [60, 35, 20, 8], len: 2000, unit: [['AB'], ['AB', 'AAB']] },
+  { name: 'Turbo Trofee', icon: '⚡', base: .98, maxLv: 3, fuel: 30, prize: [100, 60, 30, 12], len: 2300, unit: [['AAB', 'ABB'], ['ABC', 'AAB']] },
+  { name: 'Metaal Masters', icon: '🔩', base: 1.03, maxLv: 4, fuel: 50, prize: [160, 90, 45, 18], len: 2600, unit: [['ABC', 'ABB'], ['AABB', 'ABC']] },
+  { name: 'Robo-X Grand Prix', icon: '🏆', base: 1.06, maxLv: 5, fuel: 75, prize: [240, 140, 70, 28], len: 2900, unit: [['AABB', 'ABC'], ['ABCD', 'AABC']] }
+];
+const RACE_DRIVERS = [
+  [{ id: 'doos', name: 'Doos-Dirk', icon: '📦', col: '#c9a26b', spd: .92, skill: .3 }, { id: 'plak', name: 'Plakband Pien', icon: '🎞️', col: '#e8d36a', spd: .96, skill: .4 }, { id: 'krak', name: 'Krakkemik', icon: '🪫', col: '#9aa4b2', spd: .88, skill: .25 }],
+  [{ id: 'flits', name: 'Flits Turbo', icon: '⚡', col: '#ffd34a', spd: 1, skill: .5 }, { id: 'vonk', name: 'Vonkie', icon: '✨', col: '#ff8a3a', spd: .97, skill: .45 }, { id: 'doos', name: 'Doos-Dirk', icon: '📦', col: '#c9a26b', spd: .93, skill: .35 }],
+  [{ id: 'bout', name: 'Bout Bonkie', icon: '🔩', col: '#8fa3bf', spd: 1.02, skill: .6 }, { id: 'staal', name: 'Staal-Stan', icon: '🛡️', col: '#6b7f99', spd: 1, skill: .55 }, { id: 'flits', name: 'Flits Turbo', icon: '⚡', col: '#ffd34a', spd: .98, skill: .5 }],
+  [{ id: 'rx', name: 'Robo-X 9000', icon: '🤖', col: '#d94a6a', spd: 1.04, skill: .7 }, { id: 'bout', name: 'Bout Bonkie', icon: '🔩', col: '#8fa3bf', spd: 1.02, skill: .6 }, { id: 'staal', name: 'Staal-Stan', icon: '🛡️', col: '#6b7f99', spd: 1, skill: .6 }]
+];
+const RACE_POINTS = [10, 6, 4, 2];
+const RACE_SEASON = 5;                  // races per seizoen; top 2 promoveert
+const RACE_DIFF = [{ name: 'Makkelijk', icon: '🙂', cap: .97, pay: .75 }, { name: 'Normaal', icon: '😎', cap: 1.04, pay: 1 }, { name: 'Pittig', icon: '🔥', cap: 1.1, pay: 1.35 }];
+const REPAIR_PER_DMG = 1;               // munten per schadepunt (0-100)
+const RACE_COL = '#38d6ff';
 
 /* ===== game/gen.js ===== */
 /* Puzzelmaker. Elke puzzel: { t, seq, blanks, answer, choices, unit, ... }. Alles is puur (geen DOM), zodat het getest kan worden.
@@ -1961,6 +2021,168 @@ function setTry(s, idx, rng = RNG) {
 const setDone = s => !findSet(s.table.concat(s.deck));
 const setLeft = s => s.table.length + s.deck.length;
 
+/* ===== game/race.js ===== */
+/* Robo-Race: pure logica (geen DOM). Baan, auto's, symboolpoorten, sluiproutes, AI, competitie, kosten. */
+function raceInit(st) {
+  const r = st.race = st.race || {};
+  const d = { seen: false, div: 0, parts: { motor: 0, banden: 0, auto: 0 }, dmg: 0, season: null, history: [], titles: 0, diffSet: null, last: null, gates: { ok: 0, n: 0 }, shortcuts: 0, races: 0 };
+  for (const k in d) if (!(k in r)) r[k] = d[k];
+  if (!r.season) r.season = raceNewSeason(r.div);
+  return r;
+}
+const raceUnlocked = st => !!(st.machines.mont && st.machines.mont.owned) || !!(st.race && st.race.seen);
+const raceDiff = st => st.race.diffSet != null ? st.race.diffSet : st.race.div === 0 ? 0 : 1;
+function setRaceDiff(st, d) { st.race.diffSet = d == null ? null : clamp(d, 0, 2); return raceDiff(st); }
+const raceMaxLv = st => RACE_DIVS[st.race.div].maxLv;
+function racePartCost(st, id) { const lv = st.race.parts[id]; return lv >= raceMaxLv(st) || lv >= RACE_PARTS[id].cost.length ? null : RACE_PARTS[id].cost[lv]; }
+function raceBuyPart(st, id) { const c = racePartCost(st, id); if (c == null || st.coins < c) return false; st.coins -= c; st.today.fin && (st.today.fin.invest += c); st.race.parts[id]++; return true; }
+const raceRepairCost = st => Math.round(st.race.dmg * REPAIR_PER_DMG * (1 - .1 * st.race.parts.auto));
+function raceRepair(st) { const c = raceRepairCost(st); if (!st.race.dmg || st.coins < c) return false; st.coins -= c; st.today.fin && (st.today.fin.upkeep += c); st.race.dmg = 0; return true; }
+const raceFuel = st => RACE_DIVS[st.race.div].fuel;
+function raceCanStart(st) { return st.coins >= raceFuel(st); }
+// ---------- seizoen / competitie ----------
+function raceNewSeason(div) { const rows = { me: { pts: 0, res: [] } }; RACE_DRIVERS[div].forEach(d => rows[d.id] = { pts: 0, res: [] }); return { div, n: 0, rows }; }
+function raceTable(st) {
+  const s = st.race.season, D = RACE_DRIVERS[s.div];
+  const info = id => id === 'me' ? { id, name: 'Jouw racer', icon: '⭐', me: true } : Object.assign({ id }, D.find(d => d.id === id));
+  return Object.entries(s.rows).map(([id, r]) => Object.assign(info(id), r)).sort((a, b) => b.pts - a.pts || (a.me ? -1 : b.me ? 1 : 0));
+}
+// uitslag (volgorde van ids) verwerken: punten, prijzengeld, promotie na het seizoen
+function raceApply(st, order, info = {}) {
+  const R = st.race, s = R.season, pos = order.indexOf('me'), dv = RACE_DIVS[R.div], diff = raceDiff(st);
+  order.forEach((id, i) => { s.rows[id].pts += RACE_POINTS[i]; s.rows[id].res = s.rows[id].res.concat([i + 1]).slice(-5); });
+  s.n++; R.races++;
+  const prize = Math.round(dv.prize[pos] * RACE_DIFF[diff].pay);
+  st.coins = Math.min(kluisCap(st), st.coins + prize); st.today.fin && (st.today.fin.other += prize); st.today.earned = (st.today.earned || 0) + prize;
+  R.dmg = clamp(R.dmg + (info.dmg || 0), 0, 100);
+  if (info.gates) { R.gates.ok += info.gates.ok; R.gates.n += info.gates.n; }
+  if (info.shortcut) R.shortcuts += info.shortcut;
+  R.last = { pos: pos + 1, prize, div: R.div, dmg: info.dmg || 0, gatesOk: info.gates ? info.gates.ok : 0, gatesN: info.gates ? info.gates.n : 0, diff };
+  R.history = R.history.concat([{ day: st.day, div: R.div, pos: pos + 1 }]).slice(-20);
+  let promo = null;
+  if (s.n >= RACE_SEASON) {
+    const tbl = raceTable(st), place = tbl.findIndex(r => r.me) + 1;
+    R.lastSeason = { div: R.div, table: tbl, place };
+    if (place <= 2 && R.div < RACE_DIVS.length - 1) { R.div++; promo = 'up'; } else if (place <= 2) { R.titles++; promo = 'title'; } else promo = 'stay';
+    R.season = raceNewSeason(R.div); R.last.promo = promo; R.last.place = place;
+  }
+  return R.last;
+}
+// coach-tip in kindertaal
+function raceTip(st) {
+  const R = st.race, p = R.parts, L = R.last, d = raceDiff(st);
+  if (R.dmg >= 50) return `Je auto rammelt (${R.dmg}% schade): dan rijdt hij langzamer. Eerst even <b>repareren</b>!`;
+  if (!L) return 'Tik <b>◀ ▶</b> om te sturen. Zie je een <b>symboolpoort</b>? Tik de symbolen in de goede volgorde: TURBO! 🚀';
+  if (L.gatesN && L.gatesOk / L.gatesN < .5) return 'Tip: de poorten geven turbo! Kijk naar het patroon bovenin: wat komt er steeds terug? Rustig tikken mag.';
+  if (L.pos >= 3 && p.motor < raceMaxLv(st) && p.motor <= p.banden) return 'Die anderen gaan net iets harder. Een betere <b>⚙️ Motor</b> helpt, of zoek een <b>geheime sluiproute</b> langs de rand… 👀';
+  if (L.pos >= 3 && p.banden < raceMaxLv(st)) return 'Slip je vaak naast de baan? Betere <b>🛞 Banden</b> sturen veel fijner!';
+  if (L.pos >= 3 && d > 0) return 'Te pittig? Je mag de race op <b>Makkelijk</b> zetten. Dan zijn de anderen wat trager (minder prijzengeld).';
+  if (L.pos === 1) return 'Wat een race! 🏆 Probeer eens <b>Normaal</b> of <b>Pittig</b> voor meer prijzengeld.';
+  return pick(['Bij een sluiproute staat een klein ⚙️-bordje langs de rand. Rij er dichtbij…', 'Olievlekken en pionnen geven schade. Ontwijken = goedkoper!', 'Turbo stapelt niet, maar een goede poort op tijd scheelt veel!']);
+}
+// ---------- de race zelf (simulatie) ----------
+const RACE_V0 = 30;                                // basis-topsnelheid (m/s) zonder upgrades
+function raceCarStats(parts, dmg) { return { top: RACE_V0 * (1 + .07 * parts.motor) * (dmg >= 60 ? .88 : dmg >= 30 ? .95 : 1), steer: .55 * (1 + .14 * parts.banden), off: .55 + .06 * parts.banden, crash: 13 * (1 - .14 * parts.auto) }; }
+// baan: midden (0..1 schermbreedte) als functie van afstand
+function trackCx(M, d) { return .5 + .16 * Math.sin(d / 190 + M.ph1) + .08 * Math.sin(d / 77 + M.ph2); }
+const TRACK_HW = .27;
+function raceNew(opt) {
+  const rng = opt.rng || RNG, div = opt.div || 0, dv = RACE_DIVS[div], diff = opt.diff ?? 0, me = raceCarStats(opt.parts, opt.dmg || 0);
+  const M = { t: 0, div, diff, rng, len: dv.len, ph1: rng() * 6, ph2: rng() * 6, done: false, events: [], count: 1.5, gates: [], shortcuts: [], obst: [], cars: [], gateRes: { ok: 0, n: 0 }, shortcut: 0, dmg: 0, kidSkill: opt.kidSkill ?? 0 };
+  M.me = { id: 'me', d: 0, x: .5, v: 0, turbo: 0, crash: 0, stats: me, steer: 0, me: true, fin: null };
+  const cap = me.top * RACE_DIFF[diff].cap;
+  RACE_DRIVERS[div].forEach((dr, i) => M.cars.push({ id: dr.id, dr, d: 0, x: .5 + (i - 1) * .12, lane: (i - 1) * .1, v: 0, turbo: 0, crash: 0, top: Math.min(RACE_V0 * dv.base * dr.spd * 1.12, cap * (.96 + .03 * i)), fin: null }));
+  M.cars.unshift(M.me); M.me.x = .5; M.cars.forEach((c, i) => { c.d = -i * 6; });
+  // poorten elke ~420 m, obstakels, 1-2 verborgen sluiproutes
+  for (let d = 300; d < M.len - 200; d += 380 + Math.floor(rng() * 120)) M.gates.push({ d, st: 'wait', seq: null, need: [], got: 0 });
+  for (let d = 180; d < M.len - 80; d += 130 + Math.floor(rng() * 130)) M.obst.push({ d, off: (rng() * 2 - 1) * .7, k: rng() < .5 ? 'olie' : 'pion', hit: false });
+  const nS = div === 0 ? 1 : 2; for (let i = 0; i < nS; i++) { const d = Math.round(M.len * (.35 + .35 * i) + rng() * 80); M.shortcuts.push({ d, side: rng() < .5 ? -1 : 1, st: 'hidden', skip: 150 }); }
+  M.gates.forEach(g => makeGatePuzzle(M, g));
+  return M;
+}
+// patroon voor een poort: kern zichtbaar, de volgende 2 tikken; keuze uit 3 symbolen
+function makeGatePuzzle(M, g) {
+  const dv = RACE_DIVS[M.div], st = pick(dv.unit[M.diff >= 2 ? 1 : 0]), unit = makeUnit(st, SHAPES), L = unit.length;
+  const shown = Math.min(Math.max(2 * L, 4), 7), seq = repeatTo(unit, shown + 2);
+  g.seq = seq.slice(0, shown); g.need = seq.slice(shown, shown + 2); g.got = 0;
+  g.choices = shuffle([...new Set(unit.concat(shuffle(SHAPES.filter(x => !unit.includes(x))).slice(0, Math.max(0, 3 - new Set(unit).size))))]).slice(0, Math.max(3, new Set(unit).size));
+}
+function makeLock(M, s) { const unit = makeUnit(pick(['AB', 'ABB', 'ABC']), SHAPES), seq = repeatTo(unit, 6), b = 2 + Math.floor(M.rng() * 3); s.seq = seq; s.b = b; s.ans = seq[b]; s.choices = shuffle([...new Set(unit.concat(shuffle(SHAPES.filter(x => !unit.includes(x))).slice(0, 1)))]); }
+const activeGate = M => M.gates.find(g => g.st === 'open');
+const activeLock = M => M.shortcuts.find(s => s.st === 'open');
+// speler tikt een symbool (poort of slot). Geeft 'ok' | 'fout' | 'klaar' | null
+function raceTap(M, sym) {
+  const s = activeLock(M);
+  if (s) { if (sym === s.ans) { s.st = 'solved'; M.events.push({ k: 'slot' }); return 'klaar'; } M.events.push({ k: 'fout' }); return 'fout'; }
+  const g = activeGate(M); if (!g) return null;
+  if (sym === g.need[g.got]) { g.got++; if (g.got >= g.need.length) { g.st = 'ok'; M.me.turbo = 3; M.gateRes.ok++; M.gateRes.n++; M.events.push({ k: 'turbo' }); return 'klaar'; } return 'ok'; }
+  g.got = 0; M.events.push({ k: 'fout' }); return 'fout';
+}
+function raceStep(M, dt) {
+  M.events.length = 0; if (M.done) return;
+  if (M.count > 0) { M.count -= dt; if (M.count <= 0) M.events.push({ k: 'go' }); return; }
+  M.t += dt; const me = M.me;
+  // poorten en sloten openen/sluiten op afstand
+  for (const g of M.gates) { if (g.st === 'wait' && g.d - me.d < 170) g.st = 'open'; if (g.st === 'open' && me.d >= g.d) { g.st = 'mis'; M.gateRes.n++; M.events.push({ k: 'gatemis' }); } }
+  for (const s of M.shortcuts) {
+    const edge = trackCx(M, me.d) + s.side * TRACK_HW, near = Math.abs(me.x - edge) < .1;
+    if (s.st === 'hidden' && s.d - me.d < 140 && s.d - me.d > 20 && near) { s.st = 'open'; makeLock(M, s); M.events.push({ k: 'slotopen' }); }
+    if (s.st === 'open' && me.d >= s.d) { s.st = 'gone'; }
+    if (s.st === 'solved' && me.d >= s.d) { s.st = 'used'; me.d += s.skip; M.shortcut++; M.events.push({ k: 'sluip' }); }
+  }
+  // auto's
+  const leaderD = Math.max(...M.cars.filter(c => !c.me).map(c => c.d));
+  for (const c of M.cars) {
+    if (c.fin != null) { c.d += c.v * dt; continue; }
+    const cx = trackCx(M, c.d), off = Math.abs(c.x - cx) > TRACK_HW;
+    let top;
+    if (c.me) {
+      c.x = clamp(c.x + c.steer * c.stats.steer * dt, .03, .97);
+      top = c.stats.top * (off ? c.stats.off : 1) * (c.turbo > 0 ? 1.4 : 1);
+    } else {
+      // AI: volgt de baan met een eigen rijstrook, ontwijkt soms obstakels; rubberband: nooit ver weg, niet sneller dan de cap
+      const ob = M.obst.find(o => !o.hitBy?.[c.id] && o.d - c.d > 0 && o.d - c.d < 40);
+      let tx = cx + c.lane; if (ob && M.rng() < c.dr.skill * dt * 8) c.dodge = (cx + ob.off * TRACK_HW) > tx ? -.14 : .14;
+      if (c.dodge) { tx += c.dodge; if (!ob) c.dodge = 0; }
+      c.x += clamp(tx - c.x, -.5 * dt, .5 * dt);
+      const gap = c.d - me.d, behind2 = false;
+      let rb = gap > 60 ? (M.diff === 2 ? .94 : .84) : gap < -80 ? 1.06 : 1;
+      if (M.diff === 0 && gap > 25) rb = Math.min(rb, .93);
+      top = c.top * rb * (c.turbo > 0 ? 1.25 : 1) * (Math.abs(c.x - cx) > TRACK_HW ? .6 : 1);
+      // AI pakt soms turbo bij een poort (kans hoger met skill/moeilijkheid)
+      if (M.gates.some(g => Math.abs(g.d - c.d) < c.v * dt + .01 && c.d < g.d) && M.rng() < c.dr.skill * [.5, .75, 1][M.diff]) c.turbo = 2.5;
+    }
+    if (c.crash > 0) { c.crash -= dt; top *= .35; }
+    c.turbo = Math.max(0, c.turbo - dt);
+    c.v += clamp(top - c.v, -18 * dt, (c.me ? 9 : 8) * dt);
+    c.d += c.v * dt;
+    // obstakels
+    for (const o of M.obst) {
+      if (Math.abs(o.d - c.d) < 3 && Math.abs(c.x - (trackCx(M, o.d) + o.off * TRACK_HW)) < .07) {
+        o.hitBy = o.hitBy || {}; if (o.hitBy[c.id]) continue; o.hitBy[c.id] = 1;
+        c.crash = o.k === 'olie' ? .9 : 1.2; c.v *= .55;
+        if (c.me) { M.dmg += Math.round(c.stats.crash * (o.k === 'pion' ? 1 : .6)); M.events.push({ k: o.k === 'olie' ? 'slip' : 'boem' }); }
+      }
+    }
+    if (c.d >= M.len && c.fin == null) { c.fin = M.t; if (c.me) M.events.push({ k: 'finish' }); }
+  }
+  if (me.fin != null) {   // klaar: rest krijgt een geschatte eindtijd
+    for (const c of M.cars) if (c.fin == null) c.fin = M.t + (M.len - c.d) / Math.max(5, c.v || c.top);
+    M.done = true; M.order = M.cars.slice().sort((a, b) => a.fin - b.fin).map(c => c.id);
+  }
+}
+const racePos = M => 1 + M.cars.filter(c => !c.me && c.d > M.me.d).length;
+// simpele 'kind-bestuurder' voor de simulatie en tests: stuurt naar het midden, met reactietijd/fouten; tikt poorten met kans
+function raceBot(M, skill = 0) {
+  const me = M.me, look = trackCx(M, me.d + 25 + me.v * .3);
+  const ob = M.obst.find(o => o.d - me.d > 0 && o.d - me.d < 30);
+  let tx = look; if (ob && M.rng() < .5 + .1 * skill) { const ox = trackCx(M, ob.d) + ob.off * TRACK_HW; tx = ox > look ? look - .12 : look + .12; }
+  if (skill <= -2 && M.rng() < .02) me.wob = (M.rng() * 2 - 1) * .2; tx += me.wob || 0; if (M.rng() < .01) me.wob = 0;
+  me.steer = Math.abs(tx - me.x) < .02 ? 0 : tx > me.x ? 1 : -1;
+  const g = activeGate(M); if (g && g.d - me.d < 90 && M.rng() < .08) raceTap(M, M.rng() < [.45, .6, .75, .85][clamp(skill + 3, 0, 3)] ? g.need[g.got] : pick(g.choices));
+}
+function raceSimFull(opt, skill) { const M = raceNew(opt); let n = 0; while (!M.done && n++ < 20000) { raceBot(M, skill); raceStep(M, .05); } return M; }
+
 /* ===== game/play.js ===== */
 /* Het puzzelscherm: speelt een reeks puzzels (niveau, instaptoets of samen-spel). Geen tijdsdruk, geen levens. */
 let RUN = null;   // de lopende reeks
@@ -2384,6 +2606,9 @@ function renderFactory() {
   const fp = footballProgress(S);
   $('#fFoot').innerHTML = fp < 1 ? `<b>⚽ Robotvoetbal</b><small>Verkoop ${FOOTBALL_AT} robots, dan bouwt opa een stadion!</small><div class="bar"><i style="width:${fp * 100}%"></i></div><small>${Math.min(S.soldTotal, FOOTBALL_AT)}/${FOOTBALL_AT} verkocht</small>`
     : `<b>🏟️ Stadion · ${DIVS[fbInit(S).div].name}</b><small>Volgende tegenstander: ${RIVALS[DIVS[S.football.div].rival].icon} ${RIVALS[DIVS[S.football.div].rival].name} · clubkas 🪙 ${S.football.kas}</small><button class="btn green small" id="fGoStadion">⚽ Naar het stadion</button>`;
+  const ru = raceUnlocked(S), R = ru ? raceInit(S) : null;
+  $('#fRace').innerHTML = !ru ? `<b>🏁 Robo-Race</b><small>Bouw eerst een nieuwe hal (de <b>Montagehal</b>), dan komt er een racebaan achter de fabriek!</small>`
+    : `<b>🏁 Racebaan · ${RACE_DIVS[R.div].icon} ${RACE_DIVS[R.div].name}</b><small>Race ${R.season.n + 1} van ${RACE_SEASON}${R.dmg ? ` · 🔧 schade ${R.dmg}%` : ''} · ⛽ 🪙 ${raceFuel(S)} per race</small><button class="btn orange small" id="fGoRace">🏁 Naar de garage</button>`;
   $('#fPoster').classList.toggle('ready', hiddenReady(S, 'poster'));
   advise();
 }
@@ -2396,6 +2621,7 @@ function advise(force) {
   if (force) t = force;
   else if (S.madeTotal === 0) t = 'Tik bij de <b>Lopende band</b> op <b>▶️ Werken</b>. Na één werkbeurt maakt hij vanzelf robots!';
   else if (S.soldTotal === 0 && S.stock.length) t = 'Kijk! De winkel verkoopt je robots vanzelf aan klanten. Ka-ching! 🪙';
+  else if (raceUnlocked(S) && !(S.race && S.race.seen)) t = 'Vroem! 🏁 Opa heeft achter de fabriek een <b>racebaan</b> gebouwd. Kijk eens bij <b>Robo-Race</b>, onderaan!';
   else if (sick) t = `Help! De <b>${MACHINES[sick].room}</b> piept en rookt. Even <b>🔧 smeren</b>?`;
   else if (S.orders.some(o => canDeliver(S, o))) t = 'Je kunt een <b>bestelling</b> leveren! Kijk in de 🛒 Winkel.';
   else if (MACHINE_ORDER.some(id => m[id].owned && MACHINES[id].rate && m[id].tuned < m[id].lv)) t = `De <b>${MACHINES[MACHINE_ORDER.find(id => m[id].owned && MACHINES[id].rate && m[id].tuned < m[id].lv)].room}</b> moet nog <b>afgeregeld</b> worden. Speel er een werkbeurt, dan draait hij vanzelf!`;
@@ -3104,6 +3330,165 @@ function crateSVG(open) {
       : `<rect x="16" y="38" width="128" height="22" rx="5" fill="#c98a3d" stroke="#2a1a08" stroke-width="4"/><text x="80" y="54" text-anchor="middle" font-size="13" font-weight="800" fill="#2a1a08">ROBO</text>`}</svg>`;
 }
 
+/* ===== screens/race.js ===== */
+/* Robo-Race schermen: garage (onderdelen, repareren, moeilijkheid, coach), race (canvas + sturen + symboolpoorten), stand. */
+const RC = { M: null, raf: 0, last: 0, keys: {} };
+function goRace() {
+  GEN++; hush(); raceInit(S); if (!S.race.seen) { S.race.seen = true; save(); }
+  show('scrRace'); musicFor('scrStadion'); renderGarage();
+}
+function carSVG(col = RACE_COL, parts = S.race.parts, dmg = 0) {
+  const sp = parts.motor >= 3 ? `<path d="M14 92 h72 l-6 10 h-60z" fill="#222"/>` : '', fl = parts.banden >= 2 ? '#ffd34a' : '#444';
+  return `<svg viewBox="0 0 100 130" class="carsvg"><ellipse cx="50" cy="122" rx="40" ry="6" fill="#000" opacity=".35"/>
+    ${[[14, 22], [70, 22], [14, 86], [70, 86]].map(([x, y]) => `<rect x="${x}" y="${y}" width="16" height="26" rx="5" fill="#1a1a1a" stroke="${fl}" stroke-width="3"/>`).join('')}
+    <path d="M30 10 h40 q10 0 12 14 l4 80 q0 14 -14 14 h-44 q-14 0 -14 -14 l4 -80 q2 -14 12 -14z" fill="${col}" stroke="#0b0f18" stroke-width="4"/>
+    <rect x="34" y="36" width="32" height="20" rx="6" fill="#0b0f18" opacity=".75"/><circle cx="50" cy="70" r="13" fill="#e8eef7" stroke="#0b0f18" stroke-width="3"/><circle cx="45" cy="68" r="3" fill="#38d6ff"/><circle cx="55" cy="68" r="3" fill="#38d6ff"/>
+    ${parts.auto >= 2 ? `<path d="M22 30 l-6 0 M78 30 l6 0" stroke="#8fa3bf" stroke-width="5"/>` : ''}${sp}${dmg >= 30 ? `<path d="M30 96 l10 -8 l6 6 l8 -9" stroke="#0b0f18" stroke-width="3" fill="none"/>` : ''}</svg>`;
+}
+function renderGarage() {
+  const R = raceInit(S), dv = RACE_DIVS[R.div], d = raceDiff(S), fuel = raceFuel(S);
+  $('#rcCoins').innerHTML = `🪙 <b>${S.coins}</b>`;
+  $('#rcTitle').textContent = `🏁 ${dv.icon} ${dv.name}`;
+  const parts = RACE_PART_IDS.map(id => { const P = RACE_PARTS[id], lv = R.parts[id], c = racePartCost(S, id);
+    return `<div class="rpart"><b>${P.icon} ${P.name}</b><span class="lvs">${'★'.repeat(lv)}${'☆'.repeat(5 - lv)}</span><small>${P.desc}</small>
+      ${c != null ? `<button class="btn small ${S.coins >= c ? 'purple' : 'white'}" data-rbuy="${id}">⬆️ 🪙 ${c}</button>` : `<span class="pill">${lv >= 5 ? 'MAX' : `🔒 max niv ${raceMaxLv(S)} in deze klasse`}</span>`}</div>`; }).join('');
+  const rc = raceRepairCost(S);
+  $('#rcBody').innerHTML = `
+    <div class="card rcar">${carSVG(RACE_COL, R.parts, R.dmg)}<div><b>Jouw racer</b><small>Seizoen: race ${R.season.n + 1} van ${RACE_SEASON} · top 2 promoveert</small>
+      <div class="dmgbar"><i style="width:${R.dmg}%"></i></div><small>🔧 Schade ${R.dmg}%${R.dmg >= 30 ? ' (langzamer!)' : ''}</small>
+      ${R.dmg ? `<button class="btn small orange" id="rcRepair">🔧 Repareren · 🪙 ${rc}</button>` : ''}
+      <button class="btn small white" id="rcStand">📊 Stand</button></div></div>
+    <p class="coach">🧑‍🔧 <b>Coach Bout:</b> ${raceTip(S)}</p>
+    <div class="card"><b>Moeilijkheid</b> <small>(prijzengeld ×${RACE_DIFF[d].pay})</small><div class="fbdiff">${RACE_DIFF.map((x, i) => `<button class="btn ${i === d ? 'green' : 'white'}" data-rdiff="${i}">${x.icon} ${x.name}</button>`).join('')}</div></div>
+    <div class="rparts">${parts}</div>
+    <p class="small-note">⛽ Brandstof per race: 🪙 ${fuel} · Prijzengeld: ${dv.prize.map((p, i) => `${i + 1}e 🪙${Math.round(p * RACE_DIFF[d].pay)}`).join(' · ')}. Munten voor racen, voetbal en hallen komen uit dezelfde kluis: kies slim!</p>`;
+  $('#rcGo').textContent = `🏁 Race! (⛽ 🪙 ${fuel})`; $('#rcGo').classList.toggle('white', !raceCanStart(S));
+}
+function garageClick(e) {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.rbuy) { const id = b.dataset.rbuy, c = racePartCost(S, id); if (!raceBuyPart(S, id)) { SFX.nope(); toast(`Je hebt 🪙 ${c} nodig.`); return; } save(); SFX.star(); confetti(20); toast(`⬆️ ${RACE_PARTS[id].name} niveau ${S.race.parts[id]}!`); return renderGarage(); }
+  if (b.dataset.rdiff) { setRaceDiff(S, +b.dataset.rdiff); save(); SFX.click(); return renderGarage(); }
+  if (b.id === 'rcRepair') { if (!raceRepair(S)) { SFX.nope(); toast(`Je hebt 🪙 ${raceRepairCost(S)} nodig.`); return; } save(); SFX.whir(); toast('🔧 Als nieuw!'); return renderGarage(); }
+  if (b.id === 'rcStand') { SFX.click(); return openRaceStand(); }
+}
+function openRaceStand(which) {
+  const R = S.race, last = which === 'last' && R.lastSeason, rows = last ? R.lastSeason.table : raceTable(S), dv = RACE_DIVS[last ? R.lastSeason.div : R.div];
+  const h = `<p class="small-note">${last ? 'Eindstand van het seizoen.' : `Race ${R.season.n} van ${RACE_SEASON} gereden.`} Punten: 1e ${RACE_POINTS[0]}, 2e ${RACE_POINTS[1]}, 3e ${RACE_POINTS[2]}, 4e ${RACE_POINTS[3]}. De top 2 promoveert!</p>
+    <table class="stand"><tr><th>#</th><th>Coureur</th><th>Ptn</th><th>Uitslagen</th></tr>${rows.map((r, i) => `<tr class="${r.me ? 'me' : ''}"><td>${i + 1}</td><td>${r.icon} ${r.name}</td><td><b>${r.pts}</b></td><td>${r.res.map(p => `<i class="fm ${p === 1 ? 'w' : p === 2 ? 'd' : 'l'}">${p}</i>`).join('')}</td></tr>`).join('')}</table>`;
+  $('#standTitle').textContent = `🏁 Stand ${dv.name}`; $('#standBody').innerHTML = h; openOv('ovStand');
+}
+/* ---------- de race ---------- */
+function startRace() {
+  if (!raceCanStart(S)) { SFX.nope(); toast(`Je hebt 🪙 ${raceFuel(S)} nodig voor brandstof.`); return; }
+  S.coins -= raceFuel(S); S.today.fin && (S.today.fin.upkeep += raceFuel(S)); save();
+  RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = '';
+  show('scrDrive'); musicFor('scrMatch'); sizeRace(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
+}
+function sizeRace() { const c = $('#rCanvas'), dpr = Math.min(2, devicePixelRatio || 1); c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr; }
+function raceLoop(now) {
+  const M = RC.M; if (!M || CUR_SCREEN !== 'scrDrive') return;
+  const dt = Math.min(.05, (now - RC.last) / 1000); RC.last = now;
+  M.me.steer = (RC.keys.L ? -1 : 0) + (RC.keys.R ? 1 : 0);
+  if (!RC.paused) { raceStep(M, dt); for (const e of M.events) raceEvent(e); }
+  drawRace(M); renderRaceHud(M);
+  if (M.done) return finishRace();
+  RC.raf = requestAnimationFrame(raceLoop);
+}
+function raceEvent(e) {
+  if (e.k === 'turbo') { SFX.fanfare(); floatTxt('🚀 TURBO!'); }
+  if (e.k === 'fout') SFX.nope();
+  if (e.k === 'gatemis') floatTxt('Poort gemist…');
+  if (e.k === 'boem') { SFX.nope(); floatTxt(pick(['BOEM! 💥', 'Au, een pion!', 'KLONK!'])); }
+  if (e.k === 'slip') { SFX.whir(); floatTxt('Sliiip! 🛢️'); }
+  if (e.k === 'slotopen') { SFX.whir(); floatTxt('⚙️ Geheime sluiproute!'); }
+  if (e.k === 'slot') { SFX.ok(); floatTxt('🔓 Open!'); }
+  if (e.k === 'sluip') { SFX.fanfare(); floatTxt('🕳️ Sluiproute! +150 m'); }
+  if (e.k === 'go') { SFX.ok(); floatTxt('GO!'); }
+}
+function floatTxt(t) { const el = $('#rFloat'); el.textContent = t; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); }
+function renderRaceHud(M) {
+  const me = M.me, pos = racePos(M);
+  $('#rPos').innerHTML = `<b>${pos}</b><small>/4</small>`;
+  $('#rProg').style.width = `${clamp(me.d / M.len, 0, 1) * 100}%`;
+  $('#rSpd').innerHTML = `${Math.round(me.v * 3.6)}<small> km/u</small>${me.turbo > 0 ? ' 🚀' : ''}`;
+  $('#rProgDots').innerHTML = M.cars.filter(c => !c.me).map(c => `<i style="left:${clamp(c.d / M.len, 0, 1) * 100}%;background:${c.dr.col}"></i>`).join('');
+  const s = activeLock(M), g = activeGate(M), key = s ? 's' + s.d : g ? 'g' + g.d + ':' + g.got : '';
+  if (key !== RC.gateKey) { RC.gateKey = key;
+    const box = $('#rGate');
+    if (!s && !g) { box.classList.remove('on', 'lock'); $('#rSyms').innerHTML = ''; }
+    else { box.classList.add('on'); box.classList.toggle('lock', !!s);
+      const strip = s ? s.seq.map((x, i) => i === s.b ? '<span class="q">?</span>' : tokenSVG(x)).join('') : g.seq.map(x => tokenSVG(x)).join('') + g.need.map((x, i) => i < g.got ? `<span class="got">${tokenSVG(x)}</span>` : '<span class="q">?</span>').join('');
+      box.innerHTML = `<small>${s ? '🔒 Sluiproute: welk stukje mist?' : `🚀 Turbo-poort: tik de volgende ${g.need.length} in de goede volgorde`}</small><div class="rstrip">${strip}</div>`;
+      $('#rSyms').innerHTML = (s ? s.choices : g.choices).map(x => `<button class="rsym" data-sym="${x}" aria-label="${tName(x)}">${tokenSVG(x)}</button>`).join(''); } }
+}
+function drawRace(M) {
+  const c = $('#rCanvas'), g = c.getContext('2d'), W = c.width, H = c.height, me = M.me, ppm = H / 120, baseY = H * .74;
+  const Y = d => baseY - (d - me.d) * ppm, X = x => x * W;
+  g.fillStyle = '#2b3140'; g.fillRect(0, 0, W, H);
+  // fabrieksvloer-tegels
+  g.strokeStyle = '#353c4d'; g.lineWidth = 2; const off = (me.d * ppm) % 60; for (let y = -60; y < H + 60; y += 60) { g.beginPath(); g.moveTo(0, y + off); g.lineTo(W, y + off); g.stroke(); }
+  // baan
+  const step = 8;
+  for (let y = H; y > -step; y -= step) {
+    const d = me.d + (baseY - y) / ppm, cx = trackCx(M, d), hw = TRACK_HW * W, x0 = X(cx) - hw;
+    const stripe = Math.floor(d / 6) % 2;
+    g.fillStyle = stripe ? '#e04848' : '#f2f2f2'; g.fillRect(x0 - W * .025, y - step, W * .025, step + 1); g.fillRect(x0 + 2 * hw, y - step, W * .025, step + 1);
+    g.fillStyle = '#3a3f4a'; g.fillRect(x0, y - step, 2 * hw, step + 1);
+    if (Math.floor(d / 8) % 2) { g.fillStyle = '#ffd34a88'; g.fillRect(X(cx) - 2, y - step, 4, step + 1); }
+    if (Math.abs(d - M.len) < 2) { for (let k = 0; k < 10; k++) { g.fillStyle = k % 2 ? '#fff' : '#111'; g.fillRect(x0 + k * hw / 5, y - step, hw / 5, step + 1); } }
+  }
+  // sluiproute-bordjes (klein, aan de rand)
+  for (const s of M.shortcuts) { if (s.st === 'used' || s.st === 'gone') continue; const d = s.d - 70, y = Y(d); if (y < -40 || y > H + 40) continue;
+    const x = X(trackCx(M, d) + s.side * (TRACK_HW + .05)); g.font = `${Math.round(W * .06)}px sans-serif`; g.textAlign = 'center'; g.fillText(s.st === 'solved' ? '🕳️' : '⚙️', x, y); }
+  // obstakels
+  for (const o of M.obst) { const y = Y(o.d); if (y < -30 || y > H + 30) continue; const x = X(trackCx(M, o.d) + o.off * TRACK_HW);
+    if (o.k === 'olie') { g.fillStyle = '#0b0b0f'; g.beginPath(); g.ellipse(x, y, W * .055, W * .03, 0, 0, 7); g.fill(); g.fillStyle = '#5a5aa0aa'; g.beginPath(); g.ellipse(x - W * .015, y - 3, W * .02, W * .008, 0, 0, 7); g.fill(); }
+    else { g.fillStyle = '#ff8a1a'; g.beginPath(); g.moveTo(x, y - W * .05); g.lineTo(x + W * .03, y + W * .02); g.lineTo(x - W * .03, y + W * .02); g.fill(); g.fillStyle = '#fff'; g.fillRect(x - W * .018, y - W * .012, W * .036, W * .01); } }
+  // poorten
+  for (const gt of M.gates) { const y = Y(gt.d); if (y < -40 || y > H + 40) continue; const cx = X(trackCx(M, gt.d)), hw = TRACK_HW * W;
+    g.fillStyle = gt.st === 'ok' ? '#3fdc7f' : gt.st === 'mis' ? '#6b7280' : '#38d6ff'; g.fillRect(cx - hw - 8, y - 6, 2 * hw + 16, 12); g.fillRect(cx - hw - 12, y - 18, 8, 30); g.fillRect(cx + hw + 4, y - 18, 8, 30);
+    g.font = `bold ${Math.round(W * .04)}px sans-serif`; g.textAlign = 'center'; g.fillStyle = '#0b0f18'; g.fillText(gt.st === 'ok' ? 'TURBO!' : '◆ ◆ ◆', cx, y + 5); }
+  // auto's (verste eerst)
+  const car = (c, x, y, col) => { const w = W * .085, h = w * 1.5; g.save(); g.translate(x, y); g.rotate((c.me ? c.steer : 0) * .12);
+    g.fillStyle = '#000a'; g.fillRect(-w / 2 + 4, -h / 2 + 6, w, h);
+    g.fillStyle = '#111'; [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => g.fillRect(a * w * .55 - w * .12, b * h * .3 - h * .1, w * .24, h * .2));
+    g.fillStyle = col; g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, w * .3); g.fill(); g.strokeStyle = '#0b0f18'; g.lineWidth = 3; g.stroke();
+    g.fillStyle = '#0b0f18bb'; g.fillRect(-w * .32, -h * .22, w * .64, h * .18); g.fillStyle = '#e8eef7'; g.beginPath(); g.arc(0, h * .14, w * .2, 0, 7); g.fill();
+    if (c.turbo > 0) { g.fillStyle = '#ffb02e'; g.beginPath(); g.moveTo(-w * .25, h / 2); g.lineTo(0, h / 2 + h * .45 * (1 + Math.random() * .3)); g.lineTo(w * .25, h / 2); g.fill(); }
+    if (c.crash > 0) { g.font = `${Math.round(w * .7)}px sans-serif`; g.textAlign = 'center'; g.fillText('💫', 0, -h * .6); }
+    g.restore(); };
+  M.cars.filter(c => !c.me).sort((a, b) => b.d - a.d).forEach(c => { const y = Y(c.d); if (y > -60 && y < H + 60) car(c, X(c.x), y, c.dr.col); });
+  car(me, X(me.x), baseY, RACE_COL);
+  if (M.count > 0) { g.fillStyle = '#0008'; g.fillRect(0, 0, W, H); g.font = `bold ${Math.round(W * .2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = '#ffd34a'; g.fillText(M.count > .75 ? 'Klaar?' : 'GO!', W / 2, H * .45); }
+}
+function finishRace() {
+  const M = RC.M; cancelAnimationFrame(RC.raf);
+  const L = raceApply(S, M.order, { dmg: M.dmg, gates: M.gateRes, shortcut: M.shortcut }); save(); RC.M = null;
+  const pos = L.pos, medal = ['🥇', '🥈', '🥉', '4️⃣'][pos - 1];
+  let rw = `<p class="big">${medal} <b>${pos}e plek</b></p><p>🪙 +<b class="count" data-to="${L.prize}">0</b> prijzengeld</p>`;
+  rw += `<p class="small-note">🚀 Poorten goed: ${L.gatesOk}/${L.gatesN}${M.shortcut ? ` · 🕳️ sluiproute gevonden!` : ''} · 🔧 schade +${L.dmg}% (nu ${S.race.dmg}%)</p>`;
+  if (L.promo === 'up') rw += `<p>🎉 <b>Promotie!</b> Je rijdt nu in de <b>${RACE_DIVS[S.race.div].name}</b>.</p>`;
+  else if (L.promo === 'title') rw += `<p>🏆 <b>Kampioen</b> van de Robo-X Grand Prix!</p>`;
+  else if (L.promo === 'stay') rw += `<p>Seizoen klaar: ${L.place}e plek. Nieuw seizoen, nieuwe kans!</p>`;
+  rw += `<p class="coach">🧑‍🔧 ${raceTip(S)}</p>`;
+  showResult({ title: pos === 1 ? 'Gewonnen!' : pos === 2 ? 'Tweede!' : 'Gefinisht!', stars: pos === 1 ? 3 : pos === 2 ? 2 : pos === 3 ? 1 : 0, art: carSVG(RACE_COL, S.race.parts, S.race.dmg), reward: rw,
+    btns: [['🏁 Naar de garage', 'green', () => goRace()], ['📊 Stand', 'white', () => { goRace(); openRaceStand(L.promo ? 'last' : null); }]] });
+}
+function initRace() {
+  $('#rcBack').onclick = () => { SFX.click(); goFactory(); };
+  $('#rcBody').addEventListener('click', garageClick);
+  $('#rcGo').onclick = () => { SFX.click(); startRace(); };
+  const hold = (id, k) => { const b = $(id); const on = e => { e.preventDefault(); RC.keys[k] = true; b.classList.add('down'); }, off = () => { RC.keys[k] = false; b.classList.remove('down'); };
+    b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointerleave', off); b.addEventListener('pointercancel', off); };
+  hold('#rL', 'L'); hold('#rR', 'R');
+  $('#rSyms').addEventListener('pointerdown', e => { const b = e.target.closest('[data-sym]'); if (!b || !RC.M) return; e.preventDefault(); const r = raceTap(RC.M, b.dataset.sym); b.classList.add(r === 'fout' ? 'bad' : 'good'); if (r === 'ok') SFX.place(); RC.gateKey = 'x'; });
+  $('#rQuit').onclick = () => { SFX.click(); RC.paused = true; if (confirm('Stoppen met deze race? De brandstof is op, je krijgt geen punten.')) { RC.M = null; RC.paused = false; goRace(); } else RC.paused = false; };
+  addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrDrive') return; if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = true; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = true;
+    if (/^[1-4]$/.test(e.key)) { const b = $$('#rSyms .rsym')[+e.key - 1]; if (b && RC.M) { raceTap(RC.M, b.dataset.sym); RC.gateKey = 'x'; } } });
+  addEventListener('keyup', e => { if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = false; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = false; });
+  addEventListener('resize', () => { if (CUR_SCREEN === 'scrDrive') sizeRace(); });
+}
+
 /* ===== screens/samen.js ===== */
 /* Samen spelen op één apparaat: 'Lezer en bouwer' (coöperatief) en 'Maak een patroon' (om de beurt een patroon voor elkaar). */
 const SAMEN = { mode: 'lezer', hall: 1 };
@@ -3179,6 +3564,7 @@ function init() {
   $('#fEnd').onclick = () => { SFX.click(); endDay(); };
   $('#fShop').onclick = openShop; $('#fShop2').onclick = openShop;
   $('#fBuild').onclick = openBuild;
+  $('#fRace').addEventListener('click', e => { if (e.target.closest('#fGoRace')) { SFX.click(); goRace(); } }); initRace();
   $('#fFoot').addEventListener('click', e => { if (e.target.closest('#fGoStadion')) { SFX.click(); goStadion(); } });
   $('#stBack').onclick = () => { SFX.click(); goFactory(); }; $('#stTeam').onclick = () => { SFX.click(); goTeam(); };
   $('#stPlay').onclick = () => { SFX.click(); startMatch('solo'); }; $('#stCoop').onclick = () => { SFX.click(); startMatch('coop'); }; $('#stVs').onclick = () => { SFX.click(); startMatch('versus'); };
@@ -3211,7 +3597,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, race: { raceNew, raceStep, raceTap, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
