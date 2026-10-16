@@ -443,7 +443,17 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 .crate{background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;color:#ffe14a;font:inherit;font-weight:800;margin:0 auto;animation:crateWiggle 1.2s infinite}.crate.open{animation:none}
 .cratesvg{width:min(48vw,200px)}@keyframes crateWiggle{0%,80%,100%{transform:rotate(0)}85%{transform:rotate(-6deg)}90%{transform:rotate(6deg)}95%{transform:rotate(-3deg)}}
 .crateout{animation:pop .4s ease-out}@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
-</style>
+.mrule{background:#0b0f18aa;border:2px solid #b0629a88;border-radius:12px;padding:8px 10px;font-size:.95em}.mrule small{display:block;color:#cfd8e8;margin-top:3px;font-size:.82em}
+.mboard{display:grid;gap:3px;width:min(94vw,56vh,520px);margin:0 auto;aspect-ratio:1}.mboard i{display:block}
+.mcell{background:radial-gradient(circle at 50% 30%,#f4f7fb,#cfd8e6);border:2px solid #3c4a66;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:6%}.mcell svg{width:100%;height:100%}.mcell.won{border-color:#3fdc7f;box-shadow:0 0 10px #3fdc7f}
+.marr{border:0;border-radius:8px;background:#2a3550;color:#ffe14a;font-size:clamp(12px,3.6vw,20px);cursor:pointer;touch-action:manipulation;padding:0}.marr:active{background:#3c4a66}.marr.hint{background:#ffe14a;color:#1a1a1a;animation:pulse 1s infinite}
+/* passend op korte telefoons: rooster schaalt mee met de hoogte */
+.sgrid{width:min(100%,520px,calc((100dvh - 250px) * 1.25))}
+.mboard{width:min(100%,520px,calc(100dvh - 270px))}
+@media (max-height:700px){.bigwrap{gap:6px}.bigsub,.mrule{font-size:.8em}.mrule small{display:none}.sfb{min-height:2.2em;font-size:.8em}.bighead b{font-size:.9em}.bigfoot .btn{padding:6px 12px}.sgrid{gap:6px}}
+@media (orientation:landscape) and (max-height:520px){.bigwrap{width:min(900px,100%)}.sgrid{grid-template-columns:repeat(5,1fr);width:min(72vw,calc((100dvh - 150px) * 3.1))}.scard{aspect-ratio:1.3}.bigsub{font-size:.78em}
+ .mboard{width:min(60vw,calc(100dvh - 120px))}#montBody{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto 1fr;column-gap:14px}#montBody .bighead{grid-column:1/3}#montBody .mrule{grid-column:1}#montBody .mboard{grid-column:2;grid-row:2/4}#montBody .bigfoot{grid-column:1;align-self:start}}
+.bigfoot{margin-top:4px;position:relative;z-index:1}.sgrid,.mboard{flex:none}</style>
 </head>
 <body>
 <div id="defs"></div>
@@ -549,7 +559,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
         <p class="small-note">Bij robotvoetbal zijn tegenstanders nooit veel sneller dan de robot van je kind, er is een Turbo-knop en wie 2 doelpunten achter staat krijgt wat hulp. Makkelijk geeft iets minder prijzengeld, Pittig meer.</p>
       </div>
       <div><h3>📊 Voortgang</h3><div id="oudProg"></div></div>
-      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). Met nieuwe hallen komen er grotere puzzels bij: in de <b>Montagehal</b> een schuifpuzzel (altijd oplosbaar, minder zetten = meer beloning) en in de <b>Sorteerhal</b> een sorteerbak waarin je setjes van 3 zoekt (elke eigenschap alles gelijk of alles anders: logisch redeneren). Na elke nieuwe hal krijgen de oude machines een extra moeilijkheid (Expert, Meester); makkelijk blijft altijd kiesbaar. Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
+      <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). Met nieuwe hallen komen er grotere puzzels bij: in de <b>Montagehal</b> een schuifpuzzel waarin je rijen en kolommen rondschuift tot het rooster een patroonregel volgt (herhalen, opschuiven, spiegelen, tellen; later twee regels tegelijk; altijd oplosbaar) en in de <b>Sorteerhal</b> een sorteerbak waarin je setjes van 3 zoekt (elke eigenschap alles gelijk of alles anders: logisch redeneren). Na elke nieuwe hal krijgen de oude machines een extra moeilijkheid: Expert (twee regels tegelijk, bv. vorm én kleur met verschillende herhaling) en Meester (drie regels, ook draaien en aantallen, minder hints); makkelijk blijft altijd kiesbaar. Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
       <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles bouwen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
       <p class="small-note">Robo-Fabriek werkt zonder account, zonder reclame en zonder internet (na de eerste keer). De voortgang staat alleen op dit apparaat. Installeren: iPad/iPhone → Safari → Deel → <b>Zet op beginscherm</b>; Android → Chrome → ⋮ → <b>App installeren</b>.</p>
     </div>
@@ -631,7 +641,7 @@ const MACHINES = {
     desc: 'Meer plek voor robots en grotere klanten: meer verkoop per dag.',
     pool: lv => [['g', 'grow'], ['g', 'numseq']] },
   mont: { name: 'Montagerobot', room: 'Montagehal', icon: '🧩', buy: 900, need: { band: 3 }, up: [0, 600, 1300, 2200, 3300], rate: [1.2, 1.7, 2.3, 3, 3.8], theme: ['#33283f', '#b0629a'], big: 'slide',
-    desc: 'Schuifpuzzel: schuif het plaatje van het robotonderdeel weer heel. Minder zetten = meer beloning. Daarna monteert hij vanzelf robots én trekt hij nieuwe klanten.' },
+    desc: 'Schuifpuzzel: schuif rijen en kolommen rond tot het rooster de regel volgt. Elke keer nieuw, steeds pittiger. Minder zetten = meer beloning. Daarna monteert hij vanzelf robots én trekt hij nieuwe klanten.' },
   sort: { name: 'Sorteerbak', room: 'Sorteerhal', icon: '🗃️', buy: 1300, need: { mont: 1 }, up: [0, 800, 1600, 2600, 3800], qb: [1, 1, 1, 1, 1], theme: ['#20363a', '#3aa39b'], big: 'set',
     desc: 'Sorteer de bak leeg: vind steeds 3 onderdelen die bij elkaar horen. Netjes gesorteerd = betere robots (+★) en meer klanten.' },
   tik: { name: 'Tik-tak-band', room: 'Tik-tak-band', icon: '👆', buy: 0, up: [0, 90, 220, 450, 800], theme: ['#4a4020', '#c9a227'],
@@ -824,8 +834,8 @@ const TOKENS = {
 const SHAPES = ['rond', 'vier', 'drie', 'ster', 'wiel', 'moer'];
 const SOUNDS = ['piep', 'toet', 'boem'];
 const SOUNDS_R = ['piep', 'toet', 'boem', 'stil'];
-const tName = id => id.startsWith('n:') || id.startsWith('stk:') ? id.split(':')[1] : TOKENS[id].name;
-const tKind = id => id.includes(':') ? 'getal' : TOKENS[id].kind;
+const tName = id => id.startsWith('x:') ? cxName(id) : id.startsWith('n:') || id.startsWith('stk:') ? id.split(':')[1] : TOKENS[id].name;
+const tKind = id => id.startsWith('x:') ? 'vorm' : id.includes(':') ? 'getal' : TOKENS[id].kind;
 
 /* ===== data/halls.js ===== */
 /* De zeven hallen. Fase 1: hal 1 (Lopende band) en hal 2 (Geluidskamer) zijn speelbaar, de rest komt later.
@@ -893,7 +903,16 @@ const DEFS_SVG = `<svg width="0" height="0" style="position:absolute" aria-hidde
  <radialGradient id="g-glowB" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#7ff0ff" stop-opacity=".8"/><stop offset="1" stop-color="#7ff0ff" stop-opacity="0"/></radialGradient>
  <filter id="f-sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#0b1230" flood-opacity=".3"/></filter>
 </defs></svg>`;
+function cxShape(s, col, x, y, k, rot) {
+  const st = `fill="${col}" stroke="${INK}" stroke-width="${5 / k}" stroke-linejoin="round"`;
+  const g = { rond: `<circle cx="0" cy="0" r="30" ${st}/>`, vier: `<rect x="-27" y="-27" width="54" height="54" rx="7" ${st}/>`, drie: `<polygon points="0,-32 32,26 -32,26" ${st}/>`,
+    ster: `<polygon points="${starPts(0, 2, 34, 14, 5)}" ${st}/>`, hart: `<path d="M0 28 C-40 0 -26 -34 0 -14 C26 -34 40 0 0 28Z" ${st}/>`, zes: `<polygon points="${polyPts(0, 0, 32, 6, 0)}" ${st}/>`,
+    maan: `<path d="M14 -30 A30 30 0 1 0 14 30 A15 30 0 0 1 14 -30Z" ${st}/>`, pijl: `<path d="M0 -32 L26 -4 L10 -4 L10 30 L-10 30 L-10 -4 L-26 -4Z" ${st}/>` }[s];
+  return `<g transform="translate(${x} ${y}) scale(${k}) rotate(${rot * 90})">${g}</g>`;
+}
 function tokenSVG(id, opt = {}) {
+  if (id.startsWith('x:')) { const o = cxParse(id), col = CX_COLS[o.c], pos = o.n === 1 ? [[50, 50, .95]] : o.n === 2 ? [[29, 50, .58], [71, 50, .58]] : [[50, 26, .5], [27, 70, .5], [73, 70, .5]];
+    return `<svg viewBox="0 0 100 100" role="img" aria-label="${cxName(id)}">${pos.map(([x, y, k]) => cxShape(o.s, col, x, y, k, o.r)).join('')}</svg>`; }
   if (id.startsWith('n:')) { const v = id.slice(2); return `<svg viewBox="0 0 100 100" role="img" aria-label="${v}"><circle cx="50" cy="50" r="40" fill="url(#g-metal)" stroke="${INK}" stroke-width="6"/><text x="50" y="${v.length > 2 ? 62 : 66}" text-anchor="middle" font-size="${v.length > 2 ? 34 : 44}" font-weight="700" font-family="'Exo 2',sans-serif" fill="${INK}">${v}</text></svg>`; }
   if (id.startsWith('stk:')) { const v = +id.slice(4), n = Math.min(v, 8), h = Math.min(11, 76 / n); let g = ''; for (let i = 0; i < n; i++) g += `<rect x="32" y="${92 - (i + 1) * h}" width="36" height="${h - 1.5}" rx="2" fill="url(#g-box)" stroke="${INK}" stroke-width="2.5"/>`;
     return `<svg viewBox="0 0 100 100" role="img" aria-label="stapel van ${v}">${g}<rect x="58" y="2" width="40" height="26" rx="13" fill="#fff" stroke="${INK}" stroke-width="3"/><text x="78" y="22" text-anchor="middle" font-size="20" font-weight="700" font-family="'Exo 2',sans-serif" fill="${INK}">${v}</text></svg>`; }
@@ -1207,6 +1226,51 @@ const PLACEMENT = [
 ];
 // startniveau na de instaptoets (aantal goed 0..5)
 function placementStart(score) { return { h1: [1, 1, 2, 4, 5, 6][score], h2: score >= 3 ? [0, 0, 0, 1, 2, 3][score] : 0 }; }
+/* ---------- Expert/Meester: twee (of drie) regels tegelijk ----------
+   Stukje-id 'x:vorm:kleur:aantal:draai'. Elke eigenschap heeft zijn EIGEN herhaling met een andere lengte (bv. vorm ABC, kleur AB). */
+const CX_SHAPES = ['rond', 'vier', 'drie', 'ster', 'hart', 'zes', 'maan', 'pijl'];
+const CX_COLS = ['#E69F00', '#56B4E9', '#009E73', '#CC79A7'];
+const CX_COL_NL = ['oranje', 'blauw', 'groen', 'roze'];
+const CX_SH_NL = { rond: 'rondje', vier: 'vierkant', drie: 'driehoek', ster: 'ster', hart: 'hart', zes: 'zeshoek', maan: 'maan', pijl: 'pijl' };
+const cxId = (s, c, n, r) => `x:${s}:${c}:${n}:${r}`;
+const cxParse = id => { const [, s, c, n, r] = id.split(':'); return { s, c: +c, n: +n, r: +r }; };
+const CX_HET = ['rond', 'vier', 'hart'];
+function cxName(id) { const o = cxParse(id); return `${o.n > 1 ? o.n + ' × ' : ''}${CX_COL_NL[o.c]}${CX_HET.includes(o.s) || CX_COL_NL[o.c].endsWith('e') ? '' : 'e'} ${CX_SH_NL[o.s]}${o.s === 'pijl' ? ' ' + ['↑', '→', '↓', '←'][o.r] : ''}`; }
+// de regels per moeilijkheid: Expert = 2 eigenschappen (lengtes 2 en 3), Meester = 3 eigenschappen (lengtes 2, 3, 4; ook draaien), langer, meer gaten, meer foute keuzes
+function genCombi(level, focus) {
+  const meester = level >= 4;
+  let attrs = meester ? pick([['s', 'c', 'n'], ['s', 'c', 'r'], ['s', 'n', 'c'], ['c', 'n', 'r']]) : focus === 'aantal' ? pick([['s', 'n'], ['c', 'n']]) : pick([['s', 'c'], ['s', 'c'], ['s', 'n'], ['c', 'n']]);
+  if (focus === 'aantal' && !attrs.includes('n')) attrs[attrs.length - 1] = 'n';
+  const lens = shuffle(meester ? [2, 3, 4] : [2, 3]).slice(0, attrs.length);
+  if (attrs.includes('r')) { const i = attrs.indexOf('r'); lens[i] = 4; if (new Set(lens).size < lens.length) lens[(i + 1) % lens.length] = lens[(i + 1) % lens.length] === 3 ? 2 : 3; }
+  const cyc = {}; attrs.forEach((a, i) => {
+    const L = lens[i];
+    if (a === 's') cyc.s = shuffle(attrs.includes('r') ? ['drie', 'maan', 'hart', 'pijl'] : CX_SHAPES).slice(0, L);   // bij draaien alleen vormen waarvan je de draai goed ziet
+    if (a === 'c') cyc.c = shuffle([0, 1, 2, 3]).slice(0, L);
+    if (a === 'n') cyc.n = L === 2 ? shuffle([1, 2, 3]).slice(0, 2) : L === 3 ? pick([[1, 2, 3], [3, 2, 1], [1, 3, 2]]) : [1, 2, 3, 2];
+    if (a === 'r') cyc.r = pick([[0, 1, 2, 3], [0, 3, 2, 1]]);
+  });
+  const base = { s: attrs.includes('r') ? 'pijl' : pick(CX_SHAPES.filter(x => x !== 'pijl')), c: rnd(4), n: 1, r: 0 };
+  const at = i => cxId(cyc.s ? cyc.s[i % cyc.s.length] : base.s, cyc.c ? cyc.c[i % cyc.c.length] : base.c, cyc.n ? cyc.n[i % cyc.n.length] : base.n, cyc.r ? cyc.r[i % cyc.r.length] : base.r);
+  const len = MAXBAND, seq = Array.from({ length: len }, (_, i) => at(i));
+  const t = meester ? pick(['nextN', 'mid']) : pick(['next', 'mid']);
+  const blanks = t === 'next' ? [len - 1] : t === 'nextN' ? [len - 2, len - 1] : [4 + rnd(len - 6)];
+  // foute keuzes die op één eigenschap kloppen (de echte valkuil), aangevuld met willekeurige
+  const opts = new Set(blanks.map(b => seq[b]));
+  const want = meester ? 8 : 6;
+  for (const b of blanks) { const o = cxParse(seq[b]);
+    for (const a of attrs) { const vals = a === 's' ? (cyc.s || CX_SHAPES) : a === 'c' ? [0, 1, 2, 3] : a === 'n' ? [1, 2, 3] : [0, 1, 2, 3];
+      for (const v of shuffle(vals)) { if (v === o[a]) continue; const x = Object.assign({}, o, { [a]: v }); opts.add(cxId(x.s, x.c, x.n, x.r)); break; } } }
+  let guard = 0; while (opts.size < want && guard++ < 200) { const i = rnd(12); const o = cxParse(at(i)); const a = pick(attrs); const x = Object.assign({}, o); if (a === 'c') x.c = rnd(4); else if (a === 'n') x.n = 1 + rnd(3); else if (a === 'r') x.r = rnd(4); else x.s = pick(cyc.s || CX_SHAPES); opts.add(cxId(x.s, x.c, x.n, x.r)); }
+  const rules = attrs.map(a => ({ a, cyc: cyc[a] }));
+  return { t, seq, blanks, answer: blanks.map(b => seq[b]), unit: smallestUnit(seq.length >= 12 ? seq : Array.from({ length: 12 }, (_, i) => at(i))).slice(0, 12), choices: shuffle([...opts].slice(0, want)), kind: 'vorm', rules, combi: level };
+}
+// uitleg van één regel in woorden
+function ruleText(r) {
+  const w = { s: 'de vormen', c: 'de kleuren', n: 'het aantal', r: 'de pijl draait' }[r.a];
+  const vals = r.cyc.map(v => r.a === 's' ? CX_SH_NL[v] : r.a === 'c' ? CX_COL_NL[v] : r.a === 'n' ? v : ['↑', '→', '↓', '←'][v]);
+  return `${w}: ${vals.join(', ')}, en dan weer opnieuw (om de ${r.cyc.length})`;
+}
 
 /* ===== game/explain.js ===== */
 /* Uitleg en hints in woorden. Uitleg bij fouten in stapjes: eerst zelf laten kijken, dan pas het antwoord noemen. */
@@ -1217,8 +1281,9 @@ const miniKern = (u, reps = 2) => `<span class="seqmini">${Array.from({ length: 
 const een = id => 'een ' + tName(id);
 function instruction(p, extra) {
   const klank = p.kind === 'klank';
+  if (p.rules) return `Let op: ${p.rules.length} regels tegelijk (${p.rules.map(r => ({ s: 'vorm', c: 'kleur', n: 'aantal', r: 'draai' })[r.a]).join(' + ')})! ` + (p.t === 'mid' ? 'Welk stukje hoort in het gat?' : p.t === 'nextN' ? `Welke ${p.blanks.length} stukjes komen hierna?` : 'Welk stukje komt hierna?');
   switch (p.t) {
-    case 'next': return klank ? 'Luister en kijk. Welk geluid komt hierna?' : 'Welk stukje komt hierna op de band?';
+    case 'next': if (p.rules) return `Let op: ${p.rules.length} regels tegelijk! Welk stukje komt hierna?`; return klank ? 'Luister en kijk. Welk geluid komt hierna?' : 'Welk stukje komt hierna op de band?';
     case 'mid': return 'Er mist een stukje. Welk stukje hoort in het gat?';
     case 'nextN': return `Maak de band af. Welke ${p.blanks.length} stukjes komen hierna?`;
     case 'kern': return 'Wat is de kern: het stukje dat steeds terugkomt? Tik op het laatste stukje van de kern.';
@@ -1231,6 +1296,8 @@ function instruction(p, extra) {
 }
 // uitleg bij een fout (try = 1, 2, ...)
 function explainWrong(p, given, pos, tryN) {
+  if (p.rules) { const ch = given[given.length - 1], want = p.seq[pos], a = cxParse(ch), b = cxParse(want), bad = p.rules.filter(r => a[r.a] !== b[r.a]);
+    return tryN === 1 ? `Je koos ${tName(ch)}. Er gelden ${p.rules.length} regels tegelijk! Klopt ${bad.length ? { s: 'de vorm', c: 'de kleur', n: 'het aantal', r: 'de draai' }[bad[0].a] : 'alles'} wel?` : `Kijk: ${bad.map(ruleText).join('; ')}.`; }
   const u = p.unit, L = u.length;
   if (p.t === 'next' || p.t === 'mid' || p.t === 'nextN') {
     const chosen = given[given.length - 1], r = pos % L, want = p.seq[pos];
@@ -1263,6 +1330,7 @@ function explainWrong(p, given, pos, tryN) {
   return 'Probeer het nog eens!';
 }
 function hintText(p, step) {
+  if (p.rules) return step === 1 ? `Tip: hier gelden ${p.rules.length} regels tegelijk. Kijk eerst alleen naar ${{ s: 'de vormen', c: 'de kleuren', n: 'het aantal', r: 'de draai' }[p.rules[0].a]}.` : step === 2 ? `Regel 1: ${ruleText(p.rules[0])}.` : step === 3 ? `Regel 2: ${ruleText(p.rules[1])}.` : p.rules[2] ? `Regel 3: ${ruleText(p.rules[2])}.` : 'Kijk, die lichten op!';
   const u = p.unit;
   if (p.diffs) { const ds = p.diffs.map(x => (x > 0 ? '+' : '') + x); return step === 1 ? 'Tip: kijk hoeveel erbij of eraf gaat, steeds van het ene naar het volgende.' : step === 2 ? `De sprongen staan nu boven de vakjes.` : step === 3 ? `De sprongen: ${ds.join(', ')}.` : 'Kijk, die licht op!'; }
   if (step === 1) return p.t === 'echo' ? 'Ik speel het ritme nog een keer. Kijk welke plaatjes oplichten.'
@@ -1746,44 +1814,83 @@ const divPoints = st => st.football.divRes.reduce((a, b) => a + b, 0);
 /* Grote puzzels van de nieuwe hallen (fase D). Puur (geen DOM), zodat ze getest kunnen worden.
    Schuifpuzzel: altijd oplosbaar (we schudden met echte zetten vanaf de oplossing).
    Sorteerbak: kaartjes met eigenschappen; een set = 3 kaartjes waarbij elke eigenschap óf alles gelijk óf alles anders is. */
-// ---------- schuifpuzzel ----------
-// tiles[i] = stukje dat op plek i ligt (0..n*n-2), n*n-1 = het gat
-function slideNew(n, shuffleMoves, rng = RNG) {
-  const N = n * n, t = Array.from({ length: N }, (_, i) => i); let hole = N - 1, prev = -1, moves = 0;
-  while (moves < shuffleMoves) {
-    const nb = slideNeighbours(n, hole).filter(x => x !== prev); const k = nb[Math.floor(rng() * nb.length)];
-    [t[hole], t[k]] = [t[k], t[hole]]; prev = hole; hole = k; moves++;
+// ---------- schuifpuzzel (Montagehal): rijen en kolommen rondschuiven tot het rooster een REGEL volgt ----------
+// Geen plaatje: je moet zelf bedenken hoe het rooster eruit moet zien. Altijd oplosbaar: we schudden vanaf een goed rooster met echte zetten.
+// zet = { k: 'r'|'c', i, d: +1|-1 }  (rij naar rechts/links, kolom naar beneden/boven)
+const MONT_LEVELS = [
+  { n: 3, rule: 'zelfde', mv: 'r', sh: 3, txt: 'Maak <b>alle rijen hetzelfde</b>: elke rij hetzelfde patroon.' },
+  { n: 3, rule: 'rijsoort', mv: 'c', sh: 4, txt: 'Elke <b>rij</b> moet uit <b>één soort</b> onderdeel bestaan.' },
+  { n: 3, rule: 'tel', mv: 'c', sh: 4, txt: 'Elke rij één soort, en <b>van boven naar beneden 1, 2, 3</b> stuks.' },
+  { n: 4, rule: 'schuif', mv: 'r', sh: 5, txt: 'Elke rij is de rij erboven, maar <b>één stapje naar rechts geschoven</b>.' },
+  { n: 4, rule: 'spiegel', mv: 'rc', sh: 6, txt: 'Elke rij is <b>gespiegeld</b>: links lees je hetzelfde als rechts (zoals A B B A).' },
+  { n: 4, rule: 'schuifkleur', mv: 'rc', sh: 7, txt: '<b>Twee regels:</b> de vormen schuiven elke rij één stapje naar rechts, én elke <b>kolom heeft één kleur</b>.' },
+  { n: 5, rule: 'schuifkleur', mv: 'rc', sh: 9, txt: '<b>Twee regels:</b> de vormen schuiven elke rij één stapje naar rechts, én elke <b>kolom heeft één kleur</b>.' },
+  { n: 5, rule: 'spiegeltel', mv: 'rc', sh: 11, txt: '<b>Twee regels:</b> elke rij is gespiegeld, én <b>van boven naar beneden 1, 2, 3, 2, 1</b> stuks per rij.' }
+];
+const mAt = (s, r, c) => s.g[r * s.n + c];
+function mRow(s, r) { return Array.from({ length: s.n }, (_, c) => mAt(s, r, c)); }
+function mCol(s, c) { return Array.from({ length: s.n }, (_, r) => mAt(s, r, c)); }
+function mApply(s, m) {
+  const n = s.n, line = m.k === 'r' ? mRow(s, m.i) : mCol(s, m.i), sh = line.map((_, j) => line[((j - m.d) % n + n) % n]);
+  sh.forEach((v, j) => { if (m.k === 'r') s.g[m.i * n + j] = v; else s.g[j * n + m.i] = v; });
+}
+const mInv = m => ({ k: m.k, i: m.i, d: -m.d });
+const mSame = (a, b) => a && b && a.k === b.k && a.i === b.i && a.d === b.d;
+const cx = id => cxParse(id);
+const rotR = (row, k) => row.map((_, j) => row[((j - k) % row.length + row.length) % row.length]);
+function montSolved(s) {
+  const n = s.n, R = r => mRow(s, r), C = c => mCol(s, c), eq = (a, b) => a.every((x, i) => x === b[i]);
+  const shapes = row => row.map(x => cx(x).s), uni = a => a.every(x => x === a[0]);
+  switch (s.rule) {
+    case 'zelfde': return Array.from({ length: n }, (_, r) => r).every(r => eq(R(r), R(0)));
+    case 'rijsoort': return Array.from({ length: n }, (_, r) => uni(R(r))).every(Boolean);
+    case 'tel': return Array.from({ length: n }, (_, r) => uni(R(r)) && cx(R(r)[0]).n === r + 1).every(Boolean);
+    case 'schuif': return Array.from({ length: n - 1 }, (_, r) => eq(R(r + 1), rotR(R(r), 1))).every(Boolean);
+    case 'spiegel': return Array.from({ length: n }, (_, r) => eq(R(r), R(r).slice().reverse())).every(Boolean);
+    case 'schuifkleur': return Array.from({ length: n - 1 }, (_, r) => eq(shapes(R(r + 1)), rotR(shapes(R(r)), 1))).every(Boolean) && Array.from({ length: n }, (_, c) => uni(C(c).map(x => cx(x).c))).every(Boolean);
+    case 'spiegeltel': return Array.from({ length: n }, (_, r) => eq(R(r), R(r).slice().reverse()) && R(r).every(x => cx(x).n === [1, 2, 3, 2, 1][r])).every(Boolean);
   }
-  if (slideSolved({ n, t })) return slideNew(n, shuffleMoves + 2, rng);
-  return { n, t, moves: 0, par: shuffleMoves };
+  return false;
 }
-function slideNeighbours(n, i) { const r = Math.floor(i / n), c = i % n, o = []; if (r > 0) o.push(i - n); if (r < n - 1) o.push(i + n); if (c > 0) o.push(i - 1); if (c < n - 1) o.push(i + 1); return o; }
-const slideHole = s => s.t.indexOf(s.n * s.n - 1);
-// tik op plek i: schuift als hij naast het gat ligt (of in dezelfde rij/kolom: dan schuift de hele rij, telt als 1 zet per stukje)
-function slideTap(s, i) {
-  const n = s.n, h = slideHole(s); if (i === h) return 0;
-  const ri = Math.floor(i / n), ci = i % n, rh = Math.floor(h / n), ch = h % n;
-  if (ri !== rh && ci !== ch) return 0;
-  const step = ri === rh ? (ci < ch ? -1 : 1) : (ri < rh ? -n : n); let cur = h, k = 0;
-  while (cur !== i) { const nx = cur + step; [s.t[cur], s.t[nx]] = [s.t[nx], s.t[cur]]; cur = nx; k++; }
-  s.moves += k; return k;
+// een goed rooster maken voor de regel
+function montTarget(L) {
+  const n = L.n, sh = shuffle(CX_SHAPES.filter(x => x !== 'pijl')), col = shuffle([0, 1, 2, 3]), g = [];
+  const put = (r, c, v) => { g[r * n + c] = v; };
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
+    let v;
+    if (L.rule === 'zelfde') v = cxId(sh[c], col[c % 4], 1, 0);
+    else if (L.rule === 'rijsoort') v = cxId(sh[r], col[r], 1, 0);
+    else if (L.rule === 'tel') v = cxId(sh[0], col[0], r + 1, 0);
+    else if (L.rule === 'schuif') v = cxId(sh[((c - r) % n + n) % n], col[((c - r) % n + n) % n % 4], 1, 0);
+    else if (L.rule === 'spiegel') { const k = Math.min(c, n - 1 - c); v = cxId(sh[(r * 2 + k) % sh.length], col[(r + k) % 4], 1, 0); }
+    else if (L.rule === 'schuifkleur') v = cxId(sh[((c - r) % n + n) % n], col[c % 4], 1, 0);
+    else if (L.rule === 'spiegeltel') { const k = Math.min(c, n - 1 - c); v = cxId(sh[k], col[k], [1, 2, 3, 2, 1][r], 0); }
+    put(r, c, v);
+  }
+  return g;
 }
-const slideSolved = s => s.t.every((x, i) => x === i);
-// oplosbaarheid (pariteit), voor tests
-function slideSolvable(s) {
-  const n = s.n, a = s.t.filter(x => x !== n * n - 1); let inv = 0; for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) if (a[i] > a[j]) inv++;
-  if (n % 2) return inv % 2 === 0; const rowFromBottom = n - Math.floor(slideHole(s) / n); return (inv + rowFromBottom) % 2 === 1;
+function montNew(level, rng = RNG) {
+  const L = MONT_LEVELS[clamp(level, 0, MONT_LEVELS.length - 1)];
+  for (let tries = 0; tries < 50; tries++) {
+    const s = { n: L.n, g: montTarget(L), rule: L.rule, mv: L.mv, txt: L.txt, level: clamp(level, 0, MONT_LEVELS.length - 1), hist: [], moves: 0, par: L.sh };
+    for (let k = 0; k < L.sh; k++) {
+      let m; do { const kind = L.mv === 'rc' ? (rng() < .5 ? 'r' : 'c') : L.mv; m = { k: kind, i: Math.floor(rng() * L.n), d: rng() < .5 ? 1 : -1 }; } while (mSame(mInv(m), s.hist[s.hist.length - 1]));
+      mApply(s, m); s.hist.push(m);
+    }
+    if (!montSolved(s)) return s;
+  }
+  return null;
 }
-// sterren: hoe dicht bij het aantal schudzetten (een goede oplossing is meestal even lang of korter)
-function slideStars(s) { const r = s.moves / Math.max(1, s.par); return r <= 1.6 ? 3 : r <= 3.2 ? 2 : 1; }
-// hint: een stukje dat het gat 'goed' in beweegt (greedy op manhattan-afstand), nooit vastlopen
-function slideHint(s) {
-  const n = s.n, h = slideHole(s), md = t => t.reduce((a, x, i) => x === n * n - 1 ? a : a + Math.abs(Math.floor(x / n) - Math.floor(i / n)) + Math.abs(x % n - i % n), 0);
-  let best = null, bv = 1e9; for (const k of slideNeighbours(n, h)) { const t = s.t.slice(); [t[h], t[k]] = [t[k], t[h]]; const v = md(t) + (k === s.lastHole ? 3 : 0); if (v < bv) { bv = v; best = k; } }
-  return best;
+function montMove(s, m) {
+  if (!s.mv.includes(m.k)) return false;
+  mApply(s, m); s.moves++;
+  if (mSame(mInv(m), s.hist[s.hist.length - 1])) s.hist.pop(); else s.hist.push(m);
+  return true;
 }
-const SLIDE_LEVELS = [{ n: 3, mv: 10 }, { n: 3, mv: 24 }, { n: 3, mv: 40 }, { n: 4, mv: 30 }, { n: 4, mv: 50 }];
-function slideFor(lv, diff) { const L = SLIDE_LEVELS[clamp(lv - 2 + diff, 0, SLIDE_LEVELS.length - 1)]; return slideNew(L.n, L.mv); }
+// hint: draai de laatste 'verkeerde' zet terug (zo kom je altijd bij een goed rooster)
+const montHint = s => s.hist.length ? mInv(s.hist[s.hist.length - 1]) : null;
+function montStars(s) { return s.moves <= s.par + 2 ? 3 : s.moves <= 2 * s.par + 4 ? 2 : 1; }
+function montLevelFor(st, diff) { const m = st.machines.mont, prog = m.prog || 0; return clamp(prog + diff - 1, 0, MONT_LEVELS.length - 1); }
 // ---------- sorteerbak (set) ----------
 const SET_ATTR = { vorm: ['rond', 'vier', 'drie'], kleur: ['#E69F00', '#56B4E9', '#CC79A7'], aantal: [1, 2, 3], vulling: ['vol', 'leeg', 'streep'] };
 const SET_NAMES = { vorm: 'vormen', kleur: 'kleuren', aantal: 'aantallen', vulling: 'vullingen' };
@@ -1887,6 +1994,7 @@ function nextPuzzle() {
   if (RUN.mode === 'placement') { const c = PLACEMENT[RUN.i]; p = genPuzzle(c.lv, c.d, c.kind); }
   else if (RUN.mode === 'lezer') p = genPuzzle({ t: RUN.i % 3 === 2 ? 'mid' : 'next', st: [['AB', 'ABB'], ['ABB', 'AAB', 'ABC'], ['ABC', 'AABB']] }, RUN.d, RUN.kind);
   else if (RUN.mode === 'maker') p = null;
+  else if (RUN.mode === 'job' && RUN.combi) p = RUN.mid === 'test' ? genPuzzle(pick(TEST_EXPERT[RUN.combi]), 2, 'klank') : genCombi(RUN.combi, RUN.mid === 'mag' ? 'aantal' : null);
   else if (RUN.mode === 'job' || RUN.mode.startsWith('fb')) { const [src, x] = pick(RUN.pool); p = src === 'g' ? genPuzzle({ t: x }, RUN.d, 'vorm') : genPuzzle(HALLS[src === 'h1' ? 0 : 1].levels[x], RUN.d, src === 'h1' ? 'vorm' : 'klank'); }
   else if (RUN.mode === 'smeer') p = genPuzzle({ t: 'odd', st: [['AB'], ['AB', 'ABB'], ['ABC']] }, 0, RUN.kind);
   else if (RUN.mode === 'hidden') { const t = HIDDEN[RUN.spot].t; p = t === 'mid' ? genPuzzle({ t: 'mid', st: [['AB', 'ABB'], ['ABC', 'AABB'], ['ABC', 'AABB']] }, 1, 'vorm') : genPuzzle({ t }, 1, 'vorm'); }
@@ -2084,6 +2192,7 @@ function correct() {
 }
 async function hint() {
   if (!P || P.done || P.phase === 'lees' || P.phase === 'maak') return;
+  if (RUN.maxHint != null && P.hint >= RUN.maxHint) { toast(`Op ${DIFFS[RUN.diff].name} zijn er maar ${RUN.maxHint} hints. Jij kunt dit!`); return; }
   const p = P.p, g = GEN; P.hint = Math.min(4, P.hint + 1); P.usedHint = true; RUN.hints++; stat(p.t).hints++;
   const txt = hintText(p, P.hint); feedback('💡 ' + txt, 'denk'); say(txt);
   if (P.hint === 1 && p.t === 'echo') { await wait(600); if (g === GEN) playEchoAgain(); }
@@ -2313,11 +2422,14 @@ function startJob(id, diff) {
   if (MACHINES[id].big) return startBig(id, diff);
   // Expert/Meester (na nieuwe hallen): de zwaarste puzzelsoorten van deze machine, altijd op moeilijk, langere reeks
   const plv = diff >= 3 ? 6 : clamp(m.lv + (diff - 1), 1, 6), pool = MACHINES[id].pool(plv).concat(diff >= 3 ? EXPERT_POOL[id] : []);
-  startRun({ mode: 'job', mid: id, diff, total: JOB_LEN + (diff >= 3 ? diff - 2 : 0), pool, kind: id === 'test' ? 'klank' : 'vorm', d: Math.min(2, diff), dmin: diff >= 3 ? 2 : Math.max(0, diff - 1), dmax: Math.min(2, diff) });
+  startRun({ mode: 'job', mid: id, diff, combi: diff >= 3 ? diff : 0, maxHint: diff >= 4 ? 2 : diff === 3 ? 3 : null, total: JOB_LEN + (diff >= 3 ? diff - 2 : 0), pool, kind: id === 'test' ? 'klank' : 'vorm', d: Math.min(2, diff), dmin: diff >= 3 ? 2 : Math.max(0, diff - 1), dmax: Math.min(2, diff) });
 }
+// Testkamer Expert/Meester: langere ritmes (periode 4-5), stiltes, lang naspelen
+const TEST_EXPERT = { 3: [{ t: 'next', st: [[], [], ['ABCD', 'AABC', 'ABAC']], rest: true }, { t: 'odd', st: [[], [], ['ABC', 'AABC']], rest: true }, { t: 'echo', st: [[], [], [6]] }],
+  4: [{ t: 'nextN', st: [[], [], ['ABCD', 'ABAC', 'AABC']], rest: true }, { t: 'odd', st: [[], [], ['ABCD', 'AABC']], rest: true }, { t: 'echo', st: [[], [], [7]] }, { t: 'kern', st: [[], [], ['ABCD', 'AABC']], rest: true }] };
 const EXPERT_POOL = { band: [['h1', 6], ['h1', 7], ['h1', 5]], kern: [['h1', 5], ['h2', 4], ['h1', 7]], test: [['h2', 5], ['h2', 3], ['h2', 4]], mag: [['g', 'numseq'], ['g', 'grow']] };
-const DIFF_TXT = { std: ['Rustig aan, kortere patronen.', 'Patronen van dit niveau.', 'Patronen van het volgende niveau. Pittig!', '🆕 Expert: de lastigste soorten (kern, meerdere gaten, vertalen), altijd moeilijk. Dankzij je nieuwe hal!', '🆕 Meester: nog langer en zwaarder. Voor echte patroonbazen!'],
-  mont: ['3×3, een beetje door elkaar.', 'Flink geschud. Denk vooruit!', 'Grotere puzzel (later 4×4), zonder nummertjes.'],
+const DIFF_TXT = { std: ['Rustig aan, kortere patronen.', 'Patronen van dit niveau.', 'Patronen van het volgende niveau. Pittig!', '🆕 Expert: 2 regels tegelijk (vorm + kleur of aantal), nieuwe vormen, meer foute keuzes, max 3 hints.', '🆕 Meester: 3 regels tegelijk (ook draaien), langere herhalingen, 2 gaten, 8 keuzes, max 2 hints.'],
+  mont: ['Een regel die je al kent.', 'Jouw huidige regel.', 'Alvast de volgende, nieuwe regel (later 4×4 en 5×5 met twee regels).'],
   sort: ['2 eigenschappen: vorm en kleur.', '3 eigenschappen: vorm, kleur en aantal.', 'Ook de vulling telt mee (vol, leeg, streepjes). Pittig!'] };
 function openJob(id) {
   const d = MACHINES[id], m = S.machines[id];
@@ -2898,31 +3010,38 @@ function finishFbRun() {
 /* ===== screens/halls.js ===== */
 /* Nieuwe hallen (fase D): Montagehal (schuifpuzzel) en Sorteerhal (sorteerbak). Eindigen met een beloningskist (tik om te openen). */
 let BIG = null;   // { id, diff, hints, s (schuif of sorteer-toestand), pic, sel }
-const PARTS = [{ n: 'robotkop', body: ['#9ad0ff', '#3a86d8'] }, { n: 'grijparm-robot', body: ['#ffd18a', '#e08a3a'] }, { n: 'turborobot', body: ['#bdf2d6', '#4fc28a'] }, { n: 'zilveren robot', body: ['#e8eef7', '#7d8aa0'] }, { n: 'roze robot', body: ['#ff9f9f', '#d64545'] }];
+const PARTS_UNUSED = [{ n: 'robotkop', body: ['#9ad0ff', '#3a86d8'] }, { n: 'grijparm-robot', body: ['#ffd18a', '#e08a3a'] }, { n: 'turborobot', body: ['#bdf2d6', '#4fc28a'] }, { n: 'zilveren robot', body: ['#e8eef7', '#7d8aa0'] }, { n: 'roze robot', body: ['#ff9f9f', '#d64545'] }];
 function startBig(id, diff) {
   GEN++; hush(); const m = S.machines[id];
   BIG = { id, diff, hints: 0, sel: [], t0: Date.now() };
-  if (id === 'mont') { const part = pick(PARTS); BIG.part = part; BIG.s = slideFor(m.lv, diff); BIG.pic = robotSVG({ armUp: true, body: part.body });
-    show('scrMont'); musicFor('scrPuzzle', 1); renderMont(); }
+  if (id === 'mont') { BIG.s = montNew(montLevelFor(S, diff)); show('scrMont'); musicFor('scrPuzzle', 1); renderMont(); }
   else { BIG.s = setNew(setLevelFor(m.lv, diff)); show('scrSort'); musicFor('scrPuzzle', 1); renderSort(); }
   const th = MACHINES[id].theme; $('#' + (id === 'mont' ? 'scrMont' : 'scrSort')).style.background = `radial-gradient(120% 80% at 50% 0%, ${th[1]}66, ${th[0]} 45%, #0b0f18 90%)`;
 }
 const setLevelFor = (lv, diff) => diff === 0 ? 0 : diff === 1 ? 1 : lv >= 2 ? 2 : 1;
 function bigHead(id, extra) { const d = MACHINES[id]; return `<div class="bighead"><button class="iconbtn" data-big="back" aria-label="Terug naar de fabriek">✖</button><b>${d.icon} ${d.name} · ${DIFFS[BIG.diff].icon} ${DIFFS[BIG.diff].name}</b><span class="pill">${extra}</span></div>`; }
-/* ---------- schuifpuzzel ---------- */
+/* ---------- schuifpuzzel: rijen/kolommen rondschuiven tot het rooster de regel volgt ---------- */
 function renderMont() {
-  const s = BIG.s, n = s.n, H = n * n - 1, nums = BIG.diff < 2;
-  const tiles = s.t.map((x, i) => { if (x === H) return `<div class="stile hole" data-i="${i}"></div>`; const r = Math.floor(x / n), c = x % n;
-    return `<button class="stile ${BIG.hintAt === i ? 'hint' : ''}" data-i="${i}" aria-label="stukje ${x + 1}"><div class="spic" style="width:${n * 100}%;height:${n * 100}%;left:${-c * 100}%;top:${-r * 100}%">${BIG.pic}</div>${nums ? `<span class="snum">${x + 1}</span>` : ''}</button>`; }).join('');
+  const s = BIG.s, n = s.n, rows = s.mv.includes('r'), cols = s.mv.includes('c'), h = BIG.hint;
+  const ab = (k, i, d, sym) => `<button class="marr ${h && h.k === k && h.i === i && h.d === d ? 'hint' : ''}" data-mk="${k}" data-mi="${i}" data-md="${d}" aria-label="${k === 'r' ? 'rij' : 'kolom'} ${i + 1} ${sym}">${sym}</button>`;
+  let cells = '';
+  for (let R = -1; R <= n; R++) for (let C = -1; C <= n; C++) {
+    const inR = R >= 0 && R < n, inC = C >= 0 && C < n;
+    if (inR && inC) cells += `<div class="mcell">${tokenSVG(mAt(s, R, C))}</div>`;
+    else if (inR && C === -1 && rows) cells += ab('r', R, -1, '◀'); else if (inR && C === n && rows) cells += ab('r', R, 1, '▶');
+    else if (inC && R === -1 && cols) cells += ab('c', C, -1, '▲'); else if (inC && R === n && cols) cells += ab('c', C, 1, '▼');
+    else cells += '<i></i>';
+  }
   $('#montBody').innerHTML = bigHead('mont', `🔁 ${s.moves} zetten`) +
-    `<p class="small-note bigsub">Schuif de stukjes tot de <b>${BIG.part.n}</b> weer heel is. Tik op een stukje naast het lege vakje. Minder zetten = meer robots! <span class="pill">doel: ±${s.par} zetten</span></p>
-     <div class="sboard" style="grid-template-columns:repeat(${n},1fr)">${tiles}</div>
-     <div class="bigfoot"><div class="spreview">${BIG.pic}<small>zo moet het</small></div><button class="btn white" data-big="hint">💡 Hint</button></div>`;
+    `<div class="mrule"><b>Regel ${s.level + 1}/${MONT_LEVELS.length}:</b> ${s.txt}<small>Schuif ${rows && cols ? 'rijen en kolommen' : rows ? 'de rijen' : 'de kolommen'} rond met de pijlen. Bedenk zelf hoe het eruit moet zien! Doel: ±${s.par} zetten.</small></div>
+     <div class="mboard" style="grid-template-columns:repeat(${n + 2},1fr)">${cells}</div>
+     <div class="bigfoot"><span class="pill">${n}×${n}</span><button class="btn white" data-big="hint">💡 Hint</button></div>`;
 }
-function montTap(i) {
-  const s = BIG.s; s.lastHole = slideHole(s); const k = slideTap(s, i); if (!k) { SFX.nope(); return; }
-  BIG.hintAt = null; SFX.place(); renderMont();
-  if (slideSolved(s)) { SFX.fanfare(); const stars = slideStars(s); const g = GEN; setTimeout(() => { if (g === GEN) bigCrate('mont', stars, `🧩 Opgelost in <b>${s.moves}</b> zetten (doel ±${s.par}).`); }, 650); }
+function montTap(m) {
+  const s = BIG.s; if (!montMove(s, m)) return; BIG.hint = null; SFX.place(); renderMont();
+  if (montSolved(s)) { SFX.fanfare(); $$('#montBody .mcell').forEach(c => c.classList.add('won')); const stars = montStars(s), mm = S.machines.mont;
+    if (stars >= 2 && s.level >= (mm.prog || 0)) mm.prog = Math.min(MONT_LEVELS.length - 1, mm.lv + 2, (mm.prog || 0) + 1);
+    const g = GEN; setTimeout(() => { if (g === GEN) bigCrate('mont', stars, `🧩 Regel ${s.level + 1} opgelost in <b>${s.moves}</b> zetten (doel ±${s.par}).${mm.prog > s.level ? ' Volgende keer een nieuwe regel!' : ''}`); }, 800); }
 }
 /* ---------- sorteerbak ---------- */
 function cardSVG(attrs, c) {
@@ -2952,13 +3071,13 @@ function sortTap(i) {
 }
 /* ---------- hints, terug, kist ---------- */
 function bigClick(e) {
-  const b = e.target.closest('[data-big],[data-i],[data-c]'); if (!b || !BIG) return;
+  const b = e.target.closest('[data-big],[data-mk],[data-c]'); if (!b || !BIG) return;
   if (b.dataset.big === 'back') { SFX.click(); BIG = null; return goFactory(); }
   if (b.dataset.big === 'hint') { BIG.hints++; SFX.click();
-    if (BIG.id === 'mont') { BIG.hintAt = slideHint(BIG.s); renderMont(); }
+    if (BIG.id === 'mont') { BIG.hint = montHint(BIG.s); renderMont(); }
     else { const f = findSet(BIG.s.table); BIG.hintSet = f ? f.slice(0, BIG.hints >= 2 ? 2 : 1) : []; renderSort(); $('#sortFb').innerHTML = '💡 Dit onderdeel hoort in een set. Zoek de andere twee!'; }
     return; }
-  if (b.dataset.i != null) return montTap(+b.dataset.i);
+  if (b.dataset.mk) return montTap({ k: b.dataset.mk, i: +b.dataset.mi, d: +b.dataset.md });
   if (b.dataset.c != null) return sortTap(+b.dataset.c);
 }
 function bigCrate(id, stars, line) {
@@ -3092,7 +3211,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { slideNew, slideTap, slideSolved, slideSolvable, slideHint, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
