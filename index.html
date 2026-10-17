@@ -487,7 +487,7 @@ table.stand{width:100%;border-collapse:collapse;font-size:.88em}table.stand th,t
 .cabshelf{display:flex;flex-wrap:wrap;gap:3px;padding:6px;border-radius:10px;background:linear-gradient(#5a3b1c,#3b250f);border:3px solid #24170a;box-shadow:inset 0 -6px 0 #24170a;cursor:pointer}.cabshelf i{font-style:normal;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:18px;filter:grayscale(1) brightness(.5);opacity:.6}.cabshelf i.on{filter:drop-shadow(0 0 4px #ffd34a);opacity:1}
 .streakbig{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;justify-content:center;text-align:center;font-size:1.8em;color:#ffd34a;background:#0b0f18;border:2px solid #c98a1d;border-radius:14px;padding:8px}.streakbig small{flex-basis:100%;font-size:.45em;color:#cfd8e8}
 .dcard.daily{cursor:default}.dcard.daily.done{opacity:.75;border-color:#3fdc7f}.pill.ok{background:#1d4a30;color:#bff5d0}
-.stks{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.stk{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:12px;background:#f4f7fb;border:3px solid #8fa3bf;color:#0b0f18;text-align:center;min-width:0}.stk span{font-size:28px;line-height:1.1}.stk small{font-size:.62em;line-height:1.1;overflow-wrap:anywhere}.stk.r2{border-color:#38d6ff;box-shadow:0 0 6px #38d6ff88}.stk.r3{border-color:#ffd34a;background:linear-gradient(#fff6cf,#ffe28a);box-shadow:0 0 10px #ffd34aaa}.stk.no{background:#1b2232;border:3px dashed #3c4a66;color:#6b7a95;box-shadow:none}
+.stks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.stk{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:12px;background:#f4f7fb;border:3px solid #8fa3bf;color:#0b0f18;text-align:center;min-width:0}.stk span{font-size:28px;line-height:1.1}.stk small{display:block;max-width:100%;font-size:.62em;line-height:1.1;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}.stk.r2{border-color:#38d6ff;box-shadow:0 0 6px #38d6ff88}.stk.r3{border-color:#ffd34a;background:linear-gradient(#fff6cf,#ffe28a);box-shadow:0 0 10px #ffd34aaa}.stk.no{background:#1b2232;border:3px dashed #3c4a66;color:#6b7a95;box-shadow:none}
 .bookset{background:#121826;border:2px solid #2c3850;border-radius:14px;padding:8px;margin-bottom:8px}.bookset.done{border-color:#3fdc7f}.bsh{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap}
 .stkwin{display:flex;align-items:center;gap:10px;justify-content:center}.stkwin .stk{width:84px;animation:pop .4s ease-out}
 .cabgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}.cab{background:#121826;border:2px solid #2c3850;border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:3px;text-align:center}.cab .ci{font-size:30px;filter:grayscale(1);opacity:.5}.cab.on{border-color:#ffd34a;background:linear-gradient(#2a2410,#151208)}.cab.on .ci{filter:drop-shadow(0 0 6px #ffd34a);opacity:1}.cab small{font-size:.75em;color:#cfd8e8}.cab small.ok{color:#8ff0b0}
@@ -615,6 +615,40 @@ details.meer .meerin p{margin:.25em 0}
 kbd.kc{display:inline-block;min-width:22px;height:23px;padding:0 5px;border-radius:5px;background:linear-gradient(#f6f8fb,#cdd4de);color:#141a26;border-bottom:3px solid #7f8898;font:800 12px/21px system-ui,sans-serif;text-align:center;margin:0 1px;box-sizing:border-box}kbd.kc.w{padding:0 7px}
 #klRace{top:auto;bottom:140px}
 
+
+/* v19: Grogs v2-art door de hele game (fabriekshal-achtergronden gedimd achter kaarten, machines, robots, gebouwen, personages, stickers, bekers) */
+img.v2{display:block;max-width:100%;height:auto;-webkit-user-drag:none;user-select:none;pointer-events:none}
+img.icn{width:1.2em;height:1.2em;vertical-align:-.25em;display:inline-block;filter:drop-shadow(0 1px 1px #0008)}
+.v2s{overflow:visible}.v2s image{filter:drop-shadow(0 4px 4px rgba(0,0,0,.35))}.v2s.dizzy{transform:rotate(-14deg);filter:saturate(.55) brightness(.9)}
+:root{--bgw:url(gfx/v2/bg_warm_p.webp);--bge:url(gfx/v2/bg_eve_p.webp)}
+@media (orientation:landscape){:root{--bgw:url(gfx/v2/bg_warm_l.webp);--bge:url(gfx/v2/bg_eve_l.webp)}}
+#scrFactory,#scrRace,#scrStadion,#scrTeam,#scrResult,#scrSamen,#scrIntro{background:linear-gradient(rgba(14,10,6,.6),rgba(10,8,6,.82)),var(--bgw) center top/cover no-repeat #120d08!important}
+#scrPuzzle:not(.inmachine),#scrMont,#scrSort,#scrTik{background:linear-gradient(rgba(12,10,8,.74),rgba(8,8,10,.88)),var(--bgw) center top/cover no-repeat #120d08!important}
+#scrTitle{background:radial-gradient(70% 55% at 50% 38%,rgba(255,180,59,.2),transparent 70%),linear-gradient(rgba(14,10,6,.3),rgba(10,8,6,.72)),var(--bgw) center/cover no-repeat #120d08!important}
+#scrReport,#scrResult.eve{background:linear-gradient(rgba(8,10,20,.42),rgba(6,8,16,.8)),var(--bge) center/cover no-repeat #0b0f18!important}
+.wall{background:linear-gradient(rgba(30,36,50,.62),rgba(14,18,26,.78))}
+.room .v2s,.rscene image.idle{transform-box:fill-box;transform-origin:50% 100%}
+.rscene image.idle{animation:rbidle 2.2s ease-in-out infinite}.rscene image.idle.d2{animation-delay:-1.1s}@keyframes rbidle{50%{transform:translateY(-3px)}}
+.beltscroll{animation:beltscroll 1.6s linear infinite}@keyframes beltscroll{to{transform:translateX(calc(-1 * var(--bw)))}}
+body.nofx .beltscroll,body.nofx .rscene image.idle{animation:none}
+.fi.bimg{width:64px;height:64px;font-size:0;flex:none;display:flex;align-items:center;justify-content:center}.fi.bimg img{width:64px;filter:drop-shadow(0 4px 4px #0008)}.fi.lockimg img,img.lockimg{filter:grayscale(1) brightness(.6)}
+.shopcard{padding-right:84px}.shopcard .shopimg{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:76px;filter:drop-shadow(0 4px 4px #0008)}
+.hero .hi img.heroimg{width:64px;height:64px;object-fit:contain}
+img.truckic{display:inline-block;width:30px;vertical-align:middle;margin-right:2px}
+p.coach.withpic{display:flex;gap:10px;align-items:center}p.coach.withpic svg{width:46px;height:46px;flex:none;border-radius:50%;background:#ffc94a33;border:2px solid #ffc94a88}
+.opatip .o .coachpic{border-radius:50%;background:#ffc94a33}
+.rivav{padding:0;overflow:hidden;font-size:0}.rivav img{width:100%;height:100%;object-fit:cover}
+.stk span img.stkimg{width:100%;max-width:58px;margin:0 auto;filter:drop-shadow(0 2px 2px #0005)}.stk{background:#e9eef5}.stk.no span{font-size:28px}
+.detbig span img{width:min(40vw,150px)}
+.cab .ci img.trimg{width:60px;height:60px;margin:0 auto}.cabshelf i img{width:24px;height:24px}
+.detbig.trophy span img{width:min(36vw,130px)}
+.tiklane{background:linear-gradient(rgba(16,22,34,.35),rgba(16,22,34,.5)),url(gfx/v2/belt_h.webp) 0 0/90px 90px repeat #2c3550;animation:tikbelt 1.2s linear infinite}@keyframes tikbelt{to{background-position:0 0,-90px 0}}
+.tiklane .belt,.machine .belt{background:url(gfx/v2/belt_side.webp) 0 50%/auto 100% repeat-x;height:20px;border-radius:0}.machine .belt{animation:beltside 1.2s linear infinite}@keyframes beltside{to{background-position:71.9px 50%}}.tiklane .belt{animation:beltsideL 1.2s linear infinite}@keyframes beltsideL{to{background-position:-71.9px 50%}}
+#scrPuzzle.inmachine .machine{background:linear-gradient(rgba(20,26,40,.55),rgba(14,18,28,.7)),url(gfx/v2/belt_h.webp) 0 0/72px 72px repeat #2c3550}
+body.nofx .tiklane{animation:none}
+@media (max-width:380px){.gauges img.pzmach{display:none}}@media (min-width:700px) and (min-height:600px){.gauges img.pzmach{width:84px;height:84px}}
+.gauges img.pzmach{width:58px;height:58px;object-fit:contain;flex:none;filter:drop-shadow(0 6px 6px #000a)}
+.rrate{left:auto!important;right:8px;top:44px!important}
 </style>
 </head>
 <body>
@@ -642,7 +676,7 @@ kbd.kc{display:inline-block;min-width:22px;height:23px;padding:0 5px;border-radi
     <div class="roof" id="fRoof"></div>
     <div class="wall"><div class="rooms" id="fRooms"></div>
       <div class="extras">
-        <div class="shopcard" id="fShopCard"><button class="hidden-spot poster" id="fPoster" data-spot="poster" aria-label="rare poster">🖼️</button><b>🛒 Winkel</b><small>Verkoop robots en lever bestellingen.</small><button class="btn small orange" id="fShop2">Openen</button></div>
+        <div class="shopcard" id="fShopCard"><button class="hidden-spot poster" id="fPoster" data-spot="poster" aria-label="rare poster">🖼️</button><img class="v2 shopimg" src="gfx/v2/b_shop.webp" alt="" draggable="false"><b>🛒 Winkel</b><small>Verkoop robots en lever bestellingen.</small><button class="btn small orange" id="fShop2">Openen</button></div>
         <div class="footcard" id="fFoot"></div>
         <div class="footcard racecard" id="fRace"></div>
         <div class="footcard dailycard" id="fDaily"></div>
@@ -727,7 +761,7 @@ kbd.kc{display:inline-block;min-width:22px;height:23px;padding:0 5px;border-radi
       <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). <b>Robo-Race</b> (na de Montagehal) is een actief racespel: sturen met ◀ ▶, en bij symboolpoorten het patroon afmaken voor turbo. Langs de rand zitten geheime sluiproutes met een snelle patroonpuzzel. Eigen competitie met promotie; Makkelijk/Normaal/Pittig met tegenstanders die nooit veel sneller zijn dan je eigen auto (Makkelijk = net iets trager). Brandstof, onderdelen en reparaties kosten munten uit dezelfde kluis: kiezen tussen racen, voetbal en hallen. Met nieuwe hallen komen er grotere puzzels bij: in de <b>Montagehal</b> een schuifpuzzel waarin je rijen en kolommen rondschuift tot het rooster een patroonregel volgt (herhalen, opschuiven, spiegelen, tellen; later twee regels tegelijk; altijd oplosbaar) en in de <b>Sorteerhal</b> een sorteerbak waarin je setjes van 3 zoekt (elke eigenschap alles gelijk of alles anders: logisch redeneren). Na elke nieuwe hal krijgen de oude machines een extra moeilijkheid: Expert (twee regels tegelijk, bv. vorm én kleur met verschillende herhaling) en Meester (drie regels, ook draaien en aantallen, minder hints); makkelijk blijft altijd kiesbaar. Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
       <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles bouwen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
       <p class="small-note">Robo-Fabriek werkt zonder account, zonder reclame en zonder internet (na de eerste keer). De voortgang staat alleen op dit apparaat. Installeren: iPad/iPhone → Safari → Deel → <b>Zet op beginscherm</b>; Android → Chrome → ⋮ → <b>App installeren</b>.</p>
-      <p class="small-note" id="oudCredits">🎨 Credits: robots, racewagens, vloeren, itemkist en het GOAL-logo zijn gemaakt door <b>Grog</b> (met Imagine). Alle plaatjes zitten in het spel zelf, er wordt niets van internet geladen.</p>
+      <p class="small-note" id="oudCredits">🎨 Credits: alle tekeningen zijn gemaakt door <b>Grog</b> (met Imagine): de fabriekshal (overdag en ’s avonds), vloeren en lopende banden, de 6 machines, robots, winkel, stadion, racegarage en vrachtwagen, munten, sterren en energie, Bliep, Coach Bout en Baron Bout, alle 20 stickers, de bekers, racewagens, itemkist en het GOAL-logo. Alle plaatjes zitten in het spel zelf, er wordt niets van internet geladen.</p>
     </div>
     <div style="text-align:right"><button class="btn green" id="oudClose">Sluiten</button></div>
   </div>
@@ -738,7 +772,7 @@ kbd.kc{display:inline-block;min-width:22px;height:23px;padding:0 5px;border-radi
 <div id="ovCar" class="overlay"><div class="ocard"><h2>🎨 Racewagen ontwerpen</h2><div class="scroll" id="carBody"></div><div style="text-align:right"><button class="btn green" id="carClose">Klaar</button></div></div></div>
 <div id="ovDetail" class="overlay detail" role="dialog" aria-modal="true" aria-label="Detail"><div class="dcardbig" id="detCard"><button class="iconbtn detx" id="detClose" aria-label="Sluiten">✖</button><div id="detBody"></div></div></div>
 <div id="ovResume" class="overlay"><div class="ocard resume"><div class="bigico">⏸️</div><h2>Pauze</h2><p>Je was even weg. Klaar?</p><button class="btn green big" id="resumeGo">▶️ Verder spelen</button></div></div>
-<div id="rivBub" class="rivbub" role="status" aria-live="polite"><div class="rivav">🎩</div><p id="rivTxt"></p><small class="rivx">tik om te sluiten</small></div>
+<div id="rivBub" class="rivbub" role="status" aria-live="polite"><div class="rivav"><img class="v2" src="gfx/v2/c_baron.webp" alt="🎩" draggable="false"></div><p id="rivTxt"></p><small class="rivx">tik om te sluiten</small></div>
 <div id="ovStand" class="overlay"><div class="ocard"><h2 id="standTitle">📊 Stand</h2><div class="scroll" id="standBody"></div><div style="text-align:right"><button class="btn green" id="standClose">Sluiten</button></div></div></div>
 <div id="ovShop" class="overlay"><div class="ocard"><h2>🛒 Winkel</h2><div class="scroll" id="shopBody"></div><div style="text-align:right"><button class="btn green" id="shopClose">Sluiten</button></div></div></div>
 <div id="ovBuild" class="overlay"><div class="ocard"><h2>📈 Investeren</h2><div class="scroll" id="buildBody"></div><div style="text-align:right"><button class="btn green" id="buildClose">Sluiten</button></div></div></div>
@@ -1136,6 +1170,7 @@ const DEFS_SVG = `<svg width="0" height="0" style="position:absolute" aria-hidde
  <linearGradient id="g-cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4" stop-opacity=".6"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></linearGradient>
  <radialGradient id="g-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6c8" stop-opacity=".95"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient>
  <radialGradient id="g-glowB" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#7ff0ff" stop-opacity=".8"/><stop offset="1" stop-color="#7ff0ff" stop-opacity="0"/></radialGradient>
+ <pattern id="p-floor2" patternUnits="userSpaceOnUse" width="48" height="48"><image href="gfx/v2/floor2.webp" width="48" height="48"/></pattern>
  <filter id="f-sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#0b1230" flood-opacity=".3"/></filter>
 </defs></svg>`;
 function cxShape(s, col, x, y, k, rot) {
@@ -1194,25 +1229,7 @@ function bliepSVG(up = S.upgrades, mood = 'blij') {
       : `<circle cx="78" cy="196" r="14" fill="#3d4860" stroke="${INK}" stroke-width="5"/><circle cx="122" cy="196" r="14" fill="#3d4860" stroke="${INK}" stroke-width="5"/>`}
   </svg>`;
 }
-/* Robots in de stijl van de mockups (voor de fabriek, de winkel en grapjes). o: body [2 kleuren], mood, armUp, tracks, misbaksel */
-let RB_N = 0;
-function robotSVG(o = {}) {
-  const body = o.body || ['#9ad0ff', '#3a86d8'], id = 'rb' + (RB_N++), eye = '#7ff0ff';
-  const mis = o.misbaksel;
-  const eyes = o.mood === 'dizzy' || mis ? `<path d="M-30 -78 l14 14 M-16 -78 l-14 14 M16 -78 l14 14 M30 -78 l-14 14" stroke="${eye}" stroke-width="5" stroke-linecap="round"/>`
-    : `<circle cx="-22" cy="-72" r="11" fill="${eye}"/><circle cx="22" cy="-72" r="11" fill="${eye}"/><circle cx="-18" cy="-76" r="4" fill="#fff"/><circle cx="26" cy="-76" r="4" fill="#fff"/>`;
-  const mouth = mis ? `<path d="M-14 -46 q7 -8 14 0 q7 8 14 0" stroke="${eye}" stroke-width="5" fill="none" stroke-linecap="round"/>` : `<path d="M-16 -50 q16 14 32 0" stroke="${eye}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
-  const arms = mis ? `<path d="M-40 -6 L-20 -130" stroke="${body[1]}" stroke-width="13" stroke-linecap="round"/><path d="M40 -6 L70 40" stroke="${body[1]}" stroke-width="13" stroke-linecap="round"/>`
-    : `<path d="M-40 -6 L${o.armUp ? '-70 -46' : '-66 22'}" stroke="${body[1]}" stroke-width="13" stroke-linecap="round"/><path d="M40 -6 L${o.armUp ? '70 -46' : '66 22'}" stroke="${body[1]}" stroke-width="13" stroke-linecap="round"/>`;
-  const wheels = mis ? `<circle cx="-50" cy="-20" r="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/><circle cx="40" cy="-130" r="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/>`
-    : o.tracks ? `<rect x="-50" y="34" width="100" height="30" rx="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/><g fill="#9fb7d6"><circle cx="-32" cy="49" r="7"/><circle cx="-11" cy="49" r="7"/><circle cx="11" cy="49" r="7"/><circle cx="32" cy="49" r="7"/></g>`
-    : `<circle cx="-26" cy="48" r="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/><circle cx="26" cy="48" r="15" fill="#2c3550" stroke="${INK}" stroke-width="5"/><circle cx="-26" cy="48" r="5" fill="#9fb7d6"/><circle cx="26" cy="48" r="5" fill="#9fb7d6"/>`;
-  return `<svg viewBox="-90 -170 180 250" role="img" aria-label="robot"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${body[0]}"/><stop offset="1" stop-color="${body[1]}"/></linearGradient></defs>
-  <ellipse cx="0" cy="66" rx="62" ry="11" fill="#0b1230" opacity=".25"/>${arms}${mis ? '' : wheels}
-  <rect x="-40" y="-20" width="80" height="54" rx="14" fill="url(#${id})" stroke="${INK}" stroke-width="5"/><circle cx="-16" cy="6" r="6" fill="#ff6b5a"/><circle cx="0" cy="6" r="6" fill="#ffd23f"/><circle cx="16" cy="6" r="6" fill="#3fdc7f"/>
-  <g transform="${mis ? 'rotate(-24 0 -70)' : ''}"><line x1="0" y1="-118" x2="0" y2="-140" stroke="${INK}" stroke-width="5"/><circle cx="0" cy="-144" r="9" fill="#ffe14d" stroke="${INK}" stroke-width="4"/>
-  <rect x="-56" y="-118" width="112" height="96" rx="28" fill="url(#${id})" stroke="${INK}" stroke-width="5"/><rect x="-42" y="-104" width="84" height="66" rx="16" fill="#1c2a44"/>${eyes}${mouth}</g>${mis ? wheels : ''}</svg>`;
-}
+/* robotSVG: zie art2.js (v2-plaatjes van Grog) */
 /* Opa Tinus: grijze snor, bril, pet, pijp */
 function opaSVG(mood = 'blij') {
   return `<svg viewBox="0 0 200 240" role="img" aria-label="opa Tinus">
@@ -1227,30 +1244,7 @@ function opaSVG(mood = 'blij') {
   <path d="M120 140 h24 v-10 h12 v16 h-36z" fill="#7a4a2a" stroke="${INK}" stroke-width="3"/><circle cx="152" cy="118" r="6" fill="#fff" opacity=".7"/><circle cx="160" cy="104" r="4" fill="#fff" opacity=".5"/>
   </svg>`;
 }
-/* Kamer-scènes (viewBox 500×220) per machine; care 0-2 geeft stof/rook; locked = donker */
-function roomScene(id, m) {
-  const care = m && m.owned ? careOf(m) : 0, lv = m ? m.lv : 1;
-  let g = '';
-  const lamp = x => `<path d="M${x - 14} 24 L${x - 80} 190 L${x + 80} 190 L${x + 14} 24Z" fill="url(#g-cone)"/><rect x="${x - 20}" y="6" width="40" height="18" rx="7" fill="#3c4a66" stroke="${INK}" stroke-width="3"/><ellipse cx="${x}" cy="26" rx="14" ry="5" fill="#fff6c8"/>`;
-  const belt = (x1, x2, y) => `<rect x="${x1}" y="${y}" width="${x2 - x1}" height="22" rx="11" fill="#2c3550" stroke="${INK}" stroke-width="3"/>${Array.from({ length: Math.floor((x2 - x1 - 10) / 26) }, (_, i) => `<rect x="${x1 + 8 + i * 26}" y="${y + 5}" width="14" height="12" rx="3" fill="#3d4a6a" class="beltbit"/>`).join('')}`;
-  const tk = (t, x, y, s) => `<g transform="translate(${x - 50 * s} ${y - 50 * s}) scale(${s})">${tokenSVG(t).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`;
-  const rb = (x, y, s, o) => `<g transform="translate(${x} ${y}) scale(${s})">${robotSVG(o).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`;
-  if (id === 'band') g = lamp(130) + lamp(370) + belt(20, 480, 168) + `<g filter="url(#f-sh)"><rect x="40" y="70" width="130" height="92" rx="14" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/><rect x="54" y="84" width="102" height="36" rx="8" fill="#1c2a44"/>${tk('rond', 74, 102, .32)}${tk('drie', 105, 102, .32)}${tk('drie', 136, 102, .32)}<circle cx="70" cy="140" r="10" fill="#3fdc7f" stroke="${INK}" stroke-width="3"/><circle cx="100" cy="140" r="10" fill="#ffb347" stroke="${INK}" stroke-width="3"/><rect x="120" y="134" width="36" height="12" rx="6" fill="#ffd23f"/></g>`
-    + `<g class="beltmove">${tk('rond', 200, 156, .3)}${tk('drie', 238, 156, .3)}${tk('drie', 276, 156, .3)}</g>` + rb(350, 150, .3, { armUp: true }) + rb(430, 150, .3, {});
-  if (id === 'kern') g = lamp(250) + `<g filter="url(#f-sh)"><rect x="150" y="60" width="200" height="110" rx="20" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/><path d="M215 115 a35 35 0 1 1 10 25" fill="none" stroke="#1f8a4c" stroke-width="10" stroke-linecap="round"/><path d="M220 148 l-14 -2 8 -12z" fill="#1f8a4c"/><text x="300" y="128" font-size="34" font-weight="700" font-family="'Exo 2'" fill="${INK}">×${lv + 1}</text></g>` + belt(20, 480, 176) + tk('rond', 60, 164, .26) + tk('drie', 92, 164, .26) + tk('rond', 420, 164, .26) + tk('drie', 452, 164, .26);
-  if (id === 'test') g = lamp(150) + lamp(350) + `<g filter="url(#f-sh)"><rect x="50" y="90" width="140" height="84" rx="14" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/><circle cx="90" cy="132" r="26" fill="#2c3550" stroke="${INK}" stroke-width="4"/><circle cx="90" cy="132" r="10" fill="#6b7a99"/><rect x="128" y="110" width="44" height="12" rx="6" fill="#3fdc7f"/><rect x="128" y="128" width="30" height="12" rx="6" fill="#ffd23f"/><rect x="128" y="146" width="38" height="12" rx="6" fill="#ff6b5a"/></g>` + rb(330, 160, .38, { body: ['#ffd18a', '#e08a3a'] }) + `<text x="390" y="80" font-size="30" fill="#fff">♪</text><text x="420" y="60" font-size="24" fill="#fff">♫</text>`;
-  if (id === 'mag') g = lamp(250) + Array.from({ length: 8 }, (_, i) => { const bx = 60 + (i % 5) * 64 + (i >= 5 ? 32 : 0), by = i >= 5 ? 96 : 140; return `<g filter="url(#f-sh)"><rect x="${bx}" y="${by}" width="58" height="44" rx="5" fill="url(#g-box)" stroke="${INK}" stroke-width="3"/><path d="M${bx} ${by + 12} h58 M${bx + 29} ${by} v12" stroke="#a87436" stroke-width="3"/></g>`; }).join('') + `<g transform="translate(420 160)"><rect x="-40" y="-30" width="70" height="44" rx="8" fill="#ffb347" stroke="${INK}" stroke-width="4"/><rect x="30" y="-46" width="8" height="60" fill="#3c4a66"/><circle cx="-24" cy="18" r="10" fill="#2c3550"/><circle cx="16" cy="18" r="10" fill="#2c3550"/></g>`;
-  if (id === 'mont') g = lamp(250) + `<g filter="url(#f-sh)"><rect x="150" y="50" width="200" height="130" rx="14" fill="#18213a" stroke="${INK}" stroke-width="4"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<rect x="${160 + (i % 3) * 62}" y="${60 + Math.floor(i / 3) * 40}" width="56" height="34" rx="6" fill="${['#b0629a', '#3a86d8', '#e08a3a', '#4fc28a'][i % 4]}" stroke="${INK}" stroke-width="3"/>`).join('')}</g>` + rb(70, 120, .32, { armUp: true }) + rb(400, 120, .32, { body: ['#ffd18a', '#e08a3a'] });
-  if (id === 'sort') g = lamp(150) + lamp(350) + `<g filter="url(#f-sh)"><path d="M150 110 L350 110 L330 182 L170 182Z" fill="url(#g-metal)" stroke="${INK}" stroke-width="4"/></g>` + [['rond', 190, 100], ['vier', 240, 92], ['drie', 290, 100], ['rond', 215, 76], ['drie', 265, 74]].map(([t, x, y]) => tk(t, x, y, .26)).join('') + rb(60, 120, .3, { armUp: true }) + rb(420, 120, .3, {});
-  if (id === 'tik') g = lamp(250) + belt(20, 480, 160) + `<g class="beltmove">${tk('ster', 90, 146, .3)}${tk('rond', 170, 146, .3)}${tk('vier', 250, 146, .3)}${tk('rond', 330, 146, .3)}</g><rect x="226" y="110" width="50" height="76" rx="10" fill="#3fdc7f" opacity=".3" stroke="#1f8a4c" stroke-width="3" stroke-dasharray="6 5"/><text x="250" y="96" font-size="44" text-anchor="middle">👆</text>`;
-  if (m && m.owned) {
-    if (care >= 1) g += `<g class="dust" opacity=".75"><circle cx="60" cy="60" r="10" fill="#d8cbb5"/><circle cx="430" cy="70" r="8" fill="#d8cbb5"/><circle cx="300" cy="50" r="6" fill="#d8cbb5"/></g>`;
-    if (care >= 2) g += `<g class="smoke"><circle cx="110" cy="56" r="16" fill="#5d6779" opacity=".7"/><circle cx="128" cy="36" r="12" fill="#5d6779" opacity=".55"/><circle cx="142" cy="20" r="8" fill="#5d6779" opacity=".4"/></g>`;
-  }
-  const [c1, c2] = MACHINES[id].theme;
-  return `<svg viewBox="0 0 500 220" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="bg-${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>
-    <rect width="500" height="220" fill="url(#bg-${id})"/><rect y="186" width="500" height="34" fill="#000" opacity=".12"/>${g}</svg>`;
-}
+/* roomScene: zie art2.js */
 /* Het dak met bord, schoorsteen (verborgen rookpuzzel) en opa's klok (verborgen) */
 function roofSVG() {
   return `<svg viewBox="0 0 1000 170" preserveAspectRatio="xMidYMax meet" class="roofsvg">
@@ -1273,6 +1267,53 @@ function introScene(i) {
     fab(true) + g(80, 150, 1.05, opaSVG('knipoog')) + g(300, 200, .9, robotSVG({ mood: 'dizzy', body: ['#c9d3df', '#8a97ab'] })) + `<text x="330" y="150" font-size="34">💤</text>`,
     `<rect x="60" y="120" width="680" height="250" rx="20" fill="#3a2f2a"/>` + g(110, 170, .9, robotSVG({ misbaksel: true })) + g(320, 180, .9, robotSVG({ misbaksel: true, body: ['#ffd18a', '#e08a3a'] })) + `<text x="560" y="280" font-size="80">🤦</text>`,
     fab(false) + g(60, 140, 1.1, opaSVG()) + g(280, 190, .9, robotSVG({ armUp: true })) + `<text x="330" y="140" font-size="44">💰</text>`][i]}</svg>`;
+}
+
+/* ===== core/art2.js ===== */
+/* v19: Grogs v2-art (gfx/v2/*.webp) door de hele fabriek. Vervangt robotSVG en roomScene uit art.js; Opa Tinus en Bliep-met-upgrades (puzzel) blijven SVG. */
+const V2 = n => `gfx/v2/${n}.webp`;
+const v2img = (n, alt = '', cls = '') => `<img class="v2 ${cls}" src="${V2(n)}" alt="${alt}" draggable="false" decoding="async">`;
+// plaatje in een vierkante svg, zodat bestaande .x svg{width..} regels blijven werken
+const v2svg = (n, alt = '', cls = '') => `<svg viewBox="0 0 100 100" class="v2s ${cls}" role="img" aria-label="${alt}"><image href="${V2(n)}" width="100" height="100"/></svg>`;
+function hexHue(h) { const n = parseInt((h || '#9ad0ff').slice(1), 16), r = (n >> 16) / 255, g = (n >> 8 & 255) / 255, b = (n & 255) / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
+  if (!d) return -1; const hu = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; return (hu * 60 + 360) % 360; }
+function robotKind(o = {}) { if (o.misbaksel) return 'mis'; const hu = hexHue((o.body || [])[0]); return hu < 0 ? 'blauw' : hu >= 15 && hu < 65 ? 'oranje' : hu >= 65 && hu < 175 ? 'mint' : 'blauw'; }
+// zelfde aanroep als vroeger: robotSVG({ armUp, body, mood, misbaksel })
+function robotSVG(o = {}) { const k = robotKind(o); return v2svg('rb_' + k, k === 'mis' ? 'misbaksel' : 'robot', (o.mood === 'dizzy' ? 'dizzy' : '') + (o.armUp ? ' yay' : '')); }
+const bliepPic = (mood = '') => v2svg('c_bliep_v', 'Bliep', mood);
+const coachPic = () => v2svg('c_coach', 'Coach Bout', 'coachpic');
+const baronPic = () => v2svg('c_baron', 'Baron Bout', 'baronpic');
+const BLIEP_LOOKS = ['glans', 'ogen', 'raket', 'lampje', 'pet', 'arm', 'rups'];
+// stickers / bekers / gebouwen / iconen
+const STK_IMG = id => /^[rsbg][1-5]$/.test(id) ? v2img('stk_' + id, '', 'stkimg') : null;
+const TROPHY = { racewin: 'goud', racetitle: 'gp', fbtitle: 'bokaal', rival3: 'baron', racepromo: 'zilver', fbpromo: 'zilver' };
+const trophyImg = id => TROPHY[id] ? v2img('t_' + TROPHY[id], '', 'trimg') : null;
+const MEDAL_IMG = ['goud', 'zilver', 'brons'];
+const icn = (k, alt = '') => `<img class="icn" src="${V2('i_' + k)}" alt="${alt}" draggable="false">`;
+/* Kamer-scènes (viewBox 500×220): fabriekshal als wand (warm licht), stalen vloer, machine van Grog links, lopende band als zijstrook */
+const ROOM_MACHINE = { band: 1, kern: 1, test: 1, mag: 1, mont: 1, sort: 1 };
+function roomScene(id, m) {
+  const care = m && m.owned ? careOf(m) : 0, lv = m ? m.lv : 1, [c1, c2] = MACHINES[id].theme;
+  const lamp = x => `<path d="M${x - 14} 24 L${x - 80} 200 L${x + 80} 200 L${x + 14} 24Z" fill="url(#g-cone)"/><rect x="${x - 20}" y="6" width="40" height="18" rx="7" fill="#3c4a66" stroke="${INK}" stroke-width="3"/><ellipse cx="${x}" cy="26" rx="14" ry="5" fill="#fff6c8"/>`;
+  const belt = (x1, x2, y, h = 30) => { const tw = h * 320 / 89, n = Math.ceil((x2 - x1) / tw) + 1; return `<svg x="${x1}" y="${y}" width="${x2 - x1}" height="${h}" overflow="hidden"><g class="beltscroll" style="--bw:${tw}px">${Array.from({ length: n }, (_, i) => `<image href="${V2('belt_side')}" x="${i * tw}" width="${tw + .5}" height="${h}"/>`).join('')}</g></svg>`; };
+  const tk = (t, x, y, s) => `<g transform="translate(${x - 50 * s} ${y - 50 * s}) scale(${s})">${tokenSVG(t).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`;
+  const rb = (x, y, s, k, cls = '') => `<image href="${V2('rb_' + k)}" x="${x - s / 2}" y="${y - s}" width="${s}" height="${s}" class="${cls}"/>`;
+  const mach = (k, x = 6, y = 40, s = 172) => `<ellipse cx="${x + s / 2}" cy="${y + s - 8}" rx="${s * .42}" ry="10" fill="#000" opacity=".35"/><image href="${V2('m_' + k)}" x="${x}" y="${y}" width="${s}" height="${s}"/>`;
+  let g = '';
+  if (id === 'band') g = lamp(110) + lamp(380) + belt(150, 500, 176) + mach('band') + `<g class="beltmove">${tk('rond', 230, 166, .26)}${tk('drie', 266, 166, .26)}${tk('drie', 302, 166, .26)}</g>` + rb(238, 126, 50, 'blauw', 'idle') + rb(294, 126, 50, 'mint', 'idle d2');
+  if (id === 'kern') g = lamp(250) + belt(150, 500, 178) + mach('kern') + `<text x="232" y="112" font-size="34" font-weight="800" font-family="'Exo 2'" fill="#ffe58a" stroke="${INK}" stroke-width="4" paint-order="stroke">×${lv + 1}</text>` + tk('rond', 300, 168, .24) + tk('drie', 330, 168, .24) + tk('rond', 420, 168, .24) + tk('drie', 450, 168, .24);
+  if (id === 'test') g = lamp(110) + lamp(370) + mach('test') + rb(262, 128, 60, 'oranje', 'idle') + `<text x="300" y="70" font-size="30" fill="#fff">♪</text><text x="326" y="52" font-size="24" fill="#fff">♫</text>`;
+  if (id === 'mag') g = lamp(250) + mach('mag', 4, 34, 180) + rb(240, 128, 54, 'oranje', 'idle') + rb(298, 128, 50, 'blauw', 'idle d2');
+  if (id === 'mont') g = lamp(250) + mach('mont', 4, 36, 178) + rb(240, 128, 52, 'mint', 'idle') + rb(298, 128, 52, 'blauw', 'idle d2');
+  if (id === 'sort') g = lamp(110) + lamp(370) + mach('sort') + rb(240, 128, 52, 'blauw', 'idle') + rb(298, 128, 52, 'oranje', 'idle d2');
+  if (id === 'tik') g = lamp(250) + belt(0, 500, 172) + `<g class="beltmove">${tk('ster', 90, 158, .3)}${tk('rond', 170, 158, .3)}${tk('vier', 250, 158, .3)}${tk('rond', 330, 158, .3)}</g><rect x="226" y="118" width="50" height="76" rx="10" fill="#3fdc7f" opacity=".3" stroke="#1f8a4c" stroke-width="3" stroke-dasharray="6 5"/><text x="250" y="104" font-size="44" text-anchor="middle">👆</text>`;
+  if (m && m.owned) {
+    if (care >= 1) g += `<g class="dust" opacity=".75"><circle cx="60" cy="60" r="10" fill="#d8cbb5"/><circle cx="430" cy="70" r="8" fill="#d8cbb5"/><circle cx="300" cy="50" r="6" fill="#d8cbb5"/></g>`;
+    if (care >= 2) g += `<g class="smoke"><circle cx="110" cy="56" r="16" fill="#5d6779" opacity=".7"/><circle cx="128" cy="36" r="12" fill="#5d6779" opacity=".55"/><circle cx="142" cy="20" r="8" fill="#5d6779" opacity=".4"/></g>`;
+  }
+  return `<svg viewBox="0 0 500 220" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="bg-${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}" stop-opacity=".55"/><stop offset="1" stop-color="${c2}" stop-opacity=".75"/></linearGradient></defs>
+    <rect width="500" height="220" fill="#140f0a"/><image href="${V2('bg_warm_l')}" x="0" y="-60" width="500" height="281" preserveAspectRatio="xMidYMid slice" opacity=".75"/><rect width="500" height="220" fill="url(#bg-${id})"/>
+    <rect y="196" width="500" height="24" fill="url(#p-floor2)"/><rect y="196" width="500" height="24" fill="#000" opacity=".35"/><rect y="194" width="500" height="3" fill="#000" opacity=".4"/>${g}</svg>`;
 }
 
 /* ===== core/gfx.js ===== */
@@ -2747,7 +2788,7 @@ function startRun(run) {
   RUN = Object.assign({ i: 0, mistakes: 0, hints: 0, streak: 0, results: [], d: 1, total: PER_LEVEL, team: 0 }, run);
   show('scrPuzzle'); $('#scrPuzzle').classList.toggle('h2', RUN.kind === 'klank');
   const th = RUN.mid ? MACHINES[RUN.mid].theme : RUN.mode === 'hidden' ? ['#fff3c4', '#f5a524'] : null;
-  $('#scrPuzzle').classList.toggle('inmachine', !!th); $('#scrPuzzle').style.background = th ? `radial-gradient(120% 80% at 50% 0%, ${th[1]}66, ${th[0]} 45%, #0b0f18 90%)` : '';
+  $('#scrPuzzle').classList.toggle('inmachine', !!th); $('#scrPuzzle').style.background = th ? `radial-gradient(120% 80% at 50% 0%, ${th[1]}55, ${th[0]}bb 45%, #0b0f18f0 90%), var(--bgw) center top/cover no-repeat #120d08` : '';
   musicFor('scrPuzzle', RUN.kind === 'klank' ? 2 : 1);
   nextPuzzle();
 }
@@ -3049,7 +3090,7 @@ function renderGauges() {
   const g = $('#pzGauges'); if (!g) return;
   if (!RUN || !(RUN.mode === 'job' || RUN.mode === 'hidden' || RUN.mode === 'smeer')) { g.innerHTML = ''; return; }
   const slip = RUN.mistakes + RUN.hints, qv = clamp(1 - slip / 5, .05, 1), pv = RUN.total ? (RUN.i + (P && P.done ? 1 : 0)) / RUN.total : 0;
-  g.innerHTML = `<div class="gauge">${gaugeSVG('KWALITEIT', qv, '#3fdc8f')}</div><div class="gauge">${gaugeSVG('PRODUCTIE', pv, '#38d6ff')}</div><div class="lever" id="pzLever">${LEVER_SVG}</div>`;
+  g.innerHTML = `${RUN.mid && ROOM_MACHINE[RUN.mid] ? v2img('m_' + RUN.mid, '', 'pzmach') : ''}<div class="gauge">${gaugeSVG('KWALITEIT', qv, '#3fdc8f')}</div><div class="gauge">${gaugeSVG('PRODUCTIE', pv, '#38d6ff')}</div><div class="lever" id="pzLever">${LEVER_SVG}</div>`;
   if (RUN.mode === 'job') { const st = slip <= 1 ? 3 : slip <= 3 ? 2 : 1, p = jobPreview(S, RUN.mid, RUN.diff || 0, st, RUN.hints);
     g.insertAdjacentHTML('afterbegin', `<span class="rewchip" id="pzRew" title="verwachte opbrengst">${DIFFS[RUN.diff || 0].icon} ${DIFFS[RUN.diff || 0].name}<br>🤖 ${p.robots} × ${'★'.repeat(p.q)}</span>`); }
 }
@@ -3063,7 +3104,7 @@ const INTRO = [
   { who: 'opa', name: 'Opa Tinus', t: 'Elke machine werkt met een patroon. Zet de patronen goed, maak mooie robots en verkoop ze. Van het geld maak je de fabriek groter. Wie weet word jij de beste robotbaas van het land!' }
 ];
 let introI = 0;
-function goTitle() { GEN++; hush(); show('scrTitle'); musicFor('scrTitle'); $('#titleBliep').innerHTML = robotSVG({ armUp: true }); $('#titleOpa').innerHTML = opaSVG('knipoog'); $('#btnPlay').textContent = S.introSeen ? '▶️ Naar mijn fabriek' : '▶️ Spelen'; }
+function goTitle() { GEN++; hush(); show('scrTitle'); musicFor('scrTitle'); $('#titleBliep').innerHTML = bliepPic('yay'); $('#titleOpa').innerHTML = opaSVG('knipoog'); $('#btnPlay').textContent = S.introSeen ? '▶️ Naar mijn fabriek' : '▶️ Spelen'; }
 function startPlay() {
   if (!S.introSeen) { introI = 0; show('scrIntro'); renderIntro(); return; }
   if (!S.placement.done) return startPlacement();
@@ -3092,7 +3133,7 @@ function showResult(o) {
   GEN++; show('scrResult'); musicFor('scrResult');
   $('#resTitle').textContent = o.title;
   $('#resStars').innerHTML = o.stars ? Array.from({ length: 3 }, (_, i) => `<span>${i < o.stars ? '⭐' : '☆'}</span>`).join('') : '';
-  $('#resBliep').innerHTML = o.art || robotSVG({ armUp: true });
+  $('#resBliep').innerHTML = o.art || bliepPic('yay'); $('#scrResult').classList.toggle('eve', !!o.eve);
   $('#resReward').innerHTML = o.reward;
   $('#resBtns').innerHTML = ''; o.btns.forEach(([t, c, f]) => { const b = document.createElement('button'); b.className = 'btn ' + c; b.textContent = t; b.onclick = () => { SFX.click(); f(); }; $('#resBtns').appendChild(b); });
   if (o.stars) { SFX.fanfare(); for (let i = 0; i < o.stars; i++) setTimeout(() => SFX.star(), 400 + i * 300); confetti(); }
@@ -3135,8 +3176,8 @@ function machineDone(id) { return S.machines[id].owned; }
 const fmt1 = x => (Math.round(x * 10) / 10).toString().replace('.', ',');
 const pbText = o => o.payback ? `verdient zichzelf terug in ~${fmt1(o.payback)} ${o.payback <= 1 ? 'dag' : 'dagen'}` : o.why === 'klanten' ? 'nu nog geen extra winst: de winkel heeft eerst meer klanten nodig' : o.id === 'tik' ? 'meer munten en robots als je het tikspel speelt' : 'geen extra inkomsten';
 function renderHud() {
-  $('#hCoins').innerHTML = `🪙 <b>${S.coins}</b><small>/${kluisCap(S)}</small>`;
-  $('#hRep').innerHTML = `⭐ <b>${S.rep}</b>`; $('#hRate').innerHTML = `⚙️ <b>${fmt1(totalRate(S))}</b><small>/min</small>`; $('#hStock').innerHTML = `🤖 <b>${S.stock.length}</b><small>/${stockCap(S)}</small>${reservedCount(S) ? `<small> 🔒${reservedCount(S)}</small>` : ''}${S.sellPause ? '<small> ⏸️</small>' : ''}`; $('#hDay').textContent = `Dag ${S.day}`;
+  $('#hCoins').innerHTML = `${icn('munt', '🪙')} <b>${S.coins}</b><small>/${kluisCap(S)}</small>`;
+  $('#hRep').innerHTML = `${icn('ster', '⭐')} <b>${S.rep}</b>`; $('#hRate').innerHTML = `${icn('energie', '⚡')} <b>${fmt1(totalRate(S))}</b><small>/min</small>`; $('#hStock').innerHTML = `🤖 <b>${S.stock.length}</b><small>/${stockCap(S)}</small>${reservedCount(S) ? `<small> 🔒${reservedCount(S)}</small>` : ''}${S.sellPause ? '<small> ⏸️</small>' : ''}`; $('#hDay').textContent = `Dag ${S.day}`;
   const ready = S.orders.some(o => canDeliver(S, o)) || (S.stock.length && S.today.sold < demand(S));
   $('#fShop').classList.toggle('pulse', !!ready);
 }
@@ -3166,11 +3207,11 @@ function renderFactory() {
   $$('#fRoof .hidden-spot').forEach(g => g.classList.toggle('ready', hiddenReady(S, g.dataset.spot)));
   $('#fRooms').innerHTML = MACHINE_ORDER.map(roomCard).join('');
   const fp = footballProgress(S);
-  $('#fFoot').innerHTML = fp < 1 ? `<div class="fch"><span class="fi">⚽</span><div><b>Robotvoetbal</b><small>🔒 Verkoop ${FOOTBALL_AT} robots</small>${pbar(fp)}<small>💰 ${Math.min(S.soldTotal, FOOTBALL_AT)}/${FOOTBALL_AT}</small></div></div>`
-    : `<div class="fch"><span class="fi">🏟️</span><div><b>${DIVS[fbInit(S).div].name}</b><div class="chips">${chip(RIVALS[DIVS[S.football.div].rival].icon, 'vs ' + RIVALS[DIVS[S.football.div].rival].name.split(' ')[0])}${chip('🏦', S.football.kas)}</div></div></div><button class="btn green" id="fGoStadion">⚽ Naar het stadion</button>`;
+  $('#fFoot').innerHTML = fp < 1 ? `<div class="fch"><span class="fi bimg lockimg">${v2img('b_stadion', '⚽')}</span><div><b>Robotvoetbal</b><small>🔒 Verkoop ${FOOTBALL_AT} robots</small>${pbar(fp)}<small>💰 ${Math.min(S.soldTotal, FOOTBALL_AT)}/${FOOTBALL_AT}</small></div></div>`
+    : `<div class="fch"><span class="fi bimg">${v2img('b_stadion', '🏟️')}</span><div><b>${DIVS[fbInit(S).div].name}</b><div class="chips">${chip(RIVALS[DIVS[S.football.div].rival].icon, 'vs ' + RIVALS[DIVS[S.football.div].rival].name.split(' ')[0])}${chip('🏦', S.football.kas)}</div></div></div><button class="btn green" id="fGoStadion">⚽ Naar het stadion</button>`;
   const ru = raceUnlocked(S), R = ru ? raceInit(S) : null;
-  $('#fRace').innerHTML = !ru ? `<div class="fch"><span class="fi">🏁</span><div><b>Robo-Race</b><small>🔒 Bouw eerst de ${MACHINES.mont.icon} Montagehal</small></div></div>`
-    : `<div class="fch"><span class="fi">🏎️</span><div><b>${RACE_DIVS[R.div].icon} ${RACE_DIVS[R.div].name}</b><div class="chips">${chip('🏁', `${R.season.n + 1}/${RACE_SEASON}`)}${R.dmg ? chip('🔧', R.dmg + '%', R.dmg >= 30 ? 'bad' : 'warn') : ''}${chip('⛽', raceFuel(S))}</div></div></div><button class="btn orange" id="fGoRace">🏁 Naar de garage</button>`;
+  $('#fRace').innerHTML = !ru ? `<div class="fch"><span class="fi bimg lockimg">${v2img('b_garage', '🏁')}</span><div><b>Robo-Race</b><small>🔒 Bouw eerst de ${MACHINES.mont.icon} Montagehal</small></div></div>`
+    : `<div class="fch"><span class="fi bimg">${v2img('b_garage', '🏎️')}</span><div><b>${RACE_DIVS[R.div].icon} ${RACE_DIVS[R.div].name}</b><div class="chips">${chip('🏁', `${R.season.n + 1}/${RACE_SEASON}`)}${R.dmg ? chip('🔧', R.dmg + '%', R.dmg >= 30 ? 'bad' : 'warn') : ''}${chip('⛽', raceFuel(S))}</div></div></div><button class="btn orange" id="fGoRace">🏁 Naar de garage</button>`;
   $('#fPoster').classList.toggle('ready', hiddenReady(S, 'poster'));
   renderExtraCards(); advise();
 }
@@ -3192,7 +3233,7 @@ function advise(force) {
   else if (tired) t = `De <b>${MACHINES[tired].room}</b> is moe. 🔧 Smeren?`;
   else if (jobsToday >= 4) t = 'Goed gewerkt! <b>🌙</b> = dag afsluiten.';
   else t = pick(JOKES);
-  $('#fBubble').innerHTML = t; $('#fBliep').innerHTML = robotSVG({ armUp: !sick, mood: sick ? 'dizzy' : '' });
+  $('#fBubble').innerHTML = t; $('#fBliep').innerHTML = bliepPic(sick ? 'dizzy' : 'yay');
   say(t.replace(/<[^>]+>/g, ''), { who });
 }
 function roomAction(id, act, btn) {
@@ -3273,12 +3314,12 @@ function finishHidden() {
 function openShop() {
   SFX.click(); const left = Math.max(0, demand(S) - S.today.sold), qs = {}; S.stock.forEach(q => qs[q] = (qs[q] || 0) + 1);
   const rsv = reservedCount(S);
-  let h = `<div class="shophero shopstock">${hero('🤖', S.stock.length, 'op voorraad')}
+  let h = `<div class="shophero shopstock">${hero(v2img('b_shop', '🛒', 'heroimg'), S.stock.length, 'op voorraad')}
     <div class="chips">${chip('👥', left + ' klanten')}${Object.entries(qs).sort((a, b) => b[0] - a[0]).map(([q, n]) => chip(n + '×', '★'.repeat(q))).join('')}${rsv ? chip('🔒', rsv, 'warn') : ''}${S.sellPause ? chip('⏸️', 'pauze', 'warn') : ''}</div>
     <button class="btn green wide" id="shSell" ${sellable(S) && left ? '' : 'disabled'}>💰 Verkoop ${Math.min(left, sellable(S))} robots</button>
     <div class="orow"><button class="btn ${S.sellPause ? 'red' : 'white'} small" id="shPause">${S.sellPause ? '▶️ Hervatten' : '⏸️ Pauze'}</button>${meer(`<p>Vandaag komen er nog <b>${left}</b> klanten. Prijs: 🪙 ${priceOf(1)} (★) tot 🪙 ${priceOf(5)} (★★★★★)${testBonus(S) ? ', +1 ★ door de testkamer' : ''}.</p><p>⏸️ Pauze: de winkel verkoopt niets vanzelf. Handig om te sparen voor een grote bestelling.</p><p>🔒 De winkel verkoopt nooit robots die je nodig hebt voor een bestelling${rsv ? ` (nu ${rsv} gereserveerd)` : ''}.</p>`)}</div></div><h3>📋 Bestellingen</h3>`;
   h += S.orders.length ? S.orders.map(o => { const ok = canDeliver(S, o), have = S.stock.filter(q => q >= o.minQ).length;
-    return `<div class="order ${ok ? 'ok' : ''}"><span class="ci">${o.icon}</span><div><b>🤖 ${o.n}× ${'★'.repeat(o.minQ)}+</b> <small>${o.who}</small>${pbar(have / o.n)}<div class="chips">${chip('🪙', o.reward, 'gold')}${chip('⭐', o.rep)}${o.until <= S.day ? chip('⏰', 'laatste dag', 'bad') : ''}</div><small class="q1">“${o.line}”</small></div>
+    return `<div class="order ${ok ? 'ok' : ''}"><span class="ci">${o.icon}</span><div><b>${v2img('b_truck', '🚚', 'truckic')} 🤖 ${o.n}× ${'★'.repeat(o.minQ)}+</b> <small>${o.who}</small>${pbar(have / o.n)}<div class="chips">${chip('🪙', o.reward, 'gold')}${chip('⭐', o.rep)}${o.until <= S.day ? chip('⏰', 'laatste dag', 'bad') : ''}</div><small class="q1">“${o.line}”</small></div>
       <button class="btn small ${ok ? 'green' : 'white'}" data-order="${o.id}" ${ok ? '' : 'disabled'}>${ok ? '📦 Leveren' : `${have}/${o.n}`}</button></div>`; }).join('') : '<p class="small-note">📭 Morgen nieuwe bestellingen!</p>';
   $('#shopBody').innerHTML = h; openOv('ovShop');
 }
@@ -3374,7 +3415,7 @@ function showReport(r) {
    <p class="quip">${quip}</p>
    ${meer(`<div class="reprows">${row('🏭 Werkbeurten', r.jobs)}${row('🤖 Robots gemaakt', r.made)}${r.auto ? row('🔁 Vanzelf gemaakt', '+' + r.auto) : ''}${row('💰 Robots verkocht', r.sold)}${row('📦 Bestellingen', r.orders)}${r.hidden ? row('✨ Geheime puzzels', r.hidden) : ''}${row('💰 Inkomsten', '🪙 ' + r.inc)}${row('🧾 Vaste kosten', '−🪙 ' + r.upkeep)}${r.invest ? row('📈 Geïnvesteerd', '🪙 ' + r.invest) : ''}${r.rente ? row('🐷 Rente', '🪙 ' + r.rente) : ''}${row('✅ Winst', '🪙 ' + r.profit)}${row('⭐ Reputatie', r.rep)}</div>
      ${n && r.night.capped ? `<p>🌙 De nachtploeg werkte ${awayTxt(r.night.capMin)} (op half tempo). Upgrade de 🔁 Herhaal-machine voor langer.</p>` : ''}${warns.slice(1).map(w => `<p>${w}</p>`).join('')}<div class="chart">${finChart(S.reports.slice(-7))}</div>`, '📊 Details')}</div>`;
-  $('#repOpa').innerHTML = opaSVG(r.sold ? 'knipoog' : 'blij');
+  $('#repOpa').innerHTML = opaSVG(r.sold ? 'knipoog' : 'blij'); $('#scrReport').classList.add('eve');
   $('#repNext').textContent = `☀️ Dag ${S.day} beginnen`;
   SFX.fanfare();
 }
@@ -3408,7 +3449,7 @@ function showNight(r) {
   if (r.capped) more.push('Opa: “Upgrade de 🔁 Herhaal-machine: dan werkt de nachtploeg langer door.”');
   if (r.full) more.push('Opa: “Een groter 📦 Magazijn helpt!”');
   const h = `<div class="repcard">${hero('🤖', '+' + r.made, `${awayTxt(r.mins)} weg`, 'center')}<div class="chips mid big">${chip('💰', r.sold)}${chip('🪙', '+' + r.coins, 'gold')}</div>${tips.slice(0, 1).map(t => `<p class="repwarn">${t}</p>`).join('')}${meer(more.map(t => `<p>${t}</p>`).join(''))}</div>`;
-  showResult({ title: '🌙 Terwijl je sliep…', stars: 0, reward: h, art: opaSVG('knipoog'), btns: [['🏭 Naar de fabriek', 'green', () => goFactory()]] });
+  showResult({ title: '🌙 Terwijl je sliep…', stars: 0, reward: h, art: opaSVG('knipoog'), eve: true, btns: [['🏭 Naar de fabriek', 'green', () => goFactory()]] });
 }
 
 /* ===== screens/tik.js ===== */
@@ -3483,7 +3524,7 @@ function goStadion() {
      ${hurt ? `<p class="repwarn">🩹 Repareer bij 🛠️ Team!</p>` : ''}
      ${meer(`<p>⚽ ${MATCHES_PER_DIV} wedstrijden · ${PROMOTE_PTS} punten = promotie (winst 3, gelijk 1). Nu: ${pts} punten.</p><p>Baas van ${R.name}: ${R.boss}.</p>${hurt ? `<p>🩹 ${hurt} robot(s) zijn beschadigd en spelen slechter. Repareer ze in de werkplaats (🛠️ Team).</p>` : ''}<p>🏦 Clubkas: elke avond gaat ${Math.round(f.kasShare * 100)}% van de fabriekswinst erin, plus prijzengeld. Maximaal 🪙 ${kasCap(S)} in deze divisie, en upgrades tot niveau ${D.maxLv}. Geld helpt, maar slim spelen wint!</p>`)}</div>
    <div class="card"><b>Moeilijkheid</b><div class="fbdiff">${FB_DIFF.map((x, i) => `<button class="btn small ${fbDiff(S) === i ? 'green' : 'white'}" data-fbdiff="${i}">${x.icon} ${x.name}<br><small>🪙 ×${x.pay}</small></button>`).join('')}</div></div>
-   <div class="opatip${f.lastLost ? ' coach' : ''}"><div class="o">${opaSVG('knipoog')}</div><div>${f.lastLost ? `Coach Opa: “${tip}”${meer(coachTip(S))}` : tip}</div></div>`;
+   <div class="opatip${f.lastLost ? ' coach' : ''}"><div class="o">${f.lastLost ? coachPic() : opaSVG('knipoog')}</div><div>${f.lastLost ? `Coach Bout: “${tip}”${meer(coachTip(S))}` : tip}</div></div>`;
 }
 function coachShort(st) {
   const f = st.football, rid = DIVS[f.div].rival;
@@ -3631,7 +3672,7 @@ function endMatch() {
   else if (out.stay) rw += `<p class="repwarn">Net geen promotie (${out.pts} ⭐). Nog een keer!</p>`;
   else if (FB.mode !== 'versus') rw += `<p>${R.boss}: ${out.won ? '“Niet berekend!” 😱' : out.draw ? '“Herkansing!” 😤' : '“Hahaha!” 😏'}</p>`;
   if (out.rival) rw += `<p class="rivline">${RIVAL.icon} ${out.rival === 'won' ? 'Baron Bout is woest! 😤' : 'Baron Bout poetst zijn monocle…'}</p>`;
-  if (!out.won && FB.mode !== 'versus') rw += `<p class="coach">🧢 ${coachShort(S)}</p>`;
+  if (!out.won && FB.mode !== 'versus') rw += `<p class="coach withpic">${coachPic()}<span>${coachShort(S)}</span></p>`;
   rw += meer(`<p>🏦 +🪙 ${out.prize} in de clubkas${out.won ? ' (prijzengeld)' : ' (troostprijs)'}.</p>${out.dmg.length ? `<p>🩹 Schade: ${out.dmg.map(([ri, n]) => `${f.robots[ri].name} (+${n})`).join(', ')}. Even naar de werkplaats!</p>` : ''}${out.rival ? `<p>${out.rival === 'won' ? `Je eindigde boven <b>${RIVAL.firm}</b>!` : `<b>${RIVAL.firm}</b> eindigde boven je.`}</p>` : ''}${out.promoted ? `<p>Upgrades kunnen nu tot niveau ${DIVS[f.div].maxLv}!</p>` : ''}${FB.mode !== 'versus' && out.diff !== 1 ? `<p>${FB_DIFF[out.diff].name}: prijs ×${FB_DIFF[out.diff].pay}</p>` : ''}${!out.won && FB.mode !== 'versus' ? `<p>🧢 Coach Opa: “${coachTip(S)}”</p>` : ''}`) + '</div>';
   if (false) rw += `<p class="small-note">💡 ${pick(['Kijk naar de 🧤 pijltjes: welke kant duikt hun keeper? Schiet naar de andere kant (joystick die kant op tijdens het schieten).', 'Train je robots: dat kost bijna niks en ze spelen beter.', 'Upgrade "Slimmer": dan spelen je teamgenoten beter zelfstandig.', 'Programmeer een spelzet bij Tactiek!', 'Een betere fabriek = meer geld in de clubkas = betere robots. Alles hangt samen!'])}</p>`;
   showResult({ title, stars: out.won ? 3 : out.draw ? 2 : 0, reward: `<div>${rw}</div>`, art: fbBotSVG(f.robots[f.lineup[0]].look, 0, out.won),
@@ -4044,7 +4085,7 @@ function renderGarage() {
       <div class="dmgbar"><i style="width:${R.dmg}%"></i></div><small>🔧 ${R.dmg}%${R.dmg >= 30 ? ' 🐢' : ''}</small>
       ${R.dmg ? `<button class="btn small orange" id="rcRepair">🔧 Repareren · 🪙 ${rc}</button>` : ''}
       <div class="orow"><button class="btn small white" id="rcStand">📊 Stand</button><button class="btn small purple" id="rcDesign">🎨 Ontwerpen</button></div></div></div>
-    <p class="coach">🧑‍🔧 ${raceTip(S)}</p>
+    <p class="coach withpic">${coachPic()}<span>${raceTip(S)}</span></p>
     <div class="card"><b>Moeilijkheid</b> ${chip('🪙', '×' + RACE_DIFF[d].pay, 'gold')}<div class="fbdiff">${RACE_DIFF.map((x, i) => `<button class="btn ${i === d ? 'green' : 'white'}" data-rdiff="${i}">${x.icon} ${x.name}</button>`).join('')}</div></div>
     <div class="rparts">${parts}</div>
     ${meer(`<p>🏁 Seizoen: ${RACE_SEASON} races, de top 2 promoveert.</p><p>❓ Kisten op de weg geven een item: ${Object.values(RACE_ITEMS).map(i => `${i.icon} ${i.name}`).join(' · ')}. Tik de grote <b>GEBRUIK</b>-knop!</p>${RACE_PART_IDS.map(id => `<p>${RACE_PARTS[id].icon} <b>${RACE_PARTS[id].name}</b>: ${RACE_PARTS[id].desc}</p>`).join('')}<p>⛽ Brandstof per race: 🪙 ${fuel} · Prijzengeld: ${dv.prize.map((p, i) => `${i + 1}e 🪙${Math.round(p * RACE_DIFF[d].pay)}`).join(' · ')}.</p><p>🔧 Vanaf 30% schade rijd je langzamer.</p><p>Munten voor racen, voetbal en hallen komen uit dezelfde kluis: kies slim!</p>`, 'ℹ️ Uitleg')}`;
@@ -4154,14 +4195,14 @@ function finishRace() {
   if (RC.daily) { const pos = M.order.indexOf('me') + 1, r = dailyClaim(S, 'r', RC.daily, { pos }); save(); RC.M = null; RC.daily = null; if (r) r.stk = r.stk || stks[0]; return showDailyResult(r, `🏁 Race van de dag (${pos}e)`, pos === 1 ? 3 : pos === 2 ? 2 : pos === 3 ? 1 : 0); }
   const rid = rivalRaceId(S.race.div), rWon = M.order.indexOf('me') < M.order.indexOf(rid), rch = rivalResult(S, rWon, dayKey());
   const L = raceApply(S, M.order, { dmg: M.dmg, gates: M.gateRes, shortcut: M.shortcut }); S.race.items += M.itemsUsed; S.race.hits += M.aiHits; save(); RC.M = null;
-  const pos = L.pos, medal = ['🥇', '🥈', '🥉', '4️⃣'][pos - 1];
+  const pos = L.pos, medal = pos <= 3 ? v2img('t_' + MEDAL_IMG[pos - 1], ['🥇', '🥈', '🥉'][pos - 1], 'heroimg') : '4️⃣';
   let rw = `<div class="repcard">${hero(medal, `${pos}e`, 'plek', 'center gold')}<div class="chips mid big">${chip('🪙', `+<span class="count" data-to="${L.prize}">0</span>`, 'gold')}${chip('🔥', `${L.gatesOk}/${L.gatesN}`)}${chip('🔧', '+' + L.dmg + '%', L.dmg >= 20 ? 'warn' : '')}${M.aiHits ? chip('💥', M.aiHits) : ''}${M.shortcut ? chip('🕳️', '!', 'good') : ''}</div>`;
   if (L.promo === 'up') rw += `<p class="repwarn">🎉 <b>Promotie!</b> → ${RACE_DIVS[S.race.div].name}</p>`;
   else if (L.promo === 'title') rw += `<p class="repwarn">🏆 <b>Kampioen</b> van de Grand Prix!</p>`;
   else if (L.promo === 'stay') rw += `<p class="repwarn">Seizoen klaar: ${L.place}e. Nieuwe kans!</p>`;
   rw += `<p class="rivline">${RIVAL.icon} <b>${RIVAL.name}</b>: ${rWon ? `áchter je! ${rch ? '📖' : '“Hmpf!”'}` : 'was sneller. “Hahaa!”'}</p>`;
   rw += stks.map(stkReward).join('');
-  rw += meer(`<p>🔥 Patronen goed: ${L.gatesOk}/${L.gatesN}${M.aiHits ? ` · 💥 ${M.aiHits}× raak` : ''}${M.shortcut ? ' · 🕳️ sluiproute gevonden!' : ''}</p><p>🔧 Schade +${L.dmg}% (nu ${S.race.dmg}%)</p>${rch ? '<p>📖 Het verhaal met de Baron gaat verder…</p>' : ''}<p class="coach">🧑‍🔧 ${raceTip(S)}</p>`) + '</div>';
+  rw += meer(`<p>🔥 Patronen goed: ${L.gatesOk}/${L.gatesN}${M.aiHits ? ` · 💥 ${M.aiHits}× raak` : ''}${M.shortcut ? ' · 🕳️ sluiproute gevonden!' : ''}</p><p>🔧 Schade +${L.dmg}% (nu ${S.race.dmg}%)</p>${rch ? '<p>📖 Het verhaal met de Baron gaat verder…</p>' : ''}<p class="coach withpic">${coachPic()}<span>${raceTip(S)}</span></p>`) + '</div>';
   showResult({ title: pos === 1 ? 'Gewonnen!' : pos === 2 ? 'Tweede!' : 'Gefinisht!', stars: pos === 1 ? 3 : pos === 2 ? 2 : pos === 3 ? 1 : 0, art: carSVG(null, S.race.parts, S.race.dmg), reward: rw,
     btns: [['🏁 Naar de garage', 'green', () => goRace()], ['📊 Stand', 'white', () => { goRace(); openRaceStand(L.promo ? 'last' : null); }]] });
 }
@@ -4385,14 +4426,17 @@ addEventListener('keydown', e => {
 
 /* ===== screens/extra.js ===== */
 /* Fase C schermen: dagelijkse uitdaging, verzamelboek, bekerkast/mijlpalen, rivaal-berichten, racewagen-ontwerper. */
-const stkHTML = (id, own = true) => { const s = STICKERS[id]; return `<div class="stk r${s.r} ${own ? 'own' : 'no'}" data-stk="${id}" role="button" tabindex="0" aria-label="${own ? s.name : 'onbekende sticker'}: details" title="${own ? s.name : '???'}"><span>${own ? s.icon : '❔'}</span><small>${own ? s.name : '???'}</small></div>`; };
+// zachte afbreekstreepjes zodat lange stickernamen netjes afbreken op smalle telefoons
+const STK_HY = { Stoomrobot: 'Stoom\u00adrobot', Ponsband: 'Pons\u00adband', Bliksemschicht: 'Bliksem\u00adschicht', Wekkerkop: 'Wekker\u00adkop', Diamanten: 'Diaman\u00adten', Tandwiel: 'Tand\u00adwiel', Badeendje: 'Bad\u00adeendje', Magneet: 'Mag\u00adneet', Roestige: 'Roes\u00adtige', Geblokte: 'Geblok\u00adte', Monocle: 'Mono\u00adcle', Snorkam: 'Snor\u00adkam', dagboek: 'dag\u00adboek', schroef: 'schroef' };
+const stkHy = n => n.split(' ').map(w => STK_HY[w] || w).join(' ');
+const stkHTML = (id, own = true) => { const s = STICKERS[id]; return `<div class="stk r${s.r} ${own ? 'own' : 'no'}" data-stk="${id}" role="button" tabindex="0" aria-label="${own ? s.name : 'onbekende sticker'}: details" title="${own ? s.name : '???'}"><span>${own ? (STK_IMG(id) || s.icon) : '❔'}</span><small>${own ? stkHy(s.name) : '???'}</small></div>`; };
 // ---------- fabriekskaarten ----------
 function renderExtraCards() {
   extraInit(S); const D = dailyState(S, dayKey()), nd = (D.done.p ? 1 : 0) + (D.done.r ? 1 : 0), tot = raceUnlocked(S) ? 2 : 1;
   const st = D.streak && D.last && dayDiff(D.last, dayKey()) <= 1 ? D.streak : 0;
   $('#fDaily').innerHTML = `<div class="fch"><span class="fi">📅</span><div><b>Dagelijkse uitdaging</b><div class="chips streak">${chip('🔥', st, st ? 'warn' : '')}${chip('🧊', D.freeze)}${chip(nd >= tot ? '✅' : '🎯', `${nd}/${tot}`, nd >= tot ? 'good' : '')}</div></div></div>${pbar(nd / tot, 'gold')}<button class="btn ${nd >= tot ? 'white' : 'green'}" id="fGoDaily">${nd >= tot ? '✅ Klaar! Morgen weer' : '📅 Uitdaging'}</button>`;
   const earned = ACHIEVEMENTS.filter(a => S.extra.ach[a.id]);
-  $('#fCab').innerHTML = `<b>🏆 Bekerkast</b><div class="cabshelf" id="fCabShelf" role="button" aria-label="Bekerkast openen">${ACHIEVEMENTS.map(a => `<i class="${S.extra.ach[a.id] ? 'on' : ''}" title="${a.name}" data-ach="${a.id}">${S.extra.ach[a.id] ? a.icon : '🔒'}</i>`).join('')}</div>
+  $('#fCab').innerHTML = `<b>🏆 Bekerkast</b><div class="cabshelf" id="fCabShelf" role="button" aria-label="Bekerkast openen">${ACHIEVEMENTS.map(a => `<i class="${S.extra.ach[a.id] ? 'on' : ''}" title="${a.name}" data-ach="${a.id}">${S.extra.ach[a.id] ? (trophyImg(a.id) || a.icon) : '🔒'}</i>`).join('')}</div>
     <div class="chips">${chip('🏆', `${earned.length}/${ACHIEVEMENTS.length}`, 'gold')}${chip('📒', `${bookCount(S)}/${Object.keys(STICKERS).length}`)}</div><div class="orow"><button class="btn small purple" id="fGoCab">🏆 Bekerkast</button><button class="btn small orange" id="fGoBook">📒 Verzamelboek</button></div>`;
 }
 // na terugkomst in fabriek/garage/stadion: mijlpalen uitdelen, rivaal laten praten
@@ -4458,7 +4502,7 @@ function openCab() {
   extraInit(S);
   const got = ACHIEVEMENTS.filter(a => S.extra.ach[a.id]).length;
   $('#cabBody').innerHTML = `${hero('🏆', `${got}/${ACHIEVEMENTS.length}`, 'tik op een beker', 'gold')}<div class="cabgrid">${ACHIEVEMENTS.map(a => { const on = S.extra.ach[a.id], p = achProgress(S, a);
-    return `<div class="cab ${on ? 'on' : ''}" data-ach="${a.id}" role="button" tabindex="0" aria-label="${a.name}: details" title="${a.desc}"><span class="ci">${on ? a.icon : '🔒'}</span><b>${a.name}</b>${on ? `<small class="ok">✅${a.coins ? ` 🪙 ${a.coins}` : ''}</small>` : `<div class="meter"><i style="width:${Math.round(p * 100)}%"></i></div><small>${a.coins ? `🪙 ${a.coins}` : '🏅'}</small>`}</div>`; }).join('')}</div>`;
+    return `<div class="cab ${on ? 'on' : ''}" data-ach="${a.id}" role="button" tabindex="0" aria-label="${a.name}: details" title="${a.desc}"><span class="ci">${on ? (trophyImg(a.id) || a.icon) : (TROPHY[a.id] ? v2img('t_' + TROPHY[a.id], '🔒', 'trimg lockimg') : '🔒')}</span><b>${a.name}</b>${on ? `<small class="ok">✅${a.coins ? ` 🪙 ${a.coins}` : ''}</small>` : `<div class="meter"><i style="width:${Math.round(p * 100)}%"></i></div><small>${a.coins ? `🪙 ${a.coins}` : '🏅'}</small>`}</div>`; }).join('')}</div>`;
   openOv('ovCab');
 }
 // ---------- racewagen-ontwerper ----------
@@ -4499,7 +4543,7 @@ const STK_HOW = ['Vaak te vinden: dagelijkse uitdaging, geheime puzzels, ❓-kis
 function openStkDetail(id) {
   const s = STICKERS[id], x = extraInit(S), n = x.book[id] || 0, set = STICKER_SETS.find(z => z.id === s.set), got = set.items.filter(([i]) => x.book[i]).length;
   const how = id === 'g1' || id === 'g5' ? `Krijg je van <b>Baron Bout</b> als je hem vaak genoeg verslaat (verhaal hoofdstuk ${id === 'g1' ? 3 : 6}).` : STK_HOW[s.r - 1];
-  $('#detBody').innerHTML = `<div class="detbig stkbig r${s.r} ${n ? '' : 'sil'}"><span>${s.icon}</span>${s.r === 3 && n ? '<i class="shine"></i>' : ''}</div>
+  $('#detBody').innerHTML = `<div class="detbig stkbig r${s.r} ${n ? '' : 'sil'}"><span>${STK_IMG(id) || s.icon}</span>${s.r === 3 && n ? '<i class="shine"></i>' : ''}</div>
     <h2>${n ? s.name : '???'}</h2><p class="detmeta"><span class="pill rare${s.r}">${RARE[s.r]}</span> <span class="pill">${set.icon} ${set.name} · ${got}/5</span></p>
     ${n ? `<p>✅ In je verzamelboek${n > 1 ? ` (×${n}, dubbele = 🪙 ${DUP_COINS} per stuk)` : ''}.</p>${set.id === 'race' || true ? '<p class="small-note">🎨 Je kunt hem op je racewagen plakken!</p>' : ''}` : `<p>🔒 Nog niet gevonden.</p><p class="small-note">${how}</p>`}
     <p class="small-note">Set compleet = 🪙 ${set.bonus} + iets nieuws voor je racewagen.${x.sets.includes(set.id) ? ' ✅ Al compleet!' : ''}</p>`;
@@ -4507,7 +4551,7 @@ function openStkDetail(id) {
 }
 function openAchDetail(id) {
   const a = ACHIEVEMENTS.find(z => z.id === id), on = extraInit(S).ach[id], p = achProgress(S, a);
-  $('#detBody').innerHTML = `<div class="detbig trophy ${on ? '' : 'sil'}"><span>${a.icon}</span><b class="plinth">${on ? a.name : '???'}</b>${on ? '<i class="shine"></i>' : ''}</div>
+  $('#detBody').innerHTML = `<div class="detbig trophy ${on ? '' : 'sil'}"><span>${trophyImg(id) || a.icon}</span><b class="plinth">${on ? a.name : '???'}</b>${on ? '<i class="shine"></i>' : ''}</div>
     <h2>${a.name}</h2><p>${a.desc}</p>
     ${on ? `<p>🏆 Gehaald op <b>dag ${on}</b>!${a.coins ? ` Beloning: 🪙 ${a.coins}.` : ''}</p>` : `<div class="meter big"><i style="width:${Math.round(p * 100)}%"></i></div><p><b>${Math.round(p * 100)}%</b> klaar. ${a.coins ? `Beloning: 🪙 ${a.coins}.` : 'Eer en glorie!'}</p>`}`;
   openDetail(on ? 'gold' : '');
