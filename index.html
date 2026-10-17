@@ -594,6 +594,27 @@ details.meer .meerin p{margin:.25em 0}
 @keyframes digroll{from{transform:translateY(0)}to{transform:translateY(-100%)}}
 #mScore.goal{animation:scorepop .6s ease-out}
 @keyframes scorepop{0%{transform:scale(1)}30%{transform:scale(1.25)}100%{transform:scale(1)}}
+/* v18: TURBO-knop met 3 ladingen, toetsen-legenda (alleen computer), herkansings-rijtjes 'uit' */
+.rctl{justify-content:space-between}
+.rctl .ruse{margin:0 auto 0 0;max-width:150px;flex:1.15}.rctl .rturbo{margin-left:auto}
+.rturbo{flex:1;min-width:0;max-width:128px;height:min(24vw,110px);border-radius:24px;border:4px solid #ffd0a0;background:linear-gradient(#ff6a3a,#c8261a);color:#fff;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;touch-action:none;box-shadow:0 5px 0 #6e1208;position:relative;padding:0 2px}
+.rturbo span{font-size:2em;line-height:1}.rturbo small{font-size:.8em;letter-spacing:.05em}
+.rturbo .pips{display:flex;gap:4px;margin-top:2px}.rturbo .pips i{width:14px;height:7px;border-radius:4px;background:#00000066;box-shadow:inset 0 0 0 1px #ffffff44}.rturbo .pips i.on{background:#ffe066;box-shadow:0 0 6px #ffd34a}
+.rturbo:disabled{background:#0b0f18aa;border-color:#ffffff33;color:#ffffff77;box-shadow:none}.rturbo:disabled span{opacity:.45;filter:grayscale(1)}
+.rturbo.has{animation:usep 1s ease-in-out infinite}.rturbo.on{border-color:#fff;background:linear-gradient(#ffb02e,#ff3a1a)}.rturbo.down{transform:translateY(4px);box-shadow:0 1px 0 #6e1208}
+.rturbo.gain{animation:tgain .5s cubic-bezier(.3,1.8,.5,1)}@keyframes tgain{0%{transform:scale(.8)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.rtile.dead{opacity:.28;filter:grayscale(1)}.rtile.dead::after{display:none}
+.klegend{position:absolute;left:calc(env(safe-area-inset-left) + 12px);top:72px;z-index:5;background:#0b0f18ee;border:2px solid #ffd34a66;border-radius:14px;color:#e8eef7;font-size:13px;line-height:1.2;box-shadow:0 6px 18px #0008;max-width:min(560px,60vw);user-select:none}
+.klegend[hidden]{display:none}
+.klbtn{display:flex;align-items:center;gap:6px;background:none;border:0;color:#ffd34a;font:800 14px system-ui,sans-serif;padding:7px 10px;cursor:pointer;width:100%}
+.klbtn .klq{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#ffd34a;color:#141a26;font-size:13px}
+.klbtn .kllab,.klbtn .klx{display:none}.klegend.open .klbtn .klq{display:none}.klegend.open .klbtn .kllab{display:inline}.klegend.open .klbtn .klx{display:inline;margin-left:auto;color:#ffffffaa}
+.klbody{display:none;padding:0 12px 10px;gap:16px}.klegend.open .klbody{display:flex}
+.klcol{display:flex;flex-direction:column;gap:5px}.kltit{color:#fff;font-size:13px;margin-bottom:2px}
+.klrow{display:flex;align-items:center;gap:8px}.klk{display:flex;align-items:center;gap:1px;min-width:150px;flex-wrap:wrap}.klk i{color:#ffffff66;font-style:normal;margin:0 3px}.klt small{color:#ffffff99;font-weight:400}
+kbd.kc{display:inline-block;min-width:22px;height:23px;padding:0 5px;border-radius:5px;background:linear-gradient(#f6f8fb,#cdd4de);color:#141a26;border-bottom:3px solid #7f8898;font:800 12px/21px system-ui,sans-serif;text-align:center;margin:0 1px;box-sizing:border-box}kbd.kc.w{padding:0 7px}
+#klRace{top:auto;bottom:140px}
+
 </style>
 </head>
 <body>
@@ -741,7 +762,7 @@ details.meer .meerin p{margin:.25em 0}
   <div class="rtiles" id="rTiles" aria-hidden="true"></div>
   <div class="rgate" id="rGate" aria-live="polite"></div><div class="rfloat" id="rFloat"></div><div class="rpop" id="rPop"></div><div class="rzoom" id="rZoom" role="status">🔍 Je bent ingezoomd. Knijp met twee vingers om uit te zoomen. De knoppen blijven in beeld!</div>
   <div class="rtut" id="rTut" hidden><div class="rtutb"><div class="rtuta up">⬆</div><p id="rTutTxt"></p><button class="btn green" id="rTutOk">Snap ik! ▶</button></div></div>
-  <div class="rctl"><button class="rsteer" id="rL" aria-label="Links">◀</button><button class="ruse" id="rUse" aria-label="Item gebruiken" disabled><span id="rUseIc">❓</span><small>GEBRUIK</small></button><button class="rsteer" id="rR" aria-label="Rechts">▶</button></div>
+  <div class="rctl"><button class="rsteer" id="rL" aria-label="Links">◀</button><button class="rturbo" id="rTurbo" aria-label="Turbo gebruiken (0 van 3)" disabled><span>🔥</span><small>TURBO</small><b class="pips" id="rPips"><i></i><i></i><i></i></b></button><button class="ruse" id="rUse" aria-label="Item gebruiken" disabled><span id="rUseIc">❓</span><small>GEBRUIK</small></button><button class="rsteer" id="rR" aria-label="Rechts">▶</button></div>
 </section>
 <section class="screen" id="scrTeam" aria-label="Team">
   <div class="topbar"><button class="iconbtn" id="tmBack" aria-label="Terug naar het stadion">⬅️</button><div class="title">🛠️ Teammanagement</div><span class="hp" id="tmKas"></span></div>
@@ -1437,7 +1458,8 @@ const RACE_ITEMS = {
   schroot: { icon: '🔩', name: 'Schroot-regen', tip: 'strooit bouten achter je over de hele weg.' },
   schild: { icon: '🛡️', name: 'Schild', tip: 'houdt één klap tegen.' },
   raket: { icon: '🚀', name: 'Mini-raket', tip: 'vliegt naar de auto vóór je.' },
-  emp: { icon: '🧲', name: 'EMP-magneet', tip: 'laat auto\'s vlak vóór je even haperen.' }
+  emp: { icon: '🧲', name: 'EMP-magneet', tip: 'laat auto\'s vlak vóór je even haperen.' },
+  turbo: { icon: '🔥', name: 'Turbo', tip: 'gaat in je turbo-tank (max 3). Tik TURBO wanneer jij wilt!' }
 };
 
 /* ===== data/extra.js ===== */
@@ -2419,8 +2441,8 @@ function raceApply(st, order, info = {}) {
 function raceTip(st) {
   const R = st.race, p = R.parts, L = R.last, d = raceDiff(st);
   if (R.dmg >= 50) return `Je auto rammelt! Eerst <b>🔧 repareren</b>.`;
-  if (!L) return 'Rij over het <b>volgende symbool</b> van het patroon: TURBO! 🚀';
-  if (L.gatesN && L.gatesOk / L.gatesN < .5) return 'Kijk naar het patroon bovenin. Welk symbool komt nu? 🚀';
+  if (!L) return 'Rij over het <b>volgende symbool</b> van het patroon: TURBO! 🔥';
+  if (L.gatesN && L.gatesOk / L.gatesN < .5) return 'Kijk naar het patroon bovenin. Welk symbool komt nu? 🔥';
   if (L.pos >= 3 && p.motor < raceMaxLv(st) && p.motor <= p.banden) return 'Een betere <b>⚙️ Motor</b> helpt! Of zoek een sluiproute… 👀';
   if (L.pos >= 3 && p.banden < raceMaxLv(st)) return 'Betere <b>🛞 Banden</b> sturen fijner!';
   if (L.pos >= 3 && d > 0) return 'Te pittig? Probeer <b>Makkelijk</b>.';
@@ -2432,12 +2454,12 @@ const RACE_V0 = 30;                                // basis-topsnelheid (m/s) zo
 function raceCarStats(parts, dmg) { return { top: RACE_V0 * (1 + .07 * parts.motor) * (dmg >= 60 ? .88 : dmg >= 30 ? .95 : 1), steer: .55 * (1 + .14 * parts.banden), off: .55 + .06 * parts.banden, crash: 13 * (1 - .14 * parts.auto) }; }
 // baan: midden (0..1 schermbreedte) als functie van afstand
 function trackCx(M, d) { return .5 + .16 * Math.sin(d / 190 + M.ph1) + .08 * Math.sin(d / 77 + M.ph2); }
-const TRACK_HW = .27, LANES = [-.62, 0, .62], ROW_GAP = 38, TILE_R = .075;
+const TRACK_HW = .27, LANES = [-.62, 0, .62], ROW_GAP = 38, TILE_R = .075, TURBO_MAX = 3, RETRY_AHEAD = 115, TURBO_T = 2.5;
 const laneX = (M, d, lane) => trackCx(M, d) + LANES[lane] * TRACK_HW;
 function raceNew(opt) {
   const rng = opt.rng || RNG, div = opt.div || 0, dv = RACE_DIVS[div], diff = opt.diff ?? 0, me = raceCarStats(opt.parts, opt.dmg || 0);
   const M = { t: 0, div, diff, rng, len: dv.len, ph1: rng() * 6, ph2: rng() * 6, done: false, events: [], count: 1.5, gates: [], shortcuts: [], obst: [], boxes: [], rockets: [], cars: [], gateRes: { ok: 0, n: 0 }, shortcut: 0, dmg: 0, hitsOnMe: 0, itemsUsed: 0, aiHits: 0, final: false, kidSkill: opt.kidSkill ?? 0 };
-  M.me = { id: 'me', d: 0, x: .5, v: 0, turbo: 0, crash: 0, stats: me, steer: 0, me: true, fin: null, item: null, shield: 0 };
+  M.me = { id: 'me', d: 0, x: .5, v: 0, turbo: 0, turboN: 0, crash: 0, stats: me, steer: 0, me: true, fin: null, item: null, shield: 0 };
   const cap = me.top * RACE_DIFF[diff].cap;
   RACE_DRIVERS[div].forEach((dr, i) => M.cars.push({ id: dr.id, dr, d: 0, x: .5 + (i - 1) * .12, lane: (i - 1) * .1, v: 0, turbo: 0, crash: 0, top: Math.min(RACE_V0 * dv.base * dr.spd * 1.16, cap * (.96 + .03 * i)), fin: null, item: null, shield: 0 }));
   M.cars.unshift(M.me); M.me.x = .5; M.cars.forEach((c, i) => { c.d = -i * 6; });
@@ -2469,17 +2491,33 @@ function puzzleRowCross(M, g, row, x) {
   row.done = true; const t = row.tiles.find(t => Math.abs(x - laneX(M, row.d, t.lane)) < TILE_R);
   if (t && t.sym === g.need[g.got]) { t.hit = 1; t.ok = 1; g.got++; M.events.push({ k: 'pick', n: g.got, of: g.need.length });
     if (g.got >= g.need.length) { g.st = g.kind === 'lock' ? 'solved' : 'ok';
-      if (g.kind === 'gate') { M.me.turbo = 2.5; M.gateRes.ok++; M.gateRes.n++; M.events.push({ k: 'turbo' }); }
+      if (g.kind === 'gate') { M.gateRes.ok++; M.gateRes.n++; turboAdd(M, M.me, 'gate'); }
       else { g.d = M.me.d + 25; if (!M.me.item) M.me.item = 'raket'; M.events.push({ k: 'slot' }); } }
     return; }
   if (t) t.hit = 1, t.bad = 1;
-  // fout of gemist: geen straf, het rijtje begint opnieuw (één herkansing)
-  if (g.kind === 'gate' && g.retry > 0) { g.retry--; g.got = 0; layRows(M, g, M.me.d + 60); M.events.push({ k: t ? 'oeps' : 'gemist' }); }
+  // fout of gemist: geen straf. De race rijdt gewoon door; verderop (buiten beeld) komt een nieuw rijtje (één herkansing).
+  // Rijtjes die nog voor je lagen blijven als 'uit' liggen (geen plotselinge sprongen in beeld).
+  g.old = (g.old || []).concat(g.rows.filter(r => !r.done).map(r => (r.dead = true, r)));
+  if (g.kind === 'gate' && g.retry > 0) { g.retry--; g.got = 0; const d0 = Math.max(M.me.d + RETRY_AHEAD, ...g.old.map(r => r.d + ROW_GAP)); clearForRows(M, d0, g.need.length); layRows(M, g, d0); M.events.push({ k: t ? 'oeps' : 'gemist' }); }
   else { g.st = g.kind === 'lock' ? 'gone' : 'mis'; if (g.kind === 'gate') M.gateRes.n++; M.events.push({ k: g.kind === 'gate' ? 'gatemis' : 'slotmis' }); }
 }
+// ruim de weg op waar een herkansings-rijtje komt (nog niet getoonde obstakels/kisten)
+function clearForRows(M, d0, n) { const a = d0 - 20, b = d0 + ROW_GAP * (n - 1) + 20; M.obst = M.obst.filter(o => o.by || o.d < a || o.d > b); M.boxes = M.boxes.filter(x => x.d < a || x.d > b || Object.keys(x.taken).length); }
+// ---------- turbo: tot 3 opsparen ----------
+function turboAdd(M, c, src) {
+  if (!c.me) { c.turbo = TURBO_T; return; }
+  if (c.turboN >= TURBO_MAX) { c.turbo = Math.min(4, Math.max(0, c.turbo) + TURBO_T); M.events.push({ k: 'turbo', auto: 1 }); return; }   // vol: meteen gebruiken
+  c.turboN++; M.events.push({ k: 'turbo+', n: c.turboN, src });
+}
+function raceTurbo(M, c) {
+  if (!c.turboN || M.count > 0 || M.done || c.fin != null) return false;
+  c.turboN--; c.turbo = Math.min(4, Math.max(0, c.turbo) + TURBO_T); M.events.push({ k: 'turbo', who: c.id }); return true;
+}
 // ---------- items ----------
-function raceRollItem(M, pos, rng = M.rng) {
-  const tbl = pos === 1 ? ['olie', 'olie', 'schroot', 'schild'] : pos === 2 ? ['olie', 'schild', 'raket', 'emp', 'schroot'] : ['raket', 'raket', 'emp', 'schild', 'olie'];
+function raceRollItem(M, pos, rng = M.rng, gap = 0) {
+  // wie achter ligt krijgt vaker turbo
+  const tbl = pos === 1 ? ['olie', 'olie', 'schroot', 'schild', 'schild'] : pos === 2 ? ['olie', 'schild', 'raket', 'emp', 'schroot', 'turbo'] : pos === 3 ? ['raket', 'raket', 'emp', 'schild', 'olie', 'turbo', 'turbo'] : ['raket', 'raket', 'emp', 'schild', 'olie', 'turbo', 'turbo', 'turbo'];
+  if (pos > 1 && gap > 60) tbl.push('turbo', 'turbo');
   return tbl[Math.floor(rng() * tbl.length)];
 }
 const carPos = (M, c) => 1 + M.cars.filter(o => o !== c && o.d > c.d).length;
@@ -2531,15 +2569,16 @@ function raceStep(M, dt) {
       top = c.stats.top * (off ? c.stats.off : 1) * (c.turbo > 0 ? 1.35 : 1);
     } else {
       // AI: eigen rijstrook, ontwijkt soms obstakels; rubberband: nooit ver weg, niet sneller dan de cap
+      // rubberband (zacht en eerlijk): wie vóór de speler rijdt, rijdt iets trager en maakt eerder foutjes; wie erachter zit, komt terug
+      const gap = c.d - me.d, ahead = clamp((gap - 10) / 50, 0, 1), behind = clamp((-gap - 8) / 50, 0, 1), lead = M.lastPos === 1 ? 1 : .5;
       const ob = M.obst.find(o => !o.hitBy[c.id] && o.d - c.d > 0 && o.d - c.d < 40);
-      let tx = cx + c.lane; if (ob && M.rng() < c.dr.skill * dt * (ob.by === 'me' ? 4 : 8)) c.dodge = (cx + ob.off * TRACK_HW) > tx ? -.14 : .14;
+      let tx = cx + c.lane; if (ob && M.rng() < c.dr.skill * (1 - .5 * ahead) * dt * (ob.by === 'me' ? 4 : 8)) c.dodge = (cx + ob.off * TRACK_HW) > tx ? -.14 : .14;
       if (c.dodge) { tx += c.dodge; if (!ob) c.dodge = 0; }
+      if (c.wobT > 0) { c.wobT -= dt; tx += c.wob; } else if (ahead > 0 && M.rng() < [.16, .11, .05][M.diff] * ahead * dt) { c.wob = (M.rng() < .5 ? -1 : 1) * .13; c.wobT = .8 + M.rng() * .8; }   // foutje: even naast de lijn
       c.x += clamp(tx - c.x, -.5 * dt, .5 * dt);
-      const gap = c.d - me.d;
-      let rb = gap > 60 ? (M.diff === 2 ? .94 : .84) : gap < -80 ? 1.06 : 1;
-      if (M.diff === 0 && gap > 25) rb = Math.min(rb, .93);
+      const rb = 1 - ahead * [.16, .13, .07][M.diff] + behind * lead * [.11, .09, .08][M.diff];
       top = c.top * rb * (c.turbo > 0 ? 1.25 : 1) * (Math.abs(c.x - cx) > TRACK_HW ? .6 : 1);
-      if (M.gates.some(g => d0 < g.d && d0 + c.v * dt >= g.d) && M.rng() < c.dr.skill * [.5, .75, 1][M.diff]) c.turbo = 2.5;
+      if (M.gates.some(g => d0 < g.d && d0 + c.v * dt >= g.d) && M.rng() < c.dr.skill * [.5, .75, 1][M.diff] * (1 - .5 * ahead)) c.turbo = TURBO_T;
       aiItem(M, c, dt);
     }
     if (c.crash > 0) { c.crash -= dt; top *= .35; }
@@ -2549,7 +2588,10 @@ function raceStep(M, dt) {
     c.d += c.v * dt;
     // ❓-kisten
     for (const b of M.boxes) if (d0 < b.d && c.d >= b.d && !b.taken[c.id] && !c.item && b.lanes.some(l => Math.abs(c.x - laneX(M, b.d, l)) < TILE_R + .02)) {
-      b.taken[c.id] = 1; c.item = raceRollItem(M, carPos(M, c)); c.useT = 1.2 + M.rng() * 3;
+      b.taken[c.id] = 1; const pos = carPos(M, c), lead = M.cars.reduce((a, o) => Math.max(a, o.d), 0); let it = raceRollItem(M, pos, M.rng, lead - c.d);
+      if (it === 'turbo' && c.me && c.turboN >= TURBO_MAX) it = 'schild';
+      if (it === 'turbo') { if (c.me) { M.events.push({ k: 'item', it }); turboAdd(M, c, 'box'); } else turboAdd(M, c); continue; }
+      c.item = it; c.useT = 1.2 + M.rng() * 3;
       if (c.me) M.events.push({ k: 'item', it: c.item });
     }
     // obstakels (incl. gedropte olie/schroot)
@@ -2592,6 +2634,7 @@ function raceBot(M, skill = 0) {
   if (skill <= -2 && M.rng() < .02) me.wob = (M.rng() * 2 - 1) * .2; tx += me.wob || 0; if (M.rng() < .01) me.wob = 0;
   me.steer = Math.abs(tx - me.x) < .02 ? 0 : tx > me.x ? 1 : -1;
   if (me.item && M.rng() < .015) raceUse(M, me);
+  if (me.turboN && me.turbo <= 0 && M.rng() < (skill <= -2 ? .01 : .03)) raceTurbo(M, me);
 }
 function raceSimFull(opt, skill) { const M = raceNew(opt); let n = 0; while (!M.done && n++ < 20000) { raceBot(M, skill); raceStep(M, .05); } return M; }
 
@@ -3453,7 +3496,7 @@ function startMatch(mode) {
   const me = playerTeam(f), them = mode === 'versus' ? { bots: me.bots.map(b => ({ ...b, look: Object.assign({}, b.look, { body: (b.look.body + 3) % 6 }) })), keeper: me.keeper } : rivalTeam(rid);
   const M = newMatch([me, them], { seed: (Date.now() & 0xffff) + 1, map: f.history.length + f.div, keeperSeq1: mode === 'versus' ? null : RIVALS[rid].keeper, diff: fbDiff(S), div: f.div, rubber: mode !== 'versus', ctrl: mode === 'solo' ? [0] : mode === 'coop' ? [0, 0] : [0, 1] });
   startCount(M, 0); fbGfxReset(); $('#mScore').innerHTML = ''; M.playLv = [f.playLv, 0]; M.radar = f.lineup.some(i => f.robots[i].gear === 'radar'); FB.M = M; FB.inp = [{}, {}];
-  show('scrMatch'); buildControls(); resizeMatch(); musicFor('scrMatch');
+  show('scrMatch'); buildControls(); resizeMatch(); musicFor('scrMatch'); keyLegend('scrMatch', 'klFb', KL_FB(mode !== 'solo'), mode === 'solo' ? 'fb' : 'fb2');
   if (mode !== 'versus') { const R = RIVALS[rid]; setTimeout(() => toast(`${R.icon} ${R.boss}: “${pick(R.lines)}”`), 300); }
   else toast('⚔️ Speler 1 (links, blauw) tegen speler 2 (rechts, roze)!');
   cancelAnimationFrame(FB.raf); FB.last = performance.now(); FB.acc = 0; FB.raf = requestAnimationFrame(matchFrame);
@@ -3526,9 +3569,12 @@ function joyBind(el, s) {
   el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end); el.addEventListener('lostpointercapture', end);
 }
 function setStick(s, jx, jy) { const port = FB.view && FB.view.port; FB.inp[s].mx = port ? -jy : jx; FB.inp[s].my = port ? jx : jy; FB.inp[s].stick = Math.hypot(jx, jy) > .1; }
-const KEYMAP = { solo: [{ u: ['ArrowUp', 'KeyW'], d: ['ArrowDown', 'KeyS'], l: ['ArrowLeft', 'KeyA'], r: ['ArrowRight', 'KeyD'], shoot: ['Space', 'KeyJ'], push: ['KeyX', 'KeyK'], pass: ['KeyZ', 'KeyH'], play: ['KeyC', 'KeyL'], sprint: ['ShiftLeft', 'ShiftRight', 'KeyE'] }],
+const KEYMAP = { solo: [{ u: ['ArrowUp', 'KeyW'], d: ['ArrowDown', 'KeyS'], l: ['ArrowLeft', 'KeyA'], r: ['ArrowRight', 'KeyD'], shoot: ['Space', 'KeyJ'], pass: ['KeyK', 'KeyZ', 'KeyH'], push: ['KeyL', 'KeyX'], play: ['KeyC'], sprint: ['ShiftLeft', 'ShiftRight', 'KeyE'] }],   // legenda: KL_FB in keys.js
   two: [{ u: ['KeyW'], d: ['KeyS'], l: ['KeyA'], r: ['KeyD'], shoot: ['KeyF'], push: ['KeyG'], pass: ['KeyR'], sprint: ['KeyE'] }, { u: ['ArrowUp'], d: ['ArrowDown'], l: ['ArrowLeft'], r: ['ArrowRight'], shoot: ['KeyK', 'Enter'], push: ['KeyL'], pass: ['KeyO'], sprint: ['ShiftRight'] }] };
-addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return; if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) { clearConfetti(); goalSkip(); }; if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['pass', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; if (m.shoot.includes(e.code)) shootStart(s); }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
+addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return;
+  if (e.code === 'Escape' || e.code === 'KeyP') { e.preventDefault(); if ($('#ovConfirm').classList.contains('show')) { if (e.code === 'Escape') $('#cfNo').click(); } else if (FB.M && !FB.M.over) $('#mPause').click(); return; }
+  if ($('#ovConfirm').classList.contains('show')) return;
+  if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) { clearConfetti(); goalSkip(); }; if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['pass', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; if (m.shoot.includes(e.code)) shootStart(s); }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
 addEventListener('keyup', e => { FB.keys[e.code] = false; if (CUR_SCREEN !== 'scrMatch') return; const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { if (m.shoot.includes(e.code)) shootFire(s); }); });
 // Schiet vasthouden = harder (max na 0,7 s). Kort tikken = normaal schot.
 function shootStart(s) { if (FB.hold[s] == null) FB.hold[s] = performance.now(); }
@@ -4022,14 +4068,15 @@ function startRace() {
   if (!raceCanStart(S)) { SFX.nope(); toast(`Je hebt 🪙 ${raceFuel(S)} nodig voor brandstof.`); return; }
   S.coins -= raceFuel(S); S.today.fin && (S.today.fin.upkeep += raceFuel(S)); save();
   RC.daily = null; RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = ''; raceGfxReset(); RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
-  show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); zoomHint(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
+  raceScreenOn();
 }
+function raceScreenOn() { RC.turboKey = ''; RC.turboHint = 0; show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); zoomHint(); keyLegend('scrDrive', 'klRace', KL_RACE(), 'race'); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop); }
 // race van de dag: vaste baan en vaste patronen (zaad = datum), gratis brandstof, telt niet mee voor de competitie
 function startDailyRace() {
   closeOv('ovDaily'); raceInit(S); const key = dayKey(), seed = dailySeed(key), keep = RNG; RNG = mkRng(seed ^ 0x5bd1);
   try { RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg, rng: mkRng(seed) }); } finally { RNG = keep; }
   RC.daily = key; RC.gateKey = ''; raceGfxReset(); RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
-  show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); zoomHint(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
+  raceScreenOn();
 }
 function zoomHint() { if (vvApply()) { const h = $('#rZoom'); h.classList.remove('show'); void h.offsetWidth; h.classList.add('show'); } }
 function sizeRace() { const c = $('#rCanvas'), dpr = gfxDpr(); c.width = Math.round(c.clientWidth * dpr); c.height = Math.round(c.clientHeight * dpr); RC.dpr = dpr; }
@@ -4052,9 +4099,12 @@ function raceEvent(e) {
   const M = RC.M;
   if (e.k === 'gateopen' && !S.race.tut) RC.tutPending = true;
   if (e.k === 'pick') { SFX.place(); if (e.n < e.of) floatTxt(`✔ ${e.n}/${e.of}`); }
-  if (e.k === 'turbo') { SFX.fanfare(); floatTxt('🚀 TURBO!'); burst(M.me, '#ffd34a', 26, 'spark'); juiceHit(.25); JUICE.stop = 0; }
-  if (e.k === 'oeps') { SFX.nope(); floatTxt('Oeps! Nog een keer 🔁'); }
-  if (e.k === 'gemist') floatTxt('Gemist! Nog een kans 🔁');
+  if (e.k === 'turbo+') { SFX.star(); RC.turboHint = M.t + 5; const b = $('#rTurbo'); b.classList.remove('gain'); void b.offsetWidth; b.classList.add('gain');
+    if (e.src !== 'box') floatTxt(`🔥 +1 turbo! ${isDesk() ? 'Druk W' : 'Tik TURBO'}`);
+    if (!S.race.tutTurbo) { S.race.tutTurbo = true; save(); setTimeout(() => toast(`🔥 Turbo bewaard! Je kunt er 3 sparen. ${isDesk() ? 'Druk W (of ↑) als je hem wilt gebruiken.' : 'Tik de TURBO-knop als je hem wilt gebruiken.'}`), 700); } }
+  if (e.k === 'turbo') { SFX.fanfare(); floatTxt('🔥 TURBO!'); burst(M.me, '#ffd34a', 26, 'spark'); juiceHit(.25); JUICE.stop = 0; }
+  if (e.k === 'oeps') { SFX.nope(); floatTxt('Oeps! Verderop nog een kans ⬆'); }
+  if (e.k === 'gemist') floatTxt('Gemist! Verderop nog een kans ⬆');
   if (e.k === 'gatemis') floatTxt('Volgende keer beter!');
   if (e.k === 'boem') { SFX.nope(); juiceHit(.8); burst(M.me, '#ffb02e', 18, 'spark'); burst(M.me, '#9aa4b2', 6, 'smoke'); floatTxt(pick(['BOEM! 💥', 'Au, een pion!', 'KLONK!'])); }
   if (e.k === 'slip') { SFX.whir(); juiceHit(.45); burst(M.me, '#0b0b12', 10, 'oil'); floatTxt('Sliiip! 🛢️'); }
@@ -4063,7 +4113,8 @@ function raceEvent(e) {
   if (e.k === 'slotmis') floatTxt('Geheim gemist…');
   if (e.k === 'sluip') { SFX.fanfare(); floatTxt('🕳️ Sluiproute! +150 m'); }
   if (e.k === 'go') { SFX.ok(); floatTxt('GO!'); }
-  if (e.k === 'item') { SFX.star(); const I = RACE_ITEMS[e.it]; boxBurst(M); slotStart(e.it); floatTxt(`${I.icon} ${I.name}!`); if (!S.race.tutItem) { S.race.tutItem = true; save(); setTimeout(() => toast(`${I.icon} ${I.name}: ${I.tip} Tik de grote GEBRUIK-knop!`), 700); } }
+  if (e.k === 'item' && e.it === 'turbo') { SFX.star(); boxBurst(M); floatTxt('🔥 Turbo in de tank!'); return; }
+  if (e.k === 'item') { SFX.star(); const I = RACE_ITEMS[e.it]; boxBurst(M); slotStart(e.it); floatTxt(`${I.icon} ${I.name}!`); if (!S.race.tutItem) { S.race.tutItem = true; save(); setTimeout(() => toast(`${I.icon} ${I.name}: ${I.tip} ${isDesk() ? 'Druk Spatie!' : 'Tik de grote GEBRUIK-knop!'}`), 700); } }
   if (e.k === 'use' && e.who === 'me') { SFX.whir(); if (e.it === 'schild') floatTxt('🛡️ Schild aan!'); }
   if (e.k === 'use' && e.who !== 'me' && (e.it === 'raket' || e.it === 'emp')) toast(`${carName(e.who)} gebruikt ${RACE_ITEMS[e.it].icon}!`);
   if (e.k === 'raak') { SFX.ok(); const c = M.cars.find(x => x.id === e.who); burst(c, e.kind === 'olie' ? '#9aa0ff' : '#ff8a3a', 18, 'spark'); burst(c, '#8b93a3', 6, 'smoke'); juiceHit(.4); popPos(`💥 Raak! ${carName(e.who)} tolt`, true); }
@@ -4074,7 +4125,7 @@ function raceEvent(e) {
 }
 function raceTutorial() {
   RC.paused = true; S.race.tut = true; save();
-  $('#rTutTxt').innerHTML = '<b>Kijk naar het patroon bovenin!</b> Welk symbool komt er bij het <b>?</b>-vakje?<br>⬆ Daar liggen de symbolen <b>op de weg</b>. Stuur met ◀ ▶ je auto <b>óver het goede symbool</b>. Alles goed = <b>🚀 TURBO!</b><br><small>Fout? Geen probleem, je krijgt nog een kans.</small>';
+  $('#rTutTxt').innerHTML = '<b>Kijk naar het patroon bovenin!</b> Welk symbool komt er bij het <b>?</b>-vakje?<br>⬆ Daar liggen de symbolen <b>op de weg</b>. Stuur met ◀ ▶ je auto <b>óver het goede symbool</b>. Alles goed = <b>🔥 TURBO</b> in je tank!<br><small>Fout? Geen probleem: verderop komt er nog een rijtje.</small>';
   $('#rTut').hidden = false;
 }
 function floatTxt(t) { const el = $('#rFloat'); el.textContent = t; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); }
@@ -4082,9 +4133,12 @@ function renderRaceHud(M) {
   const me = M.me, pos = racePos(M);
   $('#rPos').innerHTML = `<b>${pos}</b><small>/4</small>`;
   $('#rProg').style.width = `${clamp(me.d / M.len, 0, 1) * 100}%`;
-  $('#rSpd').innerHTML = `${Math.round(me.v * 3.6)}<small> km/u</small>${me.turbo > 0 ? ' 🚀' : ''}`;
+  $('#rSpd').innerHTML = `${Math.round(me.v * 3.6)}<small> km/u</small>${me.turbo > 0 ? ' 🔥' : ''}`;
   $('#rProgDots').innerHTML = M.cars.filter(c => !c.me).map(c => `<i style="left:${clamp(c.d / M.len, 0, 1) * 100}%;background:${c.dr.col}"></i>`).join('');
   if (!slotTick()) { const ik = (me.item || '') + (me.shield > 0 ? 's' : ''); if (ik !== RC.itemKey) { RC.itemKey = ik; const u = $('#rUse'); u.disabled = !me.item; u.classList.toggle('has', !!me.item); $('#rUseIc').textContent = me.item ? RACE_ITEMS[me.item].icon : me.shield > 0 ? '🛡️' : '❓'; u.setAttribute('aria-label', me.item ? `Gebruik ${RACE_ITEMS[me.item].name}` : 'Geen item'); } }
+  const tk = me.turboN + ':' + (me.turbo > 0 ? 1 : 0); if (tk !== RC.turboKey) { RC.turboKey = tk; const b = $('#rTurbo'); b.disabled = !me.turboN; b.classList.toggle('has', me.turboN > 0); b.classList.toggle('on', me.turbo > 0);
+    [...$('#rPips').children].forEach((p, i) => p.classList.toggle('on', i < me.turboN)); b.setAttribute('aria-label', `Turbo gebruiken (${me.turboN} van ${TURBO_MAX})`); }
+  if (RC.turboHint && me.turboN > 0 && me.turbo <= 0 && M.t > RC.turboHint) { RC.turboHint = 0; floatTxt(isDesk() ? '🔥 Druk W voor turbo!' : '🔥 Tik TURBO!'); }
   const g = activePuzzle(M), key = g ? g.kind + g.d + ':' + g.got + ':' + g.retry : '';
   if (key !== RC.gateKey) { RC.gateKey = key;
     const box = $('#rGate');
@@ -4092,7 +4146,7 @@ function renderRaceHud(M) {
     else { box.classList.add('on'); box.classList.toggle('lock', g.kind === 'lock');
       const strip = g.kind === 'lock' ? g.seq.map((x, i) => i === g.b ? '<span class="q next">?</span>' : tokenSVG(x)).join('')
         : g.seq.map(x => tokenSVG(x)).join('') + g.need.map((x, i) => i < g.got ? `<span class="got">${tokenSVG(x)}</span>` : `<span class="q${i === g.got ? ' next' : ''}">?</span>`).join('');
-      box.innerHTML = `<small>${g.kind === 'lock' ? '🔒 Geheim patroon: rij over het stukje dat mist → sluiproute!' : '🚀 Rij óver het volgende symbool op de weg'}</small><div class="rstrip">${strip}</div>${g.kind === 'gate' ? `<div class="rprogd">${g.need.map((_, i) => `<i class="${i < g.got ? 'on' : ''}"></i>`).join('')}</div>` : ''}`; } }
+      box.innerHTML = `<small>${g.kind === 'lock' ? '🔒 Geheim patroon: rij over het stukje dat mist → sluiproute!' : '🔥 Rij óver het volgende symbool op de weg'}</small><div class="rstrip">${strip}</div>${g.kind === 'gate' ? `<div class="rprogd">${g.need.map((_, i) => `<i class="${i < g.got ? 'on' : ''}"></i>`).join('')}</div>` : ''}`; } }
 }
 function finishRace() {
   const M = RC.M; cancelAnimationFrame(RC.raf); AUD.fast = 1;
@@ -4101,16 +4155,17 @@ function finishRace() {
   const rid = rivalRaceId(S.race.div), rWon = M.order.indexOf('me') < M.order.indexOf(rid), rch = rivalResult(S, rWon, dayKey());
   const L = raceApply(S, M.order, { dmg: M.dmg, gates: M.gateRes, shortcut: M.shortcut }); S.race.items += M.itemsUsed; S.race.hits += M.aiHits; save(); RC.M = null;
   const pos = L.pos, medal = ['🥇', '🥈', '🥉', '4️⃣'][pos - 1];
-  let rw = `<div class="repcard">${hero(medal, `${pos}e`, 'plek', 'center gold')}<div class="chips mid big">${chip('🪙', `+<span class="count" data-to="${L.prize}">0</span>`, 'gold')}${chip('🚀', `${L.gatesOk}/${L.gatesN}`)}${chip('🔧', '+' + L.dmg + '%', L.dmg >= 20 ? 'warn' : '')}${M.aiHits ? chip('💥', M.aiHits) : ''}${M.shortcut ? chip('🕳️', '!', 'good') : ''}</div>`;
+  let rw = `<div class="repcard">${hero(medal, `${pos}e`, 'plek', 'center gold')}<div class="chips mid big">${chip('🪙', `+<span class="count" data-to="${L.prize}">0</span>`, 'gold')}${chip('🔥', `${L.gatesOk}/${L.gatesN}`)}${chip('🔧', '+' + L.dmg + '%', L.dmg >= 20 ? 'warn' : '')}${M.aiHits ? chip('💥', M.aiHits) : ''}${M.shortcut ? chip('🕳️', '!', 'good') : ''}</div>`;
   if (L.promo === 'up') rw += `<p class="repwarn">🎉 <b>Promotie!</b> → ${RACE_DIVS[S.race.div].name}</p>`;
   else if (L.promo === 'title') rw += `<p class="repwarn">🏆 <b>Kampioen</b> van de Grand Prix!</p>`;
   else if (L.promo === 'stay') rw += `<p class="repwarn">Seizoen klaar: ${L.place}e. Nieuwe kans!</p>`;
   rw += `<p class="rivline">${RIVAL.icon} <b>${RIVAL.name}</b>: ${rWon ? `áchter je! ${rch ? '📖' : '“Hmpf!”'}` : 'was sneller. “Hahaa!”'}</p>`;
   rw += stks.map(stkReward).join('');
-  rw += meer(`<p>🚀 Patronen goed: ${L.gatesOk}/${L.gatesN}${M.aiHits ? ` · 💥 ${M.aiHits}× raak` : ''}${M.shortcut ? ' · 🕳️ sluiproute gevonden!' : ''}</p><p>🔧 Schade +${L.dmg}% (nu ${S.race.dmg}%)</p>${rch ? '<p>📖 Het verhaal met de Baron gaat verder…</p>' : ''}<p class="coach">🧑‍🔧 ${raceTip(S)}</p>`) + '</div>';
+  rw += meer(`<p>🔥 Patronen goed: ${L.gatesOk}/${L.gatesN}${M.aiHits ? ` · 💥 ${M.aiHits}× raak` : ''}${M.shortcut ? ' · 🕳️ sluiproute gevonden!' : ''}</p><p>🔧 Schade +${L.dmg}% (nu ${S.race.dmg}%)</p>${rch ? '<p>📖 Het verhaal met de Baron gaat verder…</p>' : ''}<p class="coach">🧑‍🔧 ${raceTip(S)}</p>`) + '</div>';
   showResult({ title: pos === 1 ? 'Gewonnen!' : pos === 2 ? 'Tweede!' : 'Gefinisht!', stars: pos === 1 ? 3 : pos === 2 ? 2 : pos === 3 ? 1 : 0, art: carSVG(null, S.race.parts, S.race.dmg), reward: rw,
     btns: [['🏁 Naar de garage', 'green', () => goRace()], ['📊 Stand', 'white', () => { goRace(); openRaceStand(L.promo ? 'last' : null); }]] });
 }
+function useTurbo() { if (!RC.M || RC.paused) return; const b = $('#rTurbo'); b.classList.add('down'); setTimeout(() => b.classList.remove('down'), 120); if (raceTurbo(RC.M, RC.M.me)) { RC.turboHint = 0; for (const e of RC.M.events.splice(0)) raceEvent(e); } else if (RC.M.count <= 0) SFX.nope(); }
 function useItem() { if (!RC.M || RC.paused) return; const u = $('#rUse'); u.classList.add('down'); setTimeout(() => u.classList.remove('down'), 120); raceUse(RC.M, RC.M.me); for (const e of RC.M.events.splice(0)) raceEvent(e); }
 function initRace() {
   $('#rcBack').onclick = () => { SFX.click(); goFactory(); };
@@ -4120,10 +4175,19 @@ function initRace() {
     b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointerleave', off); b.addEventListener('pointercancel', off); };
   hold('#rL', 'L'); hold('#rR', 'R');
   $('#rUse').addEventListener('pointerdown', e => { e.preventDefault(); useItem(); });
+  $('#rTurbo').addEventListener('pointerdown', e => { e.preventDefault(); useTurbo(); });
   $('#rTutOk').onclick = () => { SFX.click(); $('#rTut').hidden = true; RC.paused = false; RC.last = performance.now(); };
   $('#rQuit').onclick = () => { SFX.click(); RC.paused = true; if (confirm('Stoppen met deze race? De brandstof is op, je krijgt geen punten.')) { RC.M = null; RC.paused = false; AUD.fast = 1; goRace(); } else RC.paused = false; };
-  addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrDrive') return; if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = true; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = true; if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); useItem(); } });
-  addEventListener('keyup', e => { if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = false; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = false; });
+  // toetsen: A/D of ←/→ sturen · W/↑/Shift turbo · Spatie/E/S/↓ item · Enter = uitleg wegklikken
+  const isL = e => e.code === 'ArrowLeft' || e.code === 'KeyA', isR = e => e.code === 'ArrowRight' || e.code === 'KeyD';
+  addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrDrive' || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (!$('#rTut').hidden) { if (e.code === 'Enter' || e.code === 'Space') { e.preventDefault(); $('#rTutOk').click(); } return; }
+    if (isL(e)) { RC.keys.L = true; e.preventDefault(); } if (isR(e)) { RC.keys.R = true; e.preventDefault(); }
+    if (e.repeat) return;
+    if (['KeyW', 'ArrowUp', 'ShiftLeft', 'ShiftRight'].includes(e.code)) { e.preventDefault(); useTurbo(); }
+    if (['Space', 'KeyE', 'KeyS', 'ArrowDown'].includes(e.code)) { e.preventDefault(); useItem(); } });
+  addEventListener('keyup', e => { if (isL(e)) RC.keys.L = false; if (isR(e)) RC.keys.R = false; });
+  addEventListener('blur', () => { RC.keys.L = RC.keys.R = false; });
   addEventListener('resize', () => { if (CUR_SCREEN === 'scrDrive') sizeRace(); });
 }
 
@@ -4267,7 +4331,9 @@ function drawTiles(M) {
   const put = (key, d, lane, html, cls) => { const y = V.SY(d); if (y < -sz || y > ch + sz) return; want[key] = 1; let el = RC.tiles[key];
     if (!el) { el = document.createElement('div'); el.innerHTML = html; $('#rTiles').appendChild(el); RC.tiles[key] = el; }
     if (el.className !== 'rtile ' + cls) el.className = 'rtile ' + cls; el.style.width = el.style.height = sz + 'px'; el.style.transform = `translate(${Math.round(V.SX(laneX(M, d, lane)) - sz / 2)}px,${Math.round(y - sz / 2)}px)`; };
-  for (const g of [...M.gates, ...M.shortcuts]) if (g.st === 'open' || g.st === 'ok' || g.st === 'solved') g.rows.forEach(r => r.tiles.forEach(t => put(`${g.kind}${g.d}:${r.d}:${t.lane}`, r.d, t.lane, tokenSVG(t.sym), (t.ok ? 'ok' : t.bad ? 'bad' : '') + ' sym')));
+  for (const g of [...M.gates, ...M.shortcuts]) {
+    if (g.st === 'open' || g.st === 'ok' || g.st === 'solved' || g.st === 'mis') g.rows.forEach(r => r.tiles.forEach(t => put(`${g.kind}${g.d}:${r.d}:${t.lane}`, r.d, t.lane, tokenSVG(t.sym), (t.ok ? 'ok' : t.bad ? 'bad' : r.dead ? 'dead' : '') + ' sym')));
+    if (g.old) g.old.forEach(r => r.tiles.forEach(t => put(`${g.kind}${g.d}:${r.d}:${t.lane}`, r.d, t.lane, tokenSVG(t.sym), (t.bad ? 'bad' : 'dead') + ' sym'))); }
   for (const b of M.boxes) b.lanes.forEach(l => put(`b${b.d}:${l}`, b.d, l, `<img src="gfx/itembox.webp" alt="❓" draggable="false">`, 'box' + (b.taken.me ? ' gone' : '')));
   for (const k in RC.tiles) if (!want[k]) { RC.tiles[k].remove(); delete RC.tiles[k]; }
   const sh = RC.shake || [0, 0]; $('#rTiles').style.transform = sh[0] || sh[1] ? `translate(${sh[0].toFixed(1)}px,${sh[1].toFixed(1)}px)` : '';
@@ -4279,6 +4345,43 @@ function slotTick() {
   if (t < 600) { if (t - s.last > 60) { s.last = t; el.textContent = pick(Object.values(RACE_ITEMS)).icon; } return true; }
   RC.slot = null; RC.itemKey = ''; const u = $('#rUse'); u.classList.remove('slot'); u.classList.remove('land'); void u.offsetWidth; u.classList.add('land'); SFX.place(); return false;
 }
+
+/* ===== screens/keys.js ===== */
+/* Toetsen-legenda (v18): alleen op een computer (muis/trackpad) of zodra er een toetsenbord gebruikt wordt. Telefoon/tablet: niets anders.
+   Klein paneel met toetskapjes, inklapbaar; open bij de eerste wedstrijd/race, daarna ingeklapt als ⌨️-knopje. ? = open/dicht. */
+const KB = { used: false };
+const isDesk = () => KB.used || (matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(pointer: coarse)').matches);
+const kc = k => `<kbd class="kc${k.length > 2 ? ' w' : ''}">${k}</kbd>`;
+// rows: [[ ['W','↑'], 'Turbo' ], ...]  ·  cols (twee spelers): [{ title, rows }]
+function keyLegendHtml(cols) {
+  return cols.map(c => `<div class="klcol">${c.title ? `<b class="kltit">${c.title}</b>` : ''}${c.rows.map(([ks, txt]) => `<div class="klrow"><span class="klk">${ks.map(k => Array.isArray(k) ? k.map(kc).join('') : kc(k)).join('<i>/</i>')}</span><span class="klt">${txt}</span></div>`).join('')}</div>`).join('');
+}
+// legenda op scherm `scr` neerzetten (of weghalen op touch); `seenKey` onthoudt of hij al eens open is geweest
+function keyLegend(scr, id, cols, seenKey) {
+  let el = document.getElementById(id);
+  if (!isDesk()) { if (el) el.hidden = true; return; }
+  if (!el) { el = document.createElement('div'); el.id = id; el.className = 'klegend'; document.getElementById(scr).appendChild(el);
+    el.addEventListener('pointerdown', e => { if (e.target.closest('.klbtn')) { e.preventDefault(); e.stopPropagation(); keyLegendToggle(el); } }); }
+  const keep = !el.hidden && el.dataset.k === seenKey && el.innerHTML ? el.classList.contains('open') : null;
+  el.hidden = false;
+  el.innerHTML = `<button class="klbtn" type="button" aria-label="Toetsen tonen of verbergen" title="Toetsen (?)">⌨️ <span class="klq">?</span><span class="kllab">Toetsen</span><span class="klx">✕</span></button><div class="klbody">${keyLegendHtml(cols)}</div>`;
+  S.kbSeen = S.kbSeen || {};
+  const first = !S.kbSeen[seenKey]; if (first) { S.kbSeen[seenKey] = 1; save(); }
+  el.classList.toggle('open', keep != null ? keep : first || !!(S.kbOpen && S.kbOpen[seenKey]));
+  el.dataset.k = seenKey;
+}
+function keyLegendToggle(el) { if (!el || el.hidden) return; const o = !el.classList.contains('open'); el.classList.toggle('open', o); S.kbOpen = S.kbOpen || {}; S.kbOpen[el.dataset.k] = o; save(); SFX.click && SFX.click(); }
+const KL_RACE = () => [{ rows: [[[['A', 'D'], ['←', '→']], 'Sturen'], [['W', '↑', 'Shift'], '🔥 Turbo'], [['Spatie', 'E', 'S'], 'Item gebruiken'], [['?'], 'Toetsen']] }];
+const KL_FB = two => two
+  ? [{ title: '🔵 Speler 1', rows: [[[['W', 'A', 'S', 'D']], 'Lopen'], [['F'], '⚽ Schiet'], [['R'], '👟 Pass'], [['G'], '💥 Duw'], [['E'], '💨 Turbo']] },
+     { title: '🩷 Speler 2', rows: [[[['←', '↑', '↓', '→']], 'Lopen'], [['K', 'Enter'], '⚽ Schiet'], [['O'], '👟 Pass'], [['L'], '💥 Duw'], [['Shift'], '💨 Turbo']] },
+     { rows: [[['Esc', 'P'], 'Pauze'], [['?'], 'Toetsen']] }]
+  : [{ rows: [[[['W', 'A', 'S', 'D'], ['←', '↑', '↓', '→']], 'Lopen'], [['Spatie', 'J'], '⚽ Schiet <small>(lang = harder)</small>'], [['K'], '👟 Pass'], [['L'], '💥 Duw'], [['Shift', 'E'], '💨 Turbo'], [['C'], '📋 Spelzet'], [['Esc', 'P'], 'Pauze'], [['?'], 'Toetsen']] }];
+addEventListener('keydown', e => {
+  if (!KB.used && !e.repeat && !e.ctrlKey && !e.metaKey && !e.altKey && (CUR_SCREEN === 'scrDrive' || CUR_SCREEN === 'scrMatch') && e.key !== 'Tab') {
+    KB.used = true; const cur = document.getElementById(CUR_SCREEN === 'scrDrive' ? 'klRace' : 'klFb'); if (cur && !cur.hidden) {} else if (CUR_SCREEN === 'scrDrive') keyLegend('scrDrive', 'klRace', KL_RACE(), 'race'); else keyLegend('scrMatch', 'klFb', KL_FB(FB.mode !== 'solo'), FB.mode === 'solo' ? 'fb' : 'fb2'); }
+  if (e.key === '?' || e.code === 'Slash') { const el = document.getElementById(CUR_SCREEN === 'scrDrive' ? 'klRace' : CUR_SCREEN === 'scrMatch' ? 'klFb' : ''); if (el) { e.preventDefault(); keyLegendToggle(el); } }
+}, true);
 
 /* ===== screens/extra.js ===== */
 /* Fase C schermen: dagelijkse uitdaging, verzamelboek, bekerkast/mijlpalen, rivaal-berichten, racewagen-ontwerper. */
@@ -4560,7 +4663,7 @@ window.__rf = {
   get S() { return S; }, get P() { return P; }, get RUN() { return RUN; }, get CUR() { return CUR_SCREEN; }, get TIK() { return TIK; },
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
-  RACE_DRIVERS, LEAGUE_EXTRA, RIVAL_RACE_ID, goRace, load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, session: { onHide, onShow, canEndDay, endDayAway, AWAY_MIN_MS, MIN_DAY_S }, extra: { openStkDetail, openAchDetail, closeDetail, vvApply, extraInit, dailyClaim, dailyState, dailyStreak, bookAdd, bookRoll, rivalResult, rivalDaily, carSet, carLook, achCheck, dailyPuzzle, openDaily, openBook, openCab, openCar, showRivalQ, hideRival, startDailyRace, dayDiff, dailySeed }, race: { raceNew, raceStep, raceUse, raceHit, laneX, activePuzzle, raceRollItem, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull }, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  RACE_DRIVERS, LEAGUE_EXTRA, RIVAL_RACE_ID, goRace, load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, session: { onHide, onShow, canEndDay, endDayAway, AWAY_MIN_MS, MIN_DAY_S }, extra: { openStkDetail, openAchDetail, closeDetail, vvApply, extraInit, dailyClaim, dailyState, dailyStreak, bookAdd, bookRoll, rivalResult, rivalDaily, carSet, carLook, achCheck, dailyPuzzle, openDaily, openBook, openCab, openCar, showRivalQ, hideRival, startDailyRace, dayDiff, dailySeed }, race: { raceNew, raceStep, raceUse, raceHit, laneX, activePuzzle, raceRollItem, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull, turboAdd, raceTurbo }, raceEvent, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();

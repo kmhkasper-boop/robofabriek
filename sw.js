@@ -1,6 +1,6 @@
 /* Robo-Fabriek – service worker (offline spelen). Pagina: eerst netwerk (updates komen meteen), offline uit de cache. Rest: eerst cache. */
 const ID = 'robofabriek';
-const CORE = ID + '-core-v17';
+const CORE = ID + '-core-v18';
 const PAGE = new URL('./', self.registration.scope).href;
 const ASSETS = ["./", "./manifest.webmanifest", "./fonts/exo2-latin.woff2", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-maskable-512.png", "./icons/apple-touch-icon.png", "./icons/favicon-48.png", "./gfx/asphalt.webp", "./gfx/car1.webp", "./gfx/car2.webp", "./gfx/car3.webp", "./gfx/car4.webp", "./gfx/floor.webp", "./gfx/goal.webp", "./gfx/itembox.webp", "./gfx/robot1.webp", "./gfx/robot2.webp", "./gfx/robot3.webp", "./gfx/robot4.webp"];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CORE).then(c => c.addAll(ASSETS.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting())); });
