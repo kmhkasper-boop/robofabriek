@@ -573,6 +573,27 @@ details.meer .meerin p{margin:.25em 0}
 /* stadion / garage */
 .rpart small.small-note{grid-column:1/-1}
 .stsum{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+
+/* ===== v17: race/voetbal-graphics ===== */
+.rtile.box{background:none;border:none;box-shadow:none;padding:0;overflow:visible}
+.rtile.box img{position:relative;width:118%;height:118%;margin:-9%;display:block;animation:boxbob 1.4s ease-in-out infinite;user-select:none;-webkit-user-drag:none}
+.rtile.box::before{content:'';position:absolute;inset:-35%;border-radius:50%;background:radial-gradient(circle,rgba(255,211,74,.55),rgba(255,211,74,0) 65%);animation:boxglow 1s ease-in-out infinite alternate}
+.rtile.box.gone{opacity:0;transition:opacity .15s}
+@keyframes boxbob{0%,100%{transform:translateY(0) rotate(-9deg) scale(1)}50%{transform:translateY(-12%) rotate(9deg) scale(1.06)}}
+@keyframes boxglow{from{opacity:.35;transform:scale(.85)}to{opacity:1;transform:scale(1.1)}}
+.rtile.sym{overflow:hidden}
+.rtile.sym::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);background-size:250% 100%;animation:symshine 1.6s linear infinite;pointer-events:none}
+@keyframes symshine{from{background-position:130% 0}to{background-position:-130% 0}}
+.ruse.slot span{animation:slotspin .12s linear infinite}
+@keyframes slotspin{0%{transform:translateY(-35%);opacity:.4}50%{transform:none;opacity:1}100%{transform:translateY(35%);opacity:.4}}
+.ruse.land{animation:slotland .45s cubic-bezier(.3,1.8,.5,1)}
+@keyframes slotland{0%{transform:scale(.8)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+#mScore .dig{display:inline-block;height:1.15em;line-height:1.15em;overflow:hidden;vertical-align:bottom}
+#mScore .dig i{display:block;font-style:normal}
+#mScore .dig.roll i{animation:digroll .55s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes digroll{from{transform:translateY(0)}to{transform:translateY(-100%)}}
+#mScore.goal{animation:scorepop .6s ease-out}
+@keyframes scorepop{0%{transform:scale(1)}30%{transform:scale(1.25)}100%{transform:scale(1)}}
 </style>
 </head>
 <body>
@@ -685,6 +706,7 @@ details.meer .meerin p{margin:.25em 0}
       <div><h3>💡 Wat leert je kind?</h3><p class="small-note">Patronen herkennen is een belangrijke basis voor rekenen (kerndoel 13A: patronen en verbanden) en voor computational thinking. Het belangrijkste inzicht: <b>de kern vinden</b>, het stukje dat steeds herhaald wordt. De opbouw gaat van AB naar ABB, ABC en AABB, daarna ontbrekende stukjes, de kern aanwijzen en het patroon vertalen naar ander materiaal of geluid. Er is geen tijdsdruk. Na een fout legt Bliep uit waarom, en hints komen in stapjes. Kleur is nooit de enige aanwijzing: elk stukje heeft ook een eigen vorm. Een werkbeurt aan een machine is 4 puzzels (2-4 minuten); je kind kiest makkelijk, normaal of moeilijk. Moeilijker en nieuwer levert meer op, wat al beheerst is steeds minder: zo wordt je kind zachtjes naar de volgende stap geleid, zonder dwang. Machines draaien vanzelf door zolang het spel openstaat (en kort als het dicht is). In de fabriek leert je kind ook een beetje ondernemen: robots maken, verkopen, sparen en uitbreiden. Na 25 verkochte robots komt er robotvoetbal bij (korte wedstrijden van 2 × 90 seconden, met richt-hulp; knock-outs zijn alleen grappig: BOING). Een deel van de fabriekswinst gaat naar de clubkas van het team. Er is een eenvoudig financieel overzicht (inkomsten, kosten, winst, terugverdientijd van investeringen). <b>Robo-Race</b> (na de Montagehal) is een actief racespel: sturen met ◀ ▶, en bij symboolpoorten het patroon afmaken voor turbo. Langs de rand zitten geheime sluiproutes met een snelle patroonpuzzel. Eigen competitie met promotie; Makkelijk/Normaal/Pittig met tegenstanders die nooit veel sneller zijn dan je eigen auto (Makkelijk = net iets trager). Brandstof, onderdelen en reparaties kosten munten uit dezelfde kluis: kiezen tussen racen, voetbal en hallen. Met nieuwe hallen komen er grotere puzzels bij: in de <b>Montagehal</b> een schuifpuzzel waarin je rijen en kolommen rondschuift tot het rooster een patroonregel volgt (herhalen, opschuiven, spiegelen, tellen; later twee regels tegelijk; altijd oplosbaar) en in de <b>Sorteerhal</b> een sorteerbak waarin je setjes van 3 zoekt (elke eigenschap alles gelijk of alles anders: logisch redeneren). Na elke nieuwe hal krijgen de oude machines een extra moeilijkheid: Expert (twee regels tegelijk, bv. vorm én kleur met verschillende herhaling) en Meester (drie regels, ook draaien en aantallen, minder hints); makkelijk blijft altijd kiesbaar. Munten hebben een plafond en een machine levert minder op als hij op een dag vaak gebruikt wordt, zodat eindeloos doorspelen niet loont. Verwaarlozen is zacht: een machine wordt moe of piept, maar gaat nooit kapot en je raakt nooit iets kwijt.</p></div>
       <div><h3>⚙️ Beheer</h3><div class="orow"><button class="btn small white" id="oudPlacement">🔁 Instaptoets opnieuw</button><button class="btn small white" id="oudUnlock">🔓 Alles bouwen</button><button class="btn small red" id="oudReset">🗑️ Spel wissen</button></div></div>
       <p class="small-note">Robo-Fabriek werkt zonder account, zonder reclame en zonder internet (na de eerste keer). De voortgang staat alleen op dit apparaat. Installeren: iPad/iPhone → Safari → Deel → <b>Zet op beginscherm</b>; Android → Chrome → ⋮ → <b>App installeren</b>.</p>
+      <p class="small-note" id="oudCredits">🎨 Credits: robots, racewagens, vloeren, itemkist en het GOAL-logo zijn gemaakt door <b>Grog</b> (met Imagine). Alle plaatjes zitten in het spel zelf, er wordt niets van internet geladen.</p>
     </div>
     <div style="text-align:right"><button class="btn green" id="oudClose">Sluiten</button></div>
   </div>
@@ -1231,6 +1253,98 @@ function introScene(i) {
     `<rect x="60" y="120" width="680" height="250" rx="20" fill="#3a2f2a"/>` + g(110, 170, .9, robotSVG({ misbaksel: true })) + g(320, 180, .9, robotSVG({ misbaksel: true, body: ['#ffd18a', '#e08a3a'] })) + `<text x="560" y="280" font-size="80">🤦</text>`,
     fab(false) + g(60, 140, 1.1, opaSVG()) + g(280, 190, .9, robotSVG({ armUp: true })) + `<text x="330" y="140" font-size="44">💰</text>`][i]}</svg>`;
 }
+
+/* ===== core/gfx.js ===== */
+/* Grafische laag voor race en voetbal (v17): sprites van Grog (gfx/*.webp, zelfde map, offline in de service worker),
+   inkleuren via offscreen canvas, gloed door dubbel tekenen ('lighter'), deeltjes-pool, schudden/flits/hitstop/slowmo,
+   vignet en gevarenstrepen voorgerenderd. Geen shadowBlur. Automatisch lage kwaliteit als frames te lang duren. */
+const GFX_FILES = ['robot1', 'robot2', 'robot3', 'robot4', 'car1', 'car2', 'car3', 'car4', 'itembox', 'goal', 'floor', 'asphalt'];
+const IMG = {};
+function gfxLoad() { for (const n of GFX_FILES) { if (IMG[n]) continue; const im = new Image(); im.decoding = 'async'; im.src = `gfx/${n}.webp`; IMG[n] = im; } }
+const imgOk = n => { const im = IMG[n]; return !!(im && im.complete && im.naturalWidth); };
+const mkCanvas = (w, h) => { const c = document.createElement('canvas'); c.width = Math.max(1, Math.ceil(w)); c.height = Math.max(1, Math.ceil(h)); return c; };
+// ---------- inkleuren (één keer per kleur, daarna hergebruiken) ----------
+const TINT = new Map();
+function tinted(name, col) {
+  const k = name + col; let c = TINT.get(k); if (c) return c; if (!imgOk(name)) return null;
+  const im = IMG[name]; c = mkCanvas(im.naturalWidth, im.naturalHeight); const g = c.getContext('2d');
+  g.drawImage(im, 0, 0); g.globalCompositeOperation = 'multiply'; g.fillStyle = col; g.fillRect(0, 0, c.width, c.height);
+  g.globalCompositeOperation = 'destination-in'; g.drawImage(im, 0, 0); g.globalCompositeOperation = 'source-over';
+  TINT.set(k, c); return c;
+}
+// ---------- voorgerenderde hulpbeelden ----------
+const SPR = new Map();
+function glowSpr(col) {   // zachte gloed: radiaal verloop, getekend met 'lighter'
+  const k = 'glow' + col; let c = SPR.get(k); if (c) return c; c = mkCanvas(64, 64); const g = c.getContext('2d');
+  const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, col); gr.addColorStop(.35, col + '88'); gr.addColorStop(1, col + '00');
+  g.fillStyle = gr; g.fillRect(0, 0, 64, 64); SPR.set(k, c); return c;
+}
+function shadowSpr() { let c = SPR.get('shadow'); if (c) return c; c = mkCanvas(64, 32); const g = c.getContext('2d'); g.translate(32, 16); g.scale(1, .5);
+  const gr = g.createRadialGradient(0, 0, 0, 0, 0, 31); gr.addColorStop(0, 'rgba(0,0,0,.55)'); gr.addColorStop(.6, 'rgba(0,0,0,.35)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.beginPath(); g.arc(0, 0, 31, 0, 7); g.fill(); SPR.set('shadow', c); return c; }
+function drawShadow(g, x, y, w, h, a = 1) { g.globalAlpha = a; g.drawImage(shadowSpr(), x - w / 2, y - h / 2, w, h); g.globalAlpha = 1; }
+function drawGlow(g, x, y, r, col, a = 1) { const o = g.globalCompositeOperation; g.globalCompositeOperation = 'lighter'; g.globalAlpha = a; g.drawImage(glowSpr(col), x - r, y - r, r * 2, r * 2); g.globalAlpha = 1; g.globalCompositeOperation = o; }
+function vignetteSpr(w, h) { const k = `vig${w}x${h}`; let c = SPR.get(k); if (c) return c; for (const kk of SPR.keys()) if (kk.startsWith('vig')) SPR.delete(kk);
+  c = mkCanvas(w, h); const g = c.getContext('2d'), r = Math.hypot(w, h) / 2, gr = g.createRadialGradient(w / 2, h / 2, r * .45, w / 2, h / 2, r);
+  gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(5,8,16,.62)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); SPR.set(k, c); return c; }
+function hazardPat(g, size) { const k = 'haz' + Math.round(size); let c = SPR.get(k); if (!c) { const s = Math.max(8, Math.round(size)); c = mkCanvas(s, s); const h = c.getContext('2d'); h.fillStyle = '#16181d'; h.fillRect(0, 0, s, s); h.fillStyle = '#f5b82e';
+  h.beginPath(); h.moveTo(0, 0); h.lineTo(s / 2, 0); h.lineTo(0, s / 2); h.fill(); h.beginPath(); h.moveTo(s, 0); h.lineTo(s, s / 2); h.lineTo(s / 2, s); h.lineTo(0, s); h.fill(); SPR.set(k, c); } return g.createPattern(c, 'repeat'); }
+function edgeWarnSpr(w, h) { const k = `warn${w}x${h}`; let c = SPR.get(k); if (c) return c; c = mkCanvas(w, h); const g = c.getContext('2d'), gr = g.createLinearGradient(0, h, 0, 0);
+  gr.addColorStop(0, 'rgba(255,40,40,.75)'); gr.addColorStop(1, 'rgba(255,40,40,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); SPR.set(k, c); return c; }
+// ---------- kwaliteit: telefoon-zuinig ----------
+const Q = { low: false, ema: 16, n: 0, forced: null };
+function qualityTick(frameMs) {
+  if (Q.forced != null) { const ch = Q.low !== Q.forced; Q.low = Q.forced; return ch; }
+  Q.ema += (Math.min(100, frameMs) - Q.ema) * .05; Q.n++;
+  if (!Q.low && Q.n > 90 && Q.ema > 24) { Q.low = true; Q.n = 0; return true; }   // >24 ms gemiddeld (onder ~40 fps): lichter tekenen
+  return false;
+}
+const gfxDpr = () => Q.low ? 1 : Math.min(2, devicePixelRatio || 1);
+// ---------- deeltjes-pool (vast aantal, geen afval) ----------
+const PMAX = 200, PART = Array.from({ length: PMAX }, () => ({ on: false })); let PNEXT = 0;
+// x,y in wereld- of schermcoördinaten (de aanroeper kiest), k: spark | smoke | oil | conf | dust | line
+function emit(k, x, y, vx, vy, life, size, col) {
+  if (Q.low && (k === 'smoke' || k === 'dust') && Math.random() < .6) return;
+  const p = PART[PNEXT]; PNEXT = (PNEXT + 1) % PMAX;
+  p.on = true; p.k = k; p.x = x; p.y = y; p.vx = vx; p.vy = vy; p.t = p.life = life; p.s = size; p.col = col; p.r = Math.random() * 6; p.vr = (Math.random() - .5) * 12; p.sp = p.k;
+}
+function partStep(dt, drag = 1) { for (const p of PART) { if (!p.on) continue; p.t -= dt; if (p.t <= 0) { p.on = false; continue; }
+  p.x += p.vx * dt; p.y += p.vy * dt; p.r += p.vr * dt;
+  if (p.k === 'conf') { p.vy += 60 * dt; p.vx *= 1 - dt * 1.5; } else if (p.k === 'spark') { p.vx *= 1 - dt * 3 * drag; p.vy *= 1 - dt * 3 * drag; } else { p.vx *= 1 - dt * 2; p.vy *= 1 - dt * 2; } } }
+function partClear() { for (const p of PART) p.on = false; }
+// map(x,y) → [sx,sy] (schermpixels), sc: schaal (pixels per eenheid)
+function partDraw(g, map, sc) {
+  for (const pass of [0, 1]) {   // eerst rook/olie/confetti (normaal), dan vonken (lighter)
+    if (pass) g.globalCompositeOperation = 'lighter';
+    for (const p of PART) { if (!p.on) continue; const add = p.k === 'spark' || p.k === 'line'; if (add !== !!pass) continue;
+      const [x, y] = map(p.x, p.y), f = p.t / p.life, s = p.s * sc;
+      if (p.k === 'spark') { g.globalAlpha = Math.min(1, f * 1.6); g.strokeStyle = p.col; g.lineWidth = Math.max(1, s * .5); g.beginPath(); g.moveTo(x, y); const [x2, y2] = map(p.x - p.vx * .04, p.y - p.vy * .04); g.lineTo(x2, y2); g.stroke(); }
+      else if (p.k === 'line') { g.globalAlpha = Math.sin(f * Math.PI) * .6; g.strokeStyle = p.col; g.lineWidth = Math.max(1, s * .22); g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + s * 6); g.stroke(); }
+      else if (p.k === 'smoke' || p.k === 'dust') { const r = s * (1.6 - f); g.globalAlpha = f * (p.k === 'dust' ? .35 : .45); g.fillStyle = p.col; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }
+      else if (p.k === 'oil') { g.globalAlpha = Math.min(1, f * 2); g.fillStyle = p.col; g.beginPath(); g.ellipse(x, y, s, s * .6, p.r, 0, 7); g.fill(); }
+      else if (p.k === 'conf') { g.globalAlpha = Math.min(1, f * 2); g.fillStyle = p.col; g.save(); g.translate(x, y); g.rotate(p.r); g.scale(1, Math.abs(Math.sin(p.r * 1.7)) + .2); g.fillRect(-s, -s * .5, s * 2, s); g.restore(); } }
+  }
+  g.globalAlpha = 1; g.globalCompositeOperation = 'source-over';
+}
+const partCount = () => PART.reduce((n, p) => n + (p.on ? 1 : 0), 0);
+// ---------- juice: schudden, flits, hitstop, slowmo ----------
+const JUICE = { shT: 0, shDur: 0, shAmp: 0, flash: 0, stop: 0, slowT: 0, slow: 1, hits: 0 };
+function juiceHit(strength = 1) {   // botsing / raket / doelpunt
+  if (S.settings && S.settings.fx === false) strength *= .4;
+  JUICE.shDur = JUICE.shT = .15 + .1 * Math.min(1, strength); JUICE.shAmp = 4 + 6 * Math.min(1.2, strength);
+  JUICE.flash = 1; JUICE.stop = Math.max(JUICE.stop, .06 + .02 * Math.min(1, strength)); JUICE.hits++;
+  try { navigator.vibrate && navigator.vibrate(strength > .8 ? 60 : 30); } catch (e) { }
+}
+function juiceSlow(scale, dur) { JUICE.slow = scale; JUICE.slowT = dur; }
+// geeft de spel-dt terug (0 tijdens hitstop, kleiner tijdens slowmo); real = echte dt
+function juiceTime(real) {
+  if (JUICE.shT > 0) JUICE.shT = Math.max(0, JUICE.shT - real);
+  if (JUICE.stop > 0) { JUICE.stop -= real; return 0; }
+  if (JUICE.slowT > 0) { JUICE.slowT -= real; return real * JUICE.slow; }
+  return real;
+}
+function juiceShake() { if (JUICE.shT <= 0) return [0, 0]; const k = JUICE.shT / JUICE.shDur, a = JUICE.shAmp * k * k; return [(Math.random() * 2 - 1) * a, (Math.random() * 2 - 1) * a]; }
+function juiceFlash(g, w, h) { if (JUICE.flash > 0) { g.fillStyle = 'rgba(255,255,255,.55)'; g.fillRect(0, 0, w, h); JUICE.flash = 0; } }   // precies 1 frame
+function juiceReset() { Object.assign(JUICE, { shT: 0, shDur: 0, shAmp: 0, flash: 0, stop: 0, slowT: 0, slow: 1 }); }
 
 /* ===== data/football.js ===== */
 /* Robotvoetbal (fase C): rivalen, divisies, upgrades, uiterlijk, uitrusting, grappige namen. */
@@ -3338,7 +3452,7 @@ function startMatch(mode) {
   fbInit(S); const f = S.football, rid = DIVS[f.div].rival; FB.mode = mode; FB.ended = false; FB.boost = 1;
   const me = playerTeam(f), them = mode === 'versus' ? { bots: me.bots.map(b => ({ ...b, look: Object.assign({}, b.look, { body: (b.look.body + 3) % 6 }) })), keeper: me.keeper } : rivalTeam(rid);
   const M = newMatch([me, them], { seed: (Date.now() & 0xffff) + 1, map: f.history.length + f.div, keeperSeq1: mode === 'versus' ? null : RIVALS[rid].keeper, diff: fbDiff(S), div: f.div, rubber: mode !== 'versus', ctrl: mode === 'solo' ? [0] : mode === 'coop' ? [0, 0] : [0, 1] });
-  startCount(M, 0); M.playLv = [f.playLv, 0]; M.radar = f.lineup.some(i => f.robots[i].gear === 'radar'); FB.M = M; FB.inp = [{}, {}];
+  startCount(M, 0); fbGfxReset(); $('#mScore').innerHTML = ''; M.playLv = [f.playLv, 0]; M.radar = f.lineup.some(i => f.robots[i].gear === 'radar'); FB.M = M; FB.inp = [{}, {}];
   show('scrMatch'); buildControls(); resizeMatch(); musicFor('scrMatch');
   if (mode !== 'versus') { const R = RIVALS[rid]; setTimeout(() => toast(`${R.icon} ${R.boss}: “${pick(R.lines)}”`), 300); }
   else toast('⚔️ Speler 1 (links, blauw) tegen speler 2 (rechts, roze)!');
@@ -3346,7 +3460,9 @@ function startMatch(mode) {
 }
 function matchFrame(now) {
   if (CUR_SCREEN !== 'scrMatch' || !FB.M) return;
-  const M = FB.M; FB.acc += Math.min(.1, (now - FB.last) / 1000); FB.last = now;
+  const M = FB.M, real = Math.min(.1, (now - FB.last) / 1000); FB.last = now;
+  if (qualityTick(real * 1000)) resizeMatch();
+  const vis = juiceTime(real); FB.vdt = vis; FB.rdt = real; FB.acc += JUICE.stop > 0 ? 0 : real;   // hitstop houdt de wedstrijd heel even vast; slowmo is alleen beeld
   while (FB.acc >= 1 / 60) { FB.acc -= 1 / 60; keyInput(); step(M, 1 / 60, FB.inp); FB.inp.forEach(i => { i.shoot = i.push = i.play = i.sprint = i.pass = false; i.power = 1; }); matchEvents(M); if (M.pause || M.over) break; }
   drawMatch(M); matchHud(M);
   if (M.pause === 'rust') return halfTime();
@@ -3356,19 +3472,24 @@ function matchFrame(now) {
 function matchEvents(M) {
   for (const e of M.events) {
     if (e.type === 'count') { if (S.settings.sfx && AUD.ac) tone(e.n ? 660 : 1320, e.n ? .12 : .3, 'square', .05); }
-    if (e.type === 'goal') { SFX.fanfare(); if (S.settings.fx) { confetti(e.team === 0 || FB.mode === 'versus' ? 40 : 8); clearTimeout(FB.confT); FB.confT = setTimeout(clearConfetti, 1000); } }
-    else if (e.type === 'ko') { tone(900, .35, 'square', .08, 0, 180); tone(1400, .2, 'sine', .05, .15, 600); }
+    if (e.type === 'goal') { SFX.fanfare(); goalFx(M, e); }
+    else if (e.type === 'ko') { koFx(M, e); tone(900, .35, 'square', .08, 0, 180); tone(1400, .2, 'sine', .05, .15, 600); }
     else if (e.type === 'fall') SFX.toet();
     else if (e.type === 'save') SFX.piep();
-    else if (e.type === 'shot') tone(220, .12, 'sawtooth', .06, 0, 440);
-    else if (e.type === 'bump') tone(160, .08, 'sine', .12);
+    else if (e.type === 'shot') { kickFx(M, true); tone(220, .12, 'sawtooth', .06, 0, 440); }
+    else if (e.type === 'bump') { bumpFx(M); tone(160, .08, 'sine', .12); }
     else if (e.type === 'play') SFX.ok();
   }
 }
 function matchHud(M) {
   const t = Math.max(0, (M.half === 1 ? HALF_LEN : 2 * HALF_LEN) - M.t), mm = Math.floor(t / 60), ss = String(Math.floor(t % 60)).padStart(2, '0');
   const names = FB.mode === 'versus' ? ['Speler 1', 'Speler 2'] : ['Jij', RIVALS[DIVS[S.football.div].rival].name];
-  $('#mScore').innerHTML = `${names[0]} <b>${M.score[0]} – ${M.score[1]}</b> ${names[1]}<br><small>${M.half === 1 ? '1e' : '2e'} helft · ${mm}:${ss}</small>`;
+  const el = $('#mScore'); if (!el.querySelector('.stm')) { el.innerHTML = `<span class="sn0"></span> <b class="ssc"><span class="dig" data-i="0"><i></i></span> – <span class="dig" data-i="1"><i></i></span></b> <span class="sn1"></span><br><small class="stm"></small>`; FB.hudSc = null; }
+  const setT = (q, t) => { const n = el.querySelector(q); if (n.textContent !== t) n.textContent = t; };
+  setT('.sn0', names[0]); setT('.sn1', names[1]); setT('.stm', `${M.half === 1 ? '1e' : '2e'} helft · ${mm}:${ss}`);
+  // scorebord: het cijfer dat verandert rolt omhoog
+  const sc = M.score.join('-'); if (sc !== FB.hudSc) { const old = FB.hudSc ? FB.hudSc.split('-') : null; FB.hudSc = sc;
+    el.querySelectorAll('.dig').forEach(d => { const i = +d.dataset.i, nv = String(M.score[i]); if (old && old[i] !== nv) { d.innerHTML = `<i>${old[i]}</i><i>${nv}</i>`; d.classList.remove('roll'); void d.offsetWidth; d.classList.add('roll'); el.classList.remove('goal'); void el.offsetWidth; el.classList.add('goal'); } else if (!d.classList.contains('roll') || !old) { d.innerHTML = `<i>${nv}</i>`; d.classList.remove('roll'); } }); }
   const port = FB.view && FB.view.port, ar = d => d === 'L' ? (port ? '⬅' : '⬆') : (port ? '➡' : '⬇');
   if (FB.mode !== 'versus') { const h = M.khist[1].slice(-4); let next = ''; if (M.radar && M.kseq[1]) next = ` · 📡 ${ar(M.kseq[1][M.kidx[1] % M.kseq[1].length])}`;
     $('#mKeep').innerHTML = `🧤 ${h.length ? h.map(ar).join(' ') : '…'} ?${next}`; $('#mKeep').title = 'Zo dook hun keeper de vorige keren. Zie je het patroon? Schiet naar de andere kant!'; }
@@ -3407,7 +3528,7 @@ function joyBind(el, s) {
 function setStick(s, jx, jy) { const port = FB.view && FB.view.port; FB.inp[s].mx = port ? -jy : jx; FB.inp[s].my = port ? jx : jy; FB.inp[s].stick = Math.hypot(jx, jy) > .1; }
 const KEYMAP = { solo: [{ u: ['ArrowUp', 'KeyW'], d: ['ArrowDown', 'KeyS'], l: ['ArrowLeft', 'KeyA'], r: ['ArrowRight', 'KeyD'], shoot: ['Space', 'KeyJ'], push: ['KeyX', 'KeyK'], pass: ['KeyZ', 'KeyH'], play: ['KeyC', 'KeyL'], sprint: ['ShiftLeft', 'ShiftRight', 'KeyE'] }],
   two: [{ u: ['KeyW'], d: ['KeyS'], l: ['KeyA'], r: ['KeyD'], shoot: ['KeyF'], push: ['KeyG'], pass: ['KeyR'], sprint: ['KeyE'] }, { u: ['ArrowUp'], d: ['ArrowDown'], l: ['ArrowLeft'], r: ['ArrowRight'], shoot: ['KeyK', 'Enter'], push: ['KeyL'], pass: ['KeyO'], sprint: ['ShiftRight'] }] };
-addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return; if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) clearConfetti(); if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['pass', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; if (m.shoot.includes(e.code)) shootStart(s); }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
+addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return; if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) { clearConfetti(); goalSkip(); }; if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['pass', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; if (m.shoot.includes(e.code)) shootStart(s); }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
 addEventListener('keyup', e => { FB.keys[e.code] = false; if (CUR_SCREEN !== 'scrMatch') return; const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { if (m.shoot.includes(e.code)) shootFire(s); }); });
 // Schiet vasthouden = harder (max na 0,7 s). Kort tikken = normaal schot.
 function shootStart(s) { if (FB.hold[s] == null) FB.hold[s] = performance.now(); }
@@ -3420,7 +3541,7 @@ function keyInput() {
 }
 /* ---------- tekenen ---------- */
 function resizeMatch() {
-  const c = $('#mCanvas'), dpr = Math.min(2, devicePixelRatio || 1), W = innerWidth, H = innerHeight; c.width = W * dpr; c.height = H * dpr;
+  const c = $('#mCanvas'), dpr = gfxDpr(), W = innerWidth, H = innerHeight; c.width = W * dpr; c.height = H * dpr;
   const port = H > W * 1.05, top = port ? 74 : 52, two = FB.mode !== 'solo';
   let s, ox, oy;
   if (port) { const ctl = 170; s = Math.min((W - 16) / 60, (H - top - ctl) / 100); ox = (W - 60 * s) / 2; oy = top + Math.max(0, (H - top - ctl - 100 * s) / 2); }
@@ -3430,75 +3551,7 @@ function resizeMatch() {
 addEventListener('resize', () => { if (CUR_SCREEN === 'scrMatch') resizeMatch(); });
 function FP(x, y) { const v = FB.view; return v.port ? [v.ox + y * v.s, v.oy + (FW - x) * v.s] : [v.ox + x * v.s, v.oy + y * v.s]; }
 function FRect(x, y, w, h) { const a = FP(x, y), b = FP(x + w, y + h); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.abs(b[0] - a[0]), Math.abs(b[1] - a[1])]; }
-function drawMatch(M) {
-  const c = $('#mCanvas'), g = c.getContext('2d'), v = FB.view; g.setTransform(v.dpr, 0, 0, v.dpr, 0, 0);
-  // tribune
-  const bg = g.createLinearGradient(0, 0, 0, v.H); bg.addColorStop(0, '#1b2440'); bg.addColorStop(1, '#0b0f18'); g.fillStyle = bg; g.fillRect(0, 0, v.W, v.H);
-  for (let i = 0; i < 90; i++) { const x = (i * 97) % v.W, y = (i * 53) % v.H; g.fillStyle = `hsla(${(i * 47) % 360},70%,65%,${.15 + .15 * Math.sin(M.t * 3 + i)})`; g.fillRect(x, y, 3, 3); }
-  // veld
-  const [fx, fy, fw, fh] = FRect(0, 0, FW, FH); g.save(); g.shadowColor = 'rgba(0,0,0,.6)'; g.shadowBlur = 24; g.fillStyle = '#1f6b3a'; g.fillRect(fx - 6, fy - 6, fw + 12, fh + 12); g.restore();
-  for (let i = 0; i < 10; i++) { const [x, y, w, h] = FRect(i * 10, 0, 10, FH); g.fillStyle = i % 2 ? '#2f8a4c' : '#2a7d45'; g.fillRect(x, y, w, h); }
-  const light = g.createRadialGradient(fx + fw / 2, fy + fh / 2, 10, fx + fw / 2, fy + fh / 2, Math.max(fw, fh) * .7); light.addColorStop(0, 'rgba(255,255,220,.12)'); light.addColorStop(1, 'rgba(0,0,0,.25)'); g.fillStyle = light; g.fillRect(fx, fy, fw, fh);
-  g.strokeStyle = 'rgba(255,255,255,.75)'; g.lineWidth = Math.max(1.5, v.s * .25); g.strokeRect(fx, fy, fw, fh);
-  g.beginPath(); const m1 = FP(50, 0), m2 = FP(50, FH); g.moveTo(...m1); g.lineTo(...m2); g.stroke(); g.beginPath(); g.arc(...FP(50, 30), 8 * v.s, 0, 7); g.stroke();
-  for (const t of [0, 1]) { const [x, y, w, h] = FRect(t ? FW - 12 : 0, 16, 12, 28); g.strokeRect(x, y, w, h);
-    const [gx, gy, gw, gh] = FRect(t ? FW : -3, GY0, 3, GY1 - GY0); g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(gx, gy, gw, gh); g.strokeStyle = '#fff'; g.strokeRect(gx, gy, gw, gh);
-    g.save(); g.strokeStyle = 'rgba(255,255,255,.25)'; g.lineWidth = 1; for (let k = 1; k < 6; k++) { const a = FP(t ? FW : -3, GY0 + k * 3), b = FP(t ? FW + 3 : 0, GY0 + k * 3); g.beginPath(); g.moveTo(...a); g.lineTo(...b); g.stroke(); } g.restore(); g.strokeStyle = 'rgba(255,255,255,.75)'; }
-  // kratten en bosjes
-  for (const [cx, cy, w, h] of M.map.crates) { const [x, y, ww, hh] = FRect(cx, cy, w, h); const gr = g.createLinearGradient(x, y, x, y + hh); gr.addColorStop(0, '#8a96aa'); gr.addColorStop(1, '#4a5568'); g.fillStyle = gr; g.fillRect(x, y, ww, hh); g.strokeStyle = '#1c2333'; g.lineWidth = 2; g.strokeRect(x, y, ww, hh); g.beginPath(); g.moveTo(x, y); g.lineTo(x + ww, y + hh); g.moveTo(x + ww, y); g.lineTo(x, y + hh); g.stroke(); g.fillStyle = '#ffb43b'; g.fillRect(x, y + hh * .42, ww, hh * .16); }
-  // keepers
-  for (const k of M.keepers) drawBot(g, { x: k.x, y: k.y, team: k.team, look: k.team ? (FB.mode === 'versus' ? { body: 4 } : { rival: DIVS[S.football.div].rival }) : { body: 5 }, keeper: true, fx: k.team ? -1 : 1, down: 0 }, M);
-  // robots (in een bosje: half doorzichtig)
-  const bots = M.bots.slice().sort((a, b) => FP(a.x, a.y)[1] - FP(b.x, b.y)[1]);
-  for (const b of bots) if (b.human != null && b.passTgt) { const [x, y] = FP(b.passTgt.x, b.passTgt.y), r = v.s * 3.2, pulse = 1 + .12 * Math.sin(performance.now() / 120); g.save(); g.strokeStyle = '#ffe14a'; g.lineWidth = 3; g.setLineDash([6, 5]); g.beginPath(); g.arc(x, y + v.s, r * pulse, 0, 7); g.stroke(); g.setLineDash([]); g.font = `800 ${Math.max(11, v.s * 1.9)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = '#ffe14a'; g.fillText('👟 pass', x, y - r - 4); g.restore(); }
-  for (const b of bots) drawBot(g, b, M);
-  for (const b of bots) if (b.human != null && M.ball.owner === b) { const ax = b.aimX ?? (b.team ? -1 : 1), ay = b.aimY ?? 0, pw = holdPow(b.human), L = 9 + 7 * pw; const [x0, y0] = FP(b.x, b.y), [x1, y1] = FP(b.x + ax * L, b.y + ay * L); const an = Math.atan2(y1 - y0, x1 - x0), hs = v.s * 1.8; g.save(); g.strokeStyle = g.fillStyle = pw > 0 ? `rgb(255,${200 - 140 * pw | 0},60)` : 'rgba(255,255,255,.9)'; g.lineWidth = Math.max(3, v.s * .7); g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); g.beginPath(); g.moveTo(x1 + Math.cos(an) * hs, y1 + Math.sin(an) * hs); g.lineTo(x1 + Math.cos(an + 2.4) * hs, y1 + Math.sin(an + 2.4) * hs); g.lineTo(x1 + Math.cos(an - 2.4) * hs, y1 + Math.sin(an - 2.4) * hs); g.fill(); g.restore(); }
-  for (const [bx, by, r] of M.map.bushes) { const [x, y] = FP(bx, by); g.save(); g.globalAlpha = .82; for (let k = 0; k < 7; k++) { const a = k * .9; g.fillStyle = k % 2 ? '#2f9e55' : '#247a43'; g.beginPath(); g.arc(x + Math.cos(a) * r * v.s * .5, y + Math.sin(a) * r * v.s * .5, r * v.s * .55, 0, 7); g.fill(); } g.restore(); }
-  // bal
-  const B = M.ball, [bx, by] = FP(B.x, B.y), br = Math.max(4, v.s * .9);
-  g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(bx + 2, by + br * .8, br, br * .45, 0, 0, 7); g.fill();
-  g.fillStyle = '#fff'; g.beginPath(); g.arc(bx, by, br, 0, 7); g.fill(); g.strokeStyle = '#1c2333'; g.lineWidth = 1.5; g.stroke(); g.fillStyle = '#1c2333'; g.beginPath(); g.arc(bx + Math.cos(M.t * 9) * br * .35, by + Math.sin(M.t * 9) * br * .35, br * .35, 0, 7); g.fill();
-  if (B.shot) { g.strokeStyle = 'rgba(255,180,59,.5)'; g.lineWidth = br; g.beginPath(); g.moveTo(bx, by); const [tx, ty] = FP(B.x - B.vx * .06, B.y - B.vy * .06); g.lineTo(tx, ty); g.stroke(); }
-  // teksten
-  for (const f of M.fx) { const [x, y] = FP(f.x, f.y); g.save(); g.font = `800 ${f.big ? Math.max(28, v.s * 6) : Math.max(13, v.s * 2.4)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.lineWidth = 4; g.strokeStyle = '#000'; g.fillStyle = f.col; const yy = y - (1.6 - f.t) * 18; g.globalAlpha = Math.min(1, f.t * 2); if (f.big) { const [cx, cy] = FP(50, 30); g.strokeText(f.txt, cx, cy); g.fillText(f.txt, cx, cy); } else { g.strokeText(f.txt, x, yy); g.fillText(f.txt, x, yy); } g.restore(); }
-  if (M.cele > 0) { g.fillStyle = `rgba(255,180,59,${.12 * Math.min(1, M.cele)})`; g.fillRect(0, 0, v.W, v.H); g.font = `700 ${Math.max(13, v.s * 2.2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = 'rgba(255,255,255,.85)'; g.fillText('tik om door te gaan', v.W / 2, v.H - Math.max(26, v.s * 4)); }
-  if (M.count > 0) { const tk = M.countLen / 3, n = M.quick ? 'Klaar?' : Math.ceil(M.count / tk), fr = M.quick ? M.count / M.countLen : (M.count / tk) % 1; g.fillStyle = 'rgba(8,12,24,.35)'; g.fillRect(0, 0, v.W, v.H); g.save(); g.font = `900 ${Math.max(M.quick ? 40 : 60, v.s * (M.quick ? 9 : 16)) * (1 + .3 * fr)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineWidth = 8; g.strokeStyle = '#0b1020'; g.fillStyle = '#ffd34a'; const [cx, cy] = FP(50, 30); g.globalAlpha = Math.min(1, .3 + fr * 1.4); g.strokeText(n, cx, cy); g.fillText(n, cx, cy); g.restore(); }
-}
 function botCols(look) { if (look.rival) return RIVALS[look.rival].col; return LOOKS.body[look.body || 0]; }
-function drawBot(g, b, M) {
-  const v = FB.view, [x, y] = FP(b.x, b.y), s = v.s * (b.keeper ? 2 : 2.3), [c1, c2] = botCols(b.look || {});
-  g.save(); g.translate(x, y); if (b.hidden) g.globalAlpha = .45;
-  const wob = b.wobble > 0 ? Math.sin(M.t * 30) * .25 : 0; if (b.down > 0) g.rotate(Math.PI / 2 * (b.team ? -1 : 1)); else g.rotate(wob);
-  g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(0, s * .95, s * .9, s * .35, 0, 0, 7); g.fill();
-  // ring: wie bestuur je?
-  if (b.human != null) { g.strokeStyle = b.human ? '#ff7ad1' : '#38d6ff'; g.lineWidth = 3; g.beginPath(); g.ellipse(0, s * .95, s * 1.1, s * .45, 0, 0, 7); g.stroke(); }
-  if (FB.mode !== 'versus' && b.team === 1 && !b.keeper) { g.strokeStyle = 'rgba(255,107,90,.7)'; g.lineWidth = 2; g.beginPath(); g.ellipse(0, s * .95, s * .95, s * .38, 0, 0, 7); g.stroke(); }
-  // lijf
-  const gr = g.createLinearGradient(-s, -s, s, s); gr.addColorStop(0, c1); gr.addColorStop(1, c2); g.fillStyle = gr; g.strokeStyle = '#1c2333'; g.lineWidth = 2;
-  g.beginPath(); g.roundRect ? g.roundRect(-s * .7, -s * .3, s * 1.4, s * 1.1, s * .25) : g.rect(-s * .7, -s * .3, s * 1.4, s * 1.1); g.fill(); g.stroke();
-  // hoofd
-  const hy = -s * .75, head = (b.look && LOOKS.head[b.look.head || 0]) || 'rond'; g.fillStyle = gr;
-  g.beginPath(); if (head === 'rond') g.arc(0, hy, s * .55, 0, 7); else if (head === 'hoekig') g.rect(-s * .55, hy - s * .5, s * 1.1, s * .95); else g.ellipse(0, hy, s * .65, s * .45, 0, 0, 7); g.fill(); g.stroke();
-  if (b.keeper) { g.fillStyle = '#ffb43b'; g.beginPath(); g.arc(-s * .85, 0, s * .28, 0, 7); g.arc(s * .85, 0, s * .28, 0, 7); g.fill(); }
-  // ogen
-  const grumpy = b.down > 0 || b.kos > 0 && M.t % 6 < 1.5; g.fillStyle = '#0b0f18';
-  const eyes = (b.look && LOOKS.eyes[b.look.eyes || 0]) || 'blij';
-  if (b.down > 0) { g.strokeStyle = '#0b0f18'; g.lineWidth = 2; for (const ex of [-.22, .22]) { g.beginPath(); g.moveTo(s * ex - 3, hy - 3); g.lineTo(s * ex + 3, hy + 3); g.moveTo(s * ex + 3, hy - 3); g.lineTo(s * ex - 3, hy + 3); g.stroke(); } }
-  else { for (const ex of [-.22, .22]) { g.beginPath(); g.arc(s * ex + (eyes === 'scheel' ? (ex < 0 ? 2 : -2) : 0), hy - s * .02, s * .11, 0, 7); g.fill(); }
-    if (eyes === 'stoer' || grumpy) { g.strokeStyle = '#0b0f18'; g.lineWidth = 2; g.beginPath(); g.moveTo(-s * .38, hy - s * .25); g.lineTo(-s * .1, hy - s * .15); g.moveTo(s * .38, hy - s * .25); g.lineTo(s * .1, hy - s * .15); g.stroke(); } }
-  // hoed
-  const hat = b.look && LOOKS.hat[b.look.hat || 0];
-  if (hat && hat !== 'geen') { const ty = hy - s * .5; g.lineWidth = 1.5; g.strokeStyle = '#1c2333';
-    if (hat === 'pet') { g.fillStyle = '#d64545'; g.beginPath(); g.arc(0, ty + 2, s * .45, Math.PI, 0); g.fill(); g.fillRect(0, ty, s * .6, 3); }
-    else if (hat === 'kroon') { g.fillStyle = '#ffcf3b'; g.beginPath(); g.moveTo(-s * .4, ty + 3); g.lineTo(-s * .4, ty - s * .3); g.lineTo(-s * .2, ty - s * .1); g.lineTo(0, ty - s * .35); g.lineTo(s * .2, ty - s * .1); g.lineTo(s * .4, ty - s * .3); g.lineTo(s * .4, ty + 3); g.fill(); g.stroke(); }
-    else if (hat === 'kegel') { g.fillStyle = '#ff8a1c'; g.beginPath(); g.moveTo(-s * .35, ty + 3); g.lineTo(0, ty - s * .7); g.lineTo(s * .35, ty + 3); g.fill(); g.stroke(); g.fillStyle = '#fff'; g.fillRect(-s * .17, ty - s * .3, s * .34, 3); }
-    else if (hat === 'propeller') { g.fillStyle = '#3a86d8'; g.beginPath(); g.arc(0, ty + 2, s * .4, Math.PI, 0); g.fill(); const a = M.t * 20; g.strokeStyle = '#ffcf3b'; g.lineWidth = 3; g.beginPath(); g.moveTo(Math.cos(a) * s * .5, ty - s * .25); g.lineTo(-Math.cos(a) * s * .5, ty - s * .25); g.stroke(); }
-    else if (hat === 'koksmuts') { g.fillStyle = '#fff'; g.fillRect(-s * .3, ty - s * .2, s * .6, s * .25); g.beginPath(); g.arc(-s * .2, ty - s * .3, s * .22, 0, 7); g.arc(s * .2, ty - s * .3, s * .22, 0, 7); g.arc(0, ty - s * .45, s * .24, 0, 7); g.fill(); } }
-  // KO: veer + sterretjes
-  if (b.down > 0) { g.rotate(-Math.PI / 2 * (b.team ? -1 : 1)); g.strokeStyle = '#c9d4e4'; g.lineWidth = 2; g.beginPath(); for (let k = 0; k < 8; k++) g.lineTo((k % 2 ? 4 : -4), -s * 1.2 - k * 3); g.stroke(); for (let k = 0; k < 3; k++) { const a = M.t * 5 + k * 2.1; g.fillStyle = '#ffcf3b'; g.font = `${Math.max(10, s * .7)}px sans-serif`; g.fillText('★', Math.cos(a) * s - 5, -s * 1.6 + Math.sin(a) * s * .3); } }
-  if (b.wobble > 0 && b.down <= 0) { g.fillStyle = '#c9d4e4'; g.fillRect(s * .8, s * .1 + Math.sin(M.t * 12) * 4, s * .4, s * .12); }  // losse schroef
-  g.restore();
-}
 /* ---------- rust + einde ---------- */
 function halfTime() {
   const M = FB.M; SFX.fanfare();
@@ -3542,7 +3595,7 @@ function endMatch() {
 
 // juichen overslaan: tik ergens op het veld (niet op de knoppen)
 function clearConfetti() { document.querySelectorAll('.confetti,.conf').forEach(e => e.remove()); }
-document.addEventListener('pointerdown', e => { if (CUR_SCREEN !== 'scrMatch' || !FB.M || !(FB.M.cele > 0)) return; if (e.target.closest('#mPause,.pausebtn')) return; if (skipCele(FB.M)) clearConfetti(); }, { capture: true });
+document.addEventListener('pointerdown', e => { if (CUR_SCREEN !== 'scrMatch' || !FB.M || !(FB.M.cele > 0)) return; if (e.target.closest('#mPause,.pausebtn')) return; if (skipCele(FB.M)) { clearConfetti(); goalSkip(); } }, { capture: true });
 
 /* ---------- competitiestand ---------- */
 function openStand(which = 'cur') {
@@ -3554,6 +3607,173 @@ function openStand(which = 'cur') {
   ${rows.map((r, i) => `<tr class="${r.me ? 'me' : ''}"><td>${i + 1}</td><td>${r.icon} ${r.name}</td><td>${r.p}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${r.gf}-${r.ga}</td><td><b>${r.pts}</b></td><td>${fm(r.form)}</td></tr>`).join('')}</table>`;
   h += L.log.length ? `<h3>Laatste uitslagen</h3>${[...L.log].reverse().map(g => `<div class="small-note"><b>Ronde ${g.round}:</b> ${g.games.map(([a, b, x, y]) => `${icon(a)} ${name(a)} <b>${x}-${y}</b> ${name(b)} ${icon(b)}`).join(' · ')}</div>`).join('')}` : '<p class="small-note">Nog geen wedstrijden gespeeld. Speel je eerste wedstrijd!</p>';
   $('#standTitle').textContent = `📊 Stand ${D.name}`; $('#standBody').innerHTML = h; openOv('ovStand');
+}
+
+/* ===== screens/fbgfx.js ===== */
+/* Voetbal tekenen (v17): stalen fabrieksvloer met stadionlicht (voorgerenderd), robots van Grog in teamkleur met ring,
+   schaduw, knipperende ogen en squash bij een trap, driehoek boven Sams robot, bal met hoogte + losse schaduw + spoor,
+   doelpunt: hitstop, slowmo-bal in het net (net bolt), camera zoomt naar het doel, confetti + vonken in teamkleur,
+   stuiterend GOAL-logo. Pijl naar de bal als die buiten beeld is. */
+const FBV = { cam: { z: 1, x: 0, y: 0 }, st: new WeakMap(), z: null, trail: [], goal: null, lastOwner: null, layer: null, layerKey: '' };
+function fbGfxReset() { partClear(); juiceReset(); FBV.cam = { z: 1, x: 0, y: 0 }; FBV.st = new WeakMap(); FBV.z = null; FBV.trail = []; FBV.goal = null; FBV.lastOwner = null; FBV.layerKey = ''; gfxLoad(); }
+const TEAMCOL = () => FB.mode === 'versus' ? ['#38d6ff', '#ff7ad1'] : ['#38d6ff', '#ff5a4a'];
+const RIVAL_SPR = { kartonco: 'robot2', turbotech: 'robot3', megametaal: 'robot4', robox: 'robot1' };
+const HEAD_SPR = { rond: 'robot1', hoekig: 'robot2', ton: 'robot3' };
+const HEAD_Y = { robot1: -.13, robot2: -.3, robot3: -.33, robot4: -.33 };   // waar het hoofd zit (deel van de spritegrootte, naar boven)
+function mixCol(a, b, t) { const p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)), A = p(a), B = p(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); }
+// ---------- gebeurtenissen ----------
+function kickFx(M, shot) { const B = M.ball, k = B.last; if (k) { const s = FBV.st.get(k) || {}; s.kick = .18; FBV.st.set(k, s); }
+  const sp = Math.hypot(B.vx, B.vy); FBV.z = { t: 0, T: shot ? .45 + Math.min(.3, sp / 200) : .3, h: shot ? 2.2 + Math.min(3, sp / 25) : .6 };
+  for (let i = 0; i < (shot ? 8 : 3); i++) emit('spark', B.x, B.y, (Math.random() - .5) * 30, (Math.random() - .5) * 30, .25, .35, '#ffe9a8'); }
+function bumpFx(M) { const B = M.ball; juiceHit(.25); JUICE.stop = 0; }
+function koFx(M, e) { juiceHit(.6); const b = M.bots.find(x => x.down > 2); if (b) { for (let i = 0; i < 14; i++) emit('spark', b.x, b.y, (Math.random() - .5) * 40, (Math.random() - .5) * 40, .35, .4, pick(['#ffd34a', '#ff8a1a', '#fff'])); emit('smoke', b.x, b.y, 0, -2, .7, 2, '#c9d2e0'); } }
+function goalFx(M, e) {
+  const B = M.ball, side = B.x > FW ? 1 : 0, col = TEAMCOL()[e.team];
+  FBV.goal = { t: 0, rt: 0, side, x: clamp(B.x, -1, FW + 1), y: clamp(B.y, GY0 + 1, GY1 - 1), vx: B.vx || (side ? 40 : -40), vy: B.vy * .4, pen: 0, team: e.team };
+  juiceHit(1.1); juiceSlow(.3, .8);
+  const gx = side ? FW : 0, dir = side ? -1 : 1;
+  if (S.settings.fx !== false) { for (let i = 0; i < 40; i++) emit('conf', gx + dir * Math.random() * 6, GY0 + Math.random() * (GY1 - GY0), dir * (5 + Math.random() * 25), (Math.random() - .5) * 40 - 15, 1.2 + Math.random() * .5, .55, i % 3 ? col : '#ffd34a');
+    for (let i = 0; i < 26; i++) emit('spark', gx, B.y, dir * (10 + Math.random() * 50), (Math.random() - .5) * 60, .5, .45, i % 2 ? col : '#fff6c0'); }
+}
+function goalSkip() { FBV.goal = null; JUICE.slowT = 0; }
+// ---------- voorgerenderde vloer, lijnen, licht, gevarenrand, kratten ----------
+function fieldLayer(M) {
+  const v = FB.view, key = `${v.W}x${v.H}x${v.dpr}x${v.port}x${Q.low}x${imgOk('floor')}`; if (FBV.layer && FBV.layerKey === key && FBV.layerMap === M.map) return FBV.layer;
+  const c = FBV.layer && FBV.layer.width === Math.round(v.W * v.dpr) && FBV.layer.height === Math.round(v.H * v.dpr) ? FBV.layer : mkCanvas(v.W * v.dpr, v.H * v.dpr), g = c.getContext('2d');
+  g.setTransform(v.dpr, 0, 0, v.dpr, 0, 0); g.clearRect(0, 0, v.W, v.H);
+  // tribune: donker met lampjes
+  const bg = g.createLinearGradient(0, 0, 0, v.H); bg.addColorStop(0, '#1b2236'); bg.addColorStop(1, '#090c14'); g.fillStyle = bg; g.fillRect(0, 0, v.W, v.H);
+  for (let i = 0; i < 120; i++) { const x = (i * 97) % v.W, y = (i * 53) % v.H; g.fillStyle = `hsla(${(i * 47) % 360},60%,65%,.22)`; g.fillRect(x, y, 3, 3); }
+  const [fx, fy, fw, fh] = FRect(0, 0, FW, FH);
+  // gevarenrand rond het veld
+  const bw = Math.max(6, v.s * 1.6); g.fillStyle = hazardPat(g, Math.max(10, v.s * 2.4)); g.fillRect(fx - bw, fy - bw, fw + bw * 2, fh + bw * 2);
+  // stalen vloer
+  if (imgOk('floor')) { const p = g.createPattern(IMG.floor, 'repeat'), t = v.s * 14 / IMG.floor.naturalWidth; p.setTransform(new DOMMatrix([t, 0, 0, t, fx, fy])); g.fillStyle = p; } else g.fillStyle = '#5a6372';
+  g.fillRect(fx, fy, fw, fh);
+  g.fillStyle = 'rgba(16,46,34,.42)'; g.fillRect(fx, fy, fw, fh);                       // groenige vloerverf
+  for (let i = 0; i < 10; i++) if (i % 2) { const [x, y, w, h] = FRect(i * 10, 0, 10, FH); g.fillStyle = 'rgba(255,255,255,.05)'; g.fillRect(x, y, w, h); }
+  // lichtvlekken van de stadionlampen
+  g.globalCompositeOperation = 'lighter';
+  for (const [lx, ly, r] of [[12, 8, 30], [88, 8, 30], [12, 52, 30], [88, 52, 30], [50, 30, 38]]) { const [x, y] = FP(lx, ly), R = r * v.s, gr = g.createRadialGradient(x, y, 0, x, y, R); gr.addColorStop(0, 'rgba(255,240,200,.22)'); gr.addColorStop(1, 'rgba(255,240,200,0)'); g.fillStyle = gr; g.fillRect(x - R, y - R, R * 2, R * 2); }
+  g.globalCompositeOperation = 'source-over';
+  // lijnen
+  g.strokeStyle = 'rgba(255,255,255,.8)'; g.lineWidth = Math.max(1.5, v.s * .25); g.strokeRect(fx, fy, fw, fh);
+  g.beginPath(); g.moveTo(...FP(50, 0)); g.lineTo(...FP(50, FH)); g.stroke(); g.beginPath(); g.arc(...FP(50, 30), 8 * v.s, 0, 7); g.stroke();
+  g.fillStyle = 'rgba(255,255,255,.8)'; g.beginPath(); g.arc(...FP(50, 30), v.s * .6, 0, 7); g.fill();
+  for (const t of [0, 1]) { const [x, y, w, h] = FRect(t ? FW - 12 : 0, 16, 12, 28); g.strokeRect(x, y, w, h); }
+  // kratten (met schaduw)
+  for (const [cx, cy, w, h] of M.map.crates) { const [x, y, ww, hh] = FRect(cx, cy, w, h); g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(x + v.s * .6, y + v.s * .8, ww, hh);
+    const gr = g.createLinearGradient(x, y, x, y + hh); gr.addColorStop(0, '#8a96aa'); gr.addColorStop(1, '#4a5568'); g.fillStyle = gr; g.fillRect(x, y, ww, hh); g.strokeStyle = '#1c2333'; g.lineWidth = 2; g.strokeRect(x, y, ww, hh); g.beginPath(); g.moveTo(x, y); g.lineTo(x + ww, y + hh); g.moveTo(x + ww, y); g.lineTo(x, y + hh); g.stroke(); g.fillStyle = '#ffb43b'; g.fillRect(x, y + hh * .42, ww, hh * .16); }
+  FBV.layer = c; FBV.layerKey = key; FBV.layerMap = M.map; return c;
+}
+// doelen met net (bolt bij een doelpunt)
+function drawGoals(g, M) {
+  const v = FB.view, G = FBV.goal;
+  for (const t of [0, 1]) { const front = t ? FW : 0, back = t ? FW + 3 : -3, dir = t ? 1 : -1, bulge = G && G.side === t ? Math.min(2.6, G.pen) * 1.1 : 0, by = G ? G.y : 30;
+    const bx = y => back + dir * bulge * Math.exp(-((y - by) ** 2) / 30);
+    g.fillStyle = 'rgba(10,14,24,.45)'; g.beginPath(); g.moveTo(...FP(front, GY0)); for (let y = GY0; y <= GY1 + .01; y += 1) g.lineTo(...FP(bx(y), y)); g.lineTo(...FP(front, GY1)); g.fill();
+    g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 1;
+    for (let y = GY0; y <= GY1 + .01; y += 2) { g.beginPath(); g.moveTo(...FP(front, y)); g.lineTo(...FP(bx(y), y)); g.stroke(); }
+    for (const f of [.33, .66, 1]) { g.beginPath(); for (let y = GY0; y <= GY1 + .01; y += 1) { const p = FP(front + (bx(y) - front) * f, y); y === GY0 ? g.moveTo(...p) : g.lineTo(...p); } g.stroke(); }
+    g.strokeStyle = '#f2f5fa'; g.lineWidth = Math.max(2.5, v.s * .5); g.beginPath(); g.moveTo(...FP(front, GY0)); g.lineTo(...FP(back, GY0)); g.moveTo(...FP(front, GY1)); g.lineTo(...FP(back, GY1)); g.stroke();
+    g.fillStyle = '#ffd34a'; for (const y of [GY0, GY1]) { g.beginPath(); g.arc(...FP(front, y), Math.max(2.5, v.s * .55), 0, 7); g.fill(); } }
+}
+// ---------- robots ----------
+function botSprite(b) { const L = b.look || {}; if (L.rival) return [RIVAL_SPR[L.rival] || 'robot1', mixCol(RIVALS[L.rival].col[0], RIVALS[L.rival].col[1], .45)];
+  if (b.keeper) { const c = LOOKS.body[L.body || 0]; return ['robot4', mixCol(c[0], c[1], .45)]; }
+  const c = LOOKS.body[L.body || 0]; return [HEAD_SPR[LOOKS.head[L.head || 0]] || 'robot1', mixCol(c[0], c[1], .45)]; }
+function drawBotG(g, b, M, now) {
+  const v = FB.view, [x, y] = FP(b.x, b.y), sz = v.s * (b.keeper ? 5.6 : 6.6), [sn, col] = botSprite(b), spr = tinted(sn, col), tc = TEAMCOL()[b.team];
+  const key = b._k || b; let st = FBV.st.get(key); if (!st) { st = { a: null, px: x, py: y, blink: Math.random() * 3, kick: 0 }; FBV.st.set(key, st); }
+  // kijkrichting: naar waar hij loopt (of mikt), anders naar het doel van de tegenstander
+  const dx = x - st.px, dy = y - st.py; st.px = x; st.py = y; let ta = st.a;
+  if (b.human != null && M.ball.owner === b && (b.aimX != null || b.aimY != null)) { const [x1, y1] = FP(b.x + (b.aimX ?? (b.team ? -1 : 1)), b.y + (b.aimY ?? 0)); ta = Math.atan2(y1 - y, x1 - x); }
+  else if (Math.hypot(dx, dy) > .25) ta = Math.atan2(dy, dx);
+  else if (ta == null) { const [x1, y1] = FP(b.x + (b.team ? -1 : 1), b.y); ta = Math.atan2(y1 - y, x1 - x); }
+  if (st.a == null) st.a = ta; else { let d = ta - st.a; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI; st.a += d * Math.min(1, (FB.rdt || .016) * 12); }
+  st.kick = Math.max(0, st.kick - (FB.vdt || .016)); st.blink -= FB.rdt || .016; if (st.blink < -.12) st.blink = 2 + Math.random() * 3;
+  // schaduw + teamring (op de grond, niet gedraaid)
+  drawShadow(g, x + sz * .06, y + sz * .12, sz * .95, sz * .5, b.hidden ? .4 : .9);
+  if (!b.keeper) { g.strokeStyle = tc; g.globalAlpha = b.hidden ? .4 : .85; g.lineWidth = b.human != null ? Math.max(3, v.s * .55) : Math.max(2, v.s * .3); g.beginPath(); g.ellipse(x, y + sz * .08, sz * .5, sz * .25, 0, 0, 7); g.stroke(); g.globalAlpha = 1; }
+  g.save(); g.translate(x, y); if (b.hidden) g.globalAlpha = .45;
+  const wob = b.wobble > 0 ? Math.sin(M.t * 30) * .25 : 0;
+  g.rotate(st.a + Math.PI / 2 + wob + (b.down > 0 ? Math.PI / 2 * (b.team ? -1 : 1) : 0));
+  const k = st.kick > 0 ? Math.sin(st.kick / .18 * Math.PI) : 0; g.scale(1 + .22 * k, 1 - .2 * k);   // squash-stretch bij een trap
+  if (spr) g.drawImage(spr, -sz / 2, -sz / 2, sz, sz);
+  else { g.fillStyle = col; g.beginPath(); g.arc(0, 0, sz * .35, 0, 7); g.fill(); g.strokeStyle = '#1c2333'; g.lineWidth = 2; g.stroke(); }
+  if (b.keeper) { g.fillStyle = '#ffb43b'; g.beginPath(); g.arc(-sz * .38, -sz * .1, sz * .1, 0, 7); g.arc(sz * .38, -sz * .1, sz * .1, 0, 7); g.fill(); }
+  // ogen (knipperen) op het hoofd
+  const hy = (HEAD_Y[sn] || -.2) * sz, er = sz * .045, ex = sz * .075, L = b.look || {}, eyes = LOOKS.eyes[L.eyes || 0];
+  if (b.down > 0) { g.strokeStyle = '#0b0f18'; g.lineWidth = Math.max(1.5, er * .6); for (const s of [-1, 1]) { g.beginPath(); g.moveTo(s * ex - er, hy - er); g.lineTo(s * ex + er, hy + er); g.moveTo(s * ex + er, hy - er); g.lineTo(s * ex - er, hy + er); g.stroke(); } }
+  else for (const s of [-1, 1]) { g.fillStyle = '#f4fbff'; g.beginPath(); if (st.blink < 0) g.ellipse(s * ex, hy, er, er * .18, 0, 0, 7); else g.arc(s * ex, hy, er, 0, 7); g.fill();
+    if (st.blink >= 0) { g.fillStyle = '#0b0f18'; g.beginPath(); g.arc(s * ex + (eyes === 'scheel' ? -s * er * .4 : 0), hy - er * .3, er * .55, 0, 7); g.fill(); }
+    if (eyes === 'stoer') { g.strokeStyle = '#0b0f18'; g.lineWidth = Math.max(1.5, er * .5); g.beginPath(); g.moveTo(s * ex - er * 1.2 * s, hy - er * 1.6); g.lineTo(s * ex + er * s, hy - er * 1.1); g.stroke(); } }
+  // hoed (van bovenaf gezien)
+  const hat = LOOKS.hat[L.hat || 0], ty = hy + sz * .02, r = sz * .14;
+  if (hat && hat !== 'geen' && !b.keeper && !L.rival) { g.lineWidth = 1.5; g.strokeStyle = '#1c2333';
+    if (hat === 'pet') { g.fillStyle = '#d64545'; g.beginPath(); g.arc(0, ty + r * .3, r, 0, 7); g.fill(); g.stroke(); g.fillRect(-r * .6, ty - r * 1.3, r * 1.2, r * .6); }
+    else if (hat === 'kroon') { g.strokeStyle = '#ffcf3b'; g.lineWidth = r * .45; g.beginPath(); g.arc(0, ty + r * .3, r * .8, 0, 7); g.stroke(); g.fillStyle = '#ffcf3b'; for (let i = 0; i < 5; i++) { const a = i * 1.257; g.beginPath(); g.arc(Math.cos(a) * r * .8, ty + r * .3 + Math.sin(a) * r * .8, r * .25, 0, 7); g.fill(); } }
+    else if (hat === 'kegel') { g.fillStyle = '#ff8a1c'; g.beginPath(); g.arc(0, ty + r * .3, r, 0, 7); g.fill(); g.stroke(); g.strokeStyle = '#fff'; g.lineWidth = r * .25; g.beginPath(); g.arc(0, ty + r * .3, r * .55, 0, 7); g.stroke(); }
+    else if (hat === 'propeller') { g.fillStyle = '#3a86d8'; g.beginPath(); g.arc(0, ty + r * .3, r * .85, 0, 7); g.fill(); const a = M.t * 20; g.strokeStyle = '#ffcf3b'; g.lineWidth = r * .35; g.beginPath(); g.moveTo(Math.cos(a) * r * 1.4, ty + r * .3 + Math.sin(a) * r * 1.4); g.lineTo(-Math.cos(a) * r * 1.4, ty + r * .3 - Math.sin(a) * r * 1.4); g.stroke(); }
+    else if (hat === 'koksmuts') { g.fillStyle = '#fff'; for (const [ox, oy] of [[0, 0], [-.6, .4], [.6, .4], [0, .8]]) { g.beginPath(); g.arc(ox * r, ty + oy * r - r * .2, r * .6, 0, 7); g.fill(); } } }
+  if (b.wobble > 0 && b.down <= 0) { g.fillStyle = '#c9d4e4'; g.fillRect(sz * .36, Math.sin(M.t * 12) * 4, sz * .16, sz * .05); }
+  g.restore();
+  if (b.down > 0) for (let i = 0; i < 3; i++) { const a = M.t * 5 + i * 2.1; g.fillStyle = '#ffcf3b'; g.font = `${Math.max(10, sz * .25)}px sans-serif`; g.textAlign = 'center'; g.fillText('★', x + Math.cos(a) * sz * .4, y - sz * .55 + Math.sin(a) * sz * .1); }
+  // driehoek boven de robot die Sam (of speler 2) bestuurt
+  if (b.human != null) { const bob = Math.sin(now * 6) * v.s * .5, ty2 = y - sz * .62 + bob, w = Math.max(7, v.s * 1.4); g.fillStyle = b.human ? '#ff7ad1' : '#ffe14a'; g.strokeStyle = '#0b0f18'; g.lineWidth = 2;
+    g.beginPath(); g.moveTo(x - w, ty2 - w * 1.3); g.lineTo(x + w, ty2 - w * 1.3); g.lineTo(x, ty2); g.closePath(); g.fill(); g.stroke(); }
+}
+// ---------- hoofdfunctie ----------
+function drawMatch(M) {
+  const c = $('#mCanvas'), g = c.getContext('2d'), v = FB.view, now = performance.now() / 1000, vdt = FB.vdt ?? .016, rdt = FB.rdt ?? .016, B = M.ball, G = FBV.goal;
+  if (G) { G.t += vdt; G.rt += rdt; if (G.pen < 2.6) { G.pen += Math.abs(G.vx) * vdt * .25; } if (!(M.cele > 0) || G.rt > 1.4) FBV.goal = null; }
+  // camera: bij een doelpunt inzoomen op het doel
+  const cam = FBV.cam; let tz = 1, tx = v.W / 2, ty = v.H / 2;
+  if (G && G.rt < 1) { const [gx, gy] = FP(G.side ? FW - 6 : 6, G.y); tz = 1.45; tx = gx; ty = gy; }
+  if (!cam.x) { cam.x = v.W / 2; cam.y = v.H / 2; }
+  const kk = 1 - Math.exp(-rdt * 7); cam.z += (tz - cam.z) * kk; cam.x += (tx - cam.x) * kk; cam.y += (ty - cam.y) * kk;
+  const [shx, shy] = juiceShake(), w = clamp((cam.z - 1) / .45, 0, 1), px = v.W / 2 + (cam.x - v.W / 2) * w, py = v.H / 2 + (cam.y - v.H / 2) * w;
+  const applyCam = () => { g.setTransform(v.dpr, 0, 0, v.dpr, 0, 0); g.translate(v.W / 2 + shx, v.H / 2 + shy); g.scale(cam.z, cam.z); g.translate(-px, -py); };
+  applyCam();
+  g.drawImage(fieldLayer(M), 0, 0, v.W, v.H);
+  drawGoals(g, M);
+  // keepers + robots (van boven naar onder)
+  for (const k of M.keepers) drawBotG(g, { x: k.x, y: k.y, team: k.team, look: k.team ? (FB.mode === 'versus' ? { body: 4 } : { rival: DIVS[S.football.div].rival }) : { body: 5 }, keeper: true, down: 0, _k: k }, M, now);
+  const bots = M.bots.slice().sort((a, b) => FP(a.x, a.y)[1] - FP(b.x, b.y)[1]);
+  for (const b of bots) if (b.human != null && b.passTgt) { const [x, y] = FP(b.passTgt.x, b.passTgt.y), r = v.s * 3.2, pulse = 1 + .12 * Math.sin(now * 8); g.save(); g.strokeStyle = '#ffe14a'; g.lineWidth = 3; g.setLineDash([6, 5]); g.beginPath(); g.arc(x, y + v.s, r * pulse, 0, 7); g.stroke(); g.setLineDash([]); g.font = `800 ${Math.max(11, v.s * 1.9)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = '#ffe14a'; g.fillText('👟 pass', x, y - r - 4); g.restore(); }
+  // trap herkennen (bal net losgelaten) → squash + hopje
+  if (FBV.lastOwner && !B.owner && B.last === FBV.lastOwner && !FBV.z) kickFx(M, false); FBV.lastOwner = B.owner;
+  for (const b of bots) drawBotG(g, b, M, now);
+  for (const b of bots) if (b.human != null && B.owner === b) { const ax = b.aimX ?? (b.team ? -1 : 1), ay = b.aimY ?? 0, pw = holdPow(b.human), Lh = 9 + 7 * pw; const [x0, y0] = FP(b.x, b.y), [x1, y1] = FP(b.x + ax * Lh, b.y + ay * Lh); const an = Math.atan2(y1 - y0, x1 - x0), hs = v.s * 1.8; g.save(); g.strokeStyle = g.fillStyle = pw > 0 ? `rgb(255,${200 - 140 * pw | 0},60)` : 'rgba(255,255,255,.9)'; g.lineWidth = Math.max(3, v.s * .7); g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); g.beginPath(); g.moveTo(x1 + Math.cos(an) * hs, y1 + Math.sin(an) * hs); g.lineTo(x1 + Math.cos(an + 2.4) * hs, y1 + Math.sin(an + 2.4) * hs); g.lineTo(x1 + Math.cos(an - 2.4) * hs, y1 + Math.sin(an - 2.4) * hs); g.fill(); g.restore(); }
+  for (const [bx, by, r] of M.map.bushes) { const [x, y] = FP(bx, by); g.save(); g.globalAlpha = .82; for (let k = 0; k < 7; k++) { const a = k * .9; g.fillStyle = k % 2 ? '#2f9e55' : '#247a43'; g.beginPath(); g.arc(x + Math.cos(a) * r * v.s * .5, y + Math.sin(a) * r * v.s * .5, r * v.s * .55, 0, 7); g.fill(); } g.restore(); }
+  // bal: hoogte (z) met losse schaduw, spoor en gloed
+  let bwx = B.x, bwy = B.y; if (G) { const dir = G.side ? 1 : -1; bwx = (G.side ? FW : 0) + dir * Math.min(2.6, G.pen); bwy = G.y + G.vy * Math.min(.3, G.t) * .2; }
+  let z = 0; if (FBV.z) { FBV.z.t += vdt; const f = FBV.z.t / FBV.z.T; if (f >= 1 || B.owner) FBV.z = null; else z = FBV.z.h * Math.sin(Math.PI * f); }
+  const [gx0, gy0] = FP(bwx, bwy), br = Math.max(4, v.s * .9) * (1 + z * .06), bx = gx0, by = gy0 - z * v.s;
+  drawShadow(g, gx0 + 2, gy0 + br * .6, br * 2.4 / (1 + z * .15), br * 1.1 / (1 + z * .15), .9 / (1 + z * .25));
+  const sp = Math.hypot(B.vx, B.vy); FBV.trail.push([bx, by]); if (FBV.trail.length > 9) FBV.trail.shift();
+  if ((sp > 25 || B.shot || G) && !Q.low) { g.globalCompositeOperation = 'lighter'; FBV.trail.forEach(([x, y], i) => { const f = i / FBV.trail.length; g.globalAlpha = f * .45; g.fillStyle = B.shot ? '#ffb43b' : '#cfe9ff'; g.beginPath(); g.arc(x, y, br * (.4 + .6 * f), 0, 7); g.fill(); }); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; drawGlow(g, bx, by, br * 3, B.shot ? '#ffb43b' : '#ffffff', .6); }
+  else if (!Q.low) drawGlow(g, bx, by, br * 2, '#ffffff', .25);
+  g.fillStyle = '#fff'; g.beginPath(); g.arc(bx, by, br, 0, 7); g.fill(); g.strokeStyle = '#1c2333'; g.lineWidth = 1.5; g.stroke(); g.fillStyle = '#1c2333'; g.beginPath(); g.arc(bx + Math.cos(M.t * 9) * br * .35, by + Math.sin(M.t * 9) * br * .35, br * .35, 0, 7); g.fill();
+  // deeltjes (veldcoördinaten)
+  partStep(vdt); partDraw(g, (x, y) => FP(x, y), v.s);
+  // zwevende teksten (GOAL-tekst komt onder het logo)
+  for (const f of M.fx) { if (f.big) continue; const [x, y] = FP(f.x, f.y); g.save(); g.font = `800 ${Math.max(13, v.s * 2.4)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.lineWidth = 4; g.strokeStyle = '#000'; g.fillStyle = f.col; const yy = y - (1.6 - f.t) * 18; g.globalAlpha = Math.min(1, f.t * 2); g.strokeText(f.txt, x, yy); g.fillText(f.txt, x, yy); g.restore(); }
+  // pijl naar de bal als die buiten beeld is (bij inzoomen)
+  { const p = g.getTransform().transformPoint(new DOMPoint(bx, by)); g.setTransform(v.dpr, 0, 0, v.dpr, 0, 0); const px = p.x / v.dpr, py = p.y / v.dpr, mg = 22, top = v.port ? 80 : 56;
+    if (px < mg || px > v.W - mg || py < top || py > v.H - mg) { const ax = clamp(px, mg, v.W - mg), ay = clamp(py, top, v.H - mg), an = Math.atan2(py - ay, px - ax); g.save(); g.translate(ax, ay); g.rotate(an); g.fillStyle = '#ffe14a'; g.strokeStyle = '#0b0f18'; g.lineWidth = 2; g.beginPath(); g.moveTo(12, 0); g.lineTo(-8, -9); g.lineTo(-4, 0); g.lineTo(-8, 9); g.closePath(); g.fill(); g.stroke(); g.restore(); FBV.arrow = true; } else FBV.arrow = false; }
+  // sfeer
+  if (!Q.low) g.drawImage(vignetteSpr(Math.round(v.W), Math.round(v.H)), 0, 0, v.W, v.H);
+  juiceFlash(g, v.W, v.H);
+  // GOAL!-logo: stuitert binnen
+  if (M.cele > 0) { const big = M.fx.find(f => f.big), t = G ? G.rt : 1 - M.cele, s = t < .5 ? 1 + Math.sin(t / .5 * Math.PI * 2.5) * Math.exp(-t * 5) * .5 : 1, sc = Math.min(1, t / .12) * s;
+    const lw = Math.min(v.W * .8, 460), lh = lw * .396, lx = v.W / 2, ly = v.H * (v.port ? .26 : .3);
+    g.save(); g.translate(lx, ly); g.scale(sc, sc); g.rotate(Math.sin(t * 9) * .04 * Math.exp(-t * 2));
+    if (imgOk('goal')) g.drawImage(IMG.goal, -lw / 2, -lh / 2, lw, lh); else { g.font = `900 ${lh * .7}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#ffd34a'; g.fillText('GOAL!', 0, 0); }
+    g.restore();
+    if (big) { g.save(); g.font = `800 ${Math.max(16, v.s * 3)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.lineWidth = 5; g.strokeStyle = '#000'; g.fillStyle = big.col; g.globalAlpha = Math.min(1, t * 4); g.strokeText(big.txt, lx, ly + lh * .5 + Math.max(18, v.s * 3)); g.fillText(big.txt, lx, ly + lh * .5 + Math.max(18, v.s * 3)); g.restore(); }
+    g.font = `700 ${Math.max(13, v.s * 2.2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = 'rgba(255,255,255,.85)'; g.fillText('tik om door te gaan', v.W / 2, v.H - Math.max(26, v.s * 4)); }
+  if (M.count > 0) { const tk = M.countLen / 3, n = M.quick ? 'Klaar?' : Math.ceil(M.count / tk), fr = M.quick ? M.count / M.countLen : (M.count / tk) % 1; g.fillStyle = 'rgba(8,12,24,.35)'; g.fillRect(0, 0, v.W, v.H); g.save(); g.font = `900 ${Math.max(M.quick ? 40 : 60, v.s * (M.quick ? 9 : 16)) * (1 + .3 * fr)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineWidth = 8; g.strokeStyle = '#0b1020'; g.fillStyle = '#ffd34a'; const [cx2, cy2] = FP(50, 30); g.globalAlpha = Math.min(1, .3 + fr * 1.4); g.strokeText(n, cx2, cy2); g.fillText(n, cx2, cy2); g.restore(); }
 }
 
 /* ===== screens/team.js ===== */
@@ -3801,52 +4021,54 @@ function openRaceStand(which) {
 function startRace() {
   if (!raceCanStart(S)) { SFX.nope(); toast(`Je hebt 🪙 ${raceFuel(S)} nodig voor brandstof.`); return; }
   S.coins -= raceFuel(S); S.today.fin && (S.today.fin.upkeep += raceFuel(S)); save();
-  RC.daily = null; RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = ''; RC.fx = []; RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
+  RC.daily = null; RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg }); RC.gateKey = ''; raceGfxReset(); RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
   show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); zoomHint(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
 }
 // race van de dag: vaste baan en vaste patronen (zaad = datum), gratis brandstof, telt niet mee voor de competitie
 function startDailyRace() {
   closeOv('ovDaily'); raceInit(S); const key = dayKey(), seed = dailySeed(key), keep = RNG; RNG = mkRng(seed ^ 0x5bd1);
   try { RC.M = raceNew({ div: S.race.div, diff: raceDiff(S), parts: S.race.parts, dmg: S.race.dmg, rng: mkRng(seed) }); } finally { RNG = keep; }
-  RC.daily = key; RC.gateKey = ''; RC.fx = []; RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
+  RC.daily = key; RC.gateKey = ''; raceGfxReset(); RC.tiles = {}; $('#rTiles').innerHTML = ''; $('#rTut').hidden = true; RC.paused = false; RC.itemKey = ''; RC.tutPending = false;
   show('scrDrive'); musicFor('scrMatch'); AUD.fast = 1; sizeRace(); zoomHint(); RC.last = performance.now(); cancelAnimationFrame(RC.raf); RC.raf = requestAnimationFrame(raceLoop);
 }
 function zoomHint() { if (vvApply()) { const h = $('#rZoom'); h.classList.remove('show'); void h.offsetWidth; h.classList.add('show'); } }
-function sizeRace() { const c = $('#rCanvas'), dpr = Math.min(2, devicePixelRatio || 1); c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr; }
+function sizeRace() { const c = $('#rCanvas'), dpr = gfxDpr(); c.width = Math.round(c.clientWidth * dpr); c.height = Math.round(c.clientHeight * dpr); RC.dpr = dpr; }
 function raceLoop(now) {
   const M = RC.M; if (!M || CUR_SCREEN !== 'scrDrive') return;
-  const dt = Math.min(.05, (now - RC.last) / 1000); RC.last = now;
+  const real = Math.min(.05, (now - RC.last) / 1000); RC.last = now;
+  if (qualityTick(real * 1000)) sizeRace();
   M.me.steer = (RC.keys.L ? -1 : 0) + (RC.keys.R ? 1 : 0);
-  if (!RC.paused) { raceStep(M, dt); for (const e of M.events) raceEvent(e); fxStep(M, dt); }
+  const dt = RC.paused ? 0 : juiceTime(real);   // hitstop = even 0
+  if (!RC.paused && dt > 0) { raceStep(M, dt); for (const e of M.events) raceEvent(e); fxStep(M, dt); }
+  camStep(M, RC.paused ? 0 : real);
   if (RC.tutPending && !RC.paused) { const g = activeGate(M); if (g && g.rows[0].d - M.me.d < 48) { RC.tutPending = false; raceTutorial(); } }
   drawRace(M); drawTiles(M); renderRaceHud(M);
   if (M.done) return finishRace();
   RC.raf = requestAnimationFrame(raceLoop);
 }
-function shake() { const s = $('#scrDrive'); s.classList.remove('shake'); void s.offsetWidth; s.classList.add('shake'); try { navigator.vibrate && navigator.vibrate(40); } catch (e) { } }
 function popPos(t, up) { const el = $('#rPop'); el.textContent = t; el.classList.toggle('dn', !up); el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); }
 const carName = id => id === 'me' ? 'Jij' : (RACE_DRIVERS[RC.M.div].find(d => d.id === id) || {}).name || id;
 function raceEvent(e) {
   const M = RC.M;
   if (e.k === 'gateopen' && !S.race.tut) RC.tutPending = true;
   if (e.k === 'pick') { SFX.place(); if (e.n < e.of) floatTxt(`✔ ${e.n}/${e.of}`); }
-  if (e.k === 'turbo') { SFX.fanfare(); floatTxt('🚀 TURBO!'); for (let i = 0; i < 18; i++) burst(M.me, '#ffd34a'); }
+  if (e.k === 'turbo') { SFX.fanfare(); floatTxt('🚀 TURBO!'); burst(M.me, '#ffd34a', 26, 'spark'); juiceHit(.25); JUICE.stop = 0; }
   if (e.k === 'oeps') { SFX.nope(); floatTxt('Oeps! Nog een keer 🔁'); }
   if (e.k === 'gemist') floatTxt('Gemist! Nog een kans 🔁');
   if (e.k === 'gatemis') floatTxt('Volgende keer beter!');
-  if (e.k === 'boem') { SFX.nope(); shake(); floatTxt(pick(['BOEM! 💥', 'Au, een pion!', 'KLONK!'])); }
-  if (e.k === 'slip') { SFX.whir(); shake(); floatTxt('Sliiip! 🛢️'); }
+  if (e.k === 'boem') { SFX.nope(); juiceHit(.8); burst(M.me, '#ffb02e', 18, 'spark'); burst(M.me, '#9aa4b2', 6, 'smoke'); floatTxt(pick(['BOEM! 💥', 'Au, een pion!', 'KLONK!'])); }
+  if (e.k === 'slip') { SFX.whir(); juiceHit(.45); burst(M.me, '#0b0b12', 10, 'oil'); floatTxt('Sliiip! 🛢️'); }
   if (e.k === 'slotopen') { SFX.whir(); floatTxt('⚙️ Geheim patroon!'); }
   if (e.k === 'slot') { SFX.fanfare(); floatTxt('🔓 Sluiproute + 🚀 raket!'); }
   if (e.k === 'slotmis') floatTxt('Geheim gemist…');
   if (e.k === 'sluip') { SFX.fanfare(); floatTxt('🕳️ Sluiproute! +150 m'); }
   if (e.k === 'go') { SFX.ok(); floatTxt('GO!'); }
-  if (e.k === 'item') { SFX.star(); const I = RACE_ITEMS[e.it]; floatTxt(`${I.icon} ${I.name}!`); if (!S.race.tutItem) { S.race.tutItem = true; save(); setTimeout(() => toast(`${I.icon} ${I.name}: ${I.tip} Tik de grote GEBRUIK-knop!`), 700); } }
+  if (e.k === 'item') { SFX.star(); const I = RACE_ITEMS[e.it]; boxBurst(M); slotStart(e.it); floatTxt(`${I.icon} ${I.name}!`); if (!S.race.tutItem) { S.race.tutItem = true; save(); setTimeout(() => toast(`${I.icon} ${I.name}: ${I.tip} Tik de grote GEBRUIK-knop!`), 700); } }
   if (e.k === 'use' && e.who === 'me') { SFX.whir(); if (e.it === 'schild') floatTxt('🛡️ Schild aan!'); }
   if (e.k === 'use' && e.who !== 'me' && (e.it === 'raket' || e.it === 'emp')) toast(`${carName(e.who)} gebruikt ${RACE_ITEMS[e.it].icon}!`);
-  if (e.k === 'raak') { SFX.ok(); const c = M.cars.find(x => x.id === e.who); for (let i = 0; i < 14; i++) burst(c, e.kind === 'olie' ? '#9aa0ff' : '#ff8a3a'); popPos(`💥 Raak! ${carName(e.who)} tolt`, true); }
-  if (e.k === 'geraakt') { SFX.nope(); shake(); floatTxt(e.kind === 'raket' ? 'Raket! 💫' : e.kind === 'emp' ? 'Bzzzt! ⚡' : 'Sliiip! 💫'); }
-  if (e.k === 'blok') { SFX.place(); floatTxt('🛡️ Tegengehouden!'); }
+  if (e.k === 'raak') { SFX.ok(); const c = M.cars.find(x => x.id === e.who); burst(c, e.kind === 'olie' ? '#9aa0ff' : '#ff8a3a', 18, 'spark'); burst(c, '#8b93a3', 6, 'smoke'); juiceHit(.4); popPos(`💥 Raak! ${carName(e.who)} tolt`, true); }
+  if (e.k === 'geraakt') { SFX.nope(); juiceHit(1); burst(M.me, e.kind === 'emp' ? '#7ad7ff' : '#ff8a3a', 24, 'spark'); burst(M.me, '#8b93a3', 8, 'smoke'); floatTxt(e.kind === 'raket' ? 'Raket! 💫' : e.kind === 'emp' ? 'Bzzzt! ⚡' : 'Sliiip! 💫'); }
+  if (e.k === 'blok') { SFX.place(); burst(M.me, '#38d6ff', 16, 'spark'); juiceHit(.3); floatTxt('🛡️ Tegengehouden!'); }
   if (e.k === 'pos' && M.t > 2) { if (e.to < e.from) { SFX.ok(); popPos(`⬆️ Ingehaald! ${e.to}e`, true); } else popPos(`⬇️ ${e.to}e`, false); }
   if (e.k === 'final') { AUD.fast = 1.25; floatTxt('🏁 Laatste stuk!'); }
 }
@@ -3856,21 +4078,13 @@ function raceTutorial() {
   $('#rTut').hidden = false;
 }
 function floatTxt(t) { const el = $('#rFloat'); el.textContent = t; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); }
-// vonken, knallen
-function burst(c, col) { if (!c) return; RC.fx.push({ d: c.d, x: c.x, vx: (Math.random() - .5) * .5, vd: (Math.random() - .3) * 30, t: .6 + Math.random() * .3, col }); }
-function fxStep(M, dt) {
-  const me = M.me;
-  if (me.steer && me.v > 18 && Math.random() < .7) RC.fx.push({ d: me.d - 2.5, x: me.x - me.steer * .03, vx: -me.steer * (.1 + Math.random() * .2), vd: -10 - Math.random() * 10, t: .35, col: Math.random() < .5 ? '#ffd34a' : '#ff8a1a', sp: 1 });
-  for (const c of M.cars) if (c.spin > 0 && Math.random() < .5) RC.fx.push({ d: c.d, x: c.x, vx: (Math.random() - .5) * .3, vd: -5, t: .4, col: '#cfd8e8' });
-  RC.fx.forEach(p => { p.t -= dt; p.x += p.vx * dt; p.d += p.vd * dt; }); RC.fx = RC.fx.filter(p => p.t > 0).slice(-160);
-}
 function renderRaceHud(M) {
   const me = M.me, pos = racePos(M);
   $('#rPos').innerHTML = `<b>${pos}</b><small>/4</small>`;
   $('#rProg').style.width = `${clamp(me.d / M.len, 0, 1) * 100}%`;
   $('#rSpd').innerHTML = `${Math.round(me.v * 3.6)}<small> km/u</small>${me.turbo > 0 ? ' 🚀' : ''}`;
   $('#rProgDots').innerHTML = M.cars.filter(c => !c.me).map(c => `<i style="left:${clamp(c.d / M.len, 0, 1) * 100}%;background:${c.dr.col}"></i>`).join('');
-  const ik = (me.item || '') + (me.shield > 0 ? 's' : ''); if (ik !== RC.itemKey) { RC.itemKey = ik; const u = $('#rUse'); u.disabled = !me.item; u.classList.toggle('has', !!me.item); $('#rUseIc').textContent = me.item ? RACE_ITEMS[me.item].icon : me.shield > 0 ? '🛡️' : '❓'; u.setAttribute('aria-label', me.item ? `Gebruik ${RACE_ITEMS[me.item].name}` : 'Geen item'); }
+  if (!slotTick()) { const ik = (me.item || '') + (me.shield > 0 ? 's' : ''); if (ik !== RC.itemKey) { RC.itemKey = ik; const u = $('#rUse'); u.disabled = !me.item; u.classList.toggle('has', !!me.item); $('#rUseIc').textContent = me.item ? RACE_ITEMS[me.item].icon : me.shield > 0 ? '🛡️' : '❓'; u.setAttribute('aria-label', me.item ? `Gebruik ${RACE_ITEMS[me.item].name}` : 'Geen item'); } }
   const g = activePuzzle(M), key = g ? g.kind + g.d + ':' + g.got + ':' + g.retry : '';
   if (key !== RC.gateKey) { RC.gateKey = key;
     const box = $('#rGate');
@@ -3879,60 +4093,6 @@ function renderRaceHud(M) {
       const strip = g.kind === 'lock' ? g.seq.map((x, i) => i === g.b ? '<span class="q next">?</span>' : tokenSVG(x)).join('')
         : g.seq.map(x => tokenSVG(x)).join('') + g.need.map((x, i) => i < g.got ? `<span class="got">${tokenSVG(x)}</span>` : `<span class="q${i === g.got ? ' next' : ''}">?</span>`).join('');
       box.innerHTML = `<small>${g.kind === 'lock' ? '🔒 Geheim patroon: rij over het stukje dat mist → sluiproute!' : '🚀 Rij óver het volgende symbool op de weg'}</small><div class="rstrip">${strip}</div>${g.kind === 'gate' ? `<div class="rprogd">${g.need.map((_, i) => `<i class="${i < g.got ? 'on' : ''}"></i>`).join('')}</div>` : ''}`; } }
-}
-// symbool-tegels en ❓-kisten als DOM-laag over het canvas (dezelfde SVG-symbolen als bovenin)
-function drawTiles(M) {
-  const c = $('#rCanvas'), cw = c.clientWidth, ch = c.clientHeight, me = M.me, ppm = ch / 120, baseY = ch * .74, sz = Math.round(Math.min(64, TRACK_HW * 2 * cw / 3 * .78));
-  const Y = d => baseY - (d - me.d) * ppm, want = {};
-  const put = (key, d, lane, html, cls) => { const y = Y(d); if (y < -sz || y > ch + sz) return; want[key] = 1; let el = RC.tiles[key];
-    if (!el) { el = document.createElement('div'); el.innerHTML = html; $('#rTiles').appendChild(el); RC.tiles[key] = el; }
-    el.className = 'rtile ' + cls; el.style.width = el.style.height = sz + 'px'; el.style.transform = `translate(${Math.round(laneX(M, d, lane) * cw - sz / 2)}px,${Math.round(y - sz / 2)}px)`; };
-  for (const g of [...M.gates, ...M.shortcuts]) if (g.st === 'open' || g.st === 'ok' || g.st === 'solved') g.rows.forEach((r, ri) => r.tiles.forEach(t => put(`${g.kind}${g.d}:${r.d}:${t.lane}`, r.d, t.lane, tokenSVG(t.sym), (t.ok ? 'ok' : t.bad ? 'bad' : '') + ' sym')));
-  for (const b of M.boxes) b.lanes.forEach(l => put(`b${b.d}:${l}`, b.d, l, '❓', 'box' + (b.taken.me ? ' gone' : '')));
-  for (const k in RC.tiles) if (!want[k]) { RC.tiles[k].remove(); delete RC.tiles[k]; }
-}
-function drawRace(M) {
-  const c = $('#rCanvas'), g = c.getContext('2d'), W = c.width, H = c.height, me = M.me, ppm = H / 120, baseY = H * .74;
-  const Y = d => baseY - (d - me.d) * ppm, X = x => x * W;
-  g.fillStyle = '#2b3140'; g.fillRect(0, 0, W, H);
-  g.strokeStyle = '#353c4d'; g.lineWidth = 2; const off = (me.d * ppm) % 60; for (let y = -60; y < H + 60; y += 60) { g.beginPath(); g.moveTo(0, y + off); g.lineTo(W, y + off); g.stroke(); }
-  const step = 8;
-  for (let y = H; y > -step; y -= step) {
-    const d = me.d + (baseY - y) / ppm, cx = trackCx(M, d), hw = TRACK_HW * W, x0 = X(cx) - hw;
-    const stripe = Math.floor(d / 6) % 2;
-    g.fillStyle = stripe ? '#e04848' : '#f2f2f2'; g.fillRect(x0 - W * .025, y - step, W * .025, step + 1); g.fillRect(x0 + 2 * hw, y - step, W * .025, step + 1);
-    g.fillStyle = '#3a3f4a'; g.fillRect(x0, y - step, 2 * hw, step + 1);
-    if (Math.floor(d / 8) % 2) { g.fillStyle = '#ffffff22'; g.fillRect(X(cx) - hw / 3 - 1, y - step, 2, step + 1); g.fillRect(X(cx) + hw / 3 - 1, y - step, 2, step + 1); }
-    if (Math.abs(d - M.len) < 2) { for (let k = 0; k < 10; k++) { g.fillStyle = k % 2 ? '#fff' : '#111'; g.fillRect(x0 + k * hw / 5, y - step, hw / 5, step + 1); } }
-  }
-  // patroonstrook-markering op de weg (gele band met pijlen) vóór de eerste rij
-  for (const gt of [...M.gates, ...M.shortcuts]) { if (gt.st !== 'open' || !gt.rows[0]) continue; const d = gt.rows[0].d - 14, y = Y(d); if (y < -20 || y > H + 20) continue; const cx = X(trackCx(M, d)), hw = TRACK_HW * W;
-    for (let k = 0; k < 8; k++) { g.fillStyle = k % 2 ? '#ffd34a' : '#0b0f18'; g.fillRect(cx - hw + k * hw / 4, y - 5, hw / 4, 10); } }
-  for (const s of M.shortcuts) { if (s.st !== 'hidden') continue; const d = s.d - 70, y = Y(d); if (y < -40 || y > H + 40) continue;
-    const x = X(trackCx(M, d) + s.side * (TRACK_HW + .05)); g.font = `${Math.round(W * .06)}px sans-serif`; g.textAlign = 'center'; g.fillText('⚙️', x, y); }
-  for (const o of M.obst) { const y = Y(o.d); if (y < -30 || y > H + 30) continue; const x = X(trackCx(M, o.d) + o.off * TRACK_HW);
-    if (o.k === 'olie') { g.fillStyle = '#0b0b0f'; g.beginPath(); g.ellipse(x, y, W * .055, W * .03, 0, 0, 7); g.fill(); g.fillStyle = o.by ? '#9a7cffaa' : '#5a5aa0aa'; g.beginPath(); g.ellipse(x - W * .015, y - 3, W * .02, W * .008, 0, 0, 7); g.fill(); }
-    else if (o.k === 'schroot') { g.fillStyle = '#9aa4b2'; g.strokeStyle = '#0b0f18'; g.lineWidth = 2; for (let i = 0; i < 3; i++) { g.beginPath(); g.arc(x + (i - 1) * W * .02, y + (i % 2) * 4, W * .012, 0, 7); g.fill(); g.stroke(); } }
-    else { g.fillStyle = '#ff8a1a'; g.beginPath(); g.moveTo(x, y - W * .05); g.lineTo(x + W * .03, y + W * .02); g.lineTo(x - W * .03, y + W * .02); g.fill(); g.fillStyle = '#fff'; g.fillRect(x - W * .018, y - W * .012, W * .036, W * .01); } }
-  for (const r of M.rockets) { const y = Y(r.d), x = X(r.x); g.fillStyle = '#e8eef7'; g.fillRect(x - 4, y - 12, 8, 18); g.fillStyle = '#ff5a4a'; g.beginPath(); g.moveTo(x - 4, y - 12); g.lineTo(x, y - 20); g.lineTo(x + 4, y - 12); g.fill(); g.fillStyle = '#ffb02e'; g.fillRect(x - 3, y + 6, 6, 6 + Math.random() * 8); }
-  const car = (c, x, y, col) => { const w = W * .085, h = w * 1.5; g.save(); g.translate(x, y); g.rotate(c.spin > 0 ? c.spin * 9 : (c.me ? c.steer : 0) * .12);
-    g.fillStyle = '#000a'; g.fillRect(-w / 2 + 4, -h / 2 + 6, w, h);
-    g.fillStyle = '#111'; [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => g.fillRect(a * w * .55 - w * .12, b * h * .3 - h * .1, w * .24, h * .2));
-    g.fillStyle = col; g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, w * .3); g.fill(); g.strokeStyle = '#0b0f18'; g.lineWidth = 3; g.stroke();
-    g.fillStyle = '#0b0f18bb'; g.fillRect(-w * .32, -h * .22, w * .64, h * .18); g.fillStyle = '#e8eef7'; g.beginPath(); g.arc(0, h * .14, w * .2, 0, 7); g.fill();
-    if (c.turbo > 0) { g.fillStyle = '#ffb02e'; g.beginPath(); g.moveTo(-w * .25, h / 2); g.lineTo(0, h / 2 + h * .45 * (1 + Math.random() * .3)); g.lineTo(w * .25, h / 2); g.fill(); }
-    if (c.shield > 0) { g.strokeStyle = '#38d6ffcc'; g.lineWidth = 4; g.beginPath(); g.arc(0, 0, h * .7, 0, 7); g.stroke(); }
-    g.restore();
-    if (c.crash > 0) { g.font = `${Math.round(w * .7)}px sans-serif`; g.textAlign = 'center'; g.fillText('💫', x, y - h * .7); } };
-  M.cars.filter(c => !c.me).sort((a, b) => b.d - a.d).forEach(c => { const y = Y(c.d); if (y > -60 && y < H + 60) car(c, X(c.x), y, c.dr.col); });
-  car(me, X(me.x), baseY, carCol(S));
-  { const L = carLook(S), w = W * .085, h = w * 1.5, x = X(me.x); g.save(); g.translate(x, baseY); g.rotate(me.spin > 0 ? me.spin * 9 : me.steer * .12);
-    if (L.stripe) { g.fillStyle = '#ffffffcc'; (L.stripe === 1 ? [0] : [-.17, .17]).forEach(o => g.fillRect(o * w - w * .06, -h / 2 + 3, w * .12, h - 6)); }
-    if (L.spoiler) { g.fillStyle = '#1a1a1a'; const sw = L.spoiler === 2 ? w * 1.25 : w * .8; g.fillRect(-sw / 2, h / 2 - h * .06, sw, h * .12); if (L.spoiler === 2) { g.strokeStyle = '#ffd34a'; g.lineWidth = 2; g.strokeRect(-sw / 2, h / 2 - h * .06, sw, h * .12); } }
-    if (L.stk && STICKERS[L.stk]) { g.font = `${Math.round(w * .45)}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(STICKERS[L.stk].icon, 0, h * .32); g.textBaseline = 'alphabetic'; }
-    g.restore(); }
-  for (const p of RC.fx || []) { g.globalAlpha = clamp(p.t * 2, 0, 1); g.fillStyle = p.col; const s = p.sp ? W * .008 : W * .012; g.fillRect(X(p.x) - s / 2, Y(p.d) - s / 2, s, s); } g.globalAlpha = 1;
-  if (M.count > 0) { g.fillStyle = '#0008'; g.fillRect(0, 0, W, H); g.font = `bold ${Math.round(W * .2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = '#ffd34a'; g.fillText(M.count > .75 ? 'Klaar?' : 'GO!', W / 2, H * .45); }
 }
 function finishRace() {
   const M = RC.M; cancelAnimationFrame(RC.raf); AUD.fast = 1;
@@ -3965,6 +4125,159 @@ function initRace() {
   addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrDrive') return; if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = true; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = true; if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); useItem(); } });
   addEventListener('keyup', e => { if (e.key === 'ArrowLeft' || e.key === 'a') RC.keys.L = false; if (e.key === 'ArrowRight' || e.key === 'd') RC.keys.R = false; });
   addEventListener('resize', () => { if (CUR_SCREEN === 'scrDrive') sizeRace(); });
+}
+
+/* ===== screens/racegfx.js ===== */
+/* Race tekenen (v17): camera met vooruitkijken en uitzoomen, asfalt/staalvloer-tegels, bandensporen op een blijvende vervagende
+   grondlaag, snelheidsstrepen, stof, flakkerende uitlaatvlam, koplampen/raketten met gloed, olie met regenboogglans,
+   rookspoor + rode randwaarschuwing bij een raket van achteren. Alle coördinaten: x (0..1 baanbreedte), d (meters). */
+const CAM = { d: 0, off: 0, x: .5, z: 1, AY: .64 };
+const CAR_SPR = ['car1', 'car2', 'car4'];
+function raceGfxReset() { partClear(); juiceReset(); CAM.off = 0; CAM.z = 1; CAM.x = .5; CAM.d = RC.M ? RC.M.me.d : 0; RC.slot = null; GROUND.cleared = -1e9; GROUND.fadeT = 0; if (GROUND.c) GROUND.c.getContext('2d').clearRect(0, 0, GROUND.c.width, GROUND.c.height); RC.boxSeen = {}; gfxLoad(); }
+function camStep(M, dt) {
+  const me = M.me, sp = clamp(me.v / 60, 0, 1), k = 1 - Math.exp(-dt * 5);
+  CAM.off += (sp * 14 - CAM.off) * k;                                                     // vooruitkijken (m)
+  CAM.x += ((.5 + (me.x - .5) * .35) - CAM.x) * (1 - Math.exp(-dt * 4));                 // zacht meebewegen
+  CAM.z += ((1 - .14 * clamp((me.v - 20) / 40, 0, 1) - (me.turbo > 0 ? .04 : 0)) - CAM.z) * (1 - Math.exp(-dt * 2.5));   // uitzoomen bij snelheid
+  CAM.d = me.d + CAM.off;
+}
+// wereld → scherm (pixels van een canvas met breedte W en hoogte H)
+const camView = (W, H) => { const ppm = H / 120 * CAM.z; return { ppm, SX: x => W / 2 + (x - CAM.x) * W * CAM.z, SY: d => H * CAM.AY - (d - CAM.d) * ppm }; };
+// ---------- deeltjes (wereldcoördinaten) ----------
+function burst(c, col, n = 12, kind = 'spark') { if (!c) return; for (let i = 0; i < n; i++) { const a = Math.random() * 6.283, v = kind === 'spark' ? 8 + Math.random() * 22 : 2 + Math.random() * 5;
+  emit(kind, c.x, c.d, Math.cos(a) * v / 90, Math.sin(a) * v, kind === 'spark' ? .3 + Math.random() * .35 : kind === 'oil' ? .8 : .7 + Math.random() * .5, kind === 'spark' ? .5 : kind === 'oil' ? .9 + Math.random() * .8 : 1.6 + Math.random(), col); } }
+function boxBurst(M) { const me = M.me; burst(me, '#ffd34a', 14, 'spark'); for (let i = 0; i < 16; i++) emit('conf', me.x + (Math.random() - .5) * .08, me.d + 2, (Math.random() - .5) * .25, 6 + Math.random() * 14, .9, .45, pick(['#ffd34a', '#ff8a1a', '#38d6ff', '#fff'])); }
+function fxStep(M, dt) {
+  const me = M.me, cx = trackCx(M, me.d), off = Math.abs(me.x - cx) > TRACK_HW;
+  if (me.steer && me.v > 18 && Math.random() < .6) emit('spark', me.x - me.steer * .03, me.d - 2.5, -me.steer * (.1 + Math.random() * .2), -8 - Math.random() * 10, .3, .45, Math.random() < .5 ? '#ffd34a' : '#ff8a1a');
+  if ((off || me.spin > 0) && me.v > 6 && Math.random() < .8) emit('dust', me.x + (Math.random() - .5) * .04, me.d - 2.4, (Math.random() - .5) * .1, -3 - Math.random() * 3, .7, 1.4, off ? '#a08a66' : '#c9d2e0');
+  for (const c of M.cars) if (c.spin > 0 && Math.random() < .5) emit('smoke', c.x, c.d, (Math.random() - .5) * .1, -2, .6, 1.5, '#cfd8e8');
+  for (const r of M.rockets) if (!r.done && Math.random() < .9) emit('smoke', r.x + (Math.random() - .5) * .01, r.d - 1.5, (Math.random() - .5) * .03, -4, .6, 1.1, '#b9c2d0');
+  if (me.turbo > 0 && Math.random() < .7) emit('line', CAM.x + (Math.random() - .5) * 1.1, CAM.d + 20 + Math.random() * 50, 0, -60 - Math.random() * 30, .3, 1, '#fff6d8');
+  partStep(dt);
+  tracksStep(M, dt);
+}
+// ---------- bandensporen: blijvende, langzaam vervagende grondlaag (wereldvast, ring van 240 m) ----------
+const GROUND = { c: null, PPM: 4, LEN: 240, cleared: -1e9, fadeT: 0 };
+function groundRow(d) { const H = GROUND.PPM * GROUND.LEN; return ((H - (d * GROUND.PPM) % H) % H + H) % H; }
+function tracksStep(M, dt) {
+  if (Q.low) return;
+  if (!GROUND.c) GROUND.c = mkCanvas(256, GROUND.PPM * GROUND.LEN);
+  const G = GROUND.c, g = G.getContext('2d'), me = M.me, H = G.height;
+  // wat straks in beeld komt: leegmaken (oude sporen van 240 m terug)
+  const ahead = me.d + 150; if (GROUND.cleared < me.d) GROUND.cleared = me.d;
+  if (ahead > GROUND.cleared) { const y1 = groundRow(ahead), y0 = groundRow(GROUND.cleared); if (y1 <= y0) g.clearRect(0, y1, G.width, y0 - y1 + 1); else { g.clearRect(0, 0, G.width, y0 + 1); g.clearRect(0, y1, G.width, H - y1); } GROUND.cleared = ahead; }
+  GROUND.fadeT += dt; if (GROUND.fadeT > .25) { GROUND.fadeT = 0; g.globalCompositeOperation = 'destination-out'; g.fillStyle = 'rgba(0,0,0,.035)'; g.fillRect(0, 0, G.width, H); g.globalCompositeOperation = 'source-over'; }
+  for (const c of M.cars) { if (Math.abs(c.d - me.d) > 90) { c._tm = null; continue; }
+    const hard = c.spin > 0 || (c.me && c.steer && c.v > 18) || c.turbo > 0, a = hard ? .5 : .14;
+    const pts = [-.03, .03].map(o => [(c.x + o) * G.width, groundRow(c.d - 2.2)]);
+    if (c._tm && Math.abs(c._tm[0][1] - pts[0][1]) < 40) { g.strokeStyle = `rgba(10,10,14,${a})`; g.lineWidth = hard ? 3 : 2; g.beginPath(); for (let i = 0; i < 2; i++) { g.moveTo(...c._tm[i]); g.lineTo(...pts[i]); } g.stroke(); }
+    c._tm = pts; }
+}
+function drawGround(g, W, H, V) {
+  if (Q.low || !GROUND.c) return; const G = GROUND.c, PPM = GROUND.PPM, LEN = GROUND.LEN;
+  const d0 = CAM.d - (H - H * CAM.AY) / V.ppm - 2, d1 = CAM.d + H * CAM.AY / V.ppm + 2, x0 = V.SX(0), w = V.SX(1) - x0;
+  // in stukken zonder naad: [a,b] in meters
+  let a = d0; while (a < d1) { const seg = LEN - ((a % LEN) + LEN) % LEN, b = Math.min(d1, a + seg - .001); const ya = groundRow(b), yb = groundRow(a) || G.height, h = yb - ya;
+    if (h > 0) g.drawImage(G, 0, ya, G.width, h, x0, V.SY(b), w, V.SY(a) - V.SY(b)); a = b + .001; }
+}
+// ---------- voorgerenderde race-sprites ----------
+function oilSpr() { let c = SPR.get('oil'); if (c) return c; c = mkCanvas(96, 56); const g = c.getContext('2d');
+  g.fillStyle = '#07070b'; g.beginPath(); g.ellipse(48, 28, 46, 26, 0, 0, 7); g.ellipse(22, 34, 16, 12, 0, 0, 7); g.ellipse(74, 18, 14, 10, 0, 0, 7); g.fill(); SPR.set('oil', c);
+  const s = mkCanvas(96, 56), h = s.getContext('2d'), gr = h.createLinearGradient(10, 10, 86, 46); ['#ff4a6a', '#ffd34a', '#4aff9a', '#4ab0ff', '#b04aff'].forEach((col, i) => gr.addColorStop(i / 4, col));
+  h.fillStyle = gr; h.globalAlpha = .55; h.beginPath(); h.ellipse(44, 24, 26, 9, -.25, 0, 7); h.fill(); h.globalCompositeOperation = 'destination-in'; h.drawImage(c, 0, 0); SPR.set('oilsheen', s); return c; }
+function floorPat(g, name, tile, ox, oy) { if (!imgOk(name)) return null; const k = 'pat' + name; let p = SPR.get(k); if (!p || p.g !== g) { p = { g, pat: g.createPattern(IMG[name], 'repeat') }; SPR.set(k, p); }
+  const s = tile / IMG[name].naturalWidth; p.pat.setTransform(new DOMMatrix([s, 0, 0, s, ox, oy])); return p.pat; }
+// ---------- tekenen ----------
+function drawRace(M) {
+  const c = $('#rCanvas'), g = c.getContext('2d'), W = c.width, H = c.height, me = M.me, dpr = RC.dpr || 1, now = performance.now() / 1000;
+  const V = camView(W, H), { ppm, SX, SY } = V, [shx, shy] = juiceShake();
+  g.setTransform(1, 0, 0, 1, shx * dpr, shy * dpr);
+  // staalvloer naast de baan (scrollt mee)
+  const ft = W * .32 * CAM.z, fp = floorPat(g, 'floor', ft, SX(0) % ft, (CAM.d * ppm) % ft);
+  g.fillStyle = fp || '#2b3140'; g.fillRect(-20, -20, W + 40, H + 40); g.fillStyle = 'rgba(8,12,22,.45)'; g.fillRect(-20, -20, W + 40, H + 40);
+  // baan: één veelhoek met asfalt-patroon, randen met gevarenstrepen
+  const step = Math.max(6, Math.round(H / 90)), L = [], R = [];
+  for (let y = H + step; y > -step * 2; y -= step) { const d = CAM.d + (H * CAM.AY - y) / ppm, cx = trackCx(M, d); L.push([SX(cx - TRACK_HW), y, d]); R.push([SX(cx + TRACK_HW), y, d]); }
+  const hw = TRACK_HW * W * CAM.z, kerb = W * .028 * CAM.z, at = W * .4 * CAM.z;
+  g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); L.forEach(([x, y], i) => i ? g.lineTo(x - kerb - 6 * dpr, y) : g.moveTo(x - kerb - 6 * dpr, y)); for (let i = R.length - 1; i >= 0; i--) g.lineTo(R[i][0] + kerb + 6 * dpr, R[i][1]); g.fill();
+  const kp = hazardPat(g, 14 * dpr); kp.setTransform(new DOMMatrix([1, 0, 0, 1, 0, (CAM.d * ppm) % (14 * dpr)]));
+  g.fillStyle = kp; g.beginPath(); L.forEach(([x, y], i) => i ? g.lineTo(x - kerb, y) : g.moveTo(x - kerb, y)); for (let i = R.length - 1; i >= 0; i--) g.lineTo(R[i][0] + kerb, R[i][1]); g.fill();
+  g.fillStyle = floorPat(g, 'asphalt', at, SX(0) % at, (CAM.d * ppm) % at) || '#3a3f4a'; g.beginPath(); L.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); for (let i = R.length - 1; i >= 0; i--) g.lineTo(R[i][0], R[i][1]); g.fill();
+  drawGround(g, W, H, V);
+  // middenstrepen + finish
+  g.fillStyle = 'rgba(255,255,255,.16)'; for (let i = 0; i < L.length; i++) { const d = L[i][2]; if (Math.floor(d / 8) % 2) { const m = (L[i][0] + R[i][0]) / 2; g.fillRect(m - hw / 3 - dpr, L[i][1] - step, 2 * dpr, step + 1); g.fillRect(m + hw / 3 - dpr, L[i][1] - step, 2 * dpr, step + 1); } }
+  { const y = SY(M.len); if (y > -40 && y < H + 40) { const x0 = SX(trackCx(M, M.len) - TRACK_HW), sq = hw / 5; for (let r = 0; r < 2; r++) for (let k = 0; k < 10; k++) { g.fillStyle = (k + r) % 2 ? '#fff' : '#111'; g.fillRect(x0 + k * sq, y - sq * (r + 1) + sq, sq, sq); } } }
+  // patroonstrook: geel/zwarte band + glanzende pijlen (chevrons) naar de symbolen
+  for (const gt of [...M.gates, ...M.shortcuts]) { if (gt.st !== 'open' || !gt.rows[0]) continue; const d = gt.rows[0].d - 14, y = SY(d); if (y < -60 || y > H + 60) continue; const cx = SX(trackCx(M, d));
+    g.fillStyle = kp; g.fillRect(cx - hw, y - 5 * dpr, 2 * hw, 10 * dpr);
+    for (let k = 0; k < 3; k++) { const yy = SY(d + 4 + k * 3), sh = .35 + .65 * Math.max(0, Math.sin(now * 7 - k * 1.1)); g.strokeStyle = `rgba(255,211,74,${sh})`; g.lineWidth = 4 * dpr;
+      for (const lx of [-.62, 0, .62]) { const xx = cx + lx * hw; g.beginPath(); g.moveTo(xx - 12 * dpr, yy + 7 * dpr); g.lineTo(xx, yy - 3 * dpr); g.lineTo(xx + 12 * dpr, yy + 7 * dpr); g.stroke(); } } }
+  for (const s of M.shortcuts) { if (s.st !== 'hidden') continue; const d = s.d - 70, y = SY(d); if (y < -40 || y > H + 40) continue;
+    const x = SX(trackCx(M, d) + s.side * (TRACK_HW + .05)); g.font = `${Math.round(W * .06 * CAM.z)}px sans-serif`; g.textAlign = 'center'; g.fillText('⚙️', x, y); }
+  // obstakels
+  const os = oilSpr();
+  for (const o of M.obst) { const y = SY(o.d); if (y < -40 || y > H + 40) continue; const x = SX(trackCx(M, o.d) + o.off * TRACK_HW), u = W * CAM.z;
+    if (o.k === 'olie') { const w = u * .13, h = w * .58; g.drawImage(os, x - w / 2, y - h / 2, w, h); g.globalAlpha = .45 + .35 * Math.sin(now * 2.5 + o.d); g.globalCompositeOperation = 'lighter'; g.drawImage(SPR.get('oilsheen'), x - w / 2, y - h / 2, w, h); g.globalCompositeOperation = 'source-over'; g.globalAlpha = 1; if (o.by) drawGlow(g, x, y, w * .5, '#9a7cff', .35); }
+    else if (o.k === 'schroot') { drawShadow(g, x + 3 * dpr, y + 5 * dpr, u * .1, u * .04, .7); g.fillStyle = '#9aa4b2'; g.strokeStyle = '#0b0f18'; g.lineWidth = 2 * dpr; for (let i = 0; i < 3; i++) { g.beginPath(); g.arc(x + (i - 1) * u * .02, y + (i % 2) * 4 * dpr, u * .012, 0, 7); g.fill(); g.stroke(); } }
+    else { drawShadow(g, x + 4 * dpr, y + u * .025, u * .07, u * .03, .8); g.fillStyle = '#ff8a1a'; g.beginPath(); g.moveTo(x, y - u * .05); g.lineTo(x + u * .03, y + u * .02); g.lineTo(x - u * .03, y + u * .02); g.fill(); g.fillStyle = '#fff'; g.fillRect(x - u * .018, y - u * .012, u * .036, u * .01); } }
+  // deeltjes onder de auto's (stof/rook/olie)
+  const pmap = (x, d) => [SX(x), SY(d)];
+  // auto's
+  const cw = W * .085 * CAM.z, chh = cw * 1.5, sz = chh * 1.25;
+  const drawCar = (c, idx) => { const x = SX(c.x), y = SY(c.d); if (y < -sz || y > H + sz) return;
+    const rot = c.spin > 0 ? c.spin * 9 : (c.me ? c.steer : 0) * .12, col = c.me ? carCol(S) : c.dr.col, spr = tinted(c.me ? 'car3' : CAR_SPR[idx % 3], col);
+    drawShadow(g, x + 5 * dpr, y + 7 * dpr, cw * 1.35, chh * 1.05, .85);
+    g.save(); g.translate(x, y); g.rotate(rot);
+    // uitlaatvlam (flakkert), groter bij turbo
+    if (c.v > 4 || c.turbo > 0) { const f = (c.turbo > 0 ? 1.8 : .7) * (.75 + Math.random() * .5), fy = chh * .5; g.fillStyle = c.turbo > 0 ? '#ffd34a' : '#ff8a1a'; g.beginPath(); g.moveTo(-cw * .14, fy); g.lineTo(0, fy + chh * .28 * f); g.lineTo(cw * .14, fy); g.fill();
+      drawGlow(g, 0, fy + chh * .08 * f, cw * .45 * f, c.turbo > 0 ? '#ffb02e' : '#ff6a1a', .9); }
+    if (spr) g.drawImage(spr, -sz / 2, -sz / 2, sz, sz);
+    else { g.fillStyle = col; g.beginPath(); g.roundRect(-cw / 2, -chh / 2, cw, chh, cw * .3); g.fill(); g.strokeStyle = '#0b0f18'; g.lineWidth = 3; g.stroke(); }
+    if (c.me) { const Lk = carLook(S);   // ontwerp van Sam: strepen, spoiler, sticker
+      if (Lk.stripe) { g.fillStyle = 'rgba(255,255,255,.85)'; (Lk.stripe === 1 ? [0] : [-.17, .17]).forEach(o => g.fillRect(o * cw - cw * .06, -chh * .42, cw * .12, chh * .84)); }
+      if (Lk.spoiler) { g.fillStyle = '#1a1a1a'; const sw = Lk.spoiler === 2 ? cw * 1.25 : cw * .85; g.fillRect(-sw / 2, chh * .4, sw, chh * .1); if (Lk.spoiler === 2) { g.strokeStyle = '#ffd34a'; g.lineWidth = 2 * dpr; g.strokeRect(-sw / 2, chh * .4, sw, chh * .1); } }
+      if (Lk.stk && STICKERS[Lk.stk]) { g.font = `${Math.round(cw * .42)}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(STICKERS[Lk.stk].icon, 0, chh * .12); g.textBaseline = 'alphabetic'; } }
+    // koplampen (gloed: dubbel tekenen)
+    if (!Q.low) for (const hx of [-.3, .3]) drawGlow(g, hx * cw, -chh * .5, cw * .32, '#fff3c4', .7);
+    if (c.shield > 0) { g.strokeStyle = '#38d6ffcc'; g.lineWidth = 4 * dpr; g.beginPath(); g.arc(0, 0, chh * .7, 0, 7); g.stroke(); drawGlow(g, 0, 0, chh * .8, '#38d6ff', .25); }
+    g.restore();
+    if (c.crash > 0) { g.font = `${Math.round(cw * .7)}px sans-serif`; g.textAlign = 'center'; g.fillText('💫', x, y - chh * .7); } };
+  const others = M.cars.filter(c => !c.me);
+  others.slice().sort((a, b) => b.d - a.d).forEach(c => drawCar(c, others.indexOf(c)));
+  drawCar(me, 0);
+  // raketten: gloed + lijf + vlam
+  for (const r of M.rockets) { if (r.done) continue; const y = SY(r.d), x = SX(r.x); if (y < -40 || y > H + 40) continue; const u = 4 * dpr;
+    drawGlow(g, x, y + 4 * u, 7 * u, '#ff8a1a', .9); g.fillStyle = '#e8eef7'; g.fillRect(x - u, y - 3 * u, 2 * u, 4.5 * u); g.fillStyle = '#ff5a4a'; g.beginPath(); g.moveTo(x - u, y - 3 * u); g.lineTo(x, y - 5 * u); g.lineTo(x + u, y - 3 * u); g.fill();
+    g.fillStyle = '#ffd34a'; g.fillRect(x - .7 * u, y + 1.5 * u, 1.4 * u, (1.5 + Math.random() * 2) * u); }
+  partDraw(g, pmap, ppm);
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  // sfeer: vignet + gevarenstrepen op de schermranden
+  if (!Q.low) g.drawImage(vignetteSpr(W, H), 0, 0);
+  const sw = 7 * dpr, hp = hazardPat(g, 18 * dpr); hp.setTransform(new DOMMatrix([1, 0, 0, 1, 0, (CAM.d * ppm) % (18 * dpr)])); g.fillStyle = hp; g.fillRect(0, 0, sw, H); g.fillRect(W - sw, 0, sw, H);
+  // raket van achteren op jou af: rode rand onderin, knippert
+  if (M.rockets.some(r => !r.done && r.tgt === 'me' && r.d < me.d)) { g.globalAlpha = .55 + .45 * Math.sin(now * 18); g.drawImage(edgeWarnSpr(W, Math.round(H * .18)), 0, H - Math.round(H * .18)); g.globalAlpha = 1; RC.warn = true; } else RC.warn = false;
+  juiceFlash(g, W, H);
+  if (M.count > 0) { g.fillStyle = '#0008'; g.fillRect(0, 0, W, H); g.font = `bold ${Math.round(W * .2)}px 'Exo 2',sans-serif`; g.textAlign = 'center'; g.fillStyle = '#ffd34a'; g.fillText(M.count > .75 ? 'Klaar?' : 'GO!', W / 2, H * .45); }
+  RC.shake = [shx, shy];
+}
+// symbool-tegels en ❓-kisten als DOM-laag (zelfde camera, CSS-pixels)
+function drawTiles(M) {
+  const c = $('#rCanvas'), cw = c.clientWidth, ch = c.clientHeight, V = camView(cw, ch), sz = Math.round(Math.min(64, TRACK_HW * 2 * cw / 3 * .78) * CAM.z), want = {};
+  const put = (key, d, lane, html, cls) => { const y = V.SY(d); if (y < -sz || y > ch + sz) return; want[key] = 1; let el = RC.tiles[key];
+    if (!el) { el = document.createElement('div'); el.innerHTML = html; $('#rTiles').appendChild(el); RC.tiles[key] = el; }
+    if (el.className !== 'rtile ' + cls) el.className = 'rtile ' + cls; el.style.width = el.style.height = sz + 'px'; el.style.transform = `translate(${Math.round(V.SX(laneX(M, d, lane)) - sz / 2)}px,${Math.round(y - sz / 2)}px)`; };
+  for (const g of [...M.gates, ...M.shortcuts]) if (g.st === 'open' || g.st === 'ok' || g.st === 'solved') g.rows.forEach(r => r.tiles.forEach(t => put(`${g.kind}${g.d}:${r.d}:${t.lane}`, r.d, t.lane, tokenSVG(t.sym), (t.ok ? 'ok' : t.bad ? 'bad' : '') + ' sym')));
+  for (const b of M.boxes) b.lanes.forEach(l => put(`b${b.d}:${l}`, b.d, l, `<img src="gfx/itembox.webp" alt="❓" draggable="false">`, 'box' + (b.taken.me ? ' gone' : '')));
+  for (const k in RC.tiles) if (!want[k]) { RC.tiles[k].remove(); delete RC.tiles[k]; }
+  const sh = RC.shake || [0, 0]; $('#rTiles').style.transform = sh[0] || sh[1] ? `translate(${sh[0].toFixed(1)}px,${sh[1].toFixed(1)}px)` : '';
+}
+// ---------- item-HUD als fruitautomaat ----------
+function slotStart(it) { RC.slot = { it, t0: performance.now(), last: 0 }; const u = $('#rUse'); u.classList.add('slot'); u.disabled = true; }
+function slotTick() {
+  const s = RC.slot; if (!s) return false; const el = $('#rUseIc'), t = performance.now() - s.t0;
+  if (t < 600) { if (t - s.last > 60) { s.last = t; el.textContent = pick(Object.values(RACE_ITEMS)).icon; } return true; }
+  RC.slot = null; RC.itemKey = ''; const u = $('#rUse'); u.classList.remove('slot'); u.classList.remove('land'); void u.offsetWidth; u.classList.add('land'); SFX.place(); return false;
 }
 
 /* ===== screens/extra.js ===== */
