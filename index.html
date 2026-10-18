@@ -649,6 +649,29 @@ body.nofx .tiklane{animation:none}
 @media (max-width:380px){.gauges img.pzmach{display:none}}@media (min-width:700px) and (min-height:600px){.gauges img.pzmach{width:84px;height:84px}}
 .gauges img.pzmach{width:58px;height:58px;object-fit:contain;flex:none;filter:drop-shadow(0 6px 6px #000a)}
 .rrate{left:auto!important;right:8px;top:44px!important}
+
+/* v20: richten, wissels, opslagvakjes */
+.abtn.shoot .aimar{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none;opacity:0;transition:opacity .1s}
+.abtn.shoot .aimar::after{content:'';position:absolute;left:30px;top:-9px;border:9px solid transparent;border-left:16px solid #fff;filter:drop-shadow(0 0 3px #000)}
+.abtn.shoot.aiming .aimar{opacity:1}.abtn.shoot.aiming{box-shadow:0 0 0 8px #ff8a3b99,0 4px 0 rgba(0,0,0,.5)}
+.subbtn{position:relative;width:44px;height:44px;font-size:1.2em}.subbtn b{position:absolute;right:-4px;bottom:-4px;min-width:18px;height:18px;border-radius:9px;background:var(--amber,#ffb43b);color:#1b1200;font-size:12px;line-height:18px;text-align:center}
+.subbtn[disabled]{opacity:.4}.subbtn.pulse{animation:subpulse 1s infinite}
+@keyframes subpulse{0%,100%{box-shadow:0 0 0 0 #ff5a5aaa}50%{box-shadow:0 0 0 8px #ff5a5a00;transform:scale(1.08)}}
+.hpbar{display:block;height:7px;width:100%;border-radius:4px;background:#0b0f18;border:1px solid #2a3348;overflow:hidden}.hpbar i{display:block;height:100%}
+.subh{margin:.4em 0 .3em;font-weight:800}.subh small{font-weight:600;color:#9fb0c8;margin-left:6px}
+.subgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.subcard{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;border-radius:12px;background:#1a2233;border:2px solid #2f3a52;color:#fff;font:inherit;min-width:0}
+.subcard svg{width:44px;height:44px}.subcard b{font-size:.72em;line-height:1.1;overflow-wrap:anywhere}.subcard small{font-size:.66em;color:#c7d2e4}
+.subcard.sel{border-color:#ff5a5a;background:#3a1d24;box-shadow:0 0 0 2px #ff5a5a55}.subcard.bench:not([disabled]){border-color:#4fc28a}.subcard[disabled]{opacity:.45}
+.subrow{display:flex;gap:8px;justify-content:center;margin:.3em 0}.subchip{display:flex;flex-direction:column;align-items:center;width:64px;gap:2px}.subchip svg{width:40px;height:40px}
+.vakken{display:flex;flex-direction:column;gap:8px}
+.vak{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center;padding:10px;border-radius:14px;background:#1a2233;border:2px solid #2f3a52}
+.vak.on{border-color:#5dd46a;background:#16301f}.vak .sn{font-size:1.5em}.vak .si b{display:block}.vak .si small{color:#9fb0c8}
+.vak .sb{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}.vak .sb .btn{flex:1 1 auto;min-width:44px;min-height:42px;padding:6px 8px;font-size:.85em}
+.slot input{font:inherit;width:100%;padding:4px 8px;border-radius:8px;border:2px solid #38d6ff;background:#0b0f18;color:#fff}
+@media (max-height:500px){.vak{grid-template-columns:auto 1fr auto;padding:5px 8px}.vak .sb{grid-column:auto;flex-wrap:nowrap}.vakken{gap:4px}.vak .sb .btn{min-height:40px;padding:4px 8px}#slotBody .small-note{display:none}#ovSlots h2{margin:.1em 0}}
+.tslot{display:block;font-size:.7em;opacity:.85;font-weight:600}
+.tbtns .trow{display:flex;gap:8px}.tbtns .trow .btn{flex:1}
 </style>
 </head>
 <body>
@@ -659,6 +682,7 @@ body.nofx .tiklane{animation:none}
   <div class="titlechars"><div id="titleOpa"></div><div id="titleBliep"></div></div>
   <div class="tbtns">
     <button class="btn green" id="btnPlay">▶️ Spelen</button>
+    <div class="trow"><button class="btn white" id="btnNew">🆕 Nieuw spel</button><button class="btn purple" id="btnSlots">💾 Opslag</button></div>
     <button class="btn orange" id="btnSamen">👫 Samen spelen</button>
     <button class="btn white small parent-gate" id="btnParent" aria-label="Voor ouders: houd 2 seconden ingedrukt"><span class="fill"></span><span class="lbl">👪 Voor ouders <small>(houd 2 sec. vast)</small></span></button>
   </div>
@@ -806,10 +830,12 @@ body.nofx .tiklane{animation:none}
 </section>
 <section class="screen" id="scrMatch" aria-label="Wedstrijd">
   <canvas id="mCanvas"></canvas>
-  <div class="mhud"><button class="iconbtn" id="mPause" aria-label="Pauze">⏸️</button><div class="mscore" id="mScore"></div><div class="mkeep" id="mKeep"></div><span data-sndslot></span></div>
+  <div class="mhud"><button class="iconbtn" id="mPause" aria-label="Pauze">⏸️</button><button class="iconbtn subbtn" id="mSub" aria-label="Wissel">🔁<b id="mSubN">3</b></button><div class="mscore" id="mScore"></div><div class="mkeep" id="mKeep"></div><span data-sndslot></span></div>
   <div class="mctl" id="mCtl"></div>
 </section>
 <div id="ovHalf" class="overlay"><div class="ocard"><h2 id="halfTitle">Rust!</h2><div class="scroll" id="halfBody"></div><div class="obtns" id="halfBtns"></div></div></div>
+<div id="ovSlots" class="overlay"><div class="ocard"><h2>💾 Opslag</h2><div class="scroll" id="slotBody"></div><div class="obtns"><button class="btn white" id="slotNew">🆕 Nieuw spel</button><button class="btn green" id="slotClose">Klaar</button></div></div></div>
+<div id="ovSub" class="overlay"><div class="ocard"><h2>🔁 Wissel <span class="pill" id="subLeft"></span></h2><div class="scroll" id="subBody"></div><div class="obtns"><button class="btn green" id="subGo">▶️ Verder</button></div></div></div>
 <div id="fx" aria-hidden="true"></div>
 <div id="ovConfirm" class="overlay"><div class="ocard" style="width:min(460px,100%);text-align:center"><p id="cfText"></p><div class="orow" style="justify-content:center"><button class="btn white" id="cfNo">Nee</button><button class="btn red" id="cfYes">Ja</button></div></div></div>
 <div class="toast" id="toast"></div>
@@ -990,6 +1016,26 @@ let S = freshSave();
 function load() { try { const raw = localStorage.getItem(LS_KEY); S = raw ? migrate(JSON.parse(raw)) : freshSave(); if (typeof extraInit === 'function') extraInit(S); } catch (e) { S = freshSave(); } }
 function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) { } }
 function resetSave() { const keep = S.settings; S = freshSave(); S.settings = keep; if (typeof extraInit === 'function') extraInit(S); save(); }
+/* v20: opslagvakjes. Het actieve vakje leeft in LS_KEY (autosave zoals altijd); de andere vakjes staan in robofabriek_slotN.
+   Bestaande opslag = vakje 1 (geen kopie nodig). Bij wisselen wordt de tijd 'bevroren': opgeslagen vakjes produceren niet door. */
+const SLOT_META = 'robofabriek_slots', SLOT_N = 3, slotKey = n => 'robofabriek_slot' + n;
+let SLOTS = { active: 1, names: {} };
+function slotsLoad() { try { const m = JSON.parse(localStorage.getItem(SLOT_META) || 'null'); SLOTS = m && m.active >= 1 && m.active <= SLOT_N ? { active: m.active, names: m.names || {} } : { active: 1, names: {} }; } catch (e) { SLOTS = { active: 1, names: {} }; } return SLOTS; }
+function slotsSave() { try { localStorage.setItem(SLOT_META, JSON.stringify(SLOTS)); } catch (e) { } }
+function slotData(n) { if (n === SLOTS.active) return S; try { const r = localStorage.getItem(slotKey(n)); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
+const slotAuto = d => d ? `Dag ${d.day || 1} · 🪙 ${d.coins ?? 0}` : 'Leeg';
+function slotInfo(n) { const d = slotData(n), empty = !d || (n === SLOTS.active ? false : false); return { n, active: n === SLOTS.active, empty: !d, name: (SLOTS.names[n] || '').trim() || slotAuto(d), auto: slotAuto(d), custom: !!(SLOTS.names[n] || '').trim(), day: d ? d.day || 1 : 0, coins: d ? d.coins ?? 0 : 0, rep: d ? d.rep || 0 : 0 }; }
+function slotList() { slotsLoad(); return Array.from({ length: SLOT_N }, (_, i) => slotInfo(i + 1)); }
+// huidig spel als kopie in vakje n (n ≠ actief)
+function slotStore(n) { if (n === SLOTS.active) return false; S.lastSeen = Date.now(); save(); try { localStorage.setItem(slotKey(n), JSON.stringify(S)); } catch (e) { return false; } return true; }
+// vakje n laden: het huidige spel gaat naar zijn eigen vakje, n wordt actief
+function slotLoad(n) { slotsLoad(); if (n === SLOTS.active) return false; const raw = localStorage.getItem(slotKey(n)); if (!raw) return false;
+  S.lastSeen = Date.now(); save(); localStorage.setItem(slotKey(SLOTS.active), JSON.stringify(S)); localStorage.setItem(LS_KEY, raw); localStorage.removeItem(slotKey(n)); SLOTS.active = n; slotsSave();
+  load(); S.lastSeen = Date.now(); S.hiddenAt = 0; S.pendingDayEnd = false; save(); return true; }
+function slotDelete(n) { slotsLoad(); delete SLOTS.names[n]; if (n === SLOTS.active) resetSave(); else localStorage.removeItem(slotKey(n)); slotsSave(); return true; }
+function slotRename(n, name) { slotsLoad(); const t = String(name || '').replace(/[<>&"]/g, '').trim().slice(0, 20); if (t) SLOTS.names[n] = t; else delete SLOTS.names[n]; slotsSave(); return t; }
+// nieuw spel in een leeg vakje; het huidige spel blijft bewaard in zijn vakje
+function slotNew() { slotsLoad(); const free = slotList().find(x => x.empty && !x.active); if (!free) return 0; S.lastSeen = Date.now(); save(); localStorage.setItem(slotKey(SLOTS.active), JSON.stringify(S)); SLOTS.active = free.n; delete SLOTS.names[free.n]; slotsSave(); resetSave(); return free.n; }
 function hallState(h) { if (!S.halls[h]) S.halls[h] = { lv: {}, open: h === 1 ? 1 : 0 }; return S.halls[h]; }
 function stat(type) { if (!S.stats[type]) S.stats[type] = { ok: 0, bad: 0, hints: 0 }; return S.stats[type]; }
 
@@ -1982,10 +2028,11 @@ function mkRng(seed) { let x = seed >>> 0 || 1; return () => { x ^= x << 13; x >
 function newMatch(teams, o = {}) {
   const M = { t: 0, half: 1, score: [0, 0], over: false, pause: null, rng: mkRng(o.seed || 1), map: FIELD_MAPS[(o.map || 0) % FIELD_MAPS.length], bots: [], fx: [], events: [],
     ball: { x: 50, y: 30, vx: 0, vy: 0, owner: null, safe: false, last: null, shot: null }, keepers: [], play: [null, null], boost: [1, 1], stats: [{ shots: 0, ko: 0, falls: 0 }, { shots: 0, ko: 0, falls: 0 }],
-    kseq: [o.keeperSeq0 || null, o.keeperSeq1 || null], diff: o.diff ?? 1, kidSkill: o.kidSkill, div: o.div ?? 0, rubber: o.rubber !== false, kidx: [0, 0], khist: [[], []], ctrl: o.ctrl || [null, null], kid: o.kid || {}, assist: o.assist !== false };
+    kseq: [o.keeperSeq0 || null, o.keeperSeq1 || null], diff: o.diff ?? 1, kidSkill: o.kidSkill, div: o.div ?? 0, rubber: o.rubber !== false, kidx: [0, 0], khist: [[], []], ctrl: o.ctrl || [null, null], kid: o.kid || {}, assist: o.assist !== false, subs: [SUBS_MAX, SUBS_MAX], aiSub: o.aiSub || [false, o.rubber !== false], out: [], subT: 0 };
+  M.gs = o.gs ?? (M.rubber ? GAME_SPEED[M.diff] : 1);   // Makkelijk: alles (bal + robots + AI) trager, de klok loopt gewoon door
   teams.forEach((T, t) => T.bots.forEach((b, i) => {
     const s = b.st, maxhp = 3 + 1.5 * s.stevig;
-    M.bots.push({ team: t, i, name: b.name || '', look: b.look, st: s, glue: !!b.glue, x: 0, y: 0, vx: 0, vy: 0, fx: t ? -1 : 1, fy: 0, hp: maxhp, maxhp, down: 0, wobble: 0, cool: 0, think: 0, tx: 50, ty: 30, kos: 0, hidden: false, say: null, human: null });
+    M.bots.push({ team: t, i, ri: b.ri, name: b.name || '', look: b.look, st: s, glue: !!b.glue, wear: b.wear0 || 0, wear0: b.wear0 || 0, x: 0, y: 0, vx: 0, vy: 0, fx: t ? -1 : 1, fy: 0, hp: maxhp, maxhp, down: 0, wobble: 0, cool: 0, think: 0, tx: 50, ty: 30, kos: 0, hidden: false, say: null, human: null });
   }));
   for (let t = 0; t < 2; t++) { const sk = teams[t].keeper == null ? avgSlim(M, t) : teams[t].keeper; M.keepers.push({ team: t, x: t ? 97 : 3, y: 30, dive: null, diveT: 0, skill: sk }); }
   kickoff(M, 0); return M;
@@ -2006,11 +2053,18 @@ function kickoff(M, team) {
 const isMe = (M, b) => b.human != null || (M.kid[b.team] && b.kidCtl);
 // rubberband: rivalen zijn nooit veel sneller dan de robot die het kind bestuurt (vroege divisies duidelijk langzamer)
 const DIFF_CAP = [.95, 1.02, 1.2], DIFF_SLIM = [-.6, -.3, 1.8];
+// v20: Makkelijk = trager spel en een rustigere tegenstander (meer reactietijd, minder duwen en afpakken)
+const GAME_SPEED = [.78, 1, 1], AI_THINK = [1.25, 1, 1], AI_PUSH = [.6, 1, 1], AI_STEAL = [.75, 1, 1];
+// slijtage tijdens de wedstrijd (0 = heel, 1 = kapot): duwen, geduwd worden, tackles, sprinten, vallen. Stevigheid beschermt
+const SUBS_MAX = 3;
+const wearPen = b => clamp(((b.wear || 0) - .2) / .8, 0, 1);
+function addWear(M, b, n) { const g = 1 / (1 + .3 * b.st.stevig) * (b.st.stevig >= 5 ? .4 : 1); b.wear = Math.min(1.2, (b.wear || 0) + n * g * (M.wearMul ?? 1)); }
+const aiTeam = (M, t) => !(M.ctrl || []).includes(t) && !M.kid[t];
 function vmax(M, b) {
   let v = (M.play[1 - b.team] && M.play[1 - b.team].until > M.t ? .55 : 1) * (13 + 2.6 * b.st.snel);
   if (M.rubber && b.team === 1) { const ref = 13 + 2.6 * Math.max(...M.bots.filter(x => x.team === 0).map(x => x.st.snel)); v = Math.min(v, ref * (DIFF_CAP[M.diff] - .03 * (3 - M.div))); }
   if (isMe(M, b)) { if (b.sprintT > 0) v *= 1.35; else { const o = M.ball.owner; if (o && o.team !== b.team && dist(o, b) < 16) v *= 1.08; } }
-  return v * (b.wobble > 0 ? .45 : 1) * M.boost[b.team] * (M.ball.owner === b ? .86 : 1);
+  return v * (b.wobble > 0 ? .45 : 1) * M.boost[b.team] * (M.ball.owner === b ? .86 : 1) * (1 - .32 * wearPen(b));
 }
 const goalX = t => t ? 0 : FW;
 const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
@@ -2025,7 +2079,7 @@ function shoot(M, b, aim, power = 1) {
   if (!side && b.aimRead) side = readKeeper(M, b.team); b.aimRead = false;
   if (!side) side = (kp.y > 30 ? 'L' : 'R');            // richt-hulp: de kant waar de keeper niet staat
   const ty = 30 + (side === 'L' ? -6.5 : 6.5) + (M.rng() - .5) * (human && M.assist ? 2 : 2 * (5 - .6 * b.st.slim) * (M.rubber && b.team === 1 ? (M.score[1] - M.score[0] >= 2 ? 1.6 : 1) * [1.3, 1, .9][M.diff] : 1));
-  const sp = (40 + 5 * b.st.sterk) * Math.min(1.15, power), d = Math.hypot(gx - b.x, ty - b.y);
+  const sp = (40 + 5 * b.st.sterk) * Math.min(1.15, power) * (1 - .2 * wearPen(b)), d = Math.hypot(gx - b.x, ty - b.y);
   B.owner = null; B.vx = (gx - b.x) / d * sp; B.vy = (ty - b.y) / d * sp; B.last = b; B.safe = false; B.shot = { team: b.team, side, y: ty }; b.cool = .5;
   M.stats[b.team].shots++; M.events.push({ type: 'shot', team: b.team });
   // keeper kiest een duik: rivalen volgen hun patroon, anders een gok (beter met slimmer)
@@ -2057,6 +2111,16 @@ function aimShot(M, b, dx, dy, power = 1) {
   const sp = (34 + 5 * b.st.sterk) * power; B.owner = null; B.vx = ux * sp; B.vy = uy * sp; B.last = b; B.safe = false; B.shot = null; B.passTo = null; b.cool = .4;
   M.stats[b.team].shots++; M.events.push({ type: 'kick', team: b.team }); return true;
 }
+// v20: schieten zonder te richten = automatisch. Op de helft van de tegenstander: op doel (naar de open hoek).
+// Op je eigen helft: pass naar de best staande vrije teamgenoot verder naar voren (geen? dan toch richting doel)
+function autoTarget(M, b) {
+  const dir = b.team ? -1 : 1, gx = goalX(b.team), opps = M.bots.filter(o => o.team !== b.team && o.down <= 0);
+  if ((b.x - 50) * dir >= 0) { const kp = M.keepers[1 - b.team]; let side = (M.radar && b.team === 0) || b.aimRead ? readKeeper(M, b.team) : null; if (!side) side = kp.y > 30 ? 'L' : 'R'; return { kind: 'goal', side, x: gx, y: 30 + (side === 'L' ? -6.5 : 6.5) }; }
+  const free = o => !opps.some(x => dist(x, o) < 5), mates = M.bots.filter(o => o.team === b.team && o !== b && o.down <= 0 && (o.x - b.x) * dir > 2);
+  const best = mates.map(o => ({ o, sc: (o.x - b.x) * dir + (free(o) ? 20 : 0) - .3 * Math.abs(o.y - b.y) - (opps.some(x => dist(x, o) < 3) ? 30 : 0) })).sort((p, q) => q.sc - p.sc)[0];
+  if (best) return { kind: 'pass', to: best.o, x: best.o.x, y: best.o.y };
+  const kp = M.keepers[1 - b.team], side = kp.y > 30 ? 'L' : 'R'; return { kind: 'goal', side, x: gx, y: 30 + (side === 'L' ? -6.5 : 6.5) };
+}
 function push(M, b) {
   if (b.cool > 0 || b.down > 0) return false; b.cool = .8;
   const opp = M.bots.filter(o => o.team !== b.team && o.down <= 0 && dist(o, b) < (isMe(M, b) ? 7.5 : 5.5)).sort((p, q) => dist(p, b) - dist(q, b))[0];
@@ -2064,8 +2128,8 @@ function push(M, b) {
   const d = dist(opp, b) || 1, k = (16 + 4 * b.st.sterk) / (1 + .25 * opp.st.verd);
   opp.vx += (opp.x - b.x) / d * k; opp.vy += (opp.y - b.y) / d * k;
   let dmg = Math.max(.4, 1 + .4 * b.st.sterk - .3 * opp.st.verd) * (isMe(M, b) ? 1.6 : 1); if (opp.st.stevig >= 5) dmg *= .3;
-  opp.hp -= dmg; if (M.ball.owner === opp) { M.ball.owner = null; M.ball.vx = opp.vx * .6; M.ball.vy = opp.vy * .6; opp.cool = .7; }
-  if (opp.hp <= 0) { opp.down = 2.4; opp.hp = opp.maxhp; opp.kos++; M.stats[b.team].ko++; sayAt(M, opp, KO_LINES[Math.floor(M.rng() * KO_LINES.length)], '#ffb43b'); M.events.push({ type: 'ko', team: b.team, bot: opp }); }
+  opp.hp -= dmg; addWear(M, opp, .07 * dmg); addWear(M, b, .025); if (M.ball.owner === opp) { M.ball.owner = null; M.ball.vx = opp.vx * .6; M.ball.vy = opp.vy * .6; opp.cool = .7; }
+  if (opp.hp <= 0) { opp.down = 2.4; opp.hp = opp.maxhp; opp.kos++; addWear(M, opp, .12); M.stats[b.team].ko++; sayAt(M, opp, KO_LINES[Math.floor(M.rng() * KO_LINES.length)], '#ffb43b'); M.events.push({ type: 'ko', team: b.team, bot: opp }); }
   else M.events.push({ type: 'bump' });
   return true;
 }
@@ -2074,7 +2138,7 @@ const kidBot = (M, t) => M.bots.find(b => b.team === t && b.kidCtl);
 function aiThink(M, b) {
   const B = M.ball, own = B.owner, mates = M.bots.filter(o => o.team === b.team && o !== b), opps = M.bots.filter(o => o.team !== b.team);
   const kid = M.kid[b.team] && b.kidCtl, sl = (kid ? b.st.slim + (M.kidSkill ?? -2) : b.st.slim) + (M.rubber && b.team === 1 ? DIFF_SLIM[M.diff] - (M.score[0] - M.score[1] <= -2 ? 0 : M.score[1] - M.score[0] >= 2 ? 2.3 : 0) : 0), dir = b.team ? -1 : 1, gx = goalX(b.team);
-  b.think = Math.max(.12, .55 - .07 * sl) * (.7 + .6 * M.rng());
+  b.think = Math.max(.12, .55 - .07 * sl) * (.7 + .6 * M.rng()) * (M.rubber && b.team === 1 ? AI_THINK[M.diff] : 1);
   if (kid && M.kidSkill <= -3 && M.rng() < .31) { b.tx = clamp(b.x + (M.rng() - .5) * 30, 4, 96); b.ty = clamp(b.y + (M.rng() - .5) * 30, 4, 56); b.think = .7; return; } // onhandige beginner (alleen sim)
   if (own === b) {
     const dg = Math.hypot(gx - b.x, 30 - b.y), press = opps.some(o => o.down <= 0 && dist(o, b) < 6);
@@ -2090,7 +2154,7 @@ function aiThink(M, b) {
   // bal los of bij de tegenstander: dichtstbijzijnde jaagt, de rest dekt
   const target = own || B, chaser = [b, ...mates].filter(m => m.down <= 0 && !m.human).sort((p, q) => dist(p, target) - dist(q, target))[0];
   const humanChasing = mates.some(m => m.human != null && dist(m, target) < dist(b, target));
-  if (chaser === b && !(humanChasing && own)) { b.tx = target.x + (B.vx || 0) * .15 * Math.max(0, sl) / 3; b.ty = target.y; if (own && dist(b, own) < 4.5 && M.rng() < .35 + .12 * sl) push(M, b); return; }
+  if (chaser === b && !(humanChasing && own)) { b.tx = target.x + (B.vx || 0) * .15 * Math.max(0, sl) / 3; b.ty = target.y; if (own && dist(b, own) < 4.5 && M.rng() < (.35 + .12 * sl) * (M.rubber && b.team === 1 ? AI_PUSH[M.diff] : 1)) push(M, b); return; }
   const lane = [30, 18, 42][b.i % 3], ownGoal = goalX(1 - b.team);
   b.tx = clamp((target.x + ownGoal) / 2 + (b.i === 0 ? dir * 6 : 0), 6, 94); b.ty = (lane + target.y) / 2;
 }
@@ -2102,7 +2166,8 @@ function step(M, dt, inputs = []) {
   M.events.length = 0;   // events zijn per stap (anders vuurt de goal-confetti elke frame opnieuw tijdens het juichen)
   if (M.cele > 0) { M.cele -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); if (M.cele <= 0) startCount(M, null, true); return; }
   if (M.count > 0) { const before = Math.ceil(M.count); M.count -= dt; M.fx = M.fx.filter(f => (f.t -= dt) > 0); const now = Math.ceil(M.count); const tick = M.countLen / 3, b2 = Math.ceil((M.count + dt) / tick), n2 = Math.ceil(Math.max(0, M.count) / tick); if (b2 !== n2) { M.events.push({ type: 'count', n: M.quick ? (n2 ? 1 : 0) : n2 }); if (n2 === 0) M.fx.push({ x: 50, y: 30, txt: 'GO!', t: .45, col: '#5dff8a', big: true }); } return; }
-  M.t += dt; M.events.length = 0; const B = M.ball;
+  M.t += dt; M.events.length = 0; const B = M.ball; const rdt = dt; dt *= M.gs;   // dt = speltijd (trager op Makkelijk), rdt = klok
+  aiSubs(M, rdt);
   if (M.half === 1 && M.t >= HALF_LEN) { M.pause = 'rust'; M.half = 2; return; }
   if (M.t >= 2 * HALF_LEN) { M.over = true; return; }
   // wie bestuurt een mens? automatisch wisselen naar de robot het dichtst bij de bal (solo/co-op met 1 per team)
@@ -2116,16 +2181,18 @@ function step(M, dt, inputs = []) {
   for (const b of M.bots) {
     b.cool -= dt; if (b.sprintT > 0) b.sprintT -= dt; if (b.down > 0) { b.down -= dt; b.vx *= .8; b.vy *= .8; continue; } if (b.wobble > 0) b.wobble -= dt;
     // vanzelf uit elkaar vallen (slechte, vroege robots)
-    if (!b.glue && b.st.stevig < 2 && M.rng() < dt * .022 * (2 - b.st.stevig) * (Math.hypot(b.vx, b.vy) > 6 ? 1 : .3)) { b.wobble = 1.6; b.falls = (b.falls || 0) + 1; M.stats[b.team].falls++; sayAt(M, b, FALL_LINES[Math.floor(M.rng() * FALL_LINES.length)], '#ff9f9f'); if (B.owner === b) { B.owner = null; B.vx = b.vx; B.vy = b.vy; b.cool = .8; } M.events.push({ type: 'fall', bot: b }); }
+    if (!b.glue && b.st.stevig < 2 && M.rng() < dt * .022 * (2 - b.st.stevig) * (Math.hypot(b.vx, b.vy) > 6 ? 1 : .3)) { b.wobble = 1.6; b.falls = (b.falls || 0) + 1; M.stats[b.team].falls++; sayAt(M, b, FALL_LINES[Math.floor(M.rng() * FALL_LINES.length)], '#ff9f9f'); if (B.owner === b) { B.owner = null; B.vx = b.vx; B.vy = b.vy; b.cool = .8; } addWear(M, b, .035); M.events.push({ type: 'fall', bot: b }); }
+    if (Math.hypot(b.vx, b.vy) > 8) addWear(M, b, .0007 * dt * (b.sprintT > 0 ? 3 : 1));
     let ax, ay; const vm = vmax(M, b);
     if (b.human != null) { const I = inputs[b.human] || {}; const m = Math.hypot(I.mx || 0, I.my || 0); ax = m > .15 ? (I.mx / Math.max(1, m)) * vm : 0; ay = m > .15 ? (I.my / Math.max(1, m)) * vm : 0;
       if (!B.owner && B.passTo === b && dist(b, B) < 40) { const d = Math.hypot(B.x - b.x, B.y - b.y) || 1; ax = (B.x - b.x) / d * vm; ay = (B.y - b.y) / d * vm; } // bal komt naar je toe: vanzelf naar de bal lopen
-      if (m > .3) { b.aimX = I.mx / m; b.aimY = I.my / m; }
+      if (I.aim) { const am = Math.hypot(I.ax, I.ay) || 1; b.aimX = I.ax / am; b.aimY = I.ay / am; b.aimLock = true; } else { b.aimLock = false; if (m > .3) { b.aimX = I.mx / m; b.aimY = I.my / m; } }
       if (B.owner === b) b.passTgt = passTarget(M, b, I.mx, I.my); else b.passTgt = null;
-      if (I.shoot) { if (B.owner === b) aimShot(M, b, I.mx, I.my, I.power || 1); else if (B.owner && B.owner.team === b.team) pass(M, B.owner, b); }
+      b.charging = !!I.charging; b.autoT = B.owner === b && !I.aim ? autoTarget(M, b) : null;   // voor de pijl tijdens het opladen
+      if (I.shoot) { if (B.owner === b) { if (I.aim) aimShot(M, b, I.ax, I.ay, I.power || 1); else { const at = autoTarget(M, b); if (at.kind === 'pass') { if (pass(M, b, at.to)) { at.to.human = b.human; b.human = null; at.to.sw = M.t; b.passTgt = null; M.events.push({ type: 'pass', team: b.team }); continue; } } else shoot(M, b, at.side, I.power || 1); } } else if (B.owner && B.owner.team === b.team) pass(M, B.owner, b); }
       if (I.pass) { if (B.owner === b) { const to = b.passTgt || passTarget(M, b, I.mx, I.my); if (to && pass(M, b, to)) { to.human = b.human; b.human = null; to.sw = M.t; b.passTgt = null; M.events.push({ type: 'pass', team: b.team }); continue; } } else if (B.owner && B.owner.team === b.team) pass(M, B.owner, b); }
       if (I.push) push(M, b);
-      if (I.sprint && !(b.sprintCool > M.t)) { b.sprintT = 1.3; b.sprintCool = M.t + 5; sayAt(M, b, '💨 Turbo!', '#38d6ff'); }
+      if (I.sprint && !(b.sprintCool > M.t)) { b.sprintT = 1.3; b.sprintCool = M.t + 5; addWear(M, b, .045); sayAt(M, b, '💨 Turbo!', '#38d6ff'); }
       if (I.play && B.owner && B.owner.team === b.team && M.playLv && M.playLv[b.team] && !(M.playCool > M.t)) { M.play[b.team] = { left: M.playLv[b.team] + 1, until: M.t + 4 }; M.playCool = M.t + 15; sayAt(M, b, '📋 Spelzet!', '#38d6ff'); M.events.push({ type: 'play' }); } }
     else { b.think -= dt; if (b.think <= 0 || B.owner === b && b.think > .3) aiThink(M, b); let dx = b.tx - b.x, dy = b.ty - b.y; const d = Math.hypot(dx, dy); const sp = d > 1.5 ? vm : vm * d / 1.5;
       if (d > 2) { const ux = dx / d, uy = dy / d, cr = solid(M, b.x + ux * 4, b.y + uy * 4, 1.6) || solid(M, b.x + ux * 2, b.y + uy * 2, 1.6);
@@ -2153,7 +2220,7 @@ function step(M, dt, inputs = []) {
   if (B.owner) { const o = B.owner; if (o.down > 0) B.owner = null; else { B.x = o.x + o.fx * 1.8; B.y = o.y + o.fy * 1.8; if (solid(M, B.x, B.y, .3)) { B.x = o.x; B.y = o.y; } B.vx = o.vx; B.vy = o.vy;
       const thief = M.bots.find(x => x.team !== o.team && x.down <= 0 && x.cool <= 0 && dist(x, o) < 2.8 && !x.human);
       const hthief = M.bots.find(x => x.team !== o.team && x.down <= 0 && x.cool <= 0 && dist(x, o) < 2.8 && x.human != null);
-      const confused = M.play[o.team] && M.play[o.team].until > M.t; const th = thief || hthief; if (th && !confused && M.rng() < dt * (.9 + .35 * th.st.verd - .2 * o.st.verd + (isMe(M, th) ? .8 : 0)) * (isMe(M, o) && M.rubber ? .7 : 1)) { B.owner = th; o.cool = .6; th.cool = .3; B.shot = null; } } }
+      const confused = M.play[o.team] && M.play[o.team].until > M.t; const th = thief || hthief; if (th && !confused && M.rng() < dt * (.9 + .35 * th.st.verd - .2 * o.st.verd + (isMe(M, th) ? .8 : 0)) * (isMe(M, o) && M.rubber ? .7 : 1) * (M.rubber && th.team === 1 ? AI_STEAL[M.diff] : 1) * (1 - .4 * wearPen(th))) { B.owner = th; o.cool = .6; th.cool = .3; B.shot = null; addWear(M, o, .04); addWear(M, th, .015); M.events.push({ type: 'tackle' }); } } }
   else {
     B.x += B.vx * dt; B.y += B.vy * dt; const f = Math.pow(.55, dt); B.vx *= f; B.vy *= f;
     if (B.y < .8 || B.y > FH - .8) { B.vy *= -.8; B.y = clamp(B.y, .8, FH - .8); }
@@ -2178,6 +2245,26 @@ function step(M, dt, inputs = []) {
   for (const k of M.keepers) if (k.dive && !B.shot && !(k.diveT > 0)) { k.dive = null; }
   M.fx = M.fx.filter(f => (f.t -= dt) > 0);
 }
+// ---- wissels tijdens de wedstrijd (max SUBS_MAX per team) ----
+// bot = de robot op het veld (index k), nb = de nieuwe robot {name, look, st, glue, ri, wear0}. De oude robot gaat met zijn slijtage naar M.out
+function subIn(M, k, nb) {
+  const b = M.bots[k]; if (!b || M.subs[b.team] <= 0) return false; M.subs[b.team]--;
+  M.out.push({ team: b.team, ri: b.ri, kos: b.kos, falls: b.falls || 0, wear: b.wear, wear0: b.wear0 || 0 });
+  const maxhp = 3 + 1.5 * nb.st.stevig;
+  Object.assign(b, { name: nb.name, look: nb.look, st: nb.st, glue: !!nb.glue, ri: nb.ri, wear: nb.wear0 || 0, wear0: nb.wear0 || 0, kos: 0, falls: 0, hp: maxhp, maxhp, wobble: 0, sprintT: 0 });
+  if (M.ball.owner === b && b.down > 0) M.ball.owner = null;
+  sayAt(M, b, '🔁 Wissel!', '#5dff8a'); M.events.push({ type: 'sub', team: b.team, bot: b }); return true;
+}
+// de computer wisselt een kapotte robot (niet als hij de bal heeft)
+function aiSubs(M, dt) {
+  M.subT = (M.subT || 0) - dt; if (M.subT > 0) return; M.subT = 1;
+  for (let t = 0; t < 2; t++) { if (!M.aiSub[t] || M.subs[t] <= 0 || M.t < 15) continue;
+    const k = M.bots.findIndex(b => b.team === t && b.wear > .72 && M.ball.owner !== b && b.down <= 0); if (k < 0) continue;
+    const b = M.bots[k], n = (M.benchN = (M.benchN || 3) + 1), nb = M.bench && M.bench[t] ? M.bench[t](M, b) : { name: b.name.replace(/\d+$/, n), look: b.look, st: b.st, glue: b.glue, ri: b.ri, wear0: 0 };
+    if (nb) subIn(M, k, nb); }
+}
+// alle robots die gespeeld hebben (ook de gewisselde), met hun slijtage, voor de schade na afloop
+function matchPlayers(M, t) { return M.out.filter(o => o.team === t).concat(M.bots.filter(b => b.team === t).map(b => ({ team: t, ri: b.ri, kos: b.kos, falls: b.falls || 0, wear: b.wear, wear0: b.wear0 || 0 }))); }
 // ---- teams opbouwen uit de opslag ----
 function botStats(r, cap) {
   const s = {}; for (const k of ['snel', 'slim', 'sterk', 'verd', 'stevig']) s[k] = Math.min(r.lv[k], cap ?? 9);
@@ -2186,7 +2273,8 @@ function botStats(r, cap) {
   if (r.dmg) { s.snel = Math.max(0, s.snel - .5 * r.dmg); s.stevig = Math.max(0, s.stevig - .5 * r.dmg); }
   return s;
 }
-function playerTeam(fb) { return { bots: fb.lineup.map(i => fb.robots[i]).map(r => ({ name: r.name, look: r.look, st: botStats(r), glue: r.gear === 'superlijm', id: r.id })), keeper: 1 + .5 * (fb.keeperLv || 0) }; }
+const benchBot = (fb, ri) => { const r = fb.robots[ri]; return { name: r.name, look: r.look, st: botStats(r), glue: r.gear === 'superlijm', id: r.id, ri, wear0: Math.min(.6, .14 * (r.dmg || 0)) }; };
+function playerTeam(fb) { return { bots: fb.lineup.map(ri => benchBot(fb, ri)), keeper: 1 + .5 * (fb.keeperLv || 0) }; }
 function rivalTeam(id) { const R = RIVALS[id]; return { bots: [0, 1, 2].map(i => ({ name: R.name + ' ' + (i + 1), look: { rival: id }, st: Object.assign({}, R.st) })), keeper: R.st.slim }; }
 
 /* ===== game/team.js ===== */
@@ -2208,7 +2296,9 @@ function fbDaily(st, r) { if (!st.football || !fbUnlocked(st)) return 0; fbInit(
 const maxLv = st => DIVS[st.football.div].maxLv;
 function fbUpCost(st, ri, stat) { const r = st.football.robots[ri], lv = r.lv[stat]; return lv >= maxLv(st) ? null : UP_COST[lv]; }
 function fbUpgrade(st, ri, stat) { const c = fbUpCost(st, ri, stat); if (c == null || !spendKas(st, c)) return false; st.football.robots[ri].lv[stat]++; return true; }
-const repairCost = (st, r) => r.dmg * (st.machines.test.owned ? 12 : 20);
+// v20: schade komt vaker voor, dus repareren is goedkoper (en schaalt mee met de divisie)
+const REPAIR_PER = [10, 15, 20, 25];
+const repairCost = (st, r) => Math.round(r.dmg * REPAIR_PER[st.football.div || 0] * (st.machines.test.owned ? .6 : 1));
 function repair(st, ri) { const r = st.football.robots[ri], c = repairCost(st, r); if (!r.dmg || !spendKas(st, c)) return false; r.dmg = 0; return true; }
 const TRAIN_COST = 15;
 function canTrain(st, ri) { return st.football.trained[ri] !== st.day && st.football.kas >= TRAIN_COST; }
@@ -2265,7 +2355,9 @@ function leagueTable(st, L) {
 function applyMatch(st, res, mode) {
   const f = st.football, D = DIVS[f.div], won = res.score[0] > res.score[1], draw = res.score[0] === res.score[1];
   const out = { won, draw, prize: 0, dmg: [], promoted: false, champion: false, stay: false, pts: 0 };
-  f.lineup.forEach((ri, k) => { const r = f.robots[ri], kos = res.kos[k] || 0, falls = res.falls[k] || 0; const add = Math.min(2, kos + (falls >= 2 ? 1 : 0)); r.dmg = Math.min(3, r.dmg + add); r.fit = 0; if (add) out.dmg.push([ri, add]); });
+  // schade: KO's, vaak uit elkaar vallen en slijtage tijdens de wedstrijd (v20). res.per = iedereen die gespeeld heeft (ook gewisseld)
+  const per = res.per || f.lineup.map((ri, k) => ({ ri, kos: res.kos[k] || 0, falls: res.falls[k] || 0, wear: 0, wear0: 0 })), seen = new Set();
+  for (const p of per) { const r = f.robots[p.ri]; if (!r) continue; const add = dmgAdd(p); if (!seen.has(p.ri)) { r.fit = 0; seen.add(p.ri); } if (!add) continue; const before = r.dmg; r.dmg = Math.min(3, r.dmg + add); if (r.dmg > before) { const e = out.dmg.find(x => x[0] === p.ri); if (e) e[1] += r.dmg - before; else out.dmg.push([p.ri, r.dmg - before]); } }
   if (mode === 'versus') { out.prize = addKas(st, 15); return out; }
   const pay = FB_DIFF[fbDiff(st)].pay; out.diff = fbDiff(st); out.prize = addKas(st, Math.round((won ? D.prize : draw ? D.prize / 2 : D.prize / 4) * pay)); if (won) st.rep += 3; else if (draw) st.rep += 1; f.lastLost = !won && !draw;
   f.divRes.push(won ? 3 : draw ? 1 : 0); f.history = f.history.concat([{ day: st.day, div: f.div, score: res.score, rival: D.rival }]).slice(-20);
@@ -2278,6 +2370,8 @@ function applyMatch(st, res, mode) {
   }
   return out;
 }
+function dmgAdd(p) { return Math.min(2, (p.kos || 0) + ((p.falls || 0) >= 3 ? 1 : 0) + Math.floor(Math.max(0, (p.wear || 0) - (p.wear0 || 0)) / WEAR_PER_DMG)); }
+const WEAR_PER_DMG = .6;
 const divPoints = st => st.football.divRes.reduce((a, b) => a + b, 0);
 
 /* ===== game/mini.js ===== */
@@ -3104,7 +3198,7 @@ const INTRO = [
   { who: 'opa', name: 'Opa Tinus', t: 'Elke machine werkt met een patroon. Zet de patronen goed, maak mooie robots en verkoop ze. Van het geld maak je de fabriek groter. Wie weet word jij de beste robotbaas van het land!' }
 ];
 let introI = 0;
-function goTitle() { GEN++; hush(); show('scrTitle'); musicFor('scrTitle'); $('#titleBliep').innerHTML = bliepPic('yay'); $('#titleOpa').innerHTML = opaSVG('knipoog'); $('#btnPlay').textContent = S.introSeen ? '▶️ Naar mijn fabriek' : '▶️ Spelen'; }
+function goTitle() { GEN++; hush(); show('scrTitle'); musicFor('scrTitle'); $('#titleBliep').innerHTML = bliepPic('yay'); $('#titleOpa').innerHTML = opaSVG('knipoog'); const sl = titleSlot(); $('#btnPlay').innerHTML = `${S.introSeen ? '▶️ Naar mijn fabriek' : '▶️ Spelen'}${sl ? `<small class="tslot">💾 ${sl.n}. ${sl.name}</small>` : ''}`; }
 function startPlay() {
   if (!S.introSeen) { introI = 0; show('scrIntro'); renderIntro(); return; }
   if (!S.placement.done) return startPlacement();
@@ -3506,7 +3600,7 @@ function endTik() {
 
 /* ===== screens/voetbal.js ===== */
 /* Stadion, wedstrijd (canvas + touch), rust, uitslag (fase C). */
-const FB = { hold: [null, null], M: null, mode: 'solo', raf: 0, acc: 0, last: 0, inp: [{}, {}], keys: {}, view: null, sel: 0, tab: 'opst', boost: 1, ended: false };
+const FB = { aimSet: [null, null], aim: [null, null], lock: [null, null], keyAim: [false, false], mouse: null, mouseAim: false, drag: [null, null], hold: [null, null], M: null, mode: 'solo', raf: 0, acc: 0, last: 0, inp: [{}, {}], keys: {}, view: null, sel: 0, tab: 'opst', boost: 1, ended: false };
 function goStadion() {
   if (S.pendingDayEnd && Object.keys(S.today.jobs).length) return goFactory();
   fbInit(S); S.football.seen = true; save(); show('scrStadion'); musicFor('scrStadion'); setTimeout(() => extraTick('stadion'), 0);
@@ -3535,8 +3629,9 @@ function coachShort(st) {
 function startMatch(mode) {
   fbInit(S); const f = S.football, rid = DIVS[f.div].rival; FB.mode = mode; FB.ended = false; FB.boost = 1;
   const me = playerTeam(f), them = mode === 'versus' ? { bots: me.bots.map(b => ({ ...b, look: Object.assign({}, b.look, { body: (b.look.body + 3) % 6 }) })), keeper: me.keeper } : rivalTeam(rid);
-  const M = newMatch([me, them], { seed: (Date.now() & 0xffff) + 1, map: f.history.length + f.div, keeperSeq1: mode === 'versus' ? null : RIVALS[rid].keeper, diff: fbDiff(S), div: f.div, rubber: mode !== 'versus', ctrl: mode === 'solo' ? [0] : mode === 'coop' ? [0, 0] : [0, 1] });
+  const M = newMatch([me, them], { aiSub: [false, mode !== 'versus'], seed: (Date.now() & 0xffff) + 1, map: f.history.length + f.div, keeperSeq1: mode === 'versus' ? null : RIVALS[rid].keeper, diff: fbDiff(S), div: f.div, rubber: mode !== 'versus', ctrl: mode === 'solo' ? [0] : mode === 'coop' ? [0, 0] : [0, 1] });
   startCount(M, 0); fbGfxReset(); $('#mScore').innerHTML = ''; M.playLv = [f.playLv, 0]; M.radar = f.lineup.some(i => f.robots[i].gear === 'radar'); FB.M = M; FB.inp = [{}, {}];
+  FB.subWarned = {}; $('#mSub').hidden = mode === 'versus'; $('#mSub').classList.remove('pulse');
   show('scrMatch'); buildControls(); resizeMatch(); musicFor('scrMatch'); keyLegend('scrMatch', 'klFb', KL_FB(mode !== 'solo'), mode === 'solo' ? 'fb' : 'fb2');
   if (mode !== 'versus') { const R = RIVALS[rid]; setTimeout(() => toast(`${R.icon} ${R.boss}: “${pick(R.lines)}”`), 300); }
   else toast('⚔️ Speler 1 (links, blauw) tegen speler 2 (rechts, roze)!');
@@ -3547,8 +3642,8 @@ function matchFrame(now) {
   const M = FB.M, real = Math.min(.1, (now - FB.last) / 1000); FB.last = now;
   if (qualityTick(real * 1000)) resizeMatch();
   const vis = juiceTime(real); FB.vdt = vis; FB.rdt = real; FB.acc += JUICE.stop > 0 ? 0 : real;   // hitstop houdt de wedstrijd heel even vast; slowmo is alleen beeld
-  while (FB.acc >= 1 / 60) { FB.acc -= 1 / 60; keyInput(); step(M, 1 / 60, FB.inp); FB.inp.forEach(i => { i.shoot = i.push = i.play = i.sprint = i.pass = false; i.power = 1; }); matchEvents(M); if (M.pause || M.over) break; }
-  drawMatch(M); matchHud(M);
+  while (FB.acc >= 1 / 60) { FB.acc -= 1 / 60; keyInput(); aimInput(M); step(M, 1 / 60, FB.inp); FB.inp.forEach(i => { if (i.shoot) i.aim = false; i.shoot = i.push = i.play = i.sprint = i.pass = false; i.power = 1; }); matchEvents(M); if (M.pause || M.over) break; }
+  wearFx(M); drawMatch(M); matchHud(M);
   if (M.pause === 'rust') return halfTime();
   if (M.over) return endMatch();
   FB.raf = requestAnimationFrame(matchFrame);
@@ -3563,6 +3658,7 @@ function matchEvents(M) {
     else if (e.type === 'shot') { kickFx(M, true); tone(220, .12, 'sawtooth', .06, 0, 440); }
     else if (e.type === 'bump') { bumpFx(M); tone(160, .08, 'sine', .12); }
     else if (e.type === 'play') SFX.ok();
+    else if (e.type === 'sub') { SFX.whir && SFX.whir(); if (e.team === 1 && FB.mode !== 'versus') toast(`🔁 ${RIVALS[DIVS[S.football.div].rival].name} wisselt een kapotte robot!`); }
   }
 }
 function matchHud(M) {
@@ -3579,6 +3675,9 @@ function matchHud(M) {
     $('#mKeep').innerHTML = `🧤 ${h.length ? h.map(ar).join(' ') : '…'} ?${next}`; $('#mKeep').title = 'Zo dook hun keeper de vorige keren. Zie je het patroon? Schiet naar de andere kant!'; }
   else $('#mKeep').innerHTML = '';
   const pb = $('#mPlay0'); if (pb) { pb.disabled = !M.playLv[0] || M.playCool > M.t; }
+  if (FB.mode !== 'versus') { const n = M.subs[0], sb = $('#mSub'), nb = $('#mSubN'); if (nb.textContent !== String(n)) nb.textContent = n; sb.disabled = !n;
+    const worn = M.bots.find(b => b.team === 0 && b.wear > .72); sb.classList.toggle('pulse', !!worn && n > 0);
+    if (worn && n > 0 && !FB.subWarned[worn.ri]) { FB.subWarned[worn.ri] = 1; toast(`🔧 ${worn.name} is kapot! Tik op 🔁 om te wisselen.`); } }
 }
 /* ---------- besturing ---------- */
 function buildControls() {
@@ -3597,8 +3696,27 @@ function buildControls() {
   }
   $('#mCtl').innerHTML = h;
   [0, 1].forEach(s => { const j = $('#mJoy' + s); if (j) joyBind(j, s);
-    const sh = $('#mShoot' + s); if (sh) { sh.addEventListener('pointerdown', e => { e.preventDefault(); shootStart(s); sh.classList.add('down'); }); const up = e => { if (FB.hold[s] == null) return; sh.classList.remove('down'); shootFire(s); }; ['pointerup', 'pointercancel', 'pointerleave'].forEach(t => sh.addEventListener(t, up)); }
+    const sh = $('#mShoot' + s); if (sh) shootBind(sh, s);
     for (const [id, k] of [['mPass', 'pass'], ['mPush', 'push'], ['mPlay', 'play'], ['mTurbo', 'sprint']]) { const b = $('#' + id + s); if (b) b.addEventListener('pointerdown', e => { e.preventDefault(); FB.inp[s][k] = true; b.classList.add('down'); setTimeout(() => b.classList.remove('down'), 120); }); } });
+}
+// Schiet-knop: tik = automatisch (op doel of slimme pass), vasthouden = harder, slepen vanaf de knop = zelf richten (pijl)
+function shootBind(sh, s) {
+  let pid = null, cx = 0, cy = 0; if (!sh.querySelector('.aimar')) sh.insertAdjacentHTML('beforeend', '<i class="aimar"></i>');
+  const ar = sh.querySelector('.aimar');
+  sh.addEventListener('pointerdown', e => { e.preventDefault(); pid = e.pointerId; try { sh.setPointerCapture(pid); } catch (x) { } const r = sh.getBoundingClientRect(); cx = r.left + r.width / 2; cy = r.top + r.height / 2; shootStart(s); FB.btnDrag = true; sh.classList.add('down'); });
+  sh.addEventListener('pointermove', e => { if (e.pointerId !== pid || FB.hold[s] == null) return; const dx = e.clientX - cx, dy = e.clientY - cy, m = Math.hypot(dx, dy);
+    if (m > 18) { setAimScreen(s, dx / m, dy / m); sh.classList.add('aiming'); ar.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`; } });
+  const up = e => { if (e.pointerId !== pid) return; pid = null; FB.btnDrag = false; sh.classList.remove('down', 'aiming'); if (FB.hold[s] != null) shootFire(s); };
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(t => sh.addEventListener(t, up));
+}
+// schermrichting → veldrichting (staand scherm: het veld is gedraaid)
+function setAimScreen(s, jx, jy) { const port = FB.view && FB.view.port; FB.aim[s] = { x: port ? -jy : jx, y: port ? jx : jy }; }
+function screenToField(px, py) { const v = FB.view; return v.port ? [FW - (py - v.oy) / v.s, (px - v.ox) / v.s] : [(px - v.ox) / v.s, (py - v.oy) / v.s]; }
+// per stap: opladen + gekozen richting doorgeven aan de simulatie (muis = speler 1)
+function aimInput(M) {
+  for (let s = 0; s < 2; s++) { const I = FB.inp[s]; if (FB.hold[s] == null) { I.charging = false; continue; } I.charging = true;
+    if (s === 0 && FB.mouseAim && FB.mouse && FB.view) { const b = M.bots.find(x => x.human === 0); if (b) { const [fx, fy] = screenToField(FB.mouse.x, FB.mouse.y), dx = fx - b.x, dy = fy - b.y, m = Math.hypot(dx, dy); if (m > 1) FB.aim[0] = { x: dx / m, y: dy / m }; } }
+    const a = FB.aim[s]; I.aim = !!a; if (a) { I.ax = a.x; I.ay = a.y; } }
 }
 function joyBind(el, s) {
   let pid = null; const knob = el.querySelector('i');
@@ -3613,18 +3731,23 @@ function setStick(s, jx, jy) { const port = FB.view && FB.view.port; FB.inp[s].m
 const KEYMAP = { solo: [{ u: ['ArrowUp', 'KeyW'], d: ['ArrowDown', 'KeyS'], l: ['ArrowLeft', 'KeyA'], r: ['ArrowRight', 'KeyD'], shoot: ['Space', 'KeyJ'], pass: ['KeyK', 'KeyZ', 'KeyH'], push: ['KeyL', 'KeyX'], play: ['KeyC'], sprint: ['ShiftLeft', 'ShiftRight', 'KeyE'] }],   // legenda: KL_FB in keys.js
   two: [{ u: ['KeyW'], d: ['KeyS'], l: ['KeyA'], r: ['KeyD'], shoot: ['KeyF'], push: ['KeyG'], pass: ['KeyR'], sprint: ['KeyE'] }, { u: ['ArrowUp'], d: ['ArrowDown'], l: ['ArrowLeft'], r: ['ArrowRight'], shoot: ['KeyK', 'Enter'], push: ['KeyL'], pass: ['KeyO'], sprint: ['ShiftRight'] }] };
 addEventListener('keydown', e => { if (CUR_SCREEN !== 'scrMatch') return;
+  if ($('#ovSub').classList.contains('show')) { if (['Escape', 'KeyQ', 'Tab', 'Enter', 'Space'].includes(e.code)) { e.preventDefault(); closeSubs(); } return; }
   if (e.code === 'Escape' || e.code === 'KeyP') { e.preventDefault(); if ($('#ovConfirm').classList.contains('show')) { if (e.code === 'Escape') $('#cfNo').click(); } else if (FB.M && !FB.M.over) $('#mPause').click(); return; }
   if ($('#ovConfirm').classList.contains('show')) return;
-  if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) { clearConfetti(); goalSkip(); }; if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['pass', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; if (m.shoot.includes(e.code)) shootStart(s); }); } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
-addEventListener('keyup', e => { FB.keys[e.code] = false; if (CUR_SCREEN !== 'scrMatch') return; const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { if (m.shoot.includes(e.code)) shootFire(s); }); });
+  if (FB.M && FB.M.cele > 0 && skipCele(FB.M)) { clearConfetti(); goalSkip(); }; if (!FB.keys[e.code]) { const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { for (const k of ['pass', 'push', 'play', 'sprint']) if (m[k] && m[k].includes(e.code)) FB.inp[s][k] = true; if (m.shoot.includes(e.code)) shootStart(s); }); } map0().forEach((m, s) => { if (FB.hold[s] != null && !e.repeat && [m.u, m.d, m.l, m.r].some(a => a.includes(e.code))) { FB.keyAim[s] = true; (FB.aimSet[s] = FB.aimSet[s] || new Set()).add(e.code); } }); if (e.code === 'KeyQ' || e.code === 'Tab' && FB.mode !== 'versus') { e.preventDefault(); openSubs(); return; } FB.keys[e.code] = true; if (e.code.startsWith('Arrow') || e.code === 'Space') e.preventDefault(); });
+addEventListener('keyup', e => { FB.keys[e.code] = false; FB.aimSet.forEach(a => a && a.delete(e.code)); if (CUR_SCREEN !== 'scrMatch') return; const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two']; map.forEach((m, s) => { if (m.shoot.includes(e.code)) shootFire(s); }); });
 // Schiet vasthouden = harder (max na 0,7 s). Kort tikken = normaal schot.
-function shootStart(s) { if (FB.hold[s] == null) FB.hold[s] = performance.now(); }
-function shootFire(s) { if (FB.hold[s] == null) return; const held = performance.now() - FB.hold[s]; FB.hold[s] = null; FB.inp[s].shoot = true; FB.inp[s].power = held < 180 ? 1 : 1 + .35 * Math.min(1, (held - 180) / 520); }
+const map0 = () => KEYMAP[FB.mode === 'solo' ? 'solo' : 'two'];
+function shootStart(s) { if (FB.hold[s] != null) return; FB.hold[s] = performance.now(); FB.aim[s] = null; FB.keyAim[s] = false; FB.aimSet[s] = new Set(); if (s === 0) { FB.mouseAim = false; FB.mouse0 = FB.mouse ? { ...FB.mouse } : null; } FB.lock[s] = { mx: FB.inp[s].mx || 0, my: FB.inp[s].my || 0 }; }
+function shootFire(s) { if (FB.hold[s] == null) return; const held = performance.now() - FB.hold[s]; FB.hold[s] = null; const I = FB.inp[s], a = FB.aim[s]; I.shoot = true; I.charging = false; I.aim = !!a; if (a) { I.ax = a.x; I.ay = a.y; } FB.aim[s] = null; FB.keyAim[s] = false; if (s === 0) FB.mouseAim = false; I.power = held < 180 ? 1 : 1 + .35 * Math.min(1, (held - 180) / 520); }
 const holdPow = s => FB.hold[s] == null ? 0 : Math.min(1, (performance.now() - FB.hold[s]) / 700);
 function keyInput() {
   const map = KEYMAP[FB.mode === 'solo' ? 'solo' : 'two'];
   map.forEach((m, s) => { if (FB.inp[s].stick) return; const k = a => a.some(c => FB.keys[c]); const x = (k(m.r) ? 1 : 0) - (k(m.l) ? 1 : 0), y = (k(m.d) ? 1 : 0) - (k(m.u) ? 1 : 0);
-    const port = FB.view && FB.view.port; FB.inp[s].mx = port ? -y : x; FB.inp[s].my = port ? x : y; });
+    const port = FB.view && FB.view.port, mx = port ? -y : x, my = port ? x : y;
+    // tijdens het opladen: een nieuwe richtingstoets = richten; de robot loopt door in de richting van vóór het opladen
+    if (FB.hold[s] != null && FB.keyAim[s]) { const A = FB.aimSet[s] || new Set(), ka = a => a.some(c => A.has(c) && FB.keys[c]); let x = (ka(m.r) ? 1 : 0) - (ka(m.l) ? 1 : 0), y = (ka(m.d) ? 1 : 0) - (ka(m.u) ? 1 : 0); const mx = port ? -y : x, my = port ? x : y; if (x || y) { const n = Math.hypot(mx, my); FB.aim[s] = { x: mx / n, y: my / n }; } const L = FB.lock[s] || {}; FB.inp[s].mx = L.mx || 0; FB.inp[s].my = L.my || 0; return; }
+    FB.inp[s].mx = mx; FB.inp[s].my = my; });
 }
 /* ---------- tekenen ---------- */
 function resizeMatch() {
@@ -3636,9 +3759,40 @@ function resizeMatch() {
   FB.view = { port, s, ox, oy, dpr, W, H };
 }
 addEventListener('resize', () => { if (CUR_SCREEN === 'scrMatch') resizeMatch(); });
+// muis (computer): tijdens het opladen de muis bewegen = richten naar de muis
+addEventListener('pointermove', e => { if (CUR_SCREEN !== 'scrMatch' || e.pointerType !== 'mouse') return; FB.mouse = { x: e.clientX, y: e.clientY }; if (FB.hold[0] != null && !FB.btnDrag) { if (!FB.mouse0) FB.mouse0 = { ...FB.mouse }; else if (Math.hypot(FB.mouse.x - FB.mouse0.x, FB.mouse.y - FB.mouse0.y) > 14) FB.mouseAim = true; } });
 function FP(x, y) { const v = FB.view; return v.port ? [v.ox + y * v.s, v.oy + (FW - x) * v.s] : [v.ox + x * v.s, v.oy + y * v.s]; }
 function FRect(x, y, w, h) { const a = FP(x, y), b = FP(x + w, y + h); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.abs(b[0] - a[0]), Math.abs(b[1] - a[1])]; }
 function botCols(look) { if (look.rival) return RIVALS[look.rival].col; return LOOKS.body[look.body || 0]; }
+/* ---------- wissels tijdens de wedstrijd (pauze-light) ---------- */
+const hpBar = (h, cls = '') => `<span class="hpbar ${cls}"><i style="width:${Math.round(clamp(h, 0, 1) * 100)}%;background:${h > .6 ? '#5dd46a' : h > .3 ? '#ffb43b' : '#ff5a5a'}"></i></span>`;
+function subTeamHTML(M, small) { return M.bots.filter(b => b.team === 0).map(b => `<span class="subchip">${fbBotSVG(b.look, b.wear > .72 ? 3 : b.wear > .45 ? 1 : 0)}${small ? '' : `<b>${b.name}</b>`}${hpBar(1 - b.wear)}</span>`).join(''); }
+function openSubs() {
+  const M = FB.M; if (!M || FB.mode === 'versus' || M.over || CUR_SCREEN !== 'scrMatch' && !$('#ovHalf').classList.contains('show')) return;
+  if (!M.pause) { M.pause = 'sub'; FB.subPaused = true; } else FB.subPaused = M.pause === 'sub';
+  if (FB.subSel == null || !M.bots[FB.subSel] || M.bots[FB.subSel].team !== 0) FB.subSel = M.bots.map((b, k) => [b, k]).filter(([b]) => b.team === 0).sort((p, q) => q[0].wear - p[0].wear)[0][1];
+  renderSubs(); openOv('ovSub');
+}
+function renderSubs() {
+  const M = FB.M, f = S.football, left = M.subs[0], used = new Set(M.out.filter(o => o.team === 0).map(o => o.ri));
+  $('#subLeft').textContent = `${left} over`;
+  const field = M.bots.map((b, k) => [b, k]).filter(([b]) => b.team === 0).map(([b, k]) => `<button class="subcard ${FB.subSel === k ? 'sel' : ''}" data-out="${k}">${fbBotSVG(b.look, b.wear > .72 ? 3 : b.wear > .45 ? 1 : 0)}<b>${b.name}</b>${hpBar(1 - b.wear)}<small>${b.wear > .72 ? '🔧 kapot' : b.wear > .45 ? '😓 moe' : '💪 fit'}${b.kos ? ' · 😵×' + b.kos : ''}</small></button>`).join('');
+  const bench = f.robots.map((r, i) => i).filter(i => !M.bots.some(b => b.team === 0 && b.ri === i)).map(i => { const r = f.robots[i], tired = used.has(i); return `<button class="subcard bench" data-in="${i}" ${!left || tired ? 'disabled' : ''}>${fbBotSVG(r.look, r.dmg)}<b>${r.name}</b>${hpBar(1 - r.dmg / 3)}<small>${tired ? '😴 al gespeeld' : r.dmg ? `🩹 ${r.dmg}/3` : '✨ fit'}</small></button>`; }).join('');
+  $('#subBody').innerHTML = `<p class="subh">⚽ Op het veld <small>tik wie eruit gaat</small></p><div class="subgrid">${field}</div><p class="subh">🪑 Bank <small>${left ? 'tik wie erin komt' : 'geen wissels meer'}</small></p><div class="subgrid">${bench || '<p class="small-note">Geen robots op de bank.</p>'}</div>`;
+}
+function doSub(k, ri) {
+  const M = FB.M, f = S.football, out = M.bots[k]; if (!M || !out || out.team !== 0 || M.subs[0] <= 0) return false;
+  const nb = benchBot(f, ri); if (!subIn(M, k, nb)) return false;
+  swapIn(S, out.ri ?? f.lineup[k], ri) || (f.lineup[k] = ri); save(); SFX.ok(); toast(`🔁 ${nb.name} komt erin!`); return true;
+}
+function closeSubs() { closeOv('ovSub'); const M = FB.M; if (!M) return; if ($('#ovHalf').classList.contains('show')) return halfTime();
+  if (M.pause === 'sub') { M.pause = null; FB.last = performance.now(); FB.acc = 0; cancelAnimationFrame(FB.raf); FB.raf = requestAnimationFrame(matchFrame); } }
+$('#subBody').addEventListener('click', e => { const o = e.target.closest('[data-out]'), i = e.target.closest('[data-in]'); if (o) { SFX.click(); FB.subSel = +o.dataset.out; renderSubs(); } else if (i && !i.disabled) { if (doSub(FB.subSel, +i.dataset.in)) renderSubs(); } });
+$('#subGo').onclick = () => { SFX.click(); closeSubs(); };
+$('#mSub').onclick = () => { SFX.click(); openSubs(); };
+// zichtbare schade: rook bij moe, vonken bij kapot
+function wearFx(M) { if (M.pause || M.count > 0) return; for (const b of M.bots) { if (b.wear > .45 && Math.random() < (b.wear > .72 ? .35 : .12)) emit('smoke', b.x + (Math.random() - .5), b.y - 1.5, (Math.random() - .5) * 3, -4 - Math.random() * 3, .9, .9, b.wear > .72 ? '#3d4250' : '#8a93a6');
+  if (b.wear > .72 && Math.random() < .1) for (let i = 0; i < 3; i++) emit('spark', b.x, b.y - 1, (Math.random() - .5) * 26, (Math.random() - .5) * 26, .25, .3, '#ffd36a'); } }
 /* ---------- rust + einde ---------- */
 function halfTime() {
   const M = FB.M; SFX.fanfare();
@@ -3647,14 +3801,13 @@ function halfTime() {
   if (FB.mode !== 'versus') {
     h += `<div class="opatip"><div class="o">${opaSVG(M.score[0] >= M.score[1] ? 'knipoog' : '')}</div><div>${M.score[0] > M.score[1] ? 'Opa: “Goed bezig! 👍”' : M.score[0] === M.score[1] ? 'Opa: “Let op de keeper! 🧤”' : 'Opa: “Geen paniek! 📋 Spelzet!”'}</div></div>`;
     h += `<p><b>📣 Juich-ritme</b> → ⚡ +10%</p>`;
-    const hurt = M.bots.filter(b => b.team === 0 && b.kos >= 2);
-    h += `<p><b>🔁 Wissels</b></p><div class="swatches">${f.lineup.map((ri, k) => `<button data-sub="${k}">${f.robots[ri].name}${M.bots[k].kos ? ' 😵×' + M.bots[k].kos : ''}</button>`).join('')}</div>`;
-    if (hurt.length) h += `<p class="small-note">😵 Moe? Wissel!</p>`;
+    const hurt = M.bots.filter(b => b.team === 0 && b.wear > .45);
+    h += `<div class="subrow">${subTeamHTML(M, true)}</div><button class="btn white small" data-sub="open">🔁 Wissels (${M.subs[0]} over)</button>`;
+    if (hurt.length) h += `<p class="small-note">🔧 Kapot? Wissel!</p>`;
   } else h = '<p>Even uitblazen! Wissel van kant? Nee hoor, de robots zijn te lui om te lopen.</p>';
   $('#halfBody').innerHTML = h;
   $('#halfBtns').innerHTML = (FB.mode !== 'versus' ? `<button class="btn purple" id="halfCheer">📣 Juich-ritme</button>` : '') + `<button class="btn green" id="halfGo">▶️ 2e helft</button>`;
-  $('#halfBody').onclick = e => { const b = e.target.closest('[data-sub]'); if (!b) return; const k = +b.dataset.sub, bench = f.robots.map((r, i) => i).filter(i => !f.lineup.includes(i)).sort((a, c) => f.robots[a].dmg - f.robots[c].dmg)[0]; if (bench == null) return;
-    const outRi = f.lineup[k]; swapIn(S, outRi, bench); const r = f.robots[bench], bot = M.bots[k]; Object.assign(bot, { name: r.name, look: r.look, st: botStats(r), glue: r.gear === 'superlijm', kos: 0 }); bot.maxhp = bot.hp = 3 + 1.5 * bot.st.stevig; save(); SFX.ok(); toast(`🔁 ${r.name} komt erin!`); halfTime(); };
+  $('#halfBody').onclick = e => { const b = e.target.closest('[data-sub]'); if (!b) return; SFX.click(); openSubs(); };
   const go = () => { closeOv('ovHalf'); M.pause = null; startCount(M, 1); M.boost[0] = FB.boost; show('scrMatch'); resizeMatch(); FB.last = performance.now(); FB.raf = requestAnimationFrame(matchFrame); };
   $('#halfGo').onclick = go;
   const ch = $('#halfCheer'); if (ch) ch.onclick = () => { closeOv('ovHalf'); startRun({ mode: 'fbcheer', total: 1, pool: [['h2', Math.min(5, 1 + S.football.div)]], d: 1, kind: 'klank' }); };
@@ -3662,7 +3815,7 @@ function halfTime() {
 }
 function endMatch() {
   const M = FB.M; cancelAnimationFrame(FB.raf); if (FB.ended) return; FB.ended = true;
-  const res = { score: M.score.slice(), kos: M.bots.filter(b => b.team === 0).map(b => b.kos), falls: M.bots.filter(b => b.team === 0).map(b => b.falls || 0) };
+  const res = { score: M.score.slice(), kos: M.bots.filter(b => b.team === 0).map(b => b.kos), falls: M.bots.filter(b => b.team === 0).map(b => b.falls || 0), per: matchPlayers(M, 0), subs: SUBS_MAX - M.subs[0] }; closeOv('ovSub');
   const out = applyMatch(S, res, FB.mode); save(); FB.M = null;
   const f = S.football, R = RIVALS[DIVS[out.promoted ? f.div - 1 : f.div].rival];
   let title = FB.mode === 'versus' ? (res.score[0] > res.score[1] ? 'Speler 1 wint!' : res.score[0] < res.score[1] ? 'Speler 2 wint!' : 'Gelijkspel!') : out.won ? 'GEWONNEN!' : out.draw ? 'Gelijkspel!' : 'Verloren… (deze keer)';
@@ -3774,7 +3927,7 @@ function drawBotG(g, b, M, now) {
   const key = b._k || b; let st = FBV.st.get(key); if (!st) { st = { a: null, px: x, py: y, blink: Math.random() * 3, kick: 0 }; FBV.st.set(key, st); }
   // kijkrichting: naar waar hij loopt (of mikt), anders naar het doel van de tegenstander
   const dx = x - st.px, dy = y - st.py; st.px = x; st.py = y; let ta = st.a;
-  if (b.human != null && M.ball.owner === b && (b.aimX != null || b.aimY != null)) { const [x1, y1] = FP(b.x + (b.aimX ?? (b.team ? -1 : 1)), b.y + (b.aimY ?? 0)); ta = Math.atan2(y1 - y, x1 - x); }
+  if (b.human != null && M.ball.owner === b && b.aimLock) { const [x1, y1] = FP(b.x + (b.aimX ?? (b.team ? -1 : 1)), b.y + (b.aimY ?? 0)); ta = Math.atan2(y1 - y, x1 - x); }
   else if (Math.hypot(dx, dy) > .25) ta = Math.atan2(dy, dx);
   else if (ta == null) { const [x1, y1] = FP(b.x + (b.team ? -1 : 1), b.y); ta = Math.atan2(y1 - y, x1 - x); }
   if (st.a == null) st.a = ta; else { let d = ta - st.a; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI; st.a += d * Math.min(1, (FB.rdt || .016) * 12); }
@@ -3811,6 +3964,19 @@ function drawBotG(g, b, M, now) {
     g.beginPath(); g.moveTo(x - w, ty2 - w * 1.3); g.lineTo(x + w, ty2 - w * 1.3); g.lineTo(x, ty2); g.closePath(); g.fill(); g.stroke(); }
 }
 // ---------- hoofdfunctie ----------
+// richtpijl: zelf gericht = stevige oranje pijl met vizier; anders (automatisch) = stippellijn naar doel of teamgenoot
+function drawAim(g, b, M, v, now) {
+  const pw = holdPow(b.human), [x0, y0] = FP(b.x, b.y); g.save();
+  if (b.aimLock) { const L = 12 + 10 * pw, [x1, y1] = FP(b.x + b.aimX * L, b.y + b.aimY * L), an = Math.atan2(y1 - y0, x1 - x0), hs = v.s * 2.2;
+    g.strokeStyle = g.fillStyle = `rgb(255,${200 - 140 * pw | 0},60)`; g.lineWidth = Math.max(4, v.s * .9); g.shadowColor = '#000'; g.shadowBlur = 4;
+    g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); g.beginPath(); g.moveTo(x1 + Math.cos(an) * hs, y1 + Math.sin(an) * hs); g.lineTo(x1 + Math.cos(an + 2.4) * hs, y1 + Math.sin(an + 2.4) * hs); g.lineTo(x1 + Math.cos(an - 2.4) * hs, y1 + Math.sin(an - 2.4) * hs); g.fill();
+    const [x2, y2] = FP(b.x + b.aimX * (L + 9), b.y + b.aimY * (L + 9)); g.setLineDash([v.s * .8, v.s * .8]); g.lineWidth = 2; g.globalAlpha = .7; g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); g.setLineDash([]); g.globalAlpha = 1;
+    g.lineWidth = 2; g.beginPath(); g.arc(x2, y2, v.s * 1.4, 0, 7); g.stroke(); }
+  else if (b.autoT) { const T = b.autoT, [x1, y1] = FP(T.x, T.y); g.strokeStyle = T.kind === 'goal' ? 'rgba(255,225,74,.85)' : 'rgba(140,240,255,.85)'; g.lineWidth = Math.max(2, v.s * .4) + (b.charging ? 2 * pw : 0);
+    g.setLineDash([v.s * 1.2, v.s * .9]); g.lineDashOffset = -now * 30; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); g.setLineDash([]);
+    if (T.kind === 'goal') { g.beginPath(); g.arc(x1, y1, v.s * (1.4 + .2 * Math.sin(now * 8)), 0, 7); g.stroke(); } }
+  g.restore();
+}
 function drawMatch(M) {
   const c = $('#mCanvas'), g = c.getContext('2d'), v = FB.view, now = performance.now() / 1000, vdt = FB.vdt ?? .016, rdt = FB.rdt ?? .016, B = M.ball, G = FBV.goal;
   if (G) { G.t += vdt; G.rt += rdt; if (G.pen < 2.6) { G.pen += Math.abs(G.vx) * vdt * .25; } if (!(M.cele > 0) || G.rt > 1.4) FBV.goal = null; }
@@ -3831,7 +3997,8 @@ function drawMatch(M) {
   // trap herkennen (bal net losgelaten) → squash + hopje
   if (FBV.lastOwner && !B.owner && B.last === FBV.lastOwner && !FBV.z) kickFx(M, false); FBV.lastOwner = B.owner;
   for (const b of bots) drawBotG(g, b, M, now);
-  for (const b of bots) if (b.human != null && B.owner === b) { const ax = b.aimX ?? (b.team ? -1 : 1), ay = b.aimY ?? 0, pw = holdPow(b.human), Lh = 9 + 7 * pw; const [x0, y0] = FP(b.x, b.y), [x1, y1] = FP(b.x + ax * Lh, b.y + ay * Lh); const an = Math.atan2(y1 - y0, x1 - x0), hs = v.s * 1.8; g.save(); g.strokeStyle = g.fillStyle = pw > 0 ? `rgb(255,${200 - 140 * pw | 0},60)` : 'rgba(255,255,255,.9)'; g.lineWidth = Math.max(3, v.s * .7); g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); g.beginPath(); g.moveTo(x1 + Math.cos(an) * hs, y1 + Math.sin(an) * hs); g.lineTo(x1 + Math.cos(an + 2.4) * hs, y1 + Math.sin(an + 2.4) * hs); g.lineTo(x1 + Math.cos(an - 2.4) * hs, y1 + Math.sin(an - 2.4) * hs); g.fill(); g.restore(); }
+  for (const b of bots) if (b.human != null && B.owner === b) drawAim(g, b, M, v, now);
+  for (const b of bots) if (b.wear > .45 && b.down <= 0) { const [x, y] = FP(b.x, b.y), w = v.s * 4.4, h = Math.max(3, v.s * .55), yy = y - v.s * 4.6; g.fillStyle = 'rgba(10,12,20,.75)'; g.fillRect(x - w / 2 - 1, yy - 1, w + 2, h + 2); g.fillStyle = b.wear > .72 ? '#ff5a5a' : '#ffb43b'; g.fillRect(x - w / 2, yy, w * clamp(1 - b.wear, .04, 1), h); }
   for (const [bx, by, r] of M.map.bushes) { const [x, y] = FP(bx, by); g.save(); g.globalAlpha = .82; for (let k = 0; k < 7; k++) { const a = k * .9; g.fillStyle = k % 2 ? '#2f9e55' : '#247a43'; g.beginPath(); g.arc(x + Math.cos(a) * r * v.s * .5, y + Math.sin(a) * r * v.s * .5, r * v.s * .55, 0, 7); g.fill(); } g.restore(); }
   // bal: hoogte (z) met losse schaduw, spoor en gloed
   let bwx = B.x, bwy = B.y; if (G) { const dir = G.side ? 1 : -1; bwx = (G.side ? FW : 0) + dir * Math.min(2.6, G.pen); bwy = G.y + G.vy * Math.min(.3, G.t) * .2; }
@@ -4414,10 +4581,10 @@ function keyLegend(scr, id, cols, seenKey) {
 function keyLegendToggle(el) { if (!el || el.hidden) return; const o = !el.classList.contains('open'); el.classList.toggle('open', o); S.kbOpen = S.kbOpen || {}; S.kbOpen[el.dataset.k] = o; save(); SFX.click && SFX.click(); }
 const KL_RACE = () => [{ rows: [[[['A', 'D'], ['←', '→']], 'Sturen'], [['W', '↑', 'Shift'], '🔥 Turbo'], [['Spatie', 'E', 'S'], 'Item gebruiken'], [['?'], 'Toetsen']] }];
 const KL_FB = two => two
-  ? [{ title: '🔵 Speler 1', rows: [[[['W', 'A', 'S', 'D']], 'Lopen'], [['F'], '⚽ Schiet'], [['R'], '👟 Pass'], [['G'], '💥 Duw'], [['E'], '💨 Turbo']] },
-     { title: '🩷 Speler 2', rows: [[[['←', '↑', '↓', '→']], 'Lopen'], [['K', 'Enter'], '⚽ Schiet'], [['O'], '👟 Pass'], [['L'], '💥 Duw'], [['Shift'], '💨 Turbo']] },
+  ? [{ title: '🔵 Speler 1', rows: [[[['W', 'A', 'S', 'D']], 'Lopen'], [['F'], '⚽ Schiet'], [['F', '+', 'WASD'], '🎯 Richten'], [['R'], '👟 Pass'], [['G'], '💥 Duw'], [['E'], '💨 Turbo']] },
+     { title: '🩷 Speler 2', rows: [[[['←', '↑', '↓', '→']], 'Lopen'], [['K', 'Enter'], '⚽ Schiet'], [['K', '+', '←↑↓→'], '🎯 Richten'], [['O'], '👟 Pass'], [['L'], '💥 Duw'], [['Shift'], '💨 Turbo']] },
      { rows: [[['Esc', 'P'], 'Pauze'], [['?'], 'Toetsen']] }]
-  : [{ rows: [[[['W', 'A', 'S', 'D'], ['←', '↑', '↓', '→']], 'Lopen'], [['Spatie', 'J'], '⚽ Schiet <small>(lang = harder)</small>'], [['K'], '👟 Pass'], [['L'], '💥 Duw'], [['Shift', 'E'], '💨 Turbo'], [['C'], '📋 Spelzet'], [['Esc', 'P'], 'Pauze'], [['?'], 'Toetsen']] }];
+  : [{ rows: [[[['W', 'A', 'S', 'D'], ['←', '↑', '↓', '→']], 'Lopen'], [['Spatie', 'J'], '⚽ Schiet: tik = slim schot/pass <small>(lang = harder)</small>'], [['Spatie', '+', '↑←↓→'], '🎯 Richten <small>(of 🖱️ muis)</small>'], [['K'], '👟 Pass'], [['L'], '💥 Duw'], [['Shift', 'E'], '💨 Turbo'], [['C'], '📋 Spelzet'], [['Q', 'Tab'], '🔁 Wissel'], [['Esc', 'P'], 'Pauze'], [['?'], 'Toetsen']] }];
 addEventListener('keydown', e => {
   if (!KB.used && !e.repeat && !e.ctrlKey && !e.metaKey && !e.altKey && (CUR_SCREEN === 'scrDrive' || CUR_SCREEN === 'scrMatch') && e.key !== 'Tab') {
     KB.used = true; const cur = document.getElementById(CUR_SCREEN === 'scrDrive' ? 'klRace' : 'klFb'); if (cur && !cur.hidden) {} else if (CUR_SCREEN === 'scrDrive') keyLegend('scrDrive', 'klRace', KL_RACE(), 'race'); else keyLegend('scrMatch', 'klFb', KL_FB(FB.mode !== 'solo'), FB.mode === 'solo' ? 'fb' : 'fb2'); }
@@ -4655,6 +4822,43 @@ function initOuders() {
 }
 function unlockAll() { S.introSeen = true; S.placement.done = true; for (const id in S.machines) S.machines[id].owned = true; if (!S.orders.length) S.orders = makeOrders(S); save(); }
 
+/* ===== screens/slots.js ===== */
+/* v20: titelscherm — Nieuw spel + opslagvakjes (Opslaan / Laden / Verwijderen / naam wijzigen) */
+function titleSlot() { const a = slotList().find(x => x.active); return a ? a : null; }
+function openSlots() { renderSlots(); openOv('ovSlots'); }
+function renderSlots(edit) {
+  const L = slotList();
+  $('#slotBody').innerHTML = `<div class="vakken">${L.map(x => `<div class="vak ${x.active ? 'on' : ''}" data-slot="${x.n}">
+    <span class="sn">${x.active ? '▶️' : x.empty ? '⬜' : '💾'}</span>
+    <span class="si">${edit === x.n ? `<input id="slotName" maxlength="20" value="${x.custom ? x.name : ''}" placeholder="${x.auto}" aria-label="Naam van vakje ${x.n}">` : `<b>${x.n}. ${x.name}</b>`}<small>${x.active ? '✅ Nu aan het spelen · slaat vanzelf op' : x.empty ? 'Leeg vakje' : x.custom ? x.auto : `⭐ ${x.rep}`}</small></span>
+    <span class="sb">${edit === x.n ? `<button class="btn green" data-sa="ok">✔️ Klaar</button>`
+      : x.active ? `<button class="btn white" data-sa="name">✏️ Naam</button><button class="btn red" data-sa="del">🗑️</button>`
+      : `${x.empty ? '' : `<button class="btn green" data-sa="load">📂 Laden</button>`}<button class="btn purple" data-sa="save">💾 Opslaan</button>${x.empty ? '' : `<button class="btn white" data-sa="name">✏️</button><button class="btn red" data-sa="del">🗑️</button>`}`}</span></div>`).join('')}</div>
+    <p class="small-note">💾 Opslaan = je huidige spel als kopie in dat vakje. 📂 Laden = verder met dat spel (je huidige spel blijft bewaard).</p>`;
+  if (edit) { const i = $('#slotName'); i.focus(); i.onkeydown = e => { if (e.key === 'Enter') { slotRename(edit, i.value); renderSlots(); } }; }
+}
+async function slotAction(n, a) {
+  const x = slotList()[n - 1];
+  if (a === 'name') return renderSlots(n);
+  if (a === 'ok') { slotRename(n, $('#slotName').value); return renderSlots(); }
+  if (a === 'load') { if (!await confirmBox(`Spel “${x.name}” laden? Je huidige spel blijft bewaard.`, '📂 Laden', 'Nee')) return; slotLoad(n); SFX.ok(); toast(`📂 Vakje ${n} geladen!`); goTitle(); return renderSlots(); }
+  if (a === 'save') { if (!x.empty && !await confirmBox(`Vakje ${n} (“${x.name}”) overschrijven met je huidige spel?`, '💾 Ja', 'Nee')) return; slotStore(n); SFX.ok(); toast(`💾 Opgeslagen in vakje ${n}!`); return renderSlots(); }
+  if (a === 'del') { if (!await confirmBox(x.active ? `Je huidige spel (“${x.name}”) wissen en opnieuw beginnen in vakje ${n}? De andere vakjes blijven.` : `Vakje ${n} (“${x.name}”) verwijderen?`, '🗑️ Wissen', 'Nee')) return; slotDelete(n); SFX.nope && SFX.nope(); toast(`🗑️ Vakje ${n} gewist.`); goTitle(); return renderSlots(); }
+}
+async function newGame() {
+  const free = slotList().find(x => x.empty && !x.active), cur = titleSlot();
+  if (!free) { toast('Alle vakjes zijn vol. Verwijder eerst een vakje.'); return openSlots(); }
+  if (!await confirmBox(`Nieuw spel beginnen in vakje ${free.n}? Je huidige spel (“${cur.name}”) blijft bewaard in vakje ${cur.n}.`, '🆕 Ja, nieuw spel', 'Nee')) return;
+  slotNew(); SFX.ok(); closeOv('ovSlots'); goTitle(); toast(`🆕 Nieuw spel in vakje ${free.n}!`);
+}
+function initSlots() {
+  $('#btnNew').onclick = () => { SFX.click(); newGame(); };
+  $('#btnSlots').onclick = () => { SFX.click(); openSlots(); };
+  $('#slotClose').onclick = () => { closeOv('ovSlots'); goTitle(); };
+  $('#slotNew').onclick = () => { SFX.click(); newGame(); };
+  $('#slotBody').addEventListener('click', e => { const b = e.target.closest('[data-sa]'); if (!b) return; SFX.click(); slotAction(+b.closest('[data-slot]').dataset.slot, b.dataset.sa); });
+}
+
 /* ===== main.js ===== */
 /* Opstarten + test-haakjes (window.__rf, alleen voor de automatische tests) */
 function init() {
@@ -4698,7 +4902,7 @@ function init() {
   $('#scrSamen').addEventListener('click', e => { const b = e.target.closest('.mode'); if (!b || b.disabled) return; SFX.click(); if (b.dataset.mode) SAMEN.mode = b.dataset.mode; if (b.dataset.hall) SAMEN.hall = +b.dataset.hall; renderSamenSel(); });
   $('#samenGo').onclick = () => { SFX.click(); startSamen(); };
   addEventListener('resize', () => { if (CUR_SCREEN === 'scrFactory') renderHud(); });
-  initPlay(); initOuders(); goTitle();
+  initPlay(); initOuders(); initSlots(); goTitle();
   if (S.hiddenAt && Date.now() - S.hiddenAt >= AWAY_MIN_MS && canEndDay(S)) S.pendingDayEnd = true; S.hiddenAt = 0;
   if (!S.pendingDayEnd) welcomeBack(); setInterval(liveTick, 1000);
   initSession();
@@ -4708,6 +4912,7 @@ window.__rf = {
   genPuzzle, checkAnswer, sameStructure, smallestUnit, makeUnit, repeatTo, migrate, freshSave, placementStart, explainWrong, hintText, HALLS, PLACEMENT, TOKENS, SHAPES, SOUNDS,
   MACHINES, HIDDEN, KLUIS, eco: { tick, offline, jobPreview, investOptions, doInvest, dayEstimate, totalRate, rateOf, upkeep, buyBiz, novelty, careOf, jobResult, sellNow, makeOrders, deliver, canDeliver, closeDay, addCoins, buyMachine, upgradeMachine, upgradeKluis, tikResult, hiddenFound, hiddenReady, demand, kluisCap, stockCap, smeer },
   RACE_DRIVERS, LEAGUE_EXTRA, RIVAL_RACE_ID, goRace, load, save, unlockAll, goFactory, goStadion, goTeam, startMatch, FB, fb: { skipCele, startCount, leagueTable, openStand, fbInit, fbDiff, setFbDiff, coachTip, applyMatch, fbUpgrade, deposit, repair, finishTrain, equip, toggleLineup, playProgress, kasCap, fbDaily, newMatch, step, kickoff }, openShop, startBig, BIG: () => BIG, mini: { montNew, montMove, montSolved, montHint, montStars, montLevelFor, mApply, MONT_LEVELS, setNew, setTry, findSet, isSet, setDone, setWhy }, availDiffs: id => availDiffs(S, id), showNight, toggleSound, AUD, session: { onHide, onShow, canEndDay, endDayAway, AWAY_MIN_MS, MIN_DAY_S }, extra: { openStkDetail, openAchDetail, closeDetail, vvApply, extraInit, dailyClaim, dailyState, dailyStreak, bookAdd, bookRoll, rivalResult, rivalDaily, carSet, carLook, achCheck, dailyPuzzle, openDaily, openBook, openCab, openCar, showRivalQ, hideRival, startDailyRace, dayDiff, dailySeed }, race: { raceNew, raceStep, raceUse, raceHit, laneX, activePuzzle, raceRollItem, raceBot, raceApply, raceTable, raceTip, raceInit, raceUnlocked, raceBuyPart, racePartCost, raceRepair, raceRepairCost, setRaceDiff, raceDiff, activeGate, activeLock, trackCx, racePos, raceSimFull, turboAdd, raceTurbo }, raceEvent, RC, goRace, openRaceStand, offline: (t) => offline(S, t), reservedCount: () => reservedCount(S), openBuild, openFin, openJob, liveTick, welcomeBack, startJob, startTik, endTik, tikTap, hiddenClick, openSamen, startPlacement, onChoice, onSlot, onAct, hint,
+  slots: { slotList, slotStore, slotLoad, slotDelete, slotRename, slotNew, openSlots, newGame, get SLOTS() { return SLOTS; } }, openSubs, doSub, closeSubs, autoTarget, aimInput, shootStart, shootFire,
   goTitle, setRng(f) { RNG = f || Math.random; }, setTikTime(t) { TIK_TIME = t; }
 };
 init();
