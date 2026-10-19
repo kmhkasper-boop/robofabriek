@@ -1536,7 +1536,19 @@ const RACE_DRIVERS = [
 ];
 const RACE_POINTS = [10, 6, 4, 2];
 const RACE_SEASON = 5;                  // races per seizoen; top 2 promoveert
-const RACE_DIFF = [{ name: 'Makkelijk', icon: '🙂', cap: .97, pay: .75 }, { name: 'Normaal', icon: '😎', cap: 1.04, pay: 1 }, { name: 'Pittig', icon: '🔥', cap: 1.1, pay: 1.35 }];
+const RACE_DIFF = [{ name: 'Makkelijk', icon: '🙂', cap: .97, pay: .75 }, { name: 'Normaal', icon: '😎', cap: 1.04, pay: 1 }, { name: 'Pittig', icon: '🔥', cap: 1.1, pay: 1.5 }];
+// v22: race-AI per moeilijkheid. Makkelijk = precies zoals v21 (niet aanpassen!).
+// spd: extra topsnelheid · rbA: vertragen als AI vóór ligt · rbB: inhalen van achteren · wob: kans op foutjes · gate: turbo bij patroonstrook
+// dodge: obstakels ontwijken · soft: hoe hard een AI-klap jou raakt · smart: items slim bewaren · hunt: raket/EMP gericht op jou
+// steer: hoe strak de AI de lijn volgt · lane: afwijking van de ideale lijn · gap/open: patroonrijen (m tussen rijen, opent op m) · boxTurbo: kans dat een turbo-kist turbo blijft
+const RACE_AI = [
+  // Makkelijk (v21, ongewijzigd)
+  { spd: 1, rbA: .16, rbB: .11, wob: .16, gate: .5, dodge: 1, soft: .45, smart: 0, hunt: 0, steer: .5, lane: 1, gap: 38, open: 150, boxTurbo: 1 },
+  // Normaal: sneller, minder rubberband als de AI vóór ligt, minder foutjes, items slimmer (bewaart raket tot jij de volgende bent)
+  { spd: 1.08, capLo: .92, capStep: .06, rbA: .065, rbB: .05, wob: .06, gate: .9, dodge: 1.3, soft: .55, smart: .5, hunt: 0, steer: .6, lane: .8, gap: 38, open: 150, boxTurbo: 1 },
+  // Pittig: AI rond/boven jouw snelheid, bijna geen rem als ze vóór liggen, raket/EMP gericht op jou, strakke lijnen, snellere patroonrijen, minder turbo uit kisten
+  { spd: 1.08, rbA: .02, rbB: .08, wob: .02, gate: 1, dodge: 2, soft: .9, smart: 1, hunt: 1, steer: .8, lane: .5, gap: 32, open: 120, boxTurbo: .6 }
+];
 const REPAIR_PER_DMG = 1;               // munten per schadepunt (0-100)
 const RACE_COL = '#38d6ff';
 // items uit de ❓-kisten (Mario Kart-lite): één grote GEBRUIK-knop
@@ -2589,6 +2601,8 @@ const RACE_V0 = 30;                                // basis-topsnelheid (m/s) zo
 function raceCarStats(parts, dmg) { return { top: RACE_V0 * (1 + .07 * parts.motor) * (dmg >= 60 ? .88 : dmg >= 30 ? .95 : 1), steer: .55 * (1 + .14 * parts.banden), off: .55 + .06 * parts.banden, crash: 13 * (1 - .14 * parts.auto) }; }
 // baan: midden (0..1 schermbreedte) als functie van afstand
 function trackCx(M, d) { return .5 + .16 * Math.sin(d / 190 + M.ph1) + .08 * Math.sin(d / 77 + M.ph2); }
+const rowGap = M => (RACE_AI[M.diff] || RACE_AI[0]).gap;
+const raceAI = M => RACE_AI[M.diff] || RACE_AI[0];
 const TRACK_HW = .27, LANES = [-.62, 0, .62], ROW_GAP = 38, TILE_R = .075, TURBO_MAX = 3, RETRY_AHEAD = 115, TURBO_T = 2.5;
 const laneX = (M, d, lane) => trackCx(M, d) + LANES[lane] * TRACK_HW;
 function raceNew(opt) {
@@ -2596,19 +2610,19 @@ function raceNew(opt) {
   const M = { t: 0, div, diff, rng, len: dv.len, ph1: rng() * 6, ph2: rng() * 6, done: false, events: [], count: 1.5, gates: [], shortcuts: [], obst: [], boxes: [], rockets: [], cars: [], gateRes: { ok: 0, n: 0 }, shortcut: 0, dmg: 0, hitsOnMe: 0, itemsUsed: 0, aiHits: 0, final: false, kidSkill: opt.kidSkill ?? 0 };
   M.me = { id: 'me', d: 0, x: .5, v: 0, turbo: 0, turboN: 0, crash: 0, stats: me, steer: 0, me: true, fin: null, item: null, shield: 0 };
   const cap = me.top * RACE_DIFF[diff].cap;
-  RACE_DRIVERS[div].forEach((dr, i) => M.cars.push({ id: dr.id, dr, d: 0, x: .5 + (i - 1) * .12, lane: (i - 1) * .1, v: 0, turbo: 0, crash: 0, top: Math.min(RACE_V0 * dv.base * dr.spd * 1.16, cap * (.96 + .03 * i)), fin: null, item: null, shield: 0 }));
+  RACE_DRIVERS[div].forEach((dr, i) => M.cars.push({ id: dr.id, dr, d: 0, x: .5 + (i - 1) * .12, lane: (i - 1) * .1 * RACE_AI[diff].lane, v: 0, turbo: 0, crash: 0, top: Math.min(RACE_V0 * dv.base * dr.spd * 1.16 * RACE_AI[diff].spd, cap * ((RACE_AI[diff].capLo ?? .96) + (RACE_AI[diff].capStep ?? .03) * i)), fin: null, item: null, shield: 0 }));
   M.cars.unshift(M.me); M.me.x = .5; M.cars.forEach((c, i) => { c.d = -i * 6; });
   // patroonstroken op de weg elke ~420 m; daartussen ❓-kisten; obstakels; 1-2 verborgen sluiproutes
   for (let d = 300; d < M.len - 260; d += 400 + Math.floor(rng() * 120)) { const g = { kind: 'gate', d, st: 'wait', got: 0, retry: 1, rows: [] }; makeGatePuzzle(M, g); layRows(M, g, d); M.gates.push(g); }
-  for (let d = 150; d < M.len - 120; d += 230 + Math.floor(rng() * 100)) { if (M.gates.some(g => d > g.d - 30 && d < g.d + ROW_GAP * 3 + 30)) continue; M.boxes.push({ d, lanes: [0, 1, 2].filter(() => rng() < .8).concat([Math.floor(rng() * 3)]), taken: {} }); }
-  for (let d = 180; d < M.len - 80; d += 130 + Math.floor(rng() * 130)) { if (M.gates.some(g => d > g.d - 25 && d < g.d + ROW_GAP * 3 + 25) || M.boxes.some(b => Math.abs(b.d - d) < 25)) continue; M.obst.push({ d, off: (rng() * 2 - 1) * .7, k: rng() < .5 ? 'olie' : 'pion', hitBy: {} }); }
+  for (let d = 150; d < M.len - 120; d += 230 + Math.floor(rng() * 100)) { if (M.gates.some(g => d > g.d - 30 && d < g.d + rowGap(M) * Math.max(3, g.need.length) + 30)) continue; M.boxes.push({ d, lanes: [0, 1, 2].filter(() => rng() < .8).concat([Math.floor(rng() * 3)]), taken: {} }); }
+  for (let d = 180; d < M.len - 80; d += 130 + Math.floor(rng() * 130)) { if (M.gates.some(g => d > g.d - 25 && d < g.d + rowGap(M) * Math.max(3, g.need.length) + 25) || M.boxes.some(b => Math.abs(b.d - d) < 25)) continue; M.obst.push({ d, off: (rng() * 2 - 1) * .7, k: rng() < .5 ? 'olie' : 'pion', hitBy: {} }); }
   const nS = div === 0 ? 1 : 2; for (let i = 0; i < nS; i++) { const d = Math.round(M.len * (.35 + .35 * i) + rng() * 80); M.shortcuts.push({ kind: 'lock', d, side: rng() < .5 ? -1 : 1, st: 'hidden', skip: 150, rows: [], got: 0 }); }
   M.lastPos = 4;
   return M;
 }
 // patroon: kern zichtbaar bovenin, de volgende 2-3 liggen als tegels op de weg (per rij 3 rijstroken, 1 goed)
 function makeGatePuzzle(M, g) {
-  const dv = RACE_DIVS[M.div], st = pick(dv.unit[M.diff >= 2 ? 1 : 0]), unit = makeUnit(st, SHAPES), L = unit.length, n = M.div >= 2 || M.diff >= 2 ? 3 : 2;
+  const dv = RACE_DIVS[M.div], st = pick(dv.unit[M.diff >= 2 ? 1 : 0]), unit = makeUnit(st, SHAPES), L = unit.length, n = M.diff >= 2 && M.div >= 2 ? 4 : M.div >= 2 || M.diff >= 2 ? 3 : 2;
   const shown = Math.min(Math.max(2 * L, 4), 7), seq = repeatTo(unit, shown + n);
   g.seq = seq.slice(0, shown); g.need = seq.slice(shown, shown + n); g.got = 0;
   g.pool = [...new Set(unit.concat(shuffle(SHAPES.filter(x => !unit.includes(x))).slice(0, 2)))];
@@ -2617,7 +2631,7 @@ function makeLock(M, s) { const unit = makeUnit(pick(['AB', 'ABB', 'ABC']), SHAP
 // leg de nog te rijden tegelrijen neer vanaf afstand d0
 function layRows(M, g, d0) {
   g.rows = g.need.map((sym, k) => { const lane = Math.floor(M.rng() * 3), others = shuffle(g.pool.filter(x => x !== sym));
-    return { d: d0 + k * ROW_GAP, k, tiles: [0, 1, 2].map(l => ({ lane: l, sym: l === lane ? sym : others[(l + (l > lane ? -1 : 0)) % others.length], hit: 0 })), done: false }; });
+    return { d: d0 + k * rowGap(M), k, tiles: [0, 1, 2].map(l => ({ lane: l, sym: l === lane ? sym : others[(l + (l > lane ? -1 : 0)) % others.length], hit: 0 })), done: false }; });
 }
 const activeGate = M => M.gates.find(g => g.st === 'open');
 const activeLock = M => M.shortcuts.find(s => s.st === 'open');
@@ -2633,11 +2647,11 @@ function puzzleRowCross(M, g, row, x) {
   // fout of gemist: geen straf. De race rijdt gewoon door; verderop (buiten beeld) komt een nieuw rijtje (één herkansing).
   // Rijtjes die nog voor je lagen blijven als 'uit' liggen (geen plotselinge sprongen in beeld).
   g.old = (g.old || []).concat(g.rows.filter(r => !r.done).map(r => (r.dead = true, r)));
-  if (g.kind === 'gate' && g.retry > 0) { g.retry--; g.got = 0; const d0 = Math.max(M.me.d + RETRY_AHEAD, ...g.old.map(r => r.d + ROW_GAP)); clearForRows(M, d0, g.need.length); layRows(M, g, d0); M.events.push({ k: t ? 'oeps' : 'gemist' }); }
+  if (g.kind === 'gate' && g.retry > 0) { g.retry--; g.got = 0; const d0 = Math.max(M.me.d + RETRY_AHEAD, ...g.old.map(r => r.d + rowGap(M))); clearForRows(M, d0, g.need.length); layRows(M, g, d0); M.events.push({ k: t ? 'oeps' : 'gemist' }); }
   else { g.st = g.kind === 'lock' ? 'gone' : 'mis'; if (g.kind === 'gate') M.gateRes.n++; M.events.push({ k: g.kind === 'gate' ? 'gatemis' : 'slotmis' }); }
 }
 // ruim de weg op waar een herkansings-rijtje komt (nog niet getoonde obstakels/kisten)
-function clearForRows(M, d0, n) { const a = d0 - 20, b = d0 + ROW_GAP * (n - 1) + 20; M.obst = M.obst.filter(o => o.by || o.d < a || o.d > b); M.boxes = M.boxes.filter(x => x.d < a || x.d > b || Object.keys(x.taken).length); }
+function clearForRows(M, d0, n) { const a = d0 - 20, b = d0 + rowGap(M) * (n - 1) + 20; M.obst = M.obst.filter(o => o.by || o.d < a || o.d > b); M.boxes = M.boxes.filter(x => x.d < a || x.d > b || Object.keys(x.taken).length); }
 // ---------- turbo: tot 3 opsparen ----------
 function turboAdd(M, c, src) {
   if (!c.me) { c.turbo = TURBO_T; return; }
@@ -2658,7 +2672,7 @@ function raceRollItem(M, pos, rng = M.rng, gap = 0) {
 const carPos = (M, c) => 1 + M.cars.filter(o => o !== c && o.d > c.d).length;
 function raceHit(M, c, kind, by) {
   if (c.shield > 0) { c.shield = 0; if (c.me || by === 'me') M.events.push({ k: 'blok', who: c.id }); return false; }
-  const soft = c.me && by !== 'me' ? [.45, .7, .85][M.diff] : 1;
+  const soft = c.me && by !== 'me' ? raceAI(M).soft : 1;
   c.crash = (kind === 'emp' ? .9 : 1.1) * soft; c.spin = 1; c.v *= c.me ? .75 : .6;
   if (c.me) { M.hitsOnMe++; if (M.diff > 0 && kind !== 'emp') M.dmg += Math.round(c.stats.crash * .4); M.events.push({ k: 'geraakt', kind }); }
   else if (by === 'me') { M.aiHits++; M.events.push({ k: 'raak', who: c.id, kind }); }
@@ -2670,8 +2684,8 @@ function raceUse(M, c) {
   if (it === 'olie') M.obst.push({ d: c.d - 6, off: clamp(off, -.8, .8), k: 'olie', by: c.id, hitBy: { [c.id]: 1 } });
   if (it === 'schroot') LANES.forEach((o, i) => M.obst.push({ d: c.d - 7 - i * 2, off: o, k: 'schroot', by: c.id, hitBy: { [c.id]: 1 } }));
   if (it === 'schild') c.shield = 6;
-  if (it === 'raket') { const tg = M.cars.filter(o => o !== c && o.d > c.d && o.d - c.d < 160 && o.fin == null).sort((a, b) => a.d - b.d)[0]; M.rockets.push({ d: c.d + 4, x: c.x, tgt: tg ? tg.id : null, by: c.id, life: 2.5 }); }
-  if (it === 'emp') M.cars.filter(o => o !== c && o.d > c.d && o.d - c.d < 70 && o.fin == null).forEach(o => raceHit(M, o, 'emp', c.id));
+  if (it === 'raket') { const hunt = !c.me && raceAI(M).hunt && M.me.d > c.d && M.me.d - c.d < 200 && M.me.fin == null; const tg = hunt ? M.me : M.cars.filter(o => o !== c && o.d > c.d && o.d - c.d < 160 && o.fin == null).sort((a, b) => a.d - b.d)[0]; M.rockets.push({ d: c.d + 4, x: c.x, tgt: tg ? tg.id : null, by: c.id, life: 2.5 }); }
+  if (it === 'emp') M.cars.filter(o => o !== c && o.d > c.d && o.d - c.d < (!c.me && raceAI(M).hunt ? 95 : 70) && o.fin == null).forEach(o => raceHit(M, o, 'emp', c.id));
   M.events.push({ k: 'use', it, who: c.id }); return it;
 }
 // AI-items: op Makkelijk alleen iets áchter zich laten vallen (en lang niet altijd), nooit raketten op jou
@@ -2680,7 +2694,17 @@ function aiItem(M, c, dt) {
   const me = M.me, behindMe = me.d < c.d && c.d - me.d < 30, aheadMe = me.d > c.d && me.d - c.d < 140;
   if (M.diff === 0 && (c.item === 'raket' || c.item === 'emp')) c.item = M.rng() < .5 ? 'schild' : 'olie';
   if ((c.item === 'olie' || c.item === 'schroot') && behindMe && M.diff === 0 && M.rng() < .6) { c.item = null; return; }
-  if ((c.item === 'raket' || c.item === 'emp') && aheadMe && M.diff === 1 && M.rng() < .35) { c.item = null; return; }
+  if ((c.item === 'raket' || c.item === 'emp') && aheadMe && M.diff === 1 && M.rng() < .35 * (1 - raceAI(M).smart)) { c.item = null; return; }
+  const AI = raceAI(M);
+  if (AI.smart) {   // v22 (Normaal/Pittig): slim bewaren tot het raak kan, maar niet eindeloos
+    c.holdT = (c.holdT || 0) + dt; const late = c.holdT > 9 - 3 * AI.smart, near = (lo, hi) => me.d - c.d > lo && me.d - c.d < hi && me.fin == null;
+    const next = M.cars.filter(o => o !== c && o.d > c.d && o.fin == null).sort((a, b) => a.d - b.d)[0];
+    const go = c.item === 'raket' ? (AI.hunt ? near(5, 200) : next && next.d - c.d < 150 && (next.me || M.rng() < .3 * dt)) :
+      c.item === 'emp' ? near(2, AI.hunt ? 95 : 70) || (next && next.d - c.d < 60 && M.rng() < .3 * dt) :
+      c.item === 'schild' ? M.rockets.some(r => r.tgt === c.id) || (me.d < c.d && c.d - me.d < 25 && !!me.item) :
+      (c.item === 'olie' || c.item === 'schroot') ? me.d < c.d && c.d - me.d < 30 && c.d - me.d > 6 && Math.abs(me.x - c.x) < .12 + .1 * AI.smart : true;
+    if (!go && !late) return;
+  }
   raceUse(M, c);
 }
 function raceStep(M, dt) {
@@ -2688,7 +2712,7 @@ function raceStep(M, dt) {
   if (M.count > 0) { M.count -= dt; if (M.count <= 0) M.events.push({ k: 'go' }); return; }
   M.t += dt; const me = M.me, prevD = me.d;
   // patroonstroken openen op afstand (balk bovenin)
-  for (const g of M.gates) if (g.st === 'wait' && g.rows[0].d - me.d < 150) { g.st = 'open'; M.events.push({ k: 'gateopen' }); }
+  for (const g of M.gates) if (g.st === 'wait' && g.rows[0].d - me.d < raceAI(M).open) { g.st = 'open'; M.events.push({ k: 'gateopen' }); }
   for (const s of M.shortcuts) {
     const edge = trackCx(M, me.d) + s.side * TRACK_HW, near = Math.abs(me.x - edge) < .1;
     if (s.st === 'hidden' && s.d - me.d < 140 && s.d - me.d > 20 && near && !activeGate(M)) { s.st = 'open'; makeLock(M, s); layRows(M, s, me.d + 55); M.events.push({ k: 'slotopen' }); }
@@ -2705,15 +2729,15 @@ function raceStep(M, dt) {
     } else {
       // AI: eigen rijstrook, ontwijkt soms obstakels; rubberband: nooit ver weg, niet sneller dan de cap
       // rubberband (zacht en eerlijk): wie vóór de speler rijdt, rijdt iets trager en maakt eerder foutjes; wie erachter zit, komt terug
-      const gap = c.d - me.d, ahead = clamp((gap - 10) / 50, 0, 1), behind = clamp((-gap - 8) / 50, 0, 1), lead = M.lastPos === 1 ? 1 : .5;
+      const AI = raceAI(M), gap = c.d - me.d, ahead = clamp((gap - 10) / 50, 0, 1), behind = clamp((-gap - 8) / 50, 0, 1), lead = M.lastPos === 1 ? 1 : .5;
       const ob = M.obst.find(o => !o.hitBy[c.id] && o.d - c.d > 0 && o.d - c.d < 40);
-      let tx = cx + c.lane; if (ob && M.rng() < c.dr.skill * (1 - .5 * ahead) * dt * (ob.by === 'me' ? 4 : 8)) c.dodge = (cx + ob.off * TRACK_HW) > tx ? -.14 : .14;
+      let tx = cx + c.lane; if (ob && M.rng() < c.dr.skill * AI.dodge * (1 - .5 * ahead) * dt * (ob.by === 'me' ? 4 : 8)) c.dodge = (cx + ob.off * TRACK_HW) > tx ? -.14 : .14;
       if (c.dodge) { tx += c.dodge; if (!ob) c.dodge = 0; }
-      if (c.wobT > 0) { c.wobT -= dt; tx += c.wob; } else if (ahead > 0 && M.rng() < [.16, .11, .05][M.diff] * ahead * dt) { c.wob = (M.rng() < .5 ? -1 : 1) * .13; c.wobT = .8 + M.rng() * .8; }   // foutje: even naast de lijn
-      c.x += clamp(tx - c.x, -.5 * dt, .5 * dt);
-      const rb = 1 - ahead * [.16, .13, .07][M.diff] + behind * lead * [.11, .09, .08][M.diff];
+      if (c.wobT > 0) { c.wobT -= dt; tx += c.wob; } else if (ahead > 0 && M.rng() < AI.wob * ahead * dt) { c.wob = (M.rng() < .5 ? -1 : 1) * .13; c.wobT = .8 + M.rng() * .8; }   // foutje: even naast de lijn
+      c.x += clamp(tx - c.x, -AI.steer * dt, AI.steer * dt);
+      const rb = 1 - ahead * AI.rbA + behind * lead * AI.rbB;
       top = c.top * rb * (c.turbo > 0 ? 1.25 : 1) * (Math.abs(c.x - cx) > TRACK_HW ? .6 : 1);
-      if (M.gates.some(g => d0 < g.d && d0 + c.v * dt >= g.d) && M.rng() < c.dr.skill * [.5, .75, 1][M.diff] * (1 - .5 * ahead)) c.turbo = TURBO_T;
+      if (M.gates.some(g => d0 < g.d && d0 + c.v * dt >= g.d) && M.rng() < c.dr.skill * AI.gate * (1 - .5 * ahead)) c.turbo = TURBO_T;
       aiItem(M, c, dt);
     }
     if (c.crash > 0) { c.crash -= dt; top *= .35; }
@@ -2724,9 +2748,9 @@ function raceStep(M, dt) {
     // ❓-kisten
     for (const b of M.boxes) if (d0 < b.d && c.d >= b.d && !b.taken[c.id] && !c.item && b.lanes.some(l => Math.abs(c.x - laneX(M, b.d, l)) < TILE_R + .02)) {
       b.taken[c.id] = 1; const pos = carPos(M, c), lead = M.cars.reduce((a, o) => Math.max(a, o.d), 0); let it = raceRollItem(M, pos, M.rng, lead - c.d);
-      if (it === 'turbo' && c.me && c.turboN >= TURBO_MAX) it = 'schild';
+      if (it === 'turbo' && c.me && (c.turboN >= TURBO_MAX || (raceAI(M).boxTurbo < 1 && M.rng() > raceAI(M).boxTurbo))) it = 'schild';
       if (it === 'turbo') { if (c.me) { M.events.push({ k: 'item', it }); turboAdd(M, c, 'box'); } else turboAdd(M, c); continue; }
-      c.item = it; c.useT = 1.2 + M.rng() * 3;
+      c.item = it; c.useT = 1.2 + M.rng() * 3; c.holdT = 0;
       if (c.me) M.events.push({ k: 'item', it: c.item });
     }
     // obstakels (incl. gedropte olie/schroot)
